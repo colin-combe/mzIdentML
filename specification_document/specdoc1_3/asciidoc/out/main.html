@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.12">
-<title>mzTab-M: exchange format for metabolomics results</title>
+<title>mzIdentML: exchange format for peptides and proteins identified from mass spectra</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,13 +440,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>mzTab-M: exchange format for metabolomics results</h1>
+<h1>mzIdentML: exchange format for peptides and proteins identified from mass spectra</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_preface">Preface</a></li>
 <li><a href="#abstract">Abstract</a></li>
-<li><a href="#_abstract">Abstract</a></li>
 <li><a href="#_introduction">Introduction</a>
 <ul class="sectlevel2">
 <li><a href="#_background">Background</a></li>
@@ -592,13 +591,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><em>Status of This Document</em></p>
 </div>
 <div class="paragraph">
-<p>This document presents the specification of the mzTab data format for metabolomics developed by members of the Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) Proteomics Informatics (PI) Working Group, in collaboration with the Metabolomics Standards initiative (MSI). Distribution is unlimited.</p>
+<p>This document presents a final specification for the mzIdentML data format developed by the HUPO Proteomics Standards Initiative.
+Distribution is unlimited.</p>
 </div>
 <div class="paragraph">
 <p><em>Version of This Document</em></p>
 </div>
 <div class="paragraph">
-<p>Date created: June 1st, 2012</p>
+<p>The current version of this document is: version 1.3.0 final, June 2024.</p>
+</div>
+<div class="paragraph">
+<p>Date created: June 24, 2024</p>
 </div>
 <div class="paragraph">
 <p>Last updated: BUILDDATE</p>
@@ -607,7 +610,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Based on commit: <a href="https://github.com/HUPO-PSI/mzTab/commit/COMMITHASH">COMMITHASH</a> - <a href="https://github.com/HUPO-PSI/mzTab/commits/master/specification_document-releases/2_0-Metabolomics-Release/mzTab_format_specification_2_0-M_release.adoc">Commit History</a></p>
 </div>
 <div class="paragraph">
-<p>The current version of this document is: version 2.0.0-Final March 2019 (RELEASE)</p>
+<p>The current version of this document is: version version 1.3.0 final, June 2024</p>
 </div>
 <div class="paragraph">
 <p>The latest (draft) version of this document may be found at <a href="https://github.com/HUPO-PSI/mzTab" class="bare">https://github.com/HUPO-PSI/mzTab</a>.</p>
@@ -616,7 +619,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><em>Type of This Document</em></p>
 </div>
 <div class="paragraph">
-<p>This document is a <em>recommendation</em> for a common, community-driven standard data exchange format in metabolomics.</p>
+<p>This document is a <em>recommendation</em> for a common, community-driven standard data exchange format in proteomics.</p>
 </div>
 <div class="paragraph">
 <p><em>Authors</em></p>
@@ -628,30 +631,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect1">
 <h2 id="abstract">Abstract</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>mzIdentML: exchange format for peptides and proteins identified from mass spectra</strong></p>
-</div>
-<div class="paragraph">
-<p><span class="underline">Status of This Document</span></p>
-</div>
-<div class="paragraph">
-<p>This document presents a final specification for the mzIdentML data format developed by the HUPO Proteomics Standards Initiative.
-Distribution is unlimited.</p>
-</div>
-<div class="paragraph">
-<p><span class="underline">Version of This Document</span></p>
-</div>
-<div class="paragraph">
-<p>The current version of this document is: version 1.3.0 final, June 2024.</p>
-</div>
-<div class="paragraph">
-<p>==</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_abstract">Abstract</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) defines community standards for data representation in proteomics to facilitate data comparison, exchange and verification.
@@ -11832,7 +11811,7 @@ However, this document itself may not be modified in any way, such as by removin
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-02-20 16:34:17 +0100
+Last updated 2025-02-20 17:25:40 +0100
 </div>
 </div>
 </body>

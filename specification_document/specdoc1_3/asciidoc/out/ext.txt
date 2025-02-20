@@ -1,7 +1,7 @@
 
 
 
-****** mzTab-M: exchange format for metabolomics results ******
+****** mzIdentML extension for crosslinking data ******
 Table of Contents
     * Preface
     * Abstract
@@ -38,11 +38,11 @@ Proteomics Standards Initiative (PSI) Proteomics Informatics (PI) Working
 Group, in collaboration with the Metabolomics Standards initiative (MSI).
 Distribution is unlimited.
 Version of This Document
-Date created: June 1st, 2012
+Date created: June 24, 2024
 Last updated: BUILDDATE
 Based on commit: COMMITHASH - Commit_History
-The current version of this document is: version 2.0.0-Final March 2019
-(RELEASE)
+The current version of this document is: version version 1.0.0 final June 24,
+2024
 The latest (draft) version of this document may be found at https://github.com/
 HUPO-PSI/mzTab.
 Type of This Document
@@ -103,11 +103,7 @@ The remainder of this document is structured as follows.
 [relationship-to-other-specifications] describes how the specification
 presented in [format-specification] relates to other specifications, both those
 that it extends and those that it is intended to complement.
-mzIdentML extension for crosslinking dataÂ Â Â Â Â Â Â Â June 24,Â 2024 PSI
-draft
-recommendationÂ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â 
-PSI draft
-recommendationÂ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â 
+mzIdentML extension for crosslinking data June 24,2024 PSI draft recommendation
 PSI Proteomics Informatics Working Group
 Status: FINAL
 Colin W. Combe, University of Edinburgh
@@ -2609,4 +2605,4 @@ INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
 MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE."
 
 =======================================================================
-Last updated 2025-02-20 15:09:33 +0100
+Last updated 2025-02-20 17:19:41 +0100
