@@ -73,6 +73,9 @@ echo "Building HTML5 version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
 asciidoctor -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
     -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
     -D "$OUTPUT_DIR" "$EXT_ADOC_FILE"
+OUTPUT_HTML="${EXT_ADOC_FILE%.*}.html"
+OUTPUT_TXT="${EXT_ADOC_FILE%.*}.txt"
+html2text "$OUTPUT_DIR/$OUTPUT_HTML" > "$OUTPUT_DIR/$OUTPUT_TXT"
 ECODE=$?
 if [ ! $ECODE -eq 0 ]; then
   echo "Build failed with exit code $ECODE"
@@ -89,9 +92,9 @@ if [ ! $ECODE -eq 0 ]; then
   echo "Build failed with exit code $ECODE"
   exit $ECODE
 fi
-#
+
 #echo
-#echo "Building docbook and DOCX version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
+#echo "Building docbook and DOCX version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
 #OUTPUT_DOCBOOK="${EXT_ADOC_FILE%.*}.xml"
 #OUTPUT_DOCX="${EXT_ADOC_FILE%.*}.docx"
 #asciidoctor -v -w -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D $OUTPUT_DIR $EXT_ADOC_FILE

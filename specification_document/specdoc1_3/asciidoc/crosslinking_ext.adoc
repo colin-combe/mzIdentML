@@ -26,9 +26,18 @@ endif::[]
 :!sectnums:
 [preface]
 == Preface
+
+*mzIdentML: exchange format for peptides and proteins identified from mass spectra*
+
+*Extension for crosslinking approaches*
+
+(This extension is an _addendum_ to mzIdentML version 1.3.0)
+
 _Status of This Document_
 
-This document presents the specification of the mzTab data format for metabolomics developed by members of the Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) Proteomics Informatics (PI) Working Group, in collaboration with the Metabolomics Standards initiative (MSI). Distribution is unlimited.
+This document presents a final specification for the mzIdentML data format
+developed by the HUPO Proteomics Standards Initiative. Distribution is
+unlimited.
 
 _Version of This Document_
 
@@ -36,15 +45,15 @@ Date created: June 24, 2024
 
 Last updated: {build-date}
 
-Based on commit: https://github.com/HUPO-PSI/mzTab/commit/{commit-hash}[{commit-hash}] - https://github.com/HUPO-PSI/mzTab/commits/master/specification_document-releases/2_0-Metabolomics-Release/mzTab_format_specification_2_0-M_release.adoc[Commit History]
+Based on commit: https://github.com/HUPO-PSI/mzIdentML/commit/{commit-hash}[{commit-hash}] - https://github.com/HUPO-PSI/mzIdentML/commits/master/specification_document/specdoc1_3/asciidoc/crosslinking_ext.adoc[Commit History]
 
-The current version of this document is: version {document-version}
+The current version of this document is: {document-version}
 
-The latest (draft) version of this document may be found at https://github.com/HUPO-PSI/mzTab.
+The latest (draft) version of this document may be found at https://github.com/HUPO-PSI/mzIdentML.
 
 _Type of This Document_
 
-This document is a _recommendation_ for a common, community-driven standard data exchange format in metabolomics.
+This document is a _recommendation_ for a common, community-driven standard data exchange format in proteomics.
 
 _Authors_
 
@@ -54,9 +63,7 @@ Please see <<authors>> for details on the authors and editors of this document.
 [[abstract]]
 == Abstract
 
-The  Metabolomics Standards Initiative (MSI) and the Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) define community standards for data representation in proteomics/metabolomics to facilitate data comparison, exchange and verification. In this context, the two organizations are working together on a shared standard for downstream results, following mass spectrometry (MS) analysis. This document defines a tab-delimited text file format to report metabolomics results, based on a shared core mzTab format, which was primarily used in the proteomics context before (mzTab v 1.0).
-
-The intention of this specification, mzTab for Metabolomics (mzTab-M), is to extend the concepts established in the previous specification, so that more detail can be captured about the evidence trail for quantification, including MS features (different charge states or adducts) and the evidence trail for identifications, specifically for MS-based experiments on _small molecules_ (metabolites, lipids, contaminants, etc.). mzTab-M is not formally backwards compatible, but follows a similar design pattern to simplify adaptation of existing software and to facilitate its integration into bioinformatics processing and submission workflows.
+The Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) defines community standards for data representation in proteomics to facilitate data comparison, exchange and verification. This document defines the extension of the mzIdentML data standard to describe the outputs of proteomics search engines or similar software for the identification of crosslinked peptides.
 
 //reenable section numbering
 :sectnums:
@@ -66,164 +73,6 @@ The intention of this specification, mzTab for Metabolomics (mzTab-M), is to ext
 [[background]]
 === Background
 
-This document addresses the systematic description of small molecule identification and quantification data retrieved from mass spectrometry (MS)-based experiments. A large number of software tools are available that analyze MS data and produce a variety of different output data formats.
-
-mzTab-M is intended as a reporting standard for quantitative results from metabolomics/lipodomics approaches. This format is further intended to provide local LIMS systems as well as MS metabolomics repositories a simple way to share and combine basic information.
-
-mzTab has been developed with a view to support the following general tasks (more specific use cases are provided in <<use-cases-for-mztab>>):
-
-1.  _Facilitate the sharing of final experimental results,_ especially with researchers outside the field of metabolomics.
-2.  _Export of results to external software,_ including programs such as Microsoft Excel^®^ and Open Office Spreadsheet and statistical software / coding languages such as R.
-3.  _Act as an output format of (web-) services_ that report MS-based results and thus can produce standardized result pages.
-4.  _Be able to link to the external experimental evidence_ e.g. by referencing back to mzML files.
-
-This document presents a specification, not a tutorial. As such, the presentation of technical details is deliberately direct. The role of the text is to describe the model and justify design decisions made. The document does not discuss how the models should be used in practice, consider tool support for data capture or storage, or provide comprehensive examples of the models in use. It is anticipated that tutorial material will be developed independently of this specification.
-
-[[document-structure]]
-=== Document Structure
-
-The remainder of this document is structured as follows.
-
-<<use-cases-for-mztab>> lists requirements that mzTab-M is designed to support.
-
-<<notational-conventions>> describes the terminology used.
-
-<<relationship-to-other-specifications>> describes how the specification presented in <<format-specification>> relates to other specifications, both those that it extends and those that it is intended to complement.
-
-
-
-mzIdentML extension for crosslinking data
-June 24,2024
-PSI draft recommendation
-
-#PSI Proteomics Informatics Working Group#
-
-Status: FINAL
-
-_Colin W. Combe, University of Edinburgh_
-
-_Lars Kolbowski, Technische Universität Berlin_
-
-_Lutz Fischer, Technische Universität Berlin_
-
-_Ville Koskinen, Matrix Science_
-
-_Joshua Klein, University of Boston_
-
-_Alexander Leitner, ETH Zurich_
-
-_Juan Antonio Vizcaíno, European Bioinformatics Institute_
-
-_Andrew R. Jones, University of Liverpool_
-
-_Juri Rappsilber, University of Edinburgh & Technische Universität Berlin_
-
-June 24, 2024
-
-*mzIdentML: exchange format for peptides and proteins identified from mass spectra*
-
-*Extension for crosslinking approaches*
-
-(This extension is an _addendum_ to mzIdentML version 1.3.0)
-
-[.underline]#Status of This Document#
-
-This document presents a final specification for the mzIdentML data format developed by the HUPO Proteomics Standards Initiative. Distribution is unlimited.
-
-[.underline]#Version of This Document#
-
-The current version of this document is: version 1.0.0 final June 24, 2024.
-
-*Abstract*
-
-The Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) defines community standards for data representation in proteomics to facilitate data comparison, exchange and verification. This document defines the extension of the mzIdentML data standard to describe the outputs of proteomics search engines or similar software for the identification of crosslinked peptides.
-
-*Table of Contents*
-
-link:#introduction[*1. Introduction 2*]
-
-____
-link:#background[1.1 Background 3]
-
-link:#supported-crosslinking-use-cases[1.2. Supported Crosslinking Use Cases 3]
-
-link:#document-structure-and-changes-from-mzidentml-version-1.2.0-to-1.3.0-to-support-crosslinking-results[1.3 Document Structure and Changes from mzIdentML Version 1.2.0 to 1.3.0 to Support Crosslinking Results 5]
-
-link:#availability-of-documentation-and-example-files[1.4 Availability of Documentation and Example Files 6]
-____
-
-link:#controlled-vocabularies-for-encoding-crosslinks[*2. Controlled Vocabularies for Encoding Crosslinks 7*]
-
-link:#encoding-the-results-of-crosslinking-searches[*3. Encoding the Results of Crosslinking Searches 8*]
-
-____
-link:#introduction-1[3.1. Introduction 8]
-
-link:#spectrumidentificationprotocol-elements[3.2 <SpectrumIdentificationProtocol> Elements 10]
-
-link:#additional-search-parameters[3.2.1 Additional Search Parameters 10]
-
-link:#modification-parameters[3.2.2 Modification Parameters 11]
-
-link:#encoding-crosslinked-peptides-in-the-element-sequencecollection[3.3 Encoding Crosslinked Peptides in the Element <SequenceCollection> 15]
-
-link:#encoding-identified-crosslinks-in-spectrumidentificationitem-elements[3.4 Encoding Identified Crosslinks in <SpectrumIdentificationItem> Elements 19]
-
-link:#identifications-of-crosslinked-peptides[3.4.1 Identifications of Crosslinked Peptides 19]
-
-link:#identifications-of-noncovalently-associated-peptides[3.4.2 Identifications of Noncovalently Associated Peptides 21]
-
-link:#identifications-of-an-internally-linked-peptide[3.4.3 Identifications of an Internally Linked Peptide 23]
-____
-
-link:#scores-and-thresholds[*4. Scores and Thresholds 24*]
-
-____
-link:#introduction-2[4.1 Introduction 24]
-
-link:#thresholds[4.2 Thresholds 25]
-
-link:#scores[4.3 Scores 28]
-
-link:#match-level-scores[4.3.1 Match Level Scores 28]
-
-link:#peptide-level-scores[4.3.2 Peptide Level Scores 28]
-
-link:#interaction-level-scores-unique-residue-pairs-and-ppi[4.3.3 Interaction Level Scores (Unique Residue-Pairs and PPI) 31]
-
-link:#fdr-specific-comments[4.4 FDR Specific Comments 38]
-____
-
-link:#unsupported-use-cases-and-future-directions[*5. Unsupported Use Cases and Future Directions 39*]
-
-link:#appendix-i.-comparison-of-rules-for-crosslink-donor-and-crosslink-acceptor-depending-on-context[*6. Appendix I. Comparison of rules for “crosslink donor” and “crosslink acceptor” depending on context 40*]
-
-link:#appendix-ii.-example-encodings-of-crosslinker-reagents-as-searchmodification-elements[*7. Appendix II. Example encodings of crosslinker reagents as <SearchModification> elements 42*]
-
-____
-link:#bissulfosuccinimidyl-suberate-bs3[7.1 Bis(sulfosuccinimidyl) suberate (BS3) 42]
-
-link:#ethyl-3-3-dimethylaminopropylcarbodiimide-hydrochloride-edc[7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC) 43]
-
-link:#nhs-diazirine-succinimidyl-44-azipentanoate-sda[7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA) 44]
-
-link:#disuccinimidyl-sulfoxide-dsso[7.4 Disuccinimidyl sulfoxide (DSSO) 45]
-____
-
-link:#authors-information[*8. Authors Information 48*]
-
-link:#glossary[*9. Glossary 48*]
-
-link:#references[*10. References 50*]
-
-link:#intellectual-property-statement[*11. Intellectual Property Statement 50*]
-
-link:#copyright-notice[*Copyright Notice 51*]
-
-==  +
-*1. Introduction*
-
-=== *1.1 Background*
 
 A large number of proteomics search engines are available, each outputting results in a variety of file formats. mzIdentML https://paperpile.com/c/YrD2gH/vjf16[[1]] is a HUPO-PSI endorsed community standard that provides a common file format for identification results. This extension document has been released in parallel with mzIdentML version 1.3. mzIdentML version 1.3 supports extensions for additional features or use cases which can be described in additional documents, rather than editing the original specification document.
 
@@ -326,7 +175,7 @@ a|
 *Figure 1. Summary of mzIdentML support for crosslinking product types.*
 
 ===  +
-
+[[document-structure]]
 === *1.3 Document Structure and Changes from mzIdentML Version 1.2.0 to 1.3.0 to Support Crosslinking Results*
 
 mzIdentML version 1.3.0 makes two significant changes: (i) a new mechanism for encoding identifications based on multiple spectra, including the retiral of the old method for doing this; (ii) the ability to supplement the specification with extension documents covering specific use cases. The general guidance on the mzIdentML file format given in the main specification document all applies here, with this extension document giving guidance on the use of the controlled vocabulary (CV) terms specific to crosslinking.
@@ -1652,6 +1501,9 @@ image:img//media/image1.png[image,width=624,height=396]
 
 *Figure 12. Ambiguity at PPI level.* Ambiguity regarding which protein is crosslinked (protein inference problem) MUST be reflected in how the <ProteinDetectionHypothesis> elements containing interaction scores are assigned to <ProteinAmbiguityGroup> elements, see Section 5.2.1 (Protein grouping encoding) of the main specification. Shown here with PPI level scores.
 
+[source,xml]
+----
+
 <ProteinAmbiguityGroup id="PAG_0">
 
 <ProteinDetectionHypothesis dBSequence_ref="dbseq_P02771" passThreshold="true" id="PAG_0_PDH_0">
@@ -1701,7 +1553,7 @@ image:img//media/image1.png[image,width=624,height=396]
 <cvParam cvRef="PSI-MS" accession="MS:1002415" name="protein group passes threshold" value="true"/>
 
 </ProteinAmbiguityGroup>
-
+----
 *Figure 13. XML snippet showing the CV terms "protein-pair-level global FDR" (MS:1002676) and "residue-pair-level global FDR" (MS:1002677).*
 
 The XML snippet in Figure 13 shows the "protein-pair-level global FDR" (MS:1002676) and "residue-pair-level global FDR" (MS:1002677) CV terms, these CV terms have the parent CV term “interaction score derived from crosslinking” (MS:1002664). Where needed, new CV terms for search specific interaction scores should be added as children of the CV term “interaction score derived from crosslinking” (MS:1002664).
@@ -2615,6 +2467,7 @@ ____
 
 ==  +
 
+[[authors]]
 == *8. Authors Information*
 
 Authors of this extension:
@@ -2703,6 +2556,8 @@ Self Crosslinks - crosslinks between peptides within one protein sequence.
 Trimeric Crosslinker - a crosslinker with three reactive groups.
 ____
 
+
+
 == *10. References*
 
 {empty}1. http://paperpile.com/b/YrD2gH/vjf16[Vizcaíno JA, Mayer G, Perkins S, Barsnes H, Vaudel M, Perez-Riverol Y, et al. The mzIdentML Data Standard Version 1.2, Supporting Advances in Proteome Informatics. Mol Cell Proteomics. 2017;16: 1275–1285.]
@@ -2735,4 +2590,3 @@ The limited permissions granted above are perpetual and will not be revoked by t
 
 This document and the information contained herein is provided on an "AS IS" basis and THE PROTEOMICS STANDARDS INITIATIVE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE."
 
-=======================================================================
