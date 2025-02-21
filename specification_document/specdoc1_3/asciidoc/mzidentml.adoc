@@ -844,7 +844,7 @@ Finally, a mechanism has been added for recording peptides both above and below 
 PSM-level threshold is covered _via_ the _passThreshold_ attribute on the <SpectrumIdentificationItem> element.
 To enable additional thresholding at the peptide-level, a new CV term is required for all PSMs (“peptide passes threshold”, MS:1002500) as shown in Figure 1F.
 
-image:img//media/image1.wmf[image,width=643,height=857]
+image:img/media/image1.wmf[image,width=643,height=857]
 
 Figure 1. The mechanism for encoding peptide-level statistics in mzIdentML 1.2.0.
 

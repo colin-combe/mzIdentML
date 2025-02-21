@@ -62,16 +62,15 @@ echo "Building HTML5 version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
 ASCIIDOCTOR_CMD="asciidoctor -d book --attribute=\"commit-hash=$COMMIT_HASH\" --attribute=\"build-date=$BUILD_DATE\" -D /documents/output $ADOC_FILE"
 
 # Print the Asciidoctor command before running it
-#echo "Running Asciidoctor command inside Docker: $ASCIIDOCTOR_CMD"
-#docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
+echo "Running Asciidoctor command inside Docker: $ASCIIDOCTOR_CMD"
+docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
 
-#ECODE=$?
-#if [ ! $ECODE -eq 0 ]; then
-#  echo "Build failed with exit code $ECODE"
-#  exit $ECODE
-#fi
+ECODE=$?
+if [ ! $ECODE -eq 0 ]; then
+  echo "Build failed with exit code $ECODE"
+  exit $ECODE
+fi
 
-#echo "Building PDF version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
 echo "Building PDF version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
 
 # Define the Asciidoctor PDF command separately
