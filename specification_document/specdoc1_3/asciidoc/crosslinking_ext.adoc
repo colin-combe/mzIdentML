@@ -82,7 +82,8 @@ This mzIdentML 1.3.0 extension document provides further information on the enco
 
 2- Provide further clarification and documentation on how to encode crosslinking data in an mzIdentML file.
 
-=== *1.2. Supported Crosslinking Use Cases*
+[[supported-use-cases]]
+=== Supported Crosslinking Use Cases
 
 Already supported use case in mzIdentML 1.2.0:
 
@@ -103,14 +104,14 @@ An overview of the different crosslinking product types and their support in mzI
 [cols=",,,,,,,,",options="header",]
 |===
 |*no crosslinker reaction* a|
-image:img//media/image9.jpg[image,width=42,height=20]
+image:./img/mzidentml/image9.jpg[image,width=42,height=20]
 
 linear peptide / free
 
 peptide
 
 | a|
-image:img//media/image9.jpg[image,width=43,height=15]
+image:img/mzidentml/image9.jpg[image,width=43,height=15]
 
 image:img//media/image9.jpg[image,width=43,height=14]
 
@@ -174,7 +175,6 @@ a|
 
 *Figure 1. Summary of mzIdentML support for crosslinking product types.*
 
-===  +
 [[document-structure]]
 === *1.3 Document Structure and Changes from mzIdentML Version 1.2.0 to 1.3.0 to Support Crosslinking Results*
 
@@ -302,9 +302,8 @@ ____
 scores_and_thresholds_1_3_0_draft.mzid (scores and thresholds).
 ____
 
-==  +
 
-== *2. Controlled Vocabularies for Encoding Crosslinks*
+== Controlled Vocabularies for Encoding Crosslinks
 
 A collection of terms for describing a certain domain is called a controlled vocabulary (CV) https://paperpile.com/c/YrD2gH/9dZZN[[3]]. Section 4.1 of the main mzIdentML 1.3.0 document describes the use of CVs in mzIdentML. The PSI-MS CV (https://github.com/HUPO-PSI/psi-ms-CV[[.underline]#https://github.com/HUPO-PSI/psi-ms-CV#]) can be used to encode many types of technical information in mzIdentML (e.g. statistical scores, mass spectrometers, etc). There are two other CVs that are relevant to encoding crosslinking data in mzIdentML: Unimod and XLMOD. XLMOD https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo[[.underline]#(https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo)# [.underline]# #] represents the crosslinker reagents. Unimod http://www.unimod.org/obo/unimod.obo[[.underline]#(http://www.unimod.org/obo/unimod.obo)# [.underline]# #] represents the resulting modifications in the crosslinked peptides/proteins.
 

@@ -75,7 +75,8 @@ asciidoctor -v -w --attribute="allow-uri-read" --attribute="missing-image-warnin
     -D "$OUTPUT_DIR" "$EXT_ADOC_FILE"
 OUTPUT_HTML="${EXT_ADOC_FILE%.*}.html"
 OUTPUT_TXT="${EXT_ADOC_FILE%.*}.txt"
-html2text "$OUTPUT_DIR/$OUTPUT_HTML" > "$OUTPUT_DIR/$OUTPUT_TXT"
+# pandoc -s -t plain '../mzIdentML 1.3.0 Crosslinking Extension 1.0.0 release/mzIdentML1.3.0CrosslinkingExtension1.0.0release.html' -o extorig.txt
+pandoc -s -t plain "$OUTPUT_DIR/$OUTPUT_HTML" -o "$OUTPUT_DIR/$OUTPUT_TXT"
 ECODE=$?
 if [ ! $ECODE -eq 0 ]; then
   echo "Build failed with exit code $ECODE"
