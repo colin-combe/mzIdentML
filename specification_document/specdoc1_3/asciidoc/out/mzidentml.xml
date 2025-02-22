@@ -13,11 +13,10 @@
 <simpara>This document presents a final specification for the mzIdentML data format developed by the HUPO Proteomics Standards Initiative.
 Distribution is unlimited.</simpara>
 <simpara><emphasis>Version of This Document</emphasis></simpara>
-<simpara>The current version of this document is: version 1.3.0 final, June 2024.</simpara>
 <simpara>Date created: June 24, 2024</simpara>
 <simpara>Last updated: *BUILDDATE*</simpara>
 <simpara>Based on commit: <link xl:href="https://github.com/HUPO-PSI/mzTab/commit/*COMMITHASH*">*COMMITHASH*</link> - <link xl:href="https://github.com/HUPO-PSI/mzTab/commits/master/specification_document-releases/2_0-Metabolomics-Release/mzTab_format_specification_2_0-M_release.adoc">Commit History</link></simpara>
-<simpara>The current version of this document is: version version 1.3.0 final, June 2024</simpara>
+<simpara>The current version of this document is: version 1.3.0 final, June 2024</simpara>
 <simpara>The latest (draft) version of this document may be found at <link xl:href="https://github.com/HUPO-PSI/mzTab">https://github.com/HUPO-PSI/mzTab</link>.</simpara>
 <simpara><emphasis>Type of This Document</emphasis></simpara>
 <simpara>This document is a <emphasis>recommendation</emphasis> for a common, community-driven standard data exchange format in proteomics.</simpara>

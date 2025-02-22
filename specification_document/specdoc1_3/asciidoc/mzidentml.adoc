@@ -55,7 +55,6 @@ _Authors_
 
 Please see <<authors-and-contributors>> for details on the authors and editors of this document.
 
-[abstract]
 [[abstract]]
 == Abstract
 

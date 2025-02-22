@@ -9,39 +9,35 @@ Table of Contents
 -   1. Introduction
     -   1.1. Background
     -   1.2. Supported Crosslinking Use Cases
-    -   1.3. 1.3 Document Structure and Changes from mzIdentML Version
-        1.2.0 to 1.3.0 to Support Crosslinking Results
-    -   1.4. 1.4 Availability of Documentation and Example Files
+    -   1.3. Document Structure and Changes from mzIdentML Version 1.2.0
+        to 1.3.0 to Support Crosslinking Results
+    -   1.4. Availability of Documentation and Example Files
 -   2. Controlled Vocabularies for Encoding Crosslinks
--   3. 3. Encoding the Results of Crosslinking Searches
-    -   3.1. 3.1. Introduction
-    -   3.2. 3.2 <SpectrumIdentificationProtocol> Elements
-    -   3.3. 3.3 Encoding Crosslinked Peptides in the Element
+-   3. Encoding the Results of Crosslinking Searches
+    -   3.1. Introduction
+    -   3.2. <SpectrumIdentificationProtocol> Elements
+    -   3.3. Encoding Crosslinked Peptides in the Element
         <SequenceCollection>
-    -   3.4. 3.4 Encoding Identified Crosslinks in
+    -   3.4. Encoding Identified Crosslinks in
         <SpectrumIdentificationItem> Elements
-    -   3.5. +
--   4. 4. Scores and Thresholds
-    -   4.1. 4.1 Introduction
-    -   4.2. 4.2 Thresholds
-    -   4.3. +
-    -   4.4. 4.3 Scores
-    -   4.5. 4.4 FDR Specific Comments
--   5. 5. Unsupported Use Cases and Future Directions
--   6. 6. Appendix I. Comparison of rules for “crosslink donor” and
+-   4. Scores and Thresholds
+    -   4.1. Introduction
+    -   4.2. Thresholds
+    -   4.3. Scores
+    -   4.4. FDR Specific Comments
+-   5. Unsupported Use Cases and Future Directions
+-   6. Appendix I. Comparison of rules for “crosslink donor” and
     “crosslink acceptor” depending on context
--   7. 7. Appendix II. Example encodings of crosslinker reagents as
+-   7. Appendix II. Example encodings of crosslinker reagents as
     <SearchModification> elements
-    -   7.1. 7.1 Bis(sulfosuccinimidyl) suberate (BS3)
-    -   7.2. 7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide
-        hydrochloride (EDC)
-    -   7.3. +
-    -   7.4. 7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
-    -   7.5. 7.4 Disuccinimidyl sulfoxide (DSSO)
--   8. 8. Authors Information
--   9. 9. Glossary
--   10. 10. References
--   11. 11. Intellectual Property Statement
+    -   7.1. Bis(sulfosuccinimidyl) suberate (BS3)
+    -   7.2. 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride
+        (EDC)
+    -   7.3. (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
+-   8. Authors Information
+-   9. Glossary
+-   10. References
+-   11. Intellectual Property Statement
 -   12. Copyright Notice
 
 Preface
@@ -160,88 +156,58 @@ types that are not supported in this version of mzIdentML (crosslinkers
 with more than two reactive groups, higher order crosslinked peptides)
 see §5.
 
-+------+------+------+------+------+------+------+------+-------+
-| no   | imag |      | imag |      |      |      |      |       |
-| cro  | e::i |      | e::i |      |      |      |      |       |
-| ssli | mg/c |      | mg/c |      |      |      |      |       |
-| nker | ross |      | ross |      |      |      |      |       |
-| reac | link |      | link |      |      |      |      |       |
-| tion | ing_ |      | ing_ |      |      |      |      |       |
-|      | ext/ |      | ext/ |      |      |      |      |       |
-|      | imag |      | imag |      |      |      |      |       |
-|      | e9.j |      | e9.j |      |      |      |      |       |
-|      | pg[i |      | pg[i |      |      |      |      |       |
-|      | mage |      | mage |      |      |      |      |       |
-|      | ,wid |      | ,wid |      |      |      |      |       |
-|      | th=4 |      | th=4 |      |      |      |      |       |
-|      | 2,he |      | 3,he |      |      |      |      |       |
-|      | ight |      | ight |      |      |      |      |       |
-|      | =20] |      | =15] |      |      |      |      |       |
-|      | li   |      | imag |      |      |      |      |       |
-|      | near |      | e::i |      |      |      |      |       |
-|      | pep  |      | mg/c |      |      |      |      |       |
-|      | tide |      | ross |      |      |      |      |       |
-|      | /    |      | link |      |      |      |      |       |
-|      | free |      | ing_ |      |      |      |      |       |
-|      | pep  |      | ext/ |      |      |      |      |       |
-|      | tide |      | imag |      |      |      |      |       |
-|      |      |      | e9.j |      |      |      |      |       |
-|      |      |      | pg[i |      |      |      |      |       |
-|      |      |      | mage |      |      |      |      |       |
-|      |      |      | ,wid |      |      |      |      |       |
-|      |      |      | th=4 |      |      |      |      |       |
-|      |      |      | 3,he |      |      |      |      |       |
-|      |      |      | ight |      |      |      |      |       |
-|      |      |      | =14] |      |      |      |      |       |
-|      |      |      | non- |      |      |      |      |       |
-|      |      |      | co   |      |      |      |      |       |
-|      |      |      | vale |      |      |      |      |       |
-|      |      |      | ntly |      |      |      |      |       |
-|      |      |      | as   |      |      |      |      |       |
-|      |      |      | soci |      |      |      |      |       |
-|      |      |      | ated |      |      |      |      |       |
-|      |      |      | pept |      |      |      |      |       |
-|      |      |      | ides |      |      |      |      |       |
-+======+======+======+======+======+======+======+======+=======+
-|      |      |      |      |      |      |      |      |       |
-+------+------+------+------+------+------+------+------+-------+
-| cro  |      | [im  | [im  | [im  | [im  |      | [im  | [i    |
-| ssli |      | age] | age] | age] | age] |      | age] | mage] |
-| nker |      |      |      |      |      |      |      |       |
-|      |      | cro  | cro  | c    | in   |      | cro  | h     |
-| reac |      | ssli | ssli | leav | tern |      | ssli | igher |
-| tion |      | nker | nked | able | ally |      | nked | order |
-|      |      | modi | pept |      | li   |      | pept |       |
-|      |      | fied | ides | cro  | nked |      | ides | c     |
-|      |      | pep  |      | ssli | pep  |      | from | rossl |
-|      |      | tide |      | nker | tide |      | cros | inked |
-|      |      |      |      |      | (l   |      | slin | pep   |
-|      |      | (    |      |      | oopl |      | kers | tides |
-|      |      | mono |      |      | ink) |      | with |       |
-|      |      | link |      |      |      |      | more |       |
-|      |      |      |      |      |      |      | than |       |
-|      |      | or   |      |      |      |      | two  |       |
-|      |      | dead |      |      |      |      | reac |       |
-|      |      | -end |      |      |      |      | tive |       |
-|      |      | l    |      |      |      |      | gr   |       |
-|      |      | ink) |      |      |      |      | oups |       |
-+------+------+------+------+------+------+------+------+-------+
-|      |      |      |      |      |      |      |      |       |
-+------+------+------+------+------+------+------+------+-------+
-| m    | 1    | 1    | 1    | Uns  |      |      |      |       |
-| zIde | .1.0 | .2.0 | .3.0 | uppo |      |      |      |       |
-| ntML |      |      |      | rted |      |      |      |       |
-|      |      |      |      |      |      |      |      |       |
-| ver  |      |      |      |      |      |      |      |       |
-| sion |      |      |      |      |      |      |      |       |
-| su   |      |      |      |      |      |      |      |       |
-| ppor |      |      |      |      |      |      |      |       |
-| ting |      |      |      |      |      |      |      |       |
-+------+------+------+------+------+------+------+------+-------+
+no crosslinker reaction
+
+[image]
+
+linear peptide / free peptide
+
+[image]
+
+[image]
+
+non-covalently associated peptides
+
+crosslinker reaction
+
+[image]
+
+crosslinker modified peptide (monolink or dead-end link)
+
+[image]
+
+crosslinked peptides
+
+[image]
+
+cleavable crosslinker
+
+[image]
+
+internally linked peptide (looplink)
+
+[image]
+
+crosslinked peptides from crosslinkers with more than two reactive
+groups
+
+[image]
+
+higher order crosslinked peptides
+
+mzIdentML version supporting
+
+1.1.0
+
+1.2.0
+
+1.3.0
+
+Unsupported
 
 Figure 1. Summary of mzIdentML support for crosslinking product types.
 
-1.3. 1.3 Document Structure and Changes from mzIdentML Version 1.2.0 to 1.3.0 to Support Crosslinking Results
+1.3. Document Structure and Changes from mzIdentML Version 1.2.0 to 1.3.0 to Support Crosslinking Results
 
 mzIdentML version 1.3.0 makes two significant changes: (i) a new
 mechanism for encoding identifications based on multiple spectra,
@@ -291,7 +257,7 @@ terms have been created related to noncovalently associated peptides:
 -   “noncovalently associated peptides search” (MS:1003330),
 
 -   “noncovalently associated peptides spectrum identification item”
-      (MS:1003331).
+    (MS:1003331).
 
 4- Improvements in the encoding of scores and thresholds related to
 crosslinking results. See Section §4. Seven CV terms have been created:
@@ -307,16 +273,16 @@ crosslinking results. See Section §4. Seven CV terms have been created:
 -   “protein-protein interaction passes threshold” (MS:1003341),
 
 -   “regular expression for whether interaction score derived from
-      crosslinking passes threshold” (MS:1003342),
+    crosslinking passes threshold” (MS:1003342),
 
 -   “FDR applied separately to self crosslinks and protein heteromeric
-      crosslinks” (MS:1003343),
+    crosslinks” (MS:1003343),
 
 -   “residue pair ref” (MS:1003344).
 
 -   “regular expression for residue-pair ref” (MS:1003345)
 
-1.4. 1.4 Availability of Documentation and Example Files
+1.4. Availability of Documentation and Example Files
 
 All documents in their most recent form are available on the PSI website
 (http://www.psidev.info/mzidentml) and at the mzIdentML GitHub project
@@ -330,10 +296,10 @@ The example files are:
 -   Xlink_EDC_mzIdentML_1_3_0_draft.mzid (internally linked peptides),
 
 -   multiple_spectra_per_id_1_3_0_draft.mzid (identification based on
-      multiple spectra),
+    multiple spectra),
 
 -   noncovalently_assoc_1_3_0_draft.mzid (noncovalently associated
-      peptides),
+    peptides),
 
 -   scores_and_thresholds_1_3_0_draft.mzid (scores and thresholds).
 
@@ -347,10 +313,9 @@ of technical information in mzIdentML (e.g. statistical scores, mass
 spectrometers, etc). There are two other CVs that are relevant to
 encoding crosslinking data in mzIdentML: Unimod and XLMOD. XLMOD
 (https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo)
-[.underline# ] represents the crosslinker reagents. Unimod
-[.underline(http://www.unimod.org/obo/unimod.obo)# [.underline]# #]
-represents the resulting modifications in the crosslinked
-peptides/proteins.
+represents the crosslinker reagents. Unimod
+(http://www.unimod.org/obo/unimod.obo) represents the resulting
+modifications in the crosslinked peptides/proteins.
 
 At the time of writing (Unimod v2.1, XLMOD v1.1.12) both CVs have
 advantages and disadvantages when used for encoding crosslinking results
@@ -372,19 +337,16 @@ modifications searched for as <SearchModification> elements; this
 provides a consistent way of retrieving crosslinker modification
 information regardless of which CV has been used, see §3.2.2.
 
-3. 3. Encoding the Results of Crosslinking Searches
+3. Encoding the Results of Crosslinking Searches
 
-3.1. 3.1. Introduction
+3.1. Introduction
 
 mzIdentML documents MUST indicate that they are implementing the
 guidance in this extension document by including the following CV term
 inside the top-level <MzIdentML> element, immediately after the <cvList>
 element:
 
-<cvParam cvRef="PSI-MS" accession="MS:1003385" name="mzIdentML
-crosslinking extension document version"
-
-value="1.0.0"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003385" name="mzIdentML crosslinking extension document version" value="1.0.0"/>
 
 Crosslinked peptides presented a challenge for mzIdentML 1.2.0, since
 more than one peptide can be identified from the same spectrum.
@@ -392,24 +354,24 @@ more than one peptide can be identified from the same spectrum.
 mzIdentML 1.2.0 solved this by:
 
 -   introducing the “crosslink donor” (MS:1002509) and “crosslink
-      acceptor” (MS:1002510) CV terms – the values of these terms
-      associate either <SearchModification> elements (see §3.2.2) or
-      <Modification> elements (see §3.3);
+    acceptor” (MS:1002510) CV terms – the values of these terms
+    associate either <SearchModification> elements (see §3.2.2) or
+    <Modification> elements (see §3.3);
 
 -   introducing the “crosslink spectrum identification item”
-      (MS:1002511) CV term – the values of these terms group
-      <SpectrumIdentificationItem> elements within a
-      <SpectrumIdentificationResult> (see §3.4).
+    (MS:1002511) CV term – the values of these terms group
+    <SpectrumIdentificationItem> elements within a
+    <SpectrumIdentificationResult> (see §3.4).
 
 Note that “crosslink donor” (MS:1002509) and “crosslink acceptor”
 (MS:1002510) are used in two different contexts:
 
 -   /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/
-      ModificationParams/SearchModification – encoding the modifications
-      searched for (including the specificity, see §3.2.2);
+    ModificationParams/SearchModification – encoding the modifications
+    searched for (including the specificity, see §3.2.2);
 
 -   /MzIdentML/SequenceCollection/Peptide/Modification - encoding the
-      actual modifications present in the crosslinked peptides (§3.3).
+    actual modifications present in the crosslinked peptides (§3.3).
 
 The rules that govern their use differ in each context, the details of
 these rules are given in §3.2.2 & §3.3. To emphasise that they differ,
@@ -425,7 +387,7 @@ Figure 2. Overview of the mzIdentML 1.3.0. Format (crosslinking
 extension). Elements are labelled with the section from this document
 that contains guidance on how to encode them.
 
-3.2. 3.2 <SpectrumIdentificationProtocol> Elements
+3.2. <SpectrumIdentificationProtocol> Elements
 
 A <SpectrumIdentificationProtocol> element describes the parameters and
 settings of a spectrum identification analysis. There may be several of
@@ -451,7 +413,7 @@ more detail here:
 
 -   <ModificationParams> (§3.2.2).
 
-3.2.1. 3.2.1 Additional Search Parameters
+3.2.1. Additional Search Parameters
 
 Path:
 /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/AdditionalSearchParams
@@ -475,48 +437,47 @@ The new CV term "FDR applied separately to self crosslinks and protein
 heteromeric crosslinks" (MS:1003343), see §4.4, which SHOULD be present
 is also shown in Figure 3.
 
-<AnalysisProtocolCollection>
+    <AnalysisProtocolCollection>
 
-  <SpectrumIdentificationProtocol analysisSoftware_ref="ID_software"
-  id="SearchProtocol_1">
+    ....
+    <SpectrumIdentificationProtocol analysisSoftware_ref="ID_software" id="SearchProtocol_1">
 
-  <SearchType>
+    <SearchType>
 
-  <cvParam accession="MS:1001083" cvRef="PSI-MS" name="ms-ms search"/>
+    <cvParam accession="MS:1001083" cvRef="PSI-MS" name="ms-ms search"/>
 
-  </SearchType>
+    </SearchType>
 
-  <AdditionalSearchParams>
+    <AdditionalSearchParams>
 
-  <cvParam accession="MS:1001211" cvRef="PSI-MS" name="parent mass type
-  mono"/>
+    <cvParam accession="MS:1001211" cvRef="PSI-MS" name="parent mass type mono"/>
 
-  <cvParam accession="MS:1001256" cvRef="PSI-MS" name="fragment mass
-  type mono"/>
+    <cvParam accession="MS:1001256" cvRef="PSI-MS" name="fragment mass type mono"/>
 
-  <cvParam accession="MS:1002494" cvRef="PSI-MS" name="crosslinking
-  search"/>
+    <cvParam accession="MS:1002494" cvRef="PSI-MS" name="crosslinking search"/>
 
-  <cvParam accession="MS:1003330" cvRef="PSI-MS"
+    <cvParam accession="MS:1003330" cvRef="PSI-MS"
 
-  name="noncovalently associated peptides search"/>
+    name="noncovalently associated peptides search"/>
+    ....
 
-<cvParam accession="MS:1003343" cvRef="PSI-MS"
+    <cvParam accession="MS:1003343" cvRef="PSI-MS"
 
-  name="FDR applied separately to self crosslinks and protein
-  heteromeric crosslinks" value="true"/>
+    ....
+    name="FDR applied separately to self crosslinks and protein heteromeric crosslinks" value="true"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1001118" name="param: b ion"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001118" name="param: b ion"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1001262" name="param: y ion"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001262" name="param: y ion"/>
 
-  </AdditionalSearchParams>
+    </AdditionalSearchParams>
 
-  …​
+    ....
 
-  </SpectrumIdentificationProtocol>
+    </SpectrumIdentificationProtocol>
+    ....
 
-</AnalysisProtocolCollection>
+    </AnalysisProtocolCollection>
 
 Figure 3. XML snippet showing crosslinking related CV terms. If a
 crosslinking search has been performed, MS:1002494 MUST be present. If
@@ -525,7 +486,7 @@ MS:1003330 MUST also be present. The new CV term "FDR applied separately
 to self crosslinks and protein heteromeric crosslinks" (MS:1003343)
 which SHOULD be present is also shown, see §4.4.
 
-3.2.2. 3.2.2 Modification Parameters
+3.2.2. Modification Parameters
 
 Path:
 /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ModificationParams/SearchModification
@@ -611,129 +572,124 @@ which one is the acceptor is arbitrary.
 
 (i)
 
-<SpectrumIdentificationProtocol>
+    <SpectrumIdentificationProtocol>
 
-…​
+    ...
 
-<ModificationParams>
+    <ModificationParams>
 
-  <SearchModification fixedMod="false" massDelta="138.06808" residues="S
-  T Y K">
+    ____
+    <SearchModification fixedMod="false" massDelta="138.06808" residues="S T Y K">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_donor"/>
+    name="search modification id" value="BS3_donor"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
 
-  value="0"/>
+    value="0"/>
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="138.06808"
-  residues=".">
+    <SearchModification fixedMod="false" massDelta="138.06808" residues=".">
 
-  <SpecificityRules>
+    <SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  name="modification specificity protein N-term"/>
+    name="modification specificity protein N-term"/>
 
-  </SpecificityRules>
+    </SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_donor_n_term"/>
+    name="search modification id" value="BS3_donor_n_term"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
 
-  value="0" />
+    value="0" />
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues="S T Y
-  K">
+    <SearchModification fixedMod="false" massDelta="0.0" residues="S T Y K">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_acceptor"/>
+    name="search modification id" value="BS3_acceptor"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  value="0"/>
+    value="0"/>
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+    <SearchModification fixedMod="false" massDelta="0.0" residues=".">
 
-  <SpecificityRules>
+    <SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002058"
+    <cvParam cvRef="PSI-MS" accession="MS:1002058"
 
-  name="modification specificity protein N-term"/>
+    name="modification specificity protein N-term"/>
 
-  </SpecificityRules>
+    </SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_acceptor_n_term">
+    name="search modification id" value="BS3_acceptor_n_term">
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  value="0" />
+    value="0" />
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="15.994919"
-  residues="M">
+    <SearchModification fixedMod="false" massDelta="15.994919" residues="M">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="Mox"/>
+    name="search modification id" value="Mox"/>
 
-  <cvParam accession="UNIMOD:35" name="Oxidation" cvRef="UNIMOD" />
+    <cvParam accession="UNIMOD:35" name="Oxidation" cvRef="UNIMOD" />
 
-  <cvParam accession="MS:1001524" name="fragment neutral loss"
+    <cvParam accession="MS:1001524" name="fragment neutral loss"
 
-  cvRef="PSI-MS" value="63.998291" unitAccession="UO:0000221"
-  unitName="dalton" unitCvRef="UO"/>
+    cvRef="PSI-MS" value="63.998291" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO"/>
 
-  </SearchModification>
+    </SearchModification>
+    ____
 
-</ModificationParams>
+    </ModificationParams>
 
-…​
+    ...
 
-</SpectrumIdentificationProtocol>
+    </SpectrumIdentificationProtocol>
 
 (ii)
 
 -   At least two <SearchModification> elements SHOULD be used to encode
-      each crosslink reagent, to encode the site specificity of both the
-      donor and acceptor termini of the reagent.
+    each crosslink reagent, to encode the site specificity of both the
+    donor and acceptor termini of the reagent.
 
 -   The value slot of the crosslink donor and acceptor CV terms is
-      interpreted as a local identifier for the <SearchModification>
-      elements describing a single reagent.
+    interpreted as a local identifier for the <SearchModification>
+    elements describing a single reagent.
 
 -   The choice of which reactive group is the donor and which is the
-      acceptor is arbitrary.
+    acceptor is arbitrary.
 
 -   The crosslink donor <SearchModification> element MUST have the
-      attribute massDelta = the mass gain from the crosslink reagent.
+    attribute massDelta = the mass gain from the crosslink reagent.
 
 -   The crosslink acceptor peptide’s <SearchModification> element MUST
-      have massDelta = 0.
+    have massDelta = 0.
 
 -   Both acceptor and donor MUST have a suitably sourced <cvParam>.
 
@@ -749,7 +705,7 @@ modification with a neutral loss.
 and “crosslink acceptor” (MS:1002510) CV terms within
 <SearchModification>.
 
-3.3. 3.3 Encoding Crosslinked Peptides in the Element <SequenceCollection>
+3.3. Encoding Crosslinked Peptides in the Element <SequenceCollection>
 
 Path: /MzIdentML/SequenceCollection
 
@@ -807,119 +763,119 @@ mzIdentML 1.3.0 document, Section 5.2.8).
 
 (i)
 
-<SequenceCollection>
+    <SequenceCollection>
 
-  <Peptide id="30491856_30492180_2_4_p1">
+    ____
+    <Peptide id="30491856_30492180_2_4_p1">
 
-  <PeptideSequence>AAFTKQAADK</PeptideSequence>
+    <PeptideSequence>AAFTKQAADK</PeptideSequence>
 
-  <Modification monoisotopicMassDelta="138.0680796" location="5">
+    <Modification monoisotopicMassDelta="138.0680796" location="5">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
 
-  name="search modification id ref" value="DSS_donor"/>
+    name="search modification id ref" value="DSS_donor"/>
 
-  <cvParam accession="XL:00002" cvRef="PSI-MS" name="Xlink:DSS"/>
+    <cvParam accession="XL:00002" cvRef="PSI-MS" name="Xlink:DSS"/>
 
-  <cvParam accession="MS:1002509" cvRef="PSI-MS" name="crosslink donor"
-  value="5448"/>
+    <cvParam accession="MS:1002509" cvRef="PSI-MS" name="crosslink donor" value="*5448*"/>
 
-  </Modification>
+    </Modification>
 
-  </Peptide>
+    </Peptide>
 
-  <Peptide id="30491856_30492180_2_4_p2">
+    <Peptide id="30491856_30492180_2_4_p2">
 
-  <PeptideSequence>AMYPPKEDR</PeptideSequence>
+    <PeptideSequence>AMYPPKEDR</PeptideSequence>
 
-  <Modification monoisotopicMassDelta="0.0" location="6">
+    <Modification monoisotopicMassDelta="0.0" location="6">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
 
-  name="search modification id ref" value="DSS_acceptor"/>
+    name="search modification id ref" value="DSS_acceptor"/>
 
-  <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink
-  acceptor" value="5448"/>
+    <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink acceptor" value="*5448*"/>
 
-  </Modification>
+    </Modification>
 
-  </Peptide>
+    </Peptide>
 
-  …​
+    ...
+    ____
 
-</SequenceCollection>
+
+    </SequenceCollection>
 
 (ii) If a pair of crosslinked peptides has been identified:
 
 -   One peptide’s <Modification> element MUST be flagged as “crosslink
-      donor” and one MUST be flagged as “crosslink acceptor”.
+    donor” and one MUST be flagged as “crosslink acceptor”.
 
 -   A unique identifier linking exactly two <Modification> elements
-      together MUST be in the value slot. (Thereby excluding the
-      representation of trimeric crosslinkers, see §6.)
+    together MUST be in the value slot. (Thereby excluding the
+    representation of trimeric crosslinkers, see §6.)
 
 -   If the CV term “search modification id ref” (MS:1003393) is being
-      used then the crosslink donor MUST be chosen to match the end
-      marked as the donor in the corresponding <SearchModification>
-      elements, see §3.2.2. If that CV term is not used, or if the
-      preceding rule does not unambiguously define which end to mark as
-      donor (e.g. because the crosslinker is symmetrical) then the
-      export software SHOULD use the following rules to choose the
-      crosslink donor as the: longer peptide, then higher peptide
-      neutral mass, then alphabetical order.
+    used then the crosslink donor MUST be chosen to match the end marked
+    as the donor in the corresponding <SearchModification> elements, see
+    §3.2.2. If that CV term is not used, or if the preceding rule does
+    not unambiguously define which end to mark as donor (e.g. because
+    the crosslinker is symmetrical) then the export software SHOULD use
+    the following rules to choose the crosslink donor as the: longer
+    peptide, then higher peptide neutral mass, then alphabetical order.
 
 -   The crosslink donor <Modification> element MUST have the attribute
-      monoisotopicMassDelta = the mass gain from the crosslink reagent.
+    monoisotopicMassDelta = the mass gain from the crosslink reagent.
 
 -   The crosslink acceptor peptide’s <Modification> element MUST have
-      monoisotopicMassDelta = 0.
+    monoisotopicMassDelta = 0.
 
 -   The crosslink donor peptide’s <Modification> element MUST have a
-      suitably sourced cvParam for the crosslink. The crosslink acceptor
-      peptide’s <Modification> element MUST NOT have a cvParam for the
-      reagent.
+    suitably sourced cvParam for the crosslink. The crosslink acceptor
+    peptide’s <Modification> element MUST NOT have a cvParam for the
+    reagent.
 
 (iii)
 
-<SequenceCollection>
+    <SequenceCollection>
 
-  <Peptide id="peptide_7_1">
+    ____
+    <Peptide id="peptide_7_1">
 
-  <PeptideSequence>DVIQSLVDDDLVAK</PeptideSequence>
+    <PeptideSequence>DVIQSLVDDDLVAK</PeptideSequence>
 
-  <Modification location="10" residues="D"
-  monoisotopicMassDelta="-18.010565">
+    <Modification location="10" residues="D" monoisotopicMassDelta="-18.010565">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
 
-  name="search modification id ref" value="EDC_donor"/>
+    name="search modification id ref" value="EDC_donor"/>
 
-  <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD"/>
+    <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD"/>
 
-  <cvParam accession="MS:1002509" cvRef="PSI-MS" name="crosslink donor"
+    <cvParam accession="MS:1002509" cvRef="PSI-MS" name="crosslink donor"
 
-  value="100"/>
+    value="*100*"/>
 
-  </Modification>
+    </Modification>
 
-  <Modification location="14" residues="K" monoisotopicMassDelta="0.0">
+    <Modification location="14" residues="K" monoisotopicMassDelta="0.0">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
 
-  name="search modification id ref" value="EDC_acceptor"/>
+    name="search modification id ref" value="EDC_acceptor"/>
 
-  <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink
-  acceptor"
+    <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink acceptor"
 
-  value="100"/>
+    value="*100*"/>
 
-  </Modification>
+    </Modification>
 
-  </Peptide>
+    </Peptide>
 
-  …​
+    ...
+    ____
 
-</SequenceCollection>
+    </SequenceCollection>
 
 Figure 5. Encoding Crosslinked Peptides in the Element
 <SequenceCollection>
@@ -932,157 +888,157 @@ elements.
 
 (iii) XML snippet showing the encoding of an internally linked peptide.
 
-<SequenceCollection>
+    <SequenceCollection>
 
-<!-- linear peptides-→
+    <!-- linear peptides-->
 
-<Peptide id="p1_linear">
+    <Peptide id="p1_linear">
 
-<PeptideSequence>PEPKR</PeptideSequence>
+    <PeptideSequence>PEPKR</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="176.01433">
+    <Modification location="4" monoisotopicMassDelta="176.01433">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
 
-name="search modification id ref" value="DSSO_monolink_W"/>
+    name="search modification id ref" value="DSSO_monolink_W"/>
 
-<cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code" value="W"
-cvRef="PSI-MS" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="W" cvRef="PSI-MS" />
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
-<!-- crosslinked peptides -→
+    <!-- crosslinked peptides -->
 
-<Peptide id="p1">
+    <Peptide id="p1">
 
-<PeptideSequence>PEPKR</PeptideSequence>
+    <PeptideSequence>PEPKR</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="158.003765">
+    <Modification location="4" monoisotopicMassDelta="158.003765">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
 
-name="search modification id ref" value="DSSO_donor"/>
+    name="search modification id ref" value="DSSO_donor"/>
 
-<cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
-value="1"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor" value="1"/>
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
-<Peptide id="p2">
+    <Peptide id="p2">
 
-<PeptideSequence>TIDYK</PeptideSequence>
+    <PeptideSequence>TIDYK</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="0">
+    <Modification location="4" monoisotopicMassDelta="0">
 
-<cvParam cvRef="PSI-MS" accession="MS:1003393"
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
 
-name="search modification id ref" value="DSSO_acceptor"/>
+    name="search modification id ref" value="DSSO_acceptor"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
-value="1"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor" value="1"/>
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
-<!-- MS3 peptides are separately listed, as they are linear stub
-modified peptides -→
+    <!-- MS3 peptides are separately listed, as they are linear stub modified peptides -->
 
-<Peptide id="p1_a">
+    <Peptide id="p1_a">
 
-<PeptideSequence>PEPKR</PeptideSequence>
+    <PeptideSequence>PEPKR</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="54.010565">
+    <Modification location="4" monoisotopicMassDelta="54.010565">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
 
-name="search modification id ref" value="DSSO_crosslink_stub_a"/>
+    name="search modification id ref" value="DSSO_crosslink_stub_a"/>
 
-<cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A"
-cvRef="PSI-MS" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A" cvRef="PSI-MS" />
 
-<cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-crosslinker stub"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
-<Peptide id="p1_t">
+    <Peptide id="p1_t">
 
-<PeptideSequence>PEPKR</PeptideSequence>
+    <PeptideSequence>PEPKR</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="85.982635">
+    <Modification location="4" monoisotopicMassDelta="85.982635">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
 
-name="search modification id ref" value="DSSO_crosslink_stub_t"/>
+    name="search modification id ref" value="DSSO_crosslink_stub_t"/>
 
-<cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T"
-cvRef="PSI-MS" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T" cvRef="PSI-MS" />
 
-<cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-crosslinker stub"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
-<Peptide id="p2_a">
+    <Peptide id="p2_a">
 
-<PeptideSequence>TIDYK</PeptideSequence>
+    <PeptideSequence>TIDYK</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="54.010565">
+    <Modification location="4" monoisotopicMassDelta="54.010565">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
 
-name="search modification id ref" value="DSSO_crosslink_stub_a"/>
+    name="search modification id ref" value="DSSO_crosslink_stub_a"/>
 
-<cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A"
-cvRef="PSI-MS" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A" cvRef="PSI-MS" />
 
-<cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-crosslinker stub"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
-<Peptide id="p2_t">
+    <Peptide id="p2_t">
 
-<PeptideSequence>TIDYK</PeptideSequence>
+    <PeptideSequence>TIDYK</PeptideSequence>
 
-<Modification location="4" monoisotopicMassDelta="85.982635">
+    <Modification location="4" monoisotopicMassDelta="85.982635">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
+    <cvParam cvRef="PSI-MS" accession="MS:1003393"
+    ____
 
-name="search modification id ref" value="DSSO_crosslink_stub_t"/>
+    name="search modification id ref" value="DSSO_crosslink_stub_t"/>
 
-<cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T"
-cvRef="PSI-MS" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T" cvRef="PSI-MS" />
 
-<cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-crosslinker stub"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-</Modification>
+    </Modification>
 
-</Peptide>
+    </Peptide>
 
 Figure 6. XML snippet showing the encoding of modifications from
 cleavable crosslinkers. The new CV terms are shown: “crosslinker stub”
@@ -1090,9 +1046,9 @@ cleavable crosslinkers. The new CV terms are shown: “crosslinker stub”
 also uses the new CV term "search modification id ref" (MS:1003393) to
 reference the corresponding <SearchModification> elements.
 
-3.4. 3.4 Encoding Identified Crosslinks in <SpectrumIdentificationItem> Elements
+3.4. Encoding Identified Crosslinks in <SpectrumIdentificationItem> Elements
 
-3.4.1. 3.4.1 Identifications of Crosslinked Peptides
+3.4.1. Identifications of Crosslinked Peptides
 
 Path:
 /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult
@@ -1111,84 +1067,79 @@ Figure 7(ii).
 
 (i)
 
-<SpectrumIdentificationResult spectraData_ref="SID_1"
-spectrumID="index=2776" id="SIR_1">
+    <SpectrumIdentificationResult spectraData_ref="SID_1" spectrumID="index=2776" id="SIR_1">
 
-  <SpectrumIdentificationItem passThreshold="true" rank="1"
+    ____
+    <SpectrumIdentificationItem passThreshold="true" rank="*1*"
 
-  peptide_ref="30491856_30492180_2_4_p1" experimentalMassToCharge=
-  "569.7912"
+    peptide_ref="30491856_30492180_2_4_p1" experimentalMassToCharge= "569.7912"
 
-  calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_1">
+    calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_1">
 
-  <PeptideEvidenceRef
-  peptideEvidence_ref="pepevid_psm121558473_pep30491845_protP02768-A_target_535"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_psm121558473_pep30491845_protP02768-A_target_535"/>
 
-  <cvParam accession="MS:1002511" cvRef="PSI-MS" value="1"
+    <cvParam accession="MS:1002511" cvRef="PSI-MS" value="*1*"
 
-  name="crosslink spectrum identification item"/>
+    name="crosslink spectrum identification item"/>
 
-  <cvParam accession="MS:1002545" cvRef="PSI-MS"
+    <cvParam accession="MS:1002545" cvRef="PSI-MS"
 
-  value="1.3111826921077734" name="xi:score"/>
+    value="1.3111826921077734" name="xi:score"/>
 
-  <cvParam accession="MS:1003344" cvRef="PSI-MS" value="54321.a"
-  name="Residue pair ref"/>
+    <cvParam accession="MS:1003344" cvRef="PSI-MS" value="54321.a" name="Residue pair ref"/>
 
-  </SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
 
-  <SpectrumIdentificationItem passThreshold="true" rank="1"
+    <SpectrumIdentificationItem passThreshold="true" rank="*1*"
 
-  peptide_ref="30491715_30491845_3_7_p0" experimentalMassToCharge=
-  "569.7912"
+    peptide_ref="30491715_30491845_3_7_p0" experimentalMassToCharge= "569.7912"
 
-  calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_2">
+    calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_2">
 
-  <PeptideEvidenceRef
+    <PeptideEvidenceRef
 
-  peptideEvidence_ref="pepevid_psm121558473_pep30491715_protP02768-A_target_411"/>
+    peptideEvidence_ref="pepevid_psm121558473_pep30491715_protP02768-A_target_411"/>
 
-  <cvParam accession="MS:1002511" cvRef="PSI-MS" value="1"
+    <cvParam accession="MS:1002511" cvRef="PSI-MS" value="*1*"
 
-  name="crosslink spectrum identification item"/>
+    name="crosslink spectrum identification item"/>
 
-  <cvParam accession="MS:1002545" cvRef="PSI-MS"
+    <cvParam accession="MS:1002545" cvRef="PSI-MS"
 
-  value="1.3111826921077734" name="xi:score"/>
+    value="1.3111826921077734" name="xi:score"/>
 
-  <cvParam accession="MS:1003344" cvRef="PSI-MS" value="54321.b"
-  name="Residue pair ref"/>
+    <cvParam accession="MS:1003344" cvRef="PSI-MS" value="54321.b" name="Residue pair ref"/>
 
-  </SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
+    ____
 
-</SpectrumIdentificationResult>
+    </SpectrumIdentificationResult>
 
 (ii) If a crosslinked pair of peptides has been identified:
 
 -   There MUST be two <SpectrumIdentificationItem> elements with the
-      same rank value.
+    same rank value.
 
 -   Both MUST have the “crosslink spectrum identification item” cvParam,
-      and the value acts as a local identifier within the
-      <SpectrumIdentificationResult> to group these two elements
-      together.
+    and the value acts as a local identifier within the
+    <SpectrumIdentificationResult> to group these two elements together.
 
 -   The experimentalMassToCharge, calculatedMassToCharge and chargeState
-      MUST be identical over both SII elements, indicating the overall
-      values for the pair.
+    MUST be identical over both SII elements, indicating the overall
+    values for the pair.
 
 -   If the search engine applies a score to the paired identification,
-      both <SpectrumIdentificationItem> elements MUST have the same
-      cvParam capturing the value.
+    both <SpectrumIdentificationItem> elements MUST have the same
+    cvParam capturing the value.
 
 -   The two <SpectrumIdentificationItem> elements MAY also have
-      independent scores for the two chains (not shown).
+    independent scores for the two chains (not shown).
 
 Figure 7. Encoding the identification of a pair of crosslinked peptides.
 (i) Example XML snippet. (ii) The rules governing the use of “crosslink
 spectrum identification item”.
 
-3.4.2. 3.4.2 Identifications of Noncovalently Associated Peptides
+3.4.2. Identifications of Noncovalently Associated Peptides
 
 Path:
 /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult
@@ -1213,76 +1164,75 @@ uncrosslinked peptides.
 
 (i)
 
-<SpectrumIdentificationResult spectraData_ref="SID_1"
-spectrumID="index=2776" id="SIR_1">
+    <SpectrumIdentificationResult spectraData_ref="SID_1" spectrumID="index=2776" id="SIR_1">
 
-  <SpectrumIdentificationItem passThreshold="true" rank="1"
+    ____
+    <SpectrumIdentificationItem passThreshold="true" rank="*1*"
 
-  peptide_ref=p1" experimentalMassToCharge= "569.7912"
+    peptide_ref=p1" experimentalMassToCharge= "569.7912"
 
-  calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_1">
+    calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_1">
 
-  <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_1"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_1"/>
 
-  <cvParam accession="MS:1003331" cvRef="PSI-MS" value="1"
+    <cvParam accession="MS:1003331" cvRef="PSI-MS" value="*1*"
 
-  name="noncovalently associated peptides spectrum identification
-  item"/>
+    name="noncovalently associated peptides spectrum identification item"/>
 
-  <cvParam accession="MS:1002545" cvRef="PSI-MS"
+    <cvParam accession="MS:1002545" cvRef="PSI-MS"
 
-  value="1.3111826921077734" name="xi:score"/>
+    value="1.3111826921077734" name="xi:score"/>
 
-  </SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
 
-  <SpectrumIdentificationItem passThreshold="true" rank="1"
+    <SpectrumIdentificationItem passThreshold="true" rank="*1*"
 
-  peptide_ref="p2" experimentalMassToCharge= "569.7912"
+    peptide_ref="p2" experimentalMassToCharge= "569.7912"
 
-  calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_2">
+    calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_2">
 
-  <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_2"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_2"/>
 
-  <cvParam accession="MS:1003331" cvRef="PSI-MS" value="1"
+    <cvParam accession="MS:1003331" cvRef="PSI-MS" value="*1*"
 
-  name="noncovalently associated peptides spectrum identification
-  item"/>
+    name="noncovalently associated peptides spectrum identification item"/>
 
-  <cvParam accession="MS:1002545" cvRef="PSI-MS"
+    <cvParam accession="MS:1002545" cvRef="PSI-MS"
 
-  value="1.3111826921077734" name="xi:score"/>
+    value="1.3111826921077734" name="xi:score"/>
 
-  </SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
+    ____
 
-</SpectrumIdentificationResult>
+    </SpectrumIdentificationResult>
 
 (ii) If a pair of noncovalently associated peptides has been identified:
 
 -   There MUST be two <SpectrumIdentificationItem> elements with the
-      same rank value.
+    same rank value.
 
 -   Both MUST have the “noncovalently associated peptides spectrum
-      identification item” cvParam, and the value acts as a local
-      identifier within the <SpectrumIdentificationResult> to group
-      these two elements together.
+    identification item” cvParam, and the value acts as a local
+    identifier within the <SpectrumIdentificationResult> to group these
+    two elements together.
 
 -   The experimentalMassToCharge, calculatedMassToCharge and chargeState
-      MUST be identical over both SII elements, indicating the overall
-      values for the pair.
+    MUST be identical over both SII elements, indicating the overall
+    values for the pair.
 
 -   If the search engine applies a score to the paired identification,
-      both <SpectrumIdentificationItem> elements MUST have the same
-      cvParam capturing the value.
+    both <SpectrumIdentificationItem> elements MUST have the same
+    cvParam capturing the value.
 
 -   The two <SpectrumIdentificationItem> elements MAY also have
-      independent scores for the two chains (not shown).
+    independent scores for the two chains (not shown).
 
 Figure 8. Encoding the identification of a pair of noncovalently
 associated peptides. (i) Example XML snippet. (ii) The rules governing
 the use of “noncovalently associated peptides spectrum identification
 item”.
 
-3.4.3. 3.4.3 Identifications of an Internally Linked Peptide
+3.4.3. Identifications of an Internally Linked Peptide
 
 Path:
 /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult
@@ -1295,28 +1245,29 @@ linked peptides (a.k.a. “looplinks”), see Figure 9. The
 containing both crosslink donor and crosslink acceptor modifications (as
 shown in Figure 5(iii)).
 
-<SpectrumIdentificationResult spectraData_ref="SID_1"
-spectrumID="index=2776" id="SIR_1">
+    <SpectrumIdentificationResult spectraData_ref="SID_1" spectrumID="index=2776" id="SIR_1">
 
-  <SpectrumIdentificationItem passThreshold="true" rank="1"
+    ____
+    <SpectrumIdentificationItem passThreshold="true" rank="*1*"
 
-  peptide_ref="looplink_p1" experimentalMassToCharge= "569.7912"
+    peptide_ref="*looplink_p1*" experimentalMassToCharge= "569.7912"
 
-  calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_1">
+    calculatedMassToCharge="569.79054" chargeState="4" id="SII_1_1">
 
-  <PeptideEvidenceRef peptideEvidence_ref="looplink_p1_pep_evid"/>
+    <PeptideEvidenceRef peptideEvidence_ref="*looplink_p1_pep_evid*"/>
 
-  <cvParam accession="MS:1003329" cvRef="PSI-MS"
+    <cvParam accession="MS:1003329" cvRef="PSI-MS"
 
-  name="looplink spectrum identification item"/>
+    name="looplink spectrum identification item"/>
 
-  <cvParam accession="MS:1002545" cvRef="PSI-MS"
+    <cvParam accession="MS:1002545" cvRef="PSI-MS"
 
-  value="1.3111826921077734" name="xi:score"/>
+    value="1.3111826921077734" name="xi:score"/>
 
-  </SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
+    ____
 
-</SpectrumIdentificationResult>
+    </SpectrumIdentificationResult>
 
 Figure 9. XML snippet including the encoding of an identification of an
 internally linked peptide. Within a <SpectrumIdentificationResult>, a
@@ -1327,11 +1278,9 @@ identification item” (MS:1003329) CV term. This
 crosslink donor and crosslink acceptor modifications (as shown in Figure
 5(iii)).
 
-3.5. +
+4. Scores and Thresholds
 
-4. 4. Scores and Thresholds
-
-4.1. 4.1 Introduction
+4.1. Introduction
 
 This section addresses the encoding of error control procedures. This
 consists of encoding scores (§4.3) and the corresponding thresholds
@@ -1367,7 +1316,7 @@ which they were applied. For crosslinking studies encoded in mzIdentML,
 the possible levels are:
 
 -   crosslink containing PSM (also known as Crosslink Spectrum Match,
-      CSM), see §4.3.1,
+    CSM), see §4.3.1,
 
 -   unique peptide-pair, see §4.3.2,
 
@@ -1401,7 +1350,7 @@ specification document). As these are mutually exclusive, an error
 control procedure which uses more than one definition of “unique
 peptide” cannot be fully captured by mzIdentML.
 
-4.2. 4.2 Thresholds
+4.2. Thresholds
 
 Section 7.4 of the main mzIdentML specification document gives general
 guidance on the encoding of thresholds and what has passed them. Note
@@ -1451,16 +1400,16 @@ for each level there is a mechanism for encoding whether the
 identification passed when all scores are considered:
 
 -   for PSM-level identifications this is the passThreshold attribute of
-      <SpectrumIdentificiationItem>;
+    <SpectrumIdentificiationItem>;
 
 -   at peptide-pair level it is the “peptide-pair passes threshold”
-      (MS:1003339) CV term;
+    (MS:1003339) CV term;
 
 -   at residue-pair level it is the “residue-pair passes threshold”
-      (MS:1003340) CV term;
+    (MS:1003340) CV term;
 
 -   and for PPIs it is the “protein-pair passes threshold” (MS:1003341)
-      CV term.
+    CV term.
 
 If the file producer does not want to indicate that thresholds have been
 set, all identification elements (<SpectrumIdentificationItem> and
@@ -1472,85 +1421,89 @@ the new “residue-pair passes threshold" (MS:1003340) and
 “protein-protein interaction passes threshold" (MS:1003341) CV terms can
 be omitted.
 
-<AnalysisProtocolCollection >
+    <AnalysisProtocolCollection >
 
-<SpectrumIdentificationProtocol analysisSoftware_ref="xiFDR_id"
-id="SearchProtocol_1_17022">
+    <SpectrumIdentificationProtocol analysisSoftware_ref="xiFDR_id" id="SearchProtocol_1_17022">
 
-<SearchType>
+    <SearchType>
 
-<cvParam cvRef="PSI-MS" accession="MS:1001083" name="ms-ms search"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001083" name="ms-ms search"/>
 
-</SearchType>
+    </SearchType>
 
-<AdditionalSearchParams>
+    <AdditionalSearchParams>
 
-<cvParam cvRef="PSI-MS" accession="MS:1001211" name="parent mass type
-mono"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001211" name="parent mass type mono"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002494" name="crosslinking
-search"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002494" name="crosslinking search"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1001256" name="fragment mass type
-mono"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001256" name="fragment mass type mono"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002490" name="peptide-level
-scoring"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002490" name="peptide-level scoring"/>
 
-<cvParam cvRef="PSI-MS" accession = "MS:1002496" name="group PSMs by
-sequence"/>
+    <cvParam cvRef="PSI-MS" accession = "MS:1002496" name="group PSMs by sequence"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003343"
+    <cvParam cvRef="PSI-MS" accession="MS:1003343"
 
-  name="FDR applied separately to self crosslinks
+    ____
+    name="FDR applied separately to self crosslinks
 
-  and protein heteromeric crosslinks" />
+    and protein heteromeric crosslinks" />
+    ____
 
-<cvParam accession="MS:1001118" name="param: b ion" cvRef="PSI-MS" />
+    <cvParam accession="MS:1001118" name="param: b ion" cvRef="PSI-MS" />
 
-<cvParam accession="MS:1001262" name="param: y ion" cvRef="PSI-MS" />
+    <cvParam accession="MS:1001262" name="param: y ion" cvRef="PSI-MS" />
 
-</AdditionalSearchParams>
+    </AdditionalSearchParams>
 
-<ModificationParams …​/>
+    <ModificationParams .../>
 
-<Enzymes …​/>
+    <Enzymes .../>
 
-<FragmentTolerance …​/>
+    <FragmentTolerance .../>
 
-<ParentTolerance …​/>
+    <ParentTolerance .../>
 
-<Threshold>
+    <Threshold>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003337"
+    <cvParam cvRef="PSI-MS" accession="MS:1003337"
 
-  name="crosslinked PSM-level global FDR" value="0.05"/>
+    ____
+    name="crosslinked PSM-level global FDR" value="0.05"/>
+    ____
 
-<cvParam cvRef="PSI-MS" accession="MS:1003338"
+    <cvParam cvRef="PSI-MS" accession="MS:1003338"
 
-  name="peptide-pair sequence-level global FDR" value="0.05"/>
+    ____
+    name="peptide-pair sequence-level global FDR" value="0.05"/>
+    ____
 
-</Threshold>
+    </Threshold>
 
-</SpectrumIdentificationProtocol>
+    </SpectrumIdentificationProtocol>
 
-<ProteinDetectionProtocol analysisSoftware_ref="xiFDR_id" id="pdp1">
+    <ProteinDetectionProtocol analysisSoftware_ref="xiFDR_id" id="pdp1">
 
-<Threshold>
+    <Threshold>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677"
+    <cvParam cvRef="PSI-MS" accession="MS:1002677"
 
-  name="residue-pair-level global FDR" value="0.05"/>
+    ____
+    name="residue-pair-level global FDR" value="0.05"/>
+    ____
 
-<cvParam cvRef="PSI-MS" accession="MS:1002676"
+    <cvParam cvRef="PSI-MS" accession="MS:1002676"
 
-  name="protein-pair-level global FDR" value="0.05"/>
+    ____
+    name="protein-pair-level global FDR" value="0.05"/>
+    ____
 
-</Threshold>
+    </Threshold>
 
-</ProteinDetectionProtocol>
+    </ProteinDetectionProtocol>
 
-</AnalysisProtocolCollection>
+    </AnalysisProtocolCollection>
 
 Figure 10. XML snippet showing the thresholds applied at all four levels
 of consolidation. These are - PSM, peptide-pair, residue pair and PPI.
@@ -1558,11 +1511,9 @@ The CV terms MS:1002490 and MS:1002496 are required to enable peptide
 level rescoring (mzIdentML main specification Section 5.2.7) and to
 state the definition of ‘unique peptide’ being used.
 
-4.3. +
+4.3. Scores
 
-4.4. 4.3 Scores
-
-4.4.1. 4.3.1 Match Level Scores
+4.3.1. Match Level Scores
 
 Match level scores are stored in <SpectrumIdentificationItem> elements.
 
@@ -1580,7 +1531,7 @@ can also be used to encode the Threshold applied.
 See Section 7.11 of the main mzIdentML document for guidance specific to
 PSM-level scores for identifications based on multiple spectra.
 
-4.4.2. 4.3.2 Peptide Level Scores
+4.3.2. Peptide Level Scores
 
 Peptide level scores are also stored in <SpectrumIdentificationItem>
 elements and everything in §4.3.1 also applies here.
@@ -1597,197 +1548,165 @@ peptides should be added as a child of (i.e. with an “is a” relationship
 to) the CV term “interaction score derived from crosslinking”
 (MS:1002664).
 
-<SpectrumIdentificationList id="SII_LIST_1_1" >
+    <SpectrumIdentificationList id="SII_LIST_1_1" >
 
-<SpectrumIdentificationResult spectrumID="index=26630"
-spectraData_ref="SD_17022_recal_B210619_02_Lumos_ZC_CO_190_D2I_SDA-WT1.mgf"
-id="SIR_1">
+    <SpectrumIdentificationResult spectrumID="index=26630" spectraData_ref="SD_17022_recal_B210619_02_Lumos_ZC_CO_190_D2I_SDA-WT1.mgf" id="SIR_1">
 
-<SpectrumIdentificationItem chargeState="5"
-experimentalMassToCharge="1135.3259479607323"
+    <SpectrumIdentificationItem chargeState="5" experimentalMassToCharge="1135.3259479607323"
 
-  calculatedMassToCharge="1135.3254335427703"
+    ____
+    calculatedMassToCharge="1135.3254335427703"
 
-  peptide_ref="16734061838_ISDKRAPSQGGLENEGVFEELLR_16734063165_GAEDEEEEEDVGFEQNFEEMLESVTR_4_9_p1"
-  rank="1"
+    peptide_ref="16734061838_ISDKRAPSQGGLENEGVFEELLR_16734063165_GAEDEEEEEDVGFEQNFEEMLESVTR_4_9_p1" rank="1"
 
-  passThreshold="false" id="SII_1_1">
+    passThreshold="false" id="SII_1_1">
+    ____
 
-<PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734063165"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734063165"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum
-identification item" value="1"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="1"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score"
-value="25.929927957127177"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score" value="25.929927957127177"/>
 
-<!-- crosslinked PSM level global FDR -→
+    _<!-- crosslinked PSM level global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003337 name="crosslinked
-PSM-level global FDR" value="0.06"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003337 name="crosslinked PSM-level global FDR" value="0.06"/>
 
-<!-- peptide pair global FDR -→
+    _<!-- peptide pair global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002520"
-value="GAEDEEEEEDVGFEQNFEEMLESVTR-ISDKRAPSQGGLENEGVFEELLR"
+    <cvParam cvRef="PSI-MS" accession="MS:1002520" value="GAEDEEEEEDVGFEQNFEEMLESVTR-ISDKRAPSQGGLENEGVFEELLR"
 
-  name="peptide group ID"/>
+    ____
+    name="peptide group ID"/>
+    ____
 
-<cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair
-sequence-level global FDR" value="0.06"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair sequence-level global FDR" value="0.06"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes
-threshold" value="false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes threshold" value="false"/>
 
-<!-- residue pair ref value="1.b" -→
+    _<!-- residue pair ref value="1.b" -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003344" value="11.b"
-name="Residue-pair ref"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003344" value="11.b" name="Residue-pair ref"/>
 
-</SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
 
-<SpectrumIdentificationItem chargeState="5"
-experimentalMassToCharge="1135.3259479607323"
+    <SpectrumIdentificationItem chargeState="5" experimentalMassToCharge="1135.3259479607323"
 
-calculatedMassToCharge="1135.3254335427703"
+    calculatedMassToCharge="1135.3254335427703"
 
-  peptide_ref="16734061838_ISDKRAPSQGGLENEGVFEELLR_16734063165_GAEDEEEEEDVGFEQNFEEMLESVTR_4_9_p0"
-  rank="1"
+    ____
+    peptide_ref="16734061838_ISDKRAPSQGGLENEGVFEELLR_16734063165_GAEDEEEEEDVGFEQNFEEMLESVTR_4_9_p0" rank="1"
 
-  passThreshold="false" id="SII_1_2">
+    passThreshold="false" id="SII_1_2">
+    ____
 
-<PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734061838"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734061838"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum
-identification item" value="1"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="1"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score"
-value="25.929927957127177"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score" value="25.929927957127177"/>
 
-<!-- crosslinked PSM level global FDR -→
+    _<!-- crosslinked PSM level global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003337" name="crosslinked
-PSM-level global FDR" value="0.06"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003337" name="crosslinked PSM-level global FDR" value="0.06"/>
 
-<!-- peptide pair global FDR -→
+    _<!-- peptide pair global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002520"
-value="GAEDEEEEEDVGFEQNFEEMLESVTR-ISDKRAPSQGGLENEGVFEELLR"
+    <cvParam cvRef="PSI-MS" accession="MS:1002520" value="GAEDEEEEEDVGFEQNFEEMLESVTR-ISDKRAPSQGGLENEGVFEELLR"
 
-  name="peptide group ID"/>
+    ____
+    name="peptide group ID"/>
+    ____
 
-<cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair
-sequence-level global FDR" value="0.06"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair sequence-level global FDR" value="0.06"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes
-threshold" value="false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes threshold" value="false"/>
 
-<!-- residue pair ref value="11.a" -→
+    _<!-- residue pair ref value="11.a" -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003344" value="11.a"
-name="Residue-pair ref"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003344" value="11.a" name="Residue-pair ref"/>
 
-</SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
 
-<cvParam cvRef="PSI-MS" accession="MS:1000797" name="peak list scans"
-value="40560"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1000797" name="peak list scans" value="40560"/>
 
-</SpectrumIdentificationResult>
+    </SpectrumIdentificationResult>
 
-<SpectrumIdentificationResult spectrumID="index=23414"
-spectraData_ref="SD_17022_recal_B210619_04_Lumos_ZC_CO_190_D2I_SDA-WT3.mgf"
-id="SIR_2">
+    <SpectrumIdentificationResult spectrumID="index=23414" spectraData_ref="SD_17022_recal_B210619_04_Lumos_ZC_CO_190_D2I_SDA-WT3.mgf" id="SIR_2">
 
-<SpectrumIdentificationItem chargeState="6"
-experimentalMassToCharge="752.7466713415814"
+    <SpectrumIdentificationItem chargeState="6" experimentalMassToCharge="752.7466713415814"
 
-  calculatedMassToCharge="752.41371619677"
+    ____
+    calculatedMassToCharge="752.41371619677"
 
-  peptide_ref="16734068348_TAAPTVCcmLLVLGQADKVLEEVDWLIKR_16734057553_SCcmKDLQILQASK_18_1_p1"
-  rank="1"
+    peptide_ref="16734068348_TAAPTVCcmLLVLGQADKVLEEVDWLIKR_16734057553_SCcmKDLQILQASK_18_1_p1" rank="1"
 
-  passThreshold="true" id="SII_2_1">
+    passThreshold="true" id="SII_2_1">
+    ____
 
-<PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734057553"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734057553"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum
-identification item" value="2"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="2"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score"
-value="21.55734182309742"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score" value="21.55734182309742"/>
 
-<!-- crosslinked PSM level global FDR -→
+    _<!-- crosslinked PSM level global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003337" name="crosslinked
-PSM-level global FDR" value="0.03"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003337" name="crosslinked PSM-level global FDR" value="0.03"/>
 
-<!-- peptide pair global FDR -→
+    _<!-- peptide pair global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002520"
-value="SCKDLQILQASK-TAAPTVCLLVLGQADKVLEEVDWLIKR" name="peptide group
-ID"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002520" value="SCKDLQILQASK-TAAPTVCLLVLGQADKVLEEVDWLIKR" name="peptide group ID"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair
-sequence-level global FDR" value="0.03"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair sequence-level global FDR" value="0.03"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes
-threshold" value="true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes threshold" value="true"/>
 
-<!-- residue pair ref value="22.b" -→
+    _<!-- residue pair ref value="22.b" -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003344" value="22.b"
-name="Residue-pair ref"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003344" value="22.b" name="Residue-pair ref"/>
 
-</SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
 
-<SpectrumIdentificationItem chargeState="6"
-experimentalMassToCharge="752.7466713415814"
+    <SpectrumIdentificationItem chargeState="6" experimentalMassToCharge="752.7466713415814"
 
-  calculatedMassToCharge="752.41371619677"
+    ____
+    calculatedMassToCharge="752.41371619677"
 
-  peptide_ref="16734068348_TAAPTVCcmLLVLGQADKVLEEVDWLIKR_16734057553_SCcmKDLQILQASK_18_1_p0"
-  rank="1"
+    peptide_ref="16734068348_TAAPTVCcmLLVLGQADKVLEEVDWLIKR_16734057553_SCcmKDLQILQASK_18_1_p0" rank="1"
 
-  passThreshold="true" id="SII_2_2">
+    passThreshold="true" id="SII_2_2">
+    ____
 
-<PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734068348"/>
+    <PeptideEvidenceRef peptideEvidence_ref="pepevid_pep_16734068348"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum
-identification item" value="2"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="2"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score"
-value="21.55734182309742"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002545" name="xi:score" value="21.55734182309742"/>
 
-<!-- crosslinked PSM level global FDR -→
+    _<!-- crosslinked PSM level global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003337" name="crosslinked
-PSM-level global FDR" value="0.03"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003337" name="crosslinked PSM-level global FDR" value="0.03"/>
 
-<!-- peptide pair global FDR -→
+    _<!-- peptide pair global FDR -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002520"
-value="SCKDLQILQASK-TAAPTVCLLVLGQADKVLEEVDWLIKR" name="peptide group
-ID"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002520" value="SCKDLQILQASK-TAAPTVCLLVLGQADKVLEEVDWLIKR" name="peptide group ID"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair
-sequence-level global FDR" value="0.03"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003338" name="peptide-pair sequence-level global FDR" value="0.03"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes
-threshold" value="true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003339" name="peptide-pair passes threshold" value="true"/>
 
-<!-- residue pair ref value="22.a" -→
+    _<!-- residue pair ref value="22.a" -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1003344" value="22.a"
-name="Residue-pair ref"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003344" value="22.a" name="Residue-pair ref"/>
 
-</SpectrumIdentificationItem>
+    </SpectrumIdentificationItem>
 
-<cvParam cvRef="PSI-MS" accession="MS:1000797" name="peak list scans"
-value="38065"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1000797" name="peak list scans" value="38065"/>
 
-</SpectrumIdentificationResult>
+    </SpectrumIdentificationResult>
 
-</SpectrumIdentificationList>
+    </SpectrumIdentificationList>
 
 Figure 11. XML snippet including the encoding of scores for PSM-level
 matches and peptide pairs. These are encoded inside
@@ -1798,7 +1717,7 @@ whether the peptide pair passed when all scores and thresholds are
 considered. This is analogous to the passThreshold attribute of
 <SpectrumIdentificationItem> elements for PSM-level scores.
 
-4.4.3. 4.3.3 Interaction Level Scores (Unique Residue-Pairs and PPI)
+4.3.3. Interaction Level Scores (Unique Residue-Pairs and PPI)
 
 mzIdentML uses the same mechanism to encode scores for interactions at
 both the unique residue-pair level and protein-protein interaction
@@ -1896,23 +1815,23 @@ int_ID.a|b:POS|null:SCORE_OR_VALUE:PASS_THRESHOLD
 1 2 3 4
 
 1.  The two partners in the interaction share the same integer value for
-      ID followed by a or b. If there is ambiguity in protein
-      identification, two different ProteinDetectionHypothesis (PDH)
-      elements, within the same ProteinAmbiguityGroup (PAG), MAY share
-      the same ID and suffix (a or b). A given identifier (integer and
-      suffix) value MUST NOT be used in more than one PAG.
+    ID followed by a or b. If there is ambiguity in protein
+    identification, two different ProteinDetectionHypothesis (PDH)
+    elements, within the same ProteinAmbiguityGroup (PAG), MAY share the
+    same ID and suffix (a or b). A given identifier (integer and suffix)
+    value MUST NOT be used in more than one PAG.
 
 2.  The export software MAY indicate the general position of the
-      interaction (potentially taking on board multiple pairs of
-      crosslinked peptides), with respect to the protein sequence –
-      using a 1-based counting system. A “null” MAY be used if the
-      export software does not wish to include a value.
+    interaction (potentially taking on board multiple pairs of
+    crosslinked peptides), with respect to the protein sequence – using
+    a 1-based counting system. A “null” MAY be used if the export
+    software does not wish to include a value.
 
 3.  The score or statistical value for the interaction.
 
 4.  “true” or “false” to indicate whether the score or value has passed
-      a reported threshold in the file. If no threshold is defined, then
-      PASS_THRESHOLD is always true.
+    a reported threshold in the file. If no threshold is defined, then
+    PASS_THRESHOLD is always true.
 
 The first “int_ID” part of the value MUST be identical/shared between
 interaction level scores if they refer to the same residue pair or PPI.
@@ -1951,128 +1870,99 @@ to ambiguity regarding the position of the peptide in the protein
 sequences (protein inference problem) or ambiguity regarding the linkage
 site in the peptide.
 
-<ProteinDetectionList id="PDL_1" >
+    <ProteinDetectionList id="PDL_1" >
 
-<ProteinAmbiguityGroup id="PAG_0">
+    <ProteinAmbiguityGroup id="PAG_0">
 
-<ProteinDetectionHypothesis dBSequence_ref="dbseq_ggFANCI_target"
-passThreshold="true" id="PAG_0_PDH_0">
+    <ProteinDetectionHypothesis dBSequence_ref="dbseq_ggFANCI_target" passThreshold="true" id="PAG_0_PDH_0">
 
-<PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734063165">
+    <PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734063165">
 
-<SpectrumIdentificationItemRef
-spectrumIdentificationItem_ref="SII_1_1"/>
+    <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SII_1_1"/>
 
-</PeptideHypothesis>
+    </PeptideHypothesis>
 
-<PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734057553">
+    <PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734057553">
 
-<SpectrumIdentificationItemRef
-spectrumIdentificationItem_ref="SII_2_1"/>
+    <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SII_2_1"/>
 
-</PeptideHypothesis>
+    </PeptideHypothesis>
 
-<PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734068348">
+    <PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734068348">
 
-<SpectrumIdentificationItemRef
-spectrumIdentificationItem_ref="SII_2_2"/>
+    <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SII_2_2"/>
 
-</PeptideHypothesis>
+    </PeptideHypothesis>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002403" name="group
-representative"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002403" name="group representative"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1001593" name="group member with
-undefined relationship OR ortholog protein"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001593" name="group member with undefined relationship OR ortholog protein"/>
 
-<!-- forms a protein heteromeric PPI with its partner 10.a in
-PAG_1_PDH_0 -→
+    _<!-- forms a protein heteromeric PPI with its partner 10.a in PAG_1_PDH_0 -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level
-global FDR" value="10.b:null:0.059:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level global FDR" value="10.b:null:0.059:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="protein-protein
-interaction passes threshold" value="10:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="protein-protein interaction passes threshold" value="10:false"/>
 
-<!-- forms a self PPI with its partner 20.b in PAG_0_PDH_0 -→
+    _<!-- forms a self PPI with its partner 20.b in PAG_0_PDH_0 -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level
-global FDR" value="20.a:null:0.030:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level global FDR" value="20.a:null:0.030:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level
-global FDR" value="20.b:null:0.030:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level global FDR" value="20.b:null:0.030:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="protein-protein
-interaction passes threshold" value="20:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="protein-protein interaction passes threshold" value="20:true"/>
 
-<!-- forms a protein heteromeric crosslink with its partner 11.a in
-PAG_1_PDH_0 -→
+    _<!-- forms a protein heteromeric crosslink with its partner 11.a in PAG_1_PDH_0 -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="11.b:697:0.06:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="11.b:697:0.06:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003340" name="residue-pair passes
-threshold" value="11:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003340" name="residue-pair passes threshold" value="11:false"/>
 
-<!-- forms a self crosslink with its partner 22.b in PAG_0_PDH_0 -→
+    _<!-- forms a self crosslink with its partner 22.b in PAG_0_PDH_0 -->_
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:1095:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:1095:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.b:339:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.b:339:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003340" name="residue-pair passes
-threshold" value="22:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003340" name="residue-pair passes threshold" value="22:true"/>
 
-</ProteinDetectionHypothesis>
+    </ProteinDetectionHypothesis>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002415" name="protein group
-passes threshold" value="true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002415" name="protein group passes threshold" value="true"/>
 
-</ProteinAmbiguityGroup>
+    </ProteinAmbiguityGroup>
 
-<ProteinAmbiguityGroup id="PAG_1">
+    <ProteinAmbiguityGroup id="PAG_1">
 
-<ProteinDetectionHypothesis dBSequence_ref="dbseq_ggFANCD2_target"
-passThreshold="true" id="PAG_1_PDH_0">
+    <ProteinDetectionHypothesis dBSequence_ref="dbseq_ggFANCD2_target" passThreshold="true" id="PAG_1_PDH_0">
 
-<PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734061838">
+    <PeptideHypothesis peptideEvidence_ref="pepevid_pep_16734061838">
 
-<SpectrumIdentificationItemRef
-spectrumIdentificationItem_ref="SII_1_2"/>
+    <SpectrumIdentificationItemRef spectrumIdentificationItem_ref="SII_1_2"/>
 
-</PeptideHypothesis>
+    </PeptideHypothesis>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002403" name="group
-representative"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002403" name="group representative"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1001593" name="group member with
-undefined relationship OR ortholog protein"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001593" name="group member with undefined relationship OR ortholog protein"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level
-global FDR" value="10.a:null:059:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002676" name="protein-pair-level global FDR" value="10.a:null:059:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="protein-protein
-interaction passes threshold" value="10:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="protein-protein interaction passes threshold" value="10:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="11.a:36:0.06:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="11.a:36:0.06:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003340" name="residue-pair passes
-threshold" value="11:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003340" name="residue-pair passes threshold" value="11:false"/>
 
-</ProteinDetectionHypothesis>
+    </ProteinDetectionHypothesis>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002415" name="protein group
-passes threshold" value="true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002415" name="protein group passes threshold" value="true"/>
 
-</ProteinAmbiguityGroup>
+    </ProteinAmbiguityGroup>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002404" name="count of identified
-proteins" value="2"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002404" name="count of identified proteins" value="2"/>
 
-</ProteinDetectionList>
+    </ProteinDetectionList>
 
 Figure 14. XML snippet including the encoding of scores for
 residue-pairs and PPIs. These are encoded inside
@@ -2085,114 +1975,87 @@ These are analogous to the passThreshold attribute of
 
 (i)
 
-<ProteinAmbiguityGroup id="PAG_0">
+    <ProteinAmbiguityGroup id="PAG_0">
 
-<!-- example of both peptide ambiguity (classical protein inference) and
-site ambiguity with in a peptide -→
+    <!-- example of both peptide ambiguity (classical protein inference) and site ambiguity with in a peptide -->
 
-<ProteinDetectionHypothesis dBSequence_ref="dbseq_A_target"
-passThreshold="true" id="PAG_0_PDH_0">
+    <ProteinDetectionHypothesis dBSequence_ref="dbseq_A_target" passThreshold="true" id="PAG_0_PDH_0">
 
-…​
+    ...
 
-<!-- each possible linksite in the originating peptide is referenced
-here as a possible residue pair-→
+    <!-- each possible linksite in the originating peptide is referenced here as a possible residue pair-->
 
-<!-- the first two have the same score as there is no fragmentation
-distinguishing the two neighbouring residues-→
+    <!-- the first two have the same score as there is no fragmentation distinguishing the two neighbouring residues-->
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:1095:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:1095:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:1096:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:1096:0.01:true"/>
 
-<!-- the third residue would be a possible linksite, but there is some
-fragments speaking in favour of the first two, therefore this one has a
-lower score and hence a worse FDR-→
+    <!-- the third residue would be a possible linksite, but there is some fragments speaking in favour of the first two, therefore this one has a lower score and hence a worse FDR-->
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:1091:0.09:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:1091:0.09:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes
-threshold" value="22:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes threshold" value="22:true"/>
 
-</ProteinDetectionHypothesis>
+    </ProteinDetectionHypothesis>
 
-<ProteinDetectionHypothesis dBSequence_ref="dbseq_B_target"
-passThreshold="true" id="PAG_0_PDH_1">
+    <ProteinDetectionHypothesis dBSequence_ref="dbseq_B_target" passThreshold="true" id="PAG_0_PDH_1">
 
-…​
+    ...
 
-<!-- (all) peptide(s) for site a could also come from a different
-protein-→
+    <!-- (all) peptide(s) for site a could also come from a different protein-->
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:295:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:295:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:296:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:296:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.a:291:0.09:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.a:291:0.09:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes
-threshold" value="22:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes threshold" value="22:true"/>
 
-</ProteinDetectionHypothesis>
+    </ProteinDetectionHypothesis>
 
-</ProteinAmbiguityGroup>
+    </ProteinAmbiguityGroup>
 
-<ProteinAmbiguityGroup id="PAG_1">
+    <ProteinAmbiguityGroup id="PAG_1">
 
-<ProteinDetectionHypothesis dBSequence_ref="dbseq_C_target"
-passThreshold="true" id="PAG_1_PDH_0">
+    <ProteinDetectionHypothesis dBSequence_ref="dbseq_C_target" passThreshold="true" id="PAG_1_PDH_0">
 
-…​
+    ...
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="22.b:339:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="22.b:339:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes
-threshold" value="22:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes threshold" value="22:true"/>
 
-</ProteinDetectionHypothesis>
+    </ProteinDetectionHypothesis>
 
-</ProteinAmbiguityGroup>
+    </ProteinAmbiguityGroup>
 
 (ii)
 
-<ProteinAmbiguityGroup id="PAG_0">
+    <ProteinAmbiguityGroup id="PAG_0">
 
-<ProteinDetectionHypothesis dBSequence_ref="dbseq_B_target"
-passThreshold="true" id="PAG_0_PDH_1">
+    <ProteinDetectionHypothesis dBSequence_ref="dbseq_B_target" passThreshold="true" id="PAG_0_PDH_1">
 
-…​
+    ...
 
-<!-- peptide has two possible link sites and is present in two places in
-protein B-→
+    <!-- peptide has two possible link sites and is present in two places in protein B-->
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="23.a:1095:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="23.a:1095:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="23.a:1091:0.09:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="23.a:1091:0.09:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="23.a:295:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="23.a:295:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="23.a:291:0.09:false"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="23.a:291:0.09:false"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level
-global FDR" value="23.b:339:0.01:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1002677" name="residue-pair-level global FDR" value="23.b:339:0.01:true"/>
 
-<cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes
-threshold" value="23:true"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1003341" name="residue-pair passes threshold" value="23:true"/>
 
-</ProteinDetectionHypothesis>
+    </ProteinDetectionHypothesis>
 
-</ProteinAmbiguityGroup>
+    </ProteinAmbiguityGroup>
 
 Figure 15. XML snippet including the encoding of positional ambiguity of
 residue pairs. In panel (i), residue-pair 22 is a protein heteromeric
@@ -2203,29 +2066,27 @@ ambiguity about where peptide “a” came from within that protein (two
 possible positions) and two possible link sites in peptide “a”, giving a
 total of four possible residues.
 
-===
-
-4.5. 4.4 FDR Specific Comments
+4.4. FDR Specific Comments
 
 Section 7.5 of the main mzIdentML 1.3.0 specification document (‘Using
 decoy databases to set different thresholds of false discovery rate’)
 states that:
 
 -   A <SpectrumIdentificationItem> can be marked as matching a decoy
-      peptide using the isDecoy attribute of the referenced
-      <PeptideEvidence> element, thus allowing the false discovery rate
-      to be calculated across an entire file.
+    peptide using the isDecoy attribute of the referenced
+    <PeptideEvidence> element, thus allowing the false discovery rate to
+    be calculated across an entire file.
 
 -   Implementers of the format SHOULD report the peptide identifications
-      [including those of decoy peptides] that pass the threshold they
-      wish to communicate to a consumer of the data.
+    [including those of decoy peptides] that pass the threshold they
+    wish to communicate to a consumer of the data.
 
 -   It is not guaranteed that a consumer of an mzIdentML file will be
-      able to calculate other results, or global false discovery rates,
-      using different thresholds from the reported information, although
-      in some circumstances they may be able to, for example, if a user
-      reports the complete output of a search against a target and decoy
-      search.
+    able to calculate other results, or global false discovery rates,
+    using different thresholds from the reported information, although
+    in some circumstances they may be able to, for example, if a user
+    reports the complete output of a search against a target and decoy
+    search.
 
 CV terms exist for FDR scores at each level of consolidation:
 
@@ -2251,7 +2112,7 @@ not this happened. This CV term SHOULD be supplied. If it is omitted
 then it is unspecified whether self and heteromeric links were grouped
 separately for analysis (there is no default value).
 
-5. 5. Unsupported Use Cases and Future Directions
+5. Unsupported Use Cases and Future Directions
 
 The two unsupported crosslinking product types shown in Figure 1 are:
 crosslinkers with more than two reactive groups and higher order
@@ -2283,6 +2144,7 @@ the number of peptides that are crosslinked could be derived from
 validation significantly more complex, to alleviate this an additional
 CV term in peptide that links peptides as part of a "crosslink-group"
 independent of the crosslinker could be introduced.
+
 In the case of crosslinkers with more than two reactive groups and the
 identification of higher order crosslinks, there was no demand for
 supporting these use cases at this point in time and so, for the sake of
@@ -2295,17 +2157,17 @@ multi-chain proteins that contain complex patterns of disulfide bonds
 (representing endogenous crosslinks) by top-down mass spectrometry would
 be an example of this.
 
-6. 6. Appendix I. Comparison of rules for “crosslink donor” and “crosslink acceptor” depending on context
+6. Appendix I. Comparison of rules for “crosslink donor” and “crosslink acceptor” depending on context
 
 The CV terms “crosslink donor” (MS:1002509) and “crosslink acceptor”
 (MS:1002510) are used in two different contexts:
 
 -   /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/
-      ModificationParams/SearchModification – encoding the modifications
-      searched for (including specificity, see §3.1.2);
+    ModificationParams/SearchModification – encoding the modifications
+    searched for (including specificity, see §3.1.2);
 
 -   /MzIdentML/SequenceCollection/Peptide/Modification - encoding the
-      modifications of crosslinked peptides (§3.2).
+    modifications of crosslinked peptides (§3.2).
 
 Table 1 summarises the commonalities and differences between the rules
 governing their use in these two contexts.
@@ -2366,625 +2228,597 @@ governing their use in these two contexts.
 Table 1. The rules governing the use of “crosslink donor” (MS:1002509)
 and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
-7. 7. Appendix II. Example encodings of crosslinker reagents as <SearchModification> elements
+7. Appendix II. Example encodings of crosslinker reagents as <SearchModification> elements
 
-7.1. 7.1 Bis(sulfosuccinimidyl) suberate (BS3)
+7.1. Bis(sulfosuccinimidyl) suberate (BS3)
 
-<SpectrumIdentificationProtocol>
+    <SpectrumIdentificationProtocol>
 
-…​
+    ...
 
-<ModificationParams>
+    <ModificationParams>
 
-  <SearchModification fixedMod="false" massDelta="138.06808" residues="S
-  T Y K">
+    ____
+    <SearchModification fixedMod="false" massDelta="138.06808" residues="S T Y K">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_donor"/>
+    name="search modification id" value="BS3_donor"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
 
-  value="0"/>
+    value="0"/>
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="138.06808"
-  residues=".">
+    <SearchModification fixedMod="false" massDelta="138.06808" residues=".">
 
-  <SpecificityRules>
+    <SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  name="modification specificity protein N-term"/>
+    name="modification specificity protein N-term"/>
 
-  </SpecificityRules>
+    </SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_donor_n_term"/>
+    name="search modification id" value="BS3_donor_n_term"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
 
-  value="0" />
+    value="0" />
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues="S T Y
-  K">
+    <SearchModification fixedMod="false" massDelta="0.0" residues="S T Y K">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_acceptor"/>
+    name="search modification id" value="BS3_acceptor"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  value="0"/>
+    value="0"/>
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+    <SearchModification fixedMod="false" massDelta="0.0" residues=".">
 
-  <SpecificityRules>
+    <SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002058"
+    <cvParam cvRef="PSI-MS" accession="MS:1002058"
 
-  name="modification specificity protein N-term"/>
+    name="modification specificity protein N-term"/>
 
-  </SpecificityRules>
+    </SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="BS3_acceptor_n_term"/>
+    name="search modification id" value="BS3_acceptor_n_term"/>
 
-  <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
+    <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  value="0" />
+    value="0" />
 
-  </SearchModification>
+    </SearchModification>
+    ____
 
-</ModificationParams>
+    </ModificationParams>
 
-…​
+    ...
 
-</SpectrumIdentificationProtocol>
+    </SpectrumIdentificationProtocol>
 
-7.2. 7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC)
+7.2. 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC)
 
-<SpectrumIdentificationProtocol>
+    <SpectrumIdentificationProtocol>
 
-…​
+    ...
 
-<ModificationParams>
+    <ModificationParams>
 
-  <SearchModification fixedMod="false" massDelta="-18.010565"
-  residues="K">
+    ____
+    <SearchModification fixedMod="false" massDelta="-18.010565" residues="K">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="EDC_donor"/>
+    name="search modification id" value="EDC_donor"/>
 
-  <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
+    <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
 
-  value="1" />
+    value="1" />
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="-18.010565"
-  residues=".">
+    <SearchModification fixedMod="false" massDelta="-18.010565" residues="*.*">
 
-  <SpecificityRules>
+    <SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  name="modification specificity protein N-term"/>
+    name="modification specificity protein N-term"/>
 
-  </SpecificityRules>
+    </SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="EDC_donor_n_term"/>
+    name="search modification id" value="EDC_donor_n_term"/>
 
-  <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
+    <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
 
-  value="1" />
+    value="1" />
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues="D E">
+    <SearchModification fixedMod="false" massDelta="0.0" residues="D E">
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="EDC_acceptor"/>
+    name="search modification id" value="EDC_acceptor"/>
 
-  <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
+    <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  value="1" />
+    value="1" />
 
-  </SearchModification>
+    </SearchModification>
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+    <SearchModification fixedMod="false" massDelta="0.0" residues="*.*">
 
-  <SpecificityRules>
+    <SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002058"
+    <cvParam cvRef="PSI-MS" accession="MS:1002058"
 
-  name="modification specificity protein C-term"/>
+    name="modification specificity protein C-term"/>
 
-  </SpecificityRules>
+    </SpecificityRules>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  name="search modification id" value="EDC_acceptor_c_term"/>
+    name="search modification id" value="EDC_acceptor_c_term"/>
 
-  <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
+    <cvParam accession="UNIMOD:2018" name="Xlink:EDC" cvRef="UNIMOD" />
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  value="1" />
+    value="1" />
 
-  </SearchModification>
+    </SearchModification>
+    ____
 
-</ModificationParams>
+    </ModificationParams>
 
-…​
+    ...
 
-</SpectrumIdentificationProtocol>
+    </SpectrumIdentificationProtocol>
 
-7.3. +
+7.3. (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
 
-7.4. 7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
+    <SpectrumIdentificationProtocol>
 
-<SpectrumIdentificationProtocol>
+    ...
 
-…​
+    <ModificationParams>
 
-<ModificationParams>
+    ____
+    <SearchModification fixedMod="false" massDelta="100.05243" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="100.05243" residues="K
-  S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="SDA_monolink_W"/>
 
-  name="search modification id" value="SDA_monolink_W"/>
+    <cvParam accession="UNIMOD:2000" cvRef="UNIMOD" name="Xlink:SDA"/>
+    ____
 
-  <cvParam accession="UNIMOD:2000" cvRef="UNIMOD" name="Xlink:SDA"/>
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    ____
+    value="W" cvRef="PSI-MS" />
 
-  value="W" cvRef="PSI-MS" />
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="100.05243" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="100.05243"
-  residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="SDA_monolink_W_n_term"/>
 
-  name="search modification id" value="SDA_monolink_W_n_term"/>
+    <cvParam accession="UNIMOD:2000" cvRef="UNIMOD" name="Xlink:SDA"/>
+    ____
 
-  <cvParam accession="UNIMOD:2000" cvRef="UNIMOD" name="Xlink:SDA"/>
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    ____
+    value="W" cvRef="PSI-MS" />
 
-  value="W" cvRef="PSI-MS" />
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="82.041865" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="82.041865" residues="K
-  S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="SDA_crosslink_donor"/>
 
-  name="search modification id" value="SDA_crosslink_donor"/>
+    <cvParam accession="UNIMOD:2000" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:2000" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
+    value="*2*" />
 
-  value="2" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics" value="S:82.041865:O"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics" value="S:82.041865:O"
+    cvRef="PSI-MS"/>
 
-  cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="82.041865" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="82.041865"
-  residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="SDA_crosslink_donor_n_term"/>
 
-  name="search modification id" value="SDA_crosslink_donor_n_term"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
+    value="*2*" />
 
-  value="2" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics" value="S:82.041865:O"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics" value="S:82.041865:O"
+    cvRef="PSI-MS"/>
 
-  cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="0.0" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="SDA_crosslink_acceptor"/>
 
-  name="search modification id" value="SDA_crosslink_acceptor"/>
+    <cvParam accession="UNIMOD:2000" name="Xlink:SDA" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:2000" name="Xlink:SDA" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    value="*2*" />
 
-  value="2" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="O:0:S" cvRef="PSI-MS"/>
 
-  value="O:0:S" cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="0.0" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id"
 
-  name="search modification id"
+    value="SDA_crosslink_acceptor_n_term"/>
 
-  value="SDA_crosslink_acceptor_n_term"/>
+    <cvParam accession="UNIMOD:2000" name="Xlink:SDA" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:2000" name="Xlink:SDA" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    value="*2*" />
 
-  value="2" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="O:0:S" cvRef="PSI-MS"/>
 
-  value="O:0:S" cvRef="PSI-MS"/>
+    </SearchModification>
+    ____
 
-  </SearchModification>
+    </ModificationParams>
 
-</ModificationParams>
+    ...
 
-…​
+    </SpectrumIdentificationProtocol>
 
-</SpectrumIdentificationProtocol>
+    === *7.4 Disuccinimidyl sulfoxide (DSSO)*
 
-7.5. 7.4 Disuccinimidyl sulfoxide (DSSO)
+    <SpectrumIdentificationProtocol>
 
-<SpectrumIdentificationProtocol>
+    ...
 
-…​
+    <ModificationParams>
 
-<ModificationParams>
+    ____
+    <SearchModification fixedMod="false" massDelta="175.030314" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="175.030314"
-  residues="K S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_monolink_M"/>
 
-  name="search modification id" value="DSSO_monolink_M"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    ____
 
-  <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    ____
+    value="M" cvRef="PSI-MS" />
 
-  value="M" cvRef="PSI-MS" />
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="176.01433" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="176.01433" residues="K
-  S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_monolink_W"/>
 
-  name="search modification id" value="DSSO_monolink_W"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    ____
 
-  <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    ____
+    value="W" cvRef="PSI-MS" />
 
-  value="W" cvRef="PSI-MS" />
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="175.030314" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="175.030314"
-  residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_monolink_M_n_term"/>
 
-  name="search modification id" value="DSSO_monolink_M_n_term"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    ____
 
-  <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    ____
+    value="M" cvRef="PSI-MS" />
 
-  value="M" cvRef="PSI-MS" />
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="176.01433" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="176.01433"
-  residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_monolink_W_n_term"/>
 
-  name="search modification id" value="DSSO_monolink_W_n_term"/>
+    <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    ____
 
-  <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-<cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    ____
+    value="W" cvRef="PSI-MS" />
 
-  value="W" cvRef="PSI-MS" />
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="158.003765" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="158.003765"
-  residues="K S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_crosslink_donor"/>
 
-  name="search modification id" value="DSSO_crosslink_donor"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor"
+    value="3" />
 
-  value="3" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="A:54.0105647:ST" cvRef="PSI-MS"/>
 
-  value="A:54.0105647:ST" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="S:103.9932001:A" cvRef="PSI-MS"/>
 
-  value="S:103.9932001:A" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="T:85.9826354:A" cvRef="PSI-MS"/>
 
-  value="T:85.9826354:A" cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="158.003765" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="158.003765"
-  residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_crosslink_donor_n_term"/>
 
-  name="search modification id" value="DSSO_crosslink_donor_n_term"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor"
+    value="3" />
 
-  value="3" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="A:54.0105647:ST" cvRef="PSI-MS"/>
 
-  value="A:54.0105647:ST" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="S:103.9932001:A" cvRef="PSI-MS"/>
 
-  value="S:103.9932001:A" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="T:85.9826354:A" cvRef="PSI-MS"/>
 
-  value="T:85.9826354:A" cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="0.0" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues="K S T
-  Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_crosslink_acceptor"/>
 
-  name="search modification id" value="DSSO_crosslink_acceptor"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    value="3" />
 
-  value="3" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="A:54.0105647:ST" cvRef="PSI-MS"/>
 
-  value="A:54.0105647:ST" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="S:103.9932001:A" cvRef="PSI-MS"/>
 
-  value="S:103.9932001:A" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="T:85.9826354:A" cvRef="PSI-MS"/>
 
-  value="T:85.9826354:A" cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="0.0" residues=".">
 
-  <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+    <SpecificityRules>
 
-  <SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1002057"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002057"
+    name="modification specificity protein N-term"/>
 
-  name="modification specificity protein N-term"/>
+    </SpecificityRules>
 
-  </SpecificityRules>
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id"
 
-  name="search modification id"
+    value="DSSO_crosslink_acceptor_n_term"/>
 
-  value="DSSO_crosslink_acceptor_n_term"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink
-  acceptor"
+    value="3" />
 
-  value="3" />
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="A:54.0105647:ST" cvRef="PSI-MS"/>
 
-  value="A:54.0105647:ST" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="S:103.9932001:A" cvRef="PSI-MS"/>
 
-  value="S:103.9932001:A" cvRef="PSI-MS"/>
+    <cvParam accession="MS:1003390" name="crosslinker cleavage characteristics"
 
-  <cvParam accession="MS:1003390" name="crosslinker cleavage
-  characteristics"
+    value="T:85.9826354:A" cvRef="PSI-MS"/>
 
-  value="T:85.9826354:A" cvRef="PSI-MS"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="54.010565" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="54.010565" residues="K
-  S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_crosslink_stub_a"/>
 
-  name="search modification id" value="DSSO_crosslink_stub_a"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-  <cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    value="A" cvRef="PSI-MS" />
 
-  value="A" cvRef="PSI-MS" />
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-  crosslinker stub"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="85.982636" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="85.982636" residues="K
-  S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_crosslink_stub_t"/>
 
-  name="search modification id" value="DSSO_crosslink_stub_t"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-  <cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    value="T" cvRef="PSI-MS" />
 
-  value="T" cvRef="PSI-MS" />
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-  crosslinker stub"/>
+    </SearchModification>
 
-  </SearchModification>
+    <SearchModification fixedMod="false" massDelta="103.9932" residues="K S T Y">
 
-  <SearchModification fixedMod="false" massDelta="103.9932" residues="K
-  S T Y">
+    <cvParam cvRef="PSI-MS" accession="MS:1003392"
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003392"
+    name="search modification id" value="DSSO_crosslink_stub_s"/>
 
-  name="search modification id" value="DSSO_crosslink_stub_s"/>
+    <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
 
-  <cvParam accession="UNIMOD:1842" name="Xlink:DSSO" cvRef="UNIMOD" />
+    <cvParam accession="MS:1003347" name="UNIMOD derivative code"
 
-  <cvParam accession="MS:1003347" name="UNIMOD derivative code"
+    value="S" cvRef="PSI-MS" />
 
-  value="S" cvRef="PSI-MS" />
+    <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
 
-  <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable
-  crosslinker stub"/>
+    </SearchModification>
+    ____
 
-  </SearchModification>
+    </ModificationParams>
 
-</ModificationParams>
+    ...
 
-…​
+    </SpectrumIdentificationProtocol>
 
-</SpectrumIdentificationProtocol>
-
-8. 8. Authors Information
+8. Authors Information
 
 Authors of this extension:
 
@@ -3010,132 +2844,129 @@ Andy Jones, University of Liverpool, Andrew.Jones@liverpool.ac.uk
 Juri Rappsilber, Technische Universität Berlin,
 Juri.Rappsilber@tu-Berlin.de
 
-9. 9. Glossary
+9. Glossary
 
-  Cleavable Crosslinker - a crosslinker that can be broken in two to
-  release the individual peptides (in a modified form), thus enabling
-  their individual analysis. In crosslinking studies this typically
-  refers to MS-cleavable crosslinkers.
+Cleavable Crosslinker - a crosslinker that can be broken in two to
+release the individual peptides (in a modified form), thus enabling
+their individual analysis. In crosslinking studies this typically refers
+to MS-cleavable crosslinkers.
 
-  Controlled Vocabulary (CV) - A structured collection of terms
-  describing a certain Crosslink - The covalent bond formed by a
-  crosslinker.
+Controlled Vocabulary (CV) - A structured collection of terms describing
+a certain Crosslink - The covalent bond formed by a crosslinker.
 
-  Crosslink Acceptor - one end of a crosslinking reaction, the other is
-  the crosslink donor. (Assumes the crosslinker has only two reactive
-  groups.)
+Crosslink Acceptor - one end of a crosslinking reaction, the other is
+the crosslink donor. (Assumes the crosslinker has only two reactive
+groups.)
 
-  Crosslink Donor - one end of a crosslinking reaction, the other is the
-  crosslink acceptor. (Assumes the crosslinker has only two reactive
-  groups.)
+Crosslink Donor - one end of a crosslinking reaction, the other is the
+crosslink acceptor. (Assumes the crosslinker has only two reactive
+groups.)
 
-  Crosslinker - A chemical reagent. A molecule which creates a covalent
-  bond either between proteins or within the same protein chain. This
-  bond preserves proximity information which would otherwise be
-  destroyed by the enzymatic digestion of the proteins. The proximity
-  information is then recovered by identifying the peptides via mass
-  spectrometry.
+Crosslinker - A chemical reagent. A molecule which creates a covalent
+bond either between proteins or within the same protein chain. This bond
+preserves proximity information which would otherwise be destroyed by
+the enzymatic digestion of the proteins. The proximity information is
+then recovered by identifying the peptides via mass spectrometry.
 
-  Crosslinker Modified Peptide - a peptide where one reactive group of a
-  crosslinker has reacted with one of its amino acids, but the other
-  reactive group has not reacted with any animo acid and no covalent
-  bond is formed.
+Crosslinker Modified Peptide - a peptide where one reactive group of a
+crosslinker has reacted with one of its amino acids, but the other
+reactive group has not reacted with any animo acid and no covalent bond
+is formed.
 
-  Crosslinker Specificity - The specificity of a crosslinker gives the
-  amino acids it will react with. A crosslinker has reactive groups that
-  react with amino acids or their side-chains, the reactive groups
-  determine the specificity of the crosslinker.
+Crosslinker Specificity - The specificity of a crosslinker gives the
+amino acids it will react with. A crosslinker has reactive groups that
+react with amino acids or their side-chains, the reactive groups
+determine the specificity of the crosslinker.
 
-  Crosslinking Product - the result of a crosslinking reaction.
+Crosslinking Product - the result of a crosslinking reaction.
 
-  Crosslink Spectrum Match (CSM) - the subset of PSM level matches that
-  contain a crosslink.
+Crosslink Spectrum Match (CSM) - the subset of PSM level matches that
+contain a crosslink.
 
-  Decoy (decoy databases, decoy peptide) - decoys are a set of
-  artificially generated sequences used to assess the performance of an
-  identification algorithm. Decoys are typically created by randomising
-  or reversing the sequences of the target proteins. These new sequences
-  are then added to the database used for analysis. False Discovery
-  Rates may use the identifications of decoys to estimate the error rate
-  in the data.
+Decoy (decoy databases, decoy peptide) - decoys are a set of
+artificially generated sequences used to assess the performance of an
+identification algorithm. Decoys are typically created by randomising or
+reversing the sequences of the target proteins. These new sequences are
+then added to the database used for analysis. False Discovery Rates may
+use the identifications of decoys to estimate the error rate in the
+data.
 
-  False Discovery Rate (FDR) - the fraction of identifications that are
-  predicted to be incorrect (false positives) among the total number of
-  identifications made.
+False Discovery Rate (FDR) - the fraction of identifications that are
+predicted to be incorrect (false positives) among the total number of
+identifications made.
 
-  Global FDR - the False Discovery Rate across the whole dataset, as
-  opposed to ‘local FDR’ which calculates the error rate within a given
-  score window.
+Global FDR - the False Discovery Rate across the whole dataset, as
+opposed to ‘local FDR’ which calculates the error rate within a given
+score window.
 
-  Heterobifunctional Crosslinker - a crosslinker with two reactive
-  groups in which the reactive groups, and hence the specificity of each
-  end, are different.
+Heterobifunctional Crosslinker - a crosslinker with two reactive groups
+in which the reactive groups, and hence the specificity of each end, are
+different.
 
-  Higher Order Crosslink - A crosslinking product in which there are
-  arbitrarily many peptides with many crosslinks between them.
+Higher Order Crosslink - A crosslinking product in which there are
+arbitrarily many peptides with many crosslinks between them.
 
-  Internally Linked Peptide - A crosslinking product in which both ends
-  of the crosslinker have reacted within a single peptide (that is,
-  within the same identical peptide, not between two copies of the same
-  peptide). This type of crosslinking product is known to be
-  intramolecular.
+Internally Linked Peptide - A crosslinking product in which both ends of
+the crosslinker have reacted within a single peptide (that is, within
+the same identical peptide, not between two copies of the same peptide).
+This type of crosslinking product is known to be intramolecular.
 
-  Looplink - colloquial name for an internally linked peptide.
+Looplink - colloquial name for an internally linked peptide.
 
-  Modification - a chemical change to an amino acid.
+Modification - a chemical change to an amino acid.
 
-  MS-Cleavable Crosslinker - a type of cleavable crosslinker,
-  MS-cleavable crosslinkers can cleave upon activation in the mass
-  spectrometer, releasing the individual peptides and thus enabling
-  their individual analysis.
+MS-Cleavable Crosslinker - a type of cleavable crosslinker, MS-cleavable
+crosslinkers can cleave upon activation in the mass spectrometer,
+releasing the individual peptides and thus enabling their individual
+analysis.
 
-  Noncovalently Associated Peptides - two different peptides which were
-  not crosslinked but stayed associated with each other throughout the
-  workflow, due to noncovalent interactions.
+Noncovalently Associated Peptides - two different peptides which were
+not crosslinked but stayed associated with each other throughout the
+workflow, due to noncovalent interactions.
 
-  Monolink - colloquial name for a crosslinker modified peptide. Unimod
-  uses this term to describe some derivatives of crosslinkers (e.g. see
-  http://www.unimod.org/modifications_view.php?editid1=1842).
+Monolink - colloquial name for a crosslinker modified peptide. Unimod
+uses this term to describe some derivatives of crosslinkers (e.g. see
+http://www.unimod.org/modifications_view.php?editid1=1842).
 
-  Open Modification Search - a search strategy which allows for any type
-  of mass shift to occur at any residue within a peptide sequence. In
-  contrast to a "closed" search, which is limited to a defined set of
-  modifications, an open modification search allows for the
-  identification of novel or unexpected modifications
+Open Modification Search - a search strategy which allows for any type
+of mass shift to occur at any residue within a peptide sequence. In
+contrast to a "closed" search, which is limited to a defined set of
+modifications, an open modification search allows for the identification
+of novel or unexpected modifications
 
-  Posterior Error Probability - a statistical measure of the probability
-  that an identification is incorrect.
+Posterior Error Probability - a statistical measure of the probability
+that an identification is incorrect.
 
-  Protein Heteromeric Crosslinks - crosslinks between distinct protein
-  sequences.
+Protein Heteromeric Crosslinks - crosslinks between distinct protein
+sequences.
 
-  Protein-Protein Interaction (PPI) - an interaction between proteins.
-  In the context of crosslinking, it is a level of consolidation at
-  which crosslinks may be analysed.
+Protein-Protein Interaction (PPI) - an interaction between proteins. In
+the context of crosslinking, it is a level of consolidation at which
+crosslinks may be analysed.
 
-  PSI-MS - the Human Proteome Organization (HUPO) Proteomics Standards
-  Initiative’s (PSI) controlled vocabulary for Mass Spectrometry (MS)
+PSI-MS - the Human Proteome Organization (HUPO) Proteomics Standards
+Initiative’s (PSI) controlled vocabulary for Mass Spectrometry (MS)
 
-  Peptide Spectrum Match (PSM) - a match to one or more peptides in a
-  mass spectrum. The lowest, unconsolidated level at which analysis of
-  identifications can occur. Because a single “match” may identify more
-  than one peptide, the concept ‘PSM’ does not correspond directly with
-  “spectrum identification item” in mzIdentML, no element in mzIdentML
-  does correspond directly to “a match”.
+Peptide Spectrum Match (PSM) - a match to one or more peptides in a mass
+spectrum. The lowest, unconsolidated level at which analysis of
+identifications can occur. Because a single “match” may identify more
+than one peptide, the concept ‘PSM’ does not correspond directly with
+“spectrum identification item” in mzIdentML, no element in mzIdentML
+does correspond directly to “a match”.
 
-  PSM-level - the level of analysis that looks at individual peptide
-  spectrum matches.
+PSM-level - the level of analysis that looks at individual peptide
+spectrum matches.
 
-  Residue-pair - a unique pair of crosslinked residues, irrespective of
-  the peptides identified. A level of consolidation higher than unique
-  peptide but lower than PPI.
+Residue-pair - a unique pair of crosslinked residues, irrespective of
+the peptides identified. A level of consolidation higher than unique
+peptide but lower than PPI.
 
-  Self Crosslinks - crosslinks between peptides within one protein
-  sequence.
+Self Crosslinks - crosslinks between peptides within one protein
+sequence.
 
-  Trimeric Crosslinker - a crosslinker with three reactive groups.
+Trimeric Crosslinker - a crosslinker with three reactive groups.
 
-10. 10. References
+10. References
 
 1. Vizcaíno JA, Mayer G, Perkins S, Barsnes H, Vaudel M, Perez-Riverol
 Y, et al. The mzIdentML Data Standard Version 1.2, Supporting Advances
@@ -3167,7 +2998,7 @@ and Real-Time Informatics for Multiprotein Interaction Studies. J
 Proteome Res. 2024;23.
 doi:http://dx.doi.org/10.1021/acs.jproteome.3c00455[10.1021/acs.jproteome.3c00455]
 
-11. 11. Intellectual Property Statement
+11. Intellectual Property Statement
 
 The PSI takes no position regarding the validity or scope of any
 intellectual property or other rights that might be claimed to pertain
@@ -3213,4 +3044,4 @@ WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY
 RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
 PARTICULAR PURPOSE."
 
-Last updated 2025-02-22 15:46:55 +0100
+Last updated 2025-02-22 21:34:18 +0100
