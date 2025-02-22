@@ -55,7 +55,7 @@ This document is a _recommendation_ for a common, community-driven standard data
 
 _Authors_
 
-Please see <<authors>> for details on the authors and editors of this document.
+Please see <<authors-and-contributors>> for details on the authors and editors of this document.
 
 [abstract]
 [[abstract]]
@@ -65,271 +65,271 @@ The Human Proteome Organisation (HUPO) Proteomics Standards Initiative (PSI) def
 The Proteomics Informatics Working Group is developing standards for describing the results of identification and quantitation processes for proteins, peptides and protein modifications from mass spectrometry.
 This document defines an XML schema that can be used to describe the outputs of proteomics search engines or similar software for peptide/protein identification from mass spectrometry (MS) data.
 
-*Contents*
-
-link:#abstract[Abstract 1]
-
-link:#introduction[1. Introduction 4]
-
-link:#background[1.1 Background 4]
-
-link:#document-structure[1.2 Document Structure 4]
-
-link:#use-cases-for-mzidentml[2. Use Cases for mzIdentML 4]
-
-link:#concepts-and-terminology[3. Concepts and Terminology 6]
-
-link:#relationship-to-other-specifications[4. Relationship to Other Specifications 6]
-
-link:#the-psi-mass-spectrometry-controlled-vocabulary-cv[4.1 The PSI Mass Spectrometry Controlled Vocabulary (CV) 7]
-
-link:#validation-of-controlled-vocabulary-terms[4.2 Validation of controlled vocabulary terms 7]
-
-link:#changes-from-version-1.1.0-to-version-1.2.0[4.3 Changes from version 1.1.0 to version 1.2.0 8]
-
-link:#changes-from-version-1.2.0-to-1.3.0[4.4 Changes from version 1.2.0 to 1.3.0 8]
-
-link:#format-scope-and-specific-use-cases[5. Format scope and specific use cases 9]
-
-link:#handling-updates-to-the-controlled-vocabulary[5.1.1 Handling updates to the controlled vocabulary 9]
-
-link:#identifying-the-input-spectrum-for-each-result[5.1.2 Identifying the input spectrum for each result 9]
-
-link:#comments-on-specific-use-cases[5.2 Comments on Specific use cases 11]
-
-link:#protein-grouping-encoding[5.2.1 Protein grouping encoding 11]
-
-link:#support-for-de-novo-sequencing-approaches[5.2.2 Support for _de novo_ sequencing approaches 15]
-
-link:#spectral-library-searches[5.2.3 Spectral library searches 15]
-
-link:#multiple-database-search-engines[5.2.4 Multiple database search engines 16]
-
-link:#pre-fractionation-of-samples-prior-to-ms-and-splitting-of-searches[5.2.5 Pre-fractionation of samples prior to MS and splitting of searches 16]
-
-link:#encoding-replicate-samples[5.2.6 Encoding replicate samples 17]
-
-link:#peptide-level-scores-and-statistical-measures[5.2.7 Peptide-level scores and statistical measures 17]
-
-link:#encoding-modification-localisation-scores[5.2.8 Encoding modification localisation scores 20]
-
-link:#encoding-results-of-crosslinking-searches[5.2.9 Encoding results of crosslinking searches 22]
-
-link:#encoding-proteogenomics-annotation-data[5.2.10 Encoding proteogenomics annotation data 22]
-
-link:#other-supporting-materials[5.3 Other supporting materials 24]
-
-link:#model-in-xml-schema[6. Model in XML Schema 24]
-
-link:#element-mzidentml[6.1 Element <MzIdentML> 24]
-
-link:#element-additionalsearchparams[6.2 Element <AdditionalSearchParams> 26]
-
-link:#element-affiliation[6.3 Element <Affiliation> 28]
-
-link:#element-ambiguousresidue[6.4 Element <AmbiguousResidue> 28]
-
-link:#element-analysiscollection[6.5 Element <AnalysisCollection> 29]
-
-link:#element-analysisdata[6.6 Element <AnalysisData> 29]
-
-link:#element-analysisparams[6.7 Element <AnalysisParams> 30]
-
-link:#element-analysisprotocolcollection[6.8 Element <AnalysisProtocolCollection> 30]
-
-link:#element-analysissamplecollection[6.9 Element <AnalysisSampleCollection> 31]
-
-link:#element-analysissoftware[6.10 Element <AnalysisSoftware> 31]
-
-link:#element-analysissoftwarelist[6.11 Element <AnalysisSoftwareList> 32]
-
-link:#element-auditcollection[6.12 Element <AuditCollection> 32]
-
-link:#element-bibliographicreference[6.13 Element <BibliographicReference> 33]
-
-link:#element-contactrole[6.14 Element <ContactRole> 33]
-
-link:#element-customizations[6.15 Element <Customizations> 34]
-
-link:#element-cv[6.16 Element <cv> 34]
-
-link:#element-cvlist[6.17 Element <cvList> 34]
-
-link:#element-cvparam[6.18 Element <cvParam> 35]
-
-link:#element-databasefilters[6.19 Element <DatabaseFilters> 35]
-
-link:#element-databasename[6.20 Element <DatabaseName> 36]
-
-link:#element-databasetranslation[6.21 Element <DatabaseTranslation> 36]
-
-link:#element-datacollection[6.22 Element <DataCollection> 37]
-
-link:#element-dbsequence[6.23 Element <DBSequence> 38]
-
-link:#element-enzyme[6.24 Element <Enzyme> 40]
-
-link:#element-enzymename[6.25 Element <EnzymeName> 40]
-
-link:#element-enzymes[6.26 Element <Enzymes> 41]
-
-link:#element-exclude[6.27 Element <Exclude> 41]
-
-link:#element-externalformatdocumentation[6.28 Element <ExternalFormatDocumentation> 42]
-
-link:#element-fileformat[6.29 Element <FileFormat> 42]
-
-link:#element-filter[6.30 Element <Filter> 43]
-
-link:#element-filtertype[6.31 Element <FilterType> 43]
-
-link:#element-fragmentarray[6.32 Element <FragmentArray> 44]
-
-link:#element-fragmentation[6.33 Element <Fragmentation> 44]
-
-link:#element-fragmentationtable[6.34 Element <FragmentationTable> 44]
-
-link:#element-fragmenttolerance[6.35 Element <FragmentTolerance> 45]
-
-link:#element-include[6.36 Element <Include> 45]
-
-link:#element-inputs[6.37 Element <Inputs> 46]
-
-link:#element-inputspectra[6.38 Element <InputSpectra> 46]
-
-link:#element-inputspectrumidentifications[6.39 Element <InputSpectrumIdentifications> 46]
-
-link:#element-iontype[6.40 Element <IonType> 47]
-
-link:#element-masstable[6.41 Element <MassTable> 49]
-
-link:#element-measure[6.42 Element <Measure> 49]
-
-link:#element-modification[6.43 Element <Modification> 50]
-
-link:#element-modificationparams[6.44 Element <ModificationParams> 51]
-
-link:#element-organization[6.45 Element <Organization> 52]
-
-link:#element-parent[6.46 Element <Parent> 53]
-
-link:#element-parenttolerance[6.47 Element <ParentTolerance> 53]
-
-link:#element-peptide[6.48 Element <Peptide> 53]
-
-link:#element-peptideevidence[6.49 Element <PeptideEvidence> 55]
-
-link:#element-peptideevidenceref[6.50 Element <PeptideEvidenceRef> 56]
-
-link:#element-peptidehypothesis[6.51 Element <PeptideHypothesis> 57]
-
-link:#element-peptidesequence[6.52 Element <PeptideSequence> 58]
-
-link:#element-person[6.53 Element <Person> 58]
-
-link:#element-proteinambiguitygroup[6.54 Element <ProteinAmbiguityGroup> 59]
-
-link:#element-proteindetection[6.55 Element <ProteinDetection> 60]
-
-link:#element-proteindetectionhypothesis[6.56 Element <ProteinDetectionHypothesis> 60]
-
-link:#element-proteindetectionlist[6.57 Element <ProteinDetectionList> 62]
-
-link:#element-proteindetectionprotocol[6.58 Element <ProteinDetectionProtocol> 63]
-
-link:#element-provider[6.59 Element <Provider> 64]
-
-link:#element-residue[6.60 Element <Residue> 65]
-
-link:#element-role[6.61 Element <Role> 65]
-
-link:#element-sample[6.62 Element <Sample> 65]
-
-link:#element-searchdatabase[6.63 Element <SearchDatabase> 66]
-
-link:#element-searchdatabaseref[6.64 Element <SearchDatabaseRef> 67]
-
-link:#element-searchmodification[6.65 Element <SearchModification> 68]
-
-link:#element-searchtype[6.66 Element <SearchType> 69]
-
-link:#element-seq[6.67 Element <Seq> 69]
-
-link:#element-sequencecollection[6.68 Element <SequenceCollection> 70]
-
-link:#element-siteregexp[6.69 Element <SiteRegexp> 72]
-
-link:#element-softwarename[6.70 Element <SoftwareName> 72]
-
-link:#element-sourcefile[6.71 Element <SourceFile> 72]
-
-link:#element-specificityrules[6.72 Element <SpecificityRules> 73]
-
-link:#element-spectradata[6.73 Element <SpectraData> 74]
-
-link:#element-spectrumidentification[6.74 Element <SpectrumIdentification> 74]
-
-link:#element-spectrumidentificationitem[6.75 Element <SpectrumIdentificationItem> 75]
-
-link:#element-spectrumidentificationitemref[6.76 Element <SpectrumIdentificationItemRef> 78]
-
-link:#element-spectrumidentificationlist[6.77 Element <SpectrumIdentificationList> 79]
-
-link:#element-spectrumidentificationprotocol[6.78 Element <SpectrumIdentificationProtocol> 80]
-
-link:#element-spectrumidentificationresult[6.79 Element <SpectrumIdentificationResult> 83]
-
-link:#element-spectrumidformat[6.80 Element <SpectrumIDFormat> 84]
-
-link:#element-subsample[6.81 Element <SubSample> 84]
-
-link:#element-substitutionmodification[6.82 Element <SubstitutionModification> 85]
-
-link:#element-threshold[6.83 Element <Threshold> 85]
-
-link:#element-translationtable[6.84 Element <TranslationTable> 87]
-
-link:#element-userparam[6.85 Element <userParam> 87]
-
-link:#specific-comments-on-schema[7. Specific Comments on schema 88]
-
-link:#file-extension-and-compression[7.1 File extension and compression 88]
-
-link:#referencing-elements-within-the-document[7.2 Referencing elements within the document 88]
-
-link:#searches-against-nucleotide-sequences[7.3 Searches against nucleotide sequences 88]
-
-link:#reporting-peptide-and-protein-identifications-passing-a-significance-threshold[7.4 Reporting peptide and protein identifications passing a significance threshold 89]
-
-link:#using-decoy-databases-to-set-different-thresholds-of-false-discovery-rate[7.5 Using decoy databases to set different thresholds of false discovery rate 90]
-
-link:#database-filter[7.6 Database Filter 91]
-
-link:#types-of-parameters-and-values[7.7 Types of parameters and values 91]
-
-link:#reporting-fragmentation-ions[7.8 Reporting fragmentation ions 91]
-
-link:#internal-fragments-and-immonium-ions[7.8.1 Internal fragments and immonium ions 92]
-
-link:#encoding-neutral-loss-fragment-ions[7.8.2 Encoding Neutral loss fragment ions 92]
-
-link:#enzyme-definition[7.9 Enzyme definition 93]
-
-link:#unknown-modifications[7.10 Unknown modifications 94]
-
-link:#identifications-based-on-multiple-mass-spectra[7.11 Identifications based on multiple mass spectra 94]
-
-link:#linking-searchmodification-elements-to-modification-elements[7.12 Linking SearchModification elements to Modification elements 98]
-
-link:#conclusions[8. Conclusions 99]
-
-link:#authors-and-contributors[9. Authors and Contributors 99]
-
-link:#references[10. References 101]
-
-link:#intellectual-property-statement[11. Intellectual Property Statement 101]
-
-link:#copyright-notice[Copyright Notice 102]
+// *Contents*
+//
+// link:#abstract[Abstract 1]
+//
+// link:#introduction[1. Introduction 4]
+//
+// link:#background[1.1 Background 4]
+//
+// link:#document-structure[1.2 Document Structure 4]
+//
+// link:#use-cases-for-mzidentml[2. Use Cases for mzIdentML 4]
+//
+// link:#concepts-and-terminology[3. Concepts and Terminology 6]
+//
+// link:#relationship-to-other-specifications[4. Relationship to Other Specifications 6]
+//
+// link:#the-psi-mass-spectrometry-controlled-vocabulary-cv[4.1 The PSI Mass Spectrometry Controlled Vocabulary (CV) 7]
+//
+// link:#validation-of-controlled-vocabulary-terms[4.2 Validation of controlled vocabulary terms 7]
+//
+// link:#changes-from-version-1.1.0-to-version-1.2.0[4.3 Changes from version 1.1.0 to version 1.2.0 8]
+//
+// link:#changes-from-version-1.2.0-to-1.3.0[4.4 Changes from version 1.2.0 to 1.3.0 8]
+//
+// link:#format-scope-and-specific-use-cases[5. Format scope and specific use cases 9]
+//
+// link:#handling-updates-to-the-controlled-vocabulary[5.1.1 Handling updates to the controlled vocabulary 9]
+//
+// link:#identifying-the-input-spectrum-for-each-result[5.1.2 Identifying the input spectrum for each result 9]
+//
+// link:#comments-on-specific-use-cases[5.2 Comments on Specific use cases 11]
+//
+// link:#protein-grouping-encoding[5.2.1 Protein grouping encoding 11]
+//
+// link:#support-for-de-novo-sequencing-approaches[5.2.2 Support for _de novo_ sequencing approaches 15]
+//
+// link:#spectral-library-searches[5.2.3 Spectral library searches 15]
+//
+// link:#multiple-database-search-engines[5.2.4 Multiple database search engines 16]
+//
+// link:#pre-fractionation-of-samples-prior-to-ms-and-splitting-of-searches[5.2.5 Pre-fractionation of samples prior to MS and splitting of searches 16]
+//
+// link:#encoding-replicate-samples[5.2.6 Encoding replicate samples 17]
+//
+// link:#peptide-level-scores-and-statistical-measures[5.2.7 Peptide-level scores and statistical measures 17]
+//
+// link:#encoding-modification-localisation-scores[5.2.8 Encoding modification localisation scores 20]
+//
+// link:#encoding-results-of-crosslinking-searches[5.2.9 Encoding results of crosslinking searches 22]
+//
+// link:#encoding-proteogenomics-annotation-data[5.2.10 Encoding proteogenomics annotation data 22]
+//
+// link:#other-supporting-materials[5.3 Other supporting materials 24]
+//
+// link:#model-in-xml-schema[6. Model in XML Schema 24]
+//
+// link:#element-mzidentml[6.1 Element <MzIdentML> 24]
+//
+// link:#element-additionalsearchparams[6.2 Element <AdditionalSearchParams> 26]
+//
+// link:#element-affiliation[6.3 Element <Affiliation> 28]
+//
+// link:#element-ambiguousresidue[6.4 Element <AmbiguousResidue> 28]
+//
+// link:#element-analysiscollection[6.5 Element <AnalysisCollection> 29]
+//
+// link:#element-analysisdata[6.6 Element <AnalysisData> 29]
+//
+// link:#element-analysisparams[6.7 Element <AnalysisParams> 30]
+//
+// link:#element-analysisprotocolcollection[6.8 Element <AnalysisProtocolCollection> 30]
+//
+// link:#element-analysissamplecollection[6.9 Element <AnalysisSampleCollection> 31]
+//
+// link:#element-analysissoftware[6.10 Element <AnalysisSoftware> 31]
+//
+// link:#element-analysissoftwarelist[6.11 Element <AnalysisSoftwareList> 32]
+//
+// link:#element-auditcollection[6.12 Element <AuditCollection> 32]
+//
+// link:#element-bibliographicreference[6.13 Element <BibliographicReference> 33]
+//
+// link:#element-contactrole[6.14 Element <ContactRole> 33]
+//
+// link:#element-customizations[6.15 Element <Customizations> 34]
+//
+// link:#element-cv[6.16 Element <cv> 34]
+//
+// link:#element-cvlist[6.17 Element <cvList> 34]
+//
+// link:#element-cvparam[6.18 Element <cvParam> 35]
+//
+// link:#element-databasefilters[6.19 Element <DatabaseFilters> 35]
+//
+// link:#element-databasename[6.20 Element <DatabaseName> 36]
+//
+// link:#element-databasetranslation[6.21 Element <DatabaseTranslation> 36]
+//
+// link:#element-datacollection[6.22 Element <DataCollection> 37]
+//
+// link:#element-dbsequence[6.23 Element <DBSequence> 38]
+//
+// link:#element-enzyme[6.24 Element <Enzyme> 40]
+//
+// link:#element-enzymename[6.25 Element <EnzymeName> 40]
+//
+// link:#element-enzymes[6.26 Element <Enzymes> 41]
+//
+// link:#element-exclude[6.27 Element <Exclude> 41]
+//
+// link:#element-externalformatdocumentation[6.28 Element <ExternalFormatDocumentation> 42]
+//
+// link:#element-fileformat[6.29 Element <FileFormat> 42]
+//
+// link:#element-filter[6.30 Element <Filter> 43]
+//
+// link:#element-filtertype[6.31 Element <FilterType> 43]
+//
+// link:#element-fragmentarray[6.32 Element <FragmentArray> 44]
+//
+// link:#element-fragmentation[6.33 Element <Fragmentation> 44]
+//
+// link:#element-fragmentationtable[6.34 Element <FragmentationTable> 44]
+//
+// link:#element-fragmenttolerance[6.35 Element <FragmentTolerance> 45]
+//
+// link:#element-include[6.36 Element <Include> 45]
+//
+// link:#element-inputs[6.37 Element <Inputs> 46]
+//
+// link:#element-inputspectra[6.38 Element <InputSpectra> 46]
+//
+// link:#element-inputspectrumidentifications[6.39 Element <InputSpectrumIdentifications> 46]
+//
+// link:#element-iontype[6.40 Element <IonType> 47]
+//
+// link:#element-masstable[6.41 Element <MassTable> 49]
+//
+// link:#element-measure[6.42 Element <Measure> 49]
+//
+// link:#element-modification[6.43 Element <Modification> 50]
+//
+// link:#element-modificationparams[6.44 Element <ModificationParams> 51]
+//
+// link:#element-organization[6.45 Element <Organization> 52]
+//
+// link:#element-parent[6.46 Element <Parent> 53]
+//
+// link:#element-parenttolerance[6.47 Element <ParentTolerance> 53]
+//
+// link:#element-peptide[6.48 Element <Peptide> 53]
+//
+// link:#element-peptideevidence[6.49 Element <PeptideEvidence> 55]
+//
+// link:#element-peptideevidenceref[6.50 Element <PeptideEvidenceRef> 56]
+//
+// link:#element-peptidehypothesis[6.51 Element <PeptideHypothesis> 57]
+//
+// link:#element-peptidesequence[6.52 Element <PeptideSequence> 58]
+//
+// link:#element-person[6.53 Element <Person> 58]
+//
+// link:#element-proteinambiguitygroup[6.54 Element <ProteinAmbiguityGroup> 59]
+//
+// link:#element-proteindetection[6.55 Element <ProteinDetection> 60]
+//
+// link:#element-proteindetectionhypothesis[6.56 Element <ProteinDetectionHypothesis> 60]
+//
+// link:#element-proteindetectionlist[6.57 Element <ProteinDetectionList> 62]
+//
+// link:#element-proteindetectionprotocol[6.58 Element <ProteinDetectionProtocol> 63]
+//
+// link:#element-provider[6.59 Element <Provider> 64]
+//
+// link:#element-residue[6.60 Element <Residue> 65]
+//
+// link:#element-role[6.61 Element <Role> 65]
+//
+// link:#element-sample[6.62 Element <Sample> 65]
+//
+// link:#element-searchdatabase[6.63 Element <SearchDatabase> 66]
+//
+// link:#element-searchdatabaseref[6.64 Element <SearchDatabaseRef> 67]
+//
+// link:#element-searchmodification[6.65 Element <SearchModification> 68]
+//
+// link:#element-searchtype[6.66 Element <SearchType> 69]
+//
+// link:#element-seq[6.67 Element <Seq> 69]
+//
+// link:#element-sequencecollection[6.68 Element <SequenceCollection> 70]
+//
+// link:#element-siteregexp[6.69 Element <SiteRegexp> 72]
+//
+// link:#element-softwarename[6.70 Element <SoftwareName> 72]
+//
+// link:#element-sourcefile[6.71 Element <SourceFile> 72]
+//
+// link:#element-specificityrules[6.72 Element <SpecificityRules> 73]
+//
+// link:#element-spectradata[6.73 Element <SpectraData> 74]
+//
+// link:#element-spectrumidentification[6.74 Element <SpectrumIdentification> 74]
+//
+// link:#element-spectrumidentificationitem[6.75 Element <SpectrumIdentificationItem> 75]
+//
+// link:#element-spectrumidentificationitemref[6.76 Element <SpectrumIdentificationItemRef> 78]
+//
+// link:#element-spectrumidentificationlist[6.77 Element <SpectrumIdentificationList> 79]
+//
+// link:#element-spectrumidentificationprotocol[6.78 Element <SpectrumIdentificationProtocol> 80]
+//
+// link:#element-spectrumidentificationresult[6.79 Element <SpectrumIdentificationResult> 83]
+//
+// link:#element-spectrumidformat[6.80 Element <SpectrumIDFormat> 84]
+//
+// link:#element-subsample[6.81 Element <SubSample> 84]
+//
+// link:#element-substitutionmodification[6.82 Element <SubstitutionModification> 85]
+//
+// link:#element-threshold[6.83 Element <Threshold> 85]
+//
+// link:#element-translationtable[6.84 Element <TranslationTable> 87]
+//
+// link:#element-userparam[6.85 Element <userParam> 87]
+//
+// link:#specific-comments-on-schema[7. Specific Comments on schema 88]
+//
+// link:#file-extension-and-compression[7.1 File extension and compression 88]
+//
+// link:#referencing-elements-within-the-document[7.2 Referencing elements within the document 88]
+//
+// link:#searches-against-nucleotide-sequences[7.3 Searches against nucleotide sequences 88]
+//
+// link:#reporting-peptide-and-protein-identifications-passing-a-significance-threshold[7.4 Reporting peptide and protein identifications passing a significance threshold 89]
+//
+// link:#using-decoy-databases-to-set-different-thresholds-of-false-discovery-rate[7.5 Using decoy databases to set different thresholds of false discovery rate 90]
+//
+// link:#database-filter[7.6 Database Filter 91]
+//
+// link:#types-of-parameters-and-values[7.7 Types of parameters and values 91]
+//
+// link:#reporting-fragmentation-ions[7.8 Reporting fragmentation ions 91]
+//
+// link:#internal-fragments-and-immonium-ions[7.8.1 Internal fragments and immonium ions 92]
+//
+// link:#encoding-neutral-loss-fragment-ions[7.8.2 Encoding Neutral loss fragment ions 92]
+//
+// link:#enzyme-definition[7.9 Enzyme definition 93]
+//
+// link:#unknown-modifications[7.10 Unknown modifications 94]
+//
+// link:#identifications-based-on-multiple-mass-spectra[7.11 Identifications based on multiple mass spectra 94]
+//
+// link:#linking-searchmodification-elements-to-modification-elements[7.12 Linking SearchModification elements to Modification elements 98]
+//
+// link:#conclusions[8. Conclusions 99]
+//
+// link:#authors-and-contributors[9. Authors and Contributors 99]
+//
+// link:#references[10. References 101]
+//
+// link:#intellectual-property-statement[11. Intellectual Property Statement 101]
+//
+// link:#copyright-notice[Copyright Notice 102]
 
 == Introduction
 
@@ -750,7 +750,7 @@ D = non-leading protein
 
 *Table 4.* A summary of grouping options and recommendation for CV term annotations, assuming a group of four related proteins A-D.
 
-==== Support for _de novo_ sequencing approaches 
+==== Support for _de novo_ sequencing approaches
 
 In mzIdentML version 1.1, <SpectrumIdentificationItem> had a mandatory sub-element <PeptideEvidenceRef> to link each PSM to all the proteins from which it could have originated.
 The inclusion of these mandatory requirements makes it difficult to represent results from _de novo_ sequencing and spectral library search approaches where PSMs may not necessarily have originated from a protein database search.
@@ -791,7 +791,7 @@ It must also be highlighted that mzIdentML cannot be used to model the order in 
 The same encoding MAY also be used to describe other approaches where different search protocols are applied to the same spectra (for example using different parameter sets with the same search engine), and subsequently combined.
 In this case, it is RECOMMENDED that only a single (assumed best) score of any given type is represented once per <SpectrumIdentificationItem>.
 
-==== Pre-fractionation of samples prior to MS and splitting of searches 
+==== Pre-fractionation of samples prior to MS and splitting of searches
 
 It is common in many workflows for pre-fractionation of a sample to be performed prior to MS, for example _via_ 1D or 2D gel electrophoresis or 2D LC.
 In some scenarios results of database searches are combined prior to protein inference and in other instances there is no combination of results prior to protein inference.
@@ -844,7 +844,7 @@ Finally, a mechanism has been added for recording peptides both above and below 
 PSM-level threshold is covered _via_ the _passThreshold_ attribute on the <SpectrumIdentificationItem> element.
 To enable additional thresholding at the peptide-level, a new CV term is required for all PSMs (“peptide passes threshold”, MS:1002500) as shown in Figure 1F.
 
-image:img/media/image1.wmf[image,width=643,height=857]
+image::img/mzidentml/image1.wmf[image,width=643,height=857]
 
 Figure 1. The mechanism for encoding peptide-level statistics in mzIdentML 1.2.0.
 
@@ -875,7 +875,7 @@ PASS_THRESHOLD holds a Boolean (true, false) value to indicate whether the modif
 
 *The mechanism described MAY be used in conjunction with peptide-level scoring, using specific CV terms for peptide-level modification re-scoring.*
 
-image:img//media/image2.wmf[image,width=456,height=875]
+image::img/mzidentml/image2.wmf[image,width=456,height=875]
 
 Figure 2. The specification in mzIdentML 1.2.0 for encoding modification localization scores, using CV terms.
 
@@ -891,7 +891,7 @@ One of the key concepts required is the mapping of peptides back to chromosomes,
 File format specifications are under development that can be used directly for genome visualisation, such as adaptations of the BED and BAM (7) formats commonly used in genomics.
 To ensure a consistent export is possible from mzIdentML to formats designed for genome visualisation or annotation, in mzIdentML 1.2, a consistent encoding of the chromosomal mappings has been developed, as exemplified in Figure 3.
 
-image:img//media/image3.wmf[image,width=664,height=768]
+image::img/mzidentml/image3.wmf[image,width=664,height=768]
 
 Figure 3. The encoding for chromosomal coordinates in mzIdentML in support of proteogenomics approaches.
 
@@ -904,7 +904,7 @@ The sub-folder names indicate the features of the format being used in each exam
 
 An overview of the schema is presented in Figure 4. The following documentation is automatically generated from the XML Schema.
 
-image:img//media/image4.png[image,width=664,height=373]
+image::img/mzidentml/image4.png[image,width=664,height=373]
 
 Figure 4. A diagrammatic overview of the mzIdentML schema (generated by https://github.com/dgis/xsddiagram[xsddiagram]).
 
@@ -949,7 +949,7 @@ Analyses are for example: SpectrumIdentification (resulting in peptides) or Prot
 
 |===
 
-|*Graphical Context:* |image:img//media/image5.png[image,width=282,height=496]
+|*Graphical Context:* |image::img/mzidentml/image5.png[image,width=282,height=496]
 |*Example Context:* a|
 [source,xml]
 ----
@@ -1956,7 +1956,7 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 
 |===
 
-|*Graphical Context:* |image:img//media/image6.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/DataCollection.png,width=566,height=642]
+|*Graphical Context:* |image::img/mzidentml/image6.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/DataCollection.png,width=566,height=642]
 |*Example Context:* a|
 <DataCollection>
 
@@ -4082,7 +4082,7 @@ If multiple terms are used it is assumed that all conditions are satisfied by th
 
 |===
 
-|*Graphical Context:* |image:img//media/image7.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/ProteinDetectionProtocol.png,width=566,height=336]
+|*Graphical Context:* |image::img/mzidentml/image7.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/ProteinDetectionProtocol.png,width=566,height=336]
 |*Example Context:* a|
 <ProteinDetectionProtocol id="PDP_PAnalyzer" analysisSoftware_ref="PAnalyzer">
 
@@ -4599,7 +4599,7 @@ There MUST only be one PeptideEvidence item per Peptide-to-DBSequence-position.
 
 |===
 
-|*Graphical Context:* |image:img//media/image8.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SequenceCollection.png,width=576,height=652]
+|*Graphical Context:* |image::img/mzidentml/image8.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SequenceCollection.png,width=576,height=652]
 |*Example Context:* a|
 <SequenceCollection xmlns="http://psidev.info/psi/pi/mzIdentML/1.2">
 
@@ -4998,7 +4998,7 @@ If a specific sequence can be assigned to multiple proteins and or positions in 
 
 |===
 
-|*Graphical Context:* |image:img//media/image9.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationItem.png,width=576,height=326]
+|*Graphical Context:* |image:img/mzidentml/image9.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationItem.png,width=576,height=326]
 |*Example Context:* a|
 <SpectrumIdentificationItem passThreshold="true" rank="1" peptide_ref="NMGGPYGGGNYGPGGSGGSGGYGGR_15.99491461956-ATAA-2" calculatedMassToCharge="1103.45377262
 
@@ -5235,7 +5235,7 @@ For MS/MS data, there will be ranked SpectrumIdentificationItems corresponding t
 
 |===
 
-|*Graphical Context:* |image:img//media/image10.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationList.png,width=575,height=432]
+|*Graphical Context:* |image:img/mzidentml/image10.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationList.png,width=575,height=432]
 |*Example Context:* a|
 <SpectrumIdentificationList xmlns="http://psidev.info/psi/pi/mzIdentML/1.2" id="SII_LIST_1">
 
@@ -5291,7 +5291,7 @@ If multiple terms are used it is assumed that all conditions are satisfied by th
 
 |===
 
-|*Graphical Context:* |image:img//media/image11.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationProtocol.png,width=557,height=813]
+|*Graphical Context:* |image::img/mzidentml/image11.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationProtocol.png,width=557,height=813]
 |*Example Context:* a|
 <SpectrumIdentificationProtocol id="SIP_10589554385233790425" analysisSoftware_ref="SOF_10581839310406754333">
 
@@ -5754,7 +5754,7 @@ MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pu
 |*Example Context:* |<userParam value="VLENAEGDR; ASSGLNEDEIQK; MQELAQVSQK; KTAEDYLGEPVTEAVITVPAYFNDAQR; SLGQFNLDGINPAPR; MPMVQK; IIAADNGDAWVEVK; DVSIMPFK; KDVNPDEAVAIGAAVQGGVLTGDVK; KFEELVQTR; NDPLAMQR; VAEFFGK; QVEEAGDKLPADDK; MAPPQISAEVLKK; KQVEEAGDKLPADDK; LINYLVEEFK; MAPPQISAEVLK; QAVTNPQNTLFAIK; TFEVLATNGDTHLGGEDFDSR; VALQDAGLSVSDIDDVILVGGQTR; FQDEEVQR" name="unique peptides"/>
 |===
 
-== Specific Comments on schema 
+== Specific Comments on schema
 
 In this section, several points of documentation are elaborated beyond the core specification in Section 6..
 
@@ -6519,6 +6519,7 @@ This is to avoid the duplication of <Peptide> elements with the same <Modificati
 This document contains the specifications for using the mzIdentML format to represent results from peptide and protein identification pipelines, in the context of a proteomics investigation.
 This specification, in conjunction with the XML Schema, mapping file and CV constitute a proposal for a standard from the Proteomics Standards Initiative.
 
+[[authors-and-contributors]]
 == Authors and Contributors
 
 Colin W. Combe, University of Edinburgh

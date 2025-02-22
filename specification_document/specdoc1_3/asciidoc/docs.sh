@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 INPUT_DIR="."
 OUTPUT_DIR="out"
 COMMIT_HASH="*COMMITHASH*"
@@ -33,7 +34,7 @@ echo
 #echo
 #echo "Building PDF version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
 #asciidoctor-pdf -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
-#    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date="$BUILD_DATE" \
+#    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
 #    -D "$OUTPUT_DIR" "$MAIN_ADOC_FILE"
 #ECODE=$?
 #if [ ! $ECODE -eq 0 ]; then
@@ -56,7 +57,7 @@ echo
 #  echo "Build failed with exit code $ECODE"
 #  exit $ECODE
 #fi
-
+#
 #echo "Experimental attempt to generate asciidoc from xsd schema"
 #python3 xsd_to_asciidoc.py
 #asciidoctor -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" -d book --attribute="commit-hash=COMMITHASH" --attribute="build-date=BUILDDATE" -D "$OUTPUT_DIR" out/spec.adoc
@@ -83,17 +84,17 @@ if [ ! $ECODE -eq 0 ]; then
   exit $ECODE
 fi
 
-echo
-echo "Building PDF version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
-asciidoctor-pdf -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
-    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
-    -D "$OUTPUT_DIR" "$EXT_ADOC_FILE"
-ECODE=$?
-if [ ! $ECODE -eq 0 ]; then
-  echo "Build failed with exit code $ECODE"
-  exit $ECODE
-fi
-
+#echo
+#echo "Building PDF version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
+#asciidoctor-pdf -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
+#    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
+#    -D "$OUTPUT_DIR" "$EXT_ADOC_FILE"
+#ECODE=$?
+#if [ ! $ECODE -eq 0 ]; then
+#  echo "Build failed with exit code $ECODE"
+#  exit $ECODE
+#fi
+#
 #echo
 #echo "Building docbook and DOCX version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
 #OUTPUT_DOCBOOK="${EXT_ADOC_FILE%.*}.xml"

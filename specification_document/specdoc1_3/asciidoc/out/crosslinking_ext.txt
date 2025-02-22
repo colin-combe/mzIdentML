@@ -27,24 +27,22 @@ Table of Contents
     -   4.3. +
     -   4.4. 4.3 Scores
     -   4.5. 4.4 FDR Specific Comments
--   5. +
--   6. 5. Unsupported Use Cases and Future Directions
--   7. 6. Appendix I. Comparison of rules for “crosslink donor” and
+-   5. 5. Unsupported Use Cases and Future Directions
+-   6. 6. Appendix I. Comparison of rules for “crosslink donor” and
     “crosslink acceptor” depending on context
--   8. 7. Appendix II. Example encodings of crosslinker reagents as
+-   7. 7. Appendix II. Example encodings of crosslinker reagents as
     <SearchModification> elements
-    -   8.1. 7.1 Bis(sulfosuccinimidyl) suberate (BS3)
-    -   8.2. 7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide
+    -   7.1. 7.1 Bis(sulfosuccinimidyl) suberate (BS3)
+    -   7.2. 7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide
         hydrochloride (EDC)
-    -   8.3. +
-    -   8.4. 7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
-    -   8.5. 7.4 Disuccinimidyl sulfoxide (DSSO)
--   9. +
--   10. 8. Authors Information
--   11. 9. Glossary
--   12. 10. References
--   13. 11. Intellectual Property Statement
--   14. Copyright Notice
+    -   7.3. +
+    -   7.4. 7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
+    -   7.5. 7.4 Disuccinimidyl sulfoxide (DSSO)
+-   8. 8. Authors Information
+-   9. 9. Glossary
+-   10. 10. References
+-   11. 11. Intellectual Property Statement
+-   12. Copyright Notice
 
 Preface
 
@@ -82,7 +80,7 @@ standard data exchange format in proteomics.
 
 Authors
 
-Please see Chapter 10 for details on the authors and editors of this
+Please see Chapter 8 for details on the authors and editors of this
 document.
 
 Abstract
@@ -163,16 +161,44 @@ with more than two reactive groups, higher order crosslinked peptides)
 see §5.
 
 +------+------+------+------+------+------+------+------+-------+
-| no   | [im  |      | [im  |      |      |      |      |       |
-| cro  | age] |      | age] |      |      |      |      |       |
-| ssli | li   |      | [im  |      |      |      |      |       |
-| nker | near |      | age] |      |      |      |      |       |
-| reac | pep  |      | non- |      |      |      |      |       |
-| tion | tide |      | co   |      |      |      |      |       |
-|      | /    |      | vale |      |      |      |      |       |
-|      | free |      | ntly |      |      |      |      |       |
-|      | pep  |      | as   |      |      |      |      |       |
-|      | tide |      | soci |      |      |      |      |       |
+| no   | imag |      | imag |      |      |      |      |       |
+| cro  | e::i |      | e::i |      |      |      |      |       |
+| ssli | mg/c |      | mg/c |      |      |      |      |       |
+| nker | ross |      | ross |      |      |      |      |       |
+| reac | link |      | link |      |      |      |      |       |
+| tion | ing_ |      | ing_ |      |      |      |      |       |
+|      | ext/ |      | ext/ |      |      |      |      |       |
+|      | imag |      | imag |      |      |      |      |       |
+|      | e9.j |      | e9.j |      |      |      |      |       |
+|      | pg[i |      | pg[i |      |      |      |      |       |
+|      | mage |      | mage |      |      |      |      |       |
+|      | ,wid |      | ,wid |      |      |      |      |       |
+|      | th=4 |      | th=4 |      |      |      |      |       |
+|      | 2,he |      | 3,he |      |      |      |      |       |
+|      | ight |      | ight |      |      |      |      |       |
+|      | =20] |      | =15] |      |      |      |      |       |
+|      | li   |      | imag |      |      |      |      |       |
+|      | near |      | e::i |      |      |      |      |       |
+|      | pep  |      | mg/c |      |      |      |      |       |
+|      | tide |      | ross |      |      |      |      |       |
+|      | /    |      | link |      |      |      |      |       |
+|      | free |      | ing_ |      |      |      |      |       |
+|      | pep  |      | ext/ |      |      |      |      |       |
+|      | tide |      | imag |      |      |      |      |       |
+|      |      |      | e9.j |      |      |      |      |       |
+|      |      |      | pg[i |      |      |      |      |       |
+|      |      |      | mage |      |      |      |      |       |
+|      |      |      | ,wid |      |      |      |      |       |
+|      |      |      | th=4 |      |      |      |      |       |
+|      |      |      | 3,he |      |      |      |      |       |
+|      |      |      | ight |      |      |      |      |       |
+|      |      |      | =14] |      |      |      |      |       |
+|      |      |      | non- |      |      |      |      |       |
+|      |      |      | co   |      |      |      |      |       |
+|      |      |      | vale |      |      |      |      |       |
+|      |      |      | ntly |      |      |      |      |       |
+|      |      |      | as   |      |      |      |      |       |
+|      |      |      | soci |      |      |      |      |       |
 |      |      |      | ated |      |      |      |      |       |
 |      |      |      | pept |      |      |      |      |       |
 |      |      |      | ides |      |      |      |      |       |
@@ -2225,9 +2251,7 @@ not this happened. This CV term SHOULD be supplied. If it is omitted
 then it is unspecified whether self and heteromeric links were grouped
 separately for analysis (there is no default value).
 
-5. +
-
-6. 5. Unsupported Use Cases and Future Directions
+5. 5. Unsupported Use Cases and Future Directions
 
 The two unsupported crosslinking product types shown in Figure 1 are:
 crosslinkers with more than two reactive groups and higher order
@@ -2271,7 +2295,7 @@ multi-chain proteins that contain complex patterns of disulfide bonds
 (representing endogenous crosslinks) by top-down mass spectrometry would
 be an example of this.
 
-7. 6. Appendix I. Comparison of rules for “crosslink donor” and “crosslink acceptor” depending on context
+6. 6. Appendix I. Comparison of rules for “crosslink donor” and “crosslink acceptor” depending on context
 
 The CV terms “crosslink donor” (MS:1002509) and “crosslink acceptor”
 (MS:1002510) are used in two different contexts:
@@ -2342,9 +2366,9 @@ governing their use in these two contexts.
 Table 1. The rules governing the use of “crosslink donor” (MS:1002509)
 and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
-8. 7. Appendix II. Example encodings of crosslinker reagents as <SearchModification> elements
+7. 7. Appendix II. Example encodings of crosslinker reagents as <SearchModification> elements
 
-8.1. 7.1 Bis(sulfosuccinimidyl) suberate (BS3)
+7.1. 7.1 Bis(sulfosuccinimidyl) suberate (BS3)
 
 <SpectrumIdentificationProtocol>
 
@@ -2435,7 +2459,7 @@ and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
 </SpectrumIdentificationProtocol>
 
-8.2. 7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC)
+7.2. 7.2 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC)
 
 <SpectrumIdentificationProtocol>
 
@@ -2525,9 +2549,9 @@ and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
 </SpectrumIdentificationProtocol>
 
-8.3. +
+7.3. +
 
-8.4. 7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
+7.4. 7.3 (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
 
 <SpectrumIdentificationProtocol>
 
@@ -2677,7 +2701,7 @@ and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
 </SpectrumIdentificationProtocol>
 
-8.5. 7.4 Disuccinimidyl sulfoxide (DSSO)
+7.5. 7.4 Disuccinimidyl sulfoxide (DSSO)
 
 <SpectrumIdentificationProtocol>
 
@@ -2960,9 +2984,7 @@ and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
 </SpectrumIdentificationProtocol>
 
-9. +
-
-10. 8. Authors Information
+8. 8. Authors Information
 
 Authors of this extension:
 
@@ -2988,7 +3010,7 @@ Andy Jones, University of Liverpool, Andrew.Jones@liverpool.ac.uk
 Juri Rappsilber, Technische Universität Berlin,
 Juri.Rappsilber@tu-Berlin.de
 
-11. 9. Glossary
+9. 9. Glossary
 
   Cleavable Crosslinker - a crosslinker that can be broken in two to
   release the individual peptides (in a modified form), thus enabling
@@ -3113,7 +3135,7 @@ Juri.Rappsilber@tu-Berlin.de
 
   Trimeric Crosslinker - a crosslinker with three reactive groups.
 
-12. 10. References
+10. 10. References
 
 1. Vizcaíno JA, Mayer G, Perkins S, Barsnes H, Vaudel M, Perez-Riverol
 Y, et al. The mzIdentML Data Standard Version 1.2, Supporting Advances
@@ -3145,7 +3167,7 @@ and Real-Time Informatics for Multiprotein Interaction Studies. J
 Proteome Res. 2024;23.
 doi:http://dx.doi.org/10.1021/acs.jproteome.3c00455[10.1021/acs.jproteome.3c00455]
 
-13. 11. Intellectual Property Statement
+11. 11. Intellectual Property Statement
 
 The PSI takes no position regarding the validity or scope of any
 intellectual property or other rights that might be claimed to pertain
@@ -3164,7 +3186,7 @@ which may cover technology that may be required to practice this
 recommendation. Please address the information to the PSI Chair (see
 contacts information at PSI website).
 
-14. Copyright Notice
+12. Copyright Notice
 
 Copyright © Proteomics Standards Initiative (2023). All Rights Reserved.
 
@@ -3191,4 +3213,4 @@ WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY
 RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
 PARTICULAR PURPOSE."
 
-Last updated 2025-02-21 21:02:07 +0100
+Last updated 2025-02-22 15:46:55 +0100

@@ -104,16 +104,16 @@ An overview of the different crosslinking product types and their support in mzI
 [cols=",,,,,,,,",options="header",]
 |===
 |*no crosslinker reaction* a|
-image:./img/mzidentml/image9.jpg[image,width=42,height=20]
+image::img/crosslinking_ext/image9.jpg[image,width=42,height=20]
 
 linear peptide / free
 
 peptide
 
 | a|
-image:img/mzidentml/image9.jpg[image,width=43,height=15]
+image::img/crosslinking_ext/image9.jpg[image,width=43,height=15]
 
-image:img//media/image9.jpg[image,width=43,height=14]
+image::img/crosslinking_ext/image9.jpg[image,width=43,height=14]
 
 non-
 
@@ -127,7 +127,7 @@ a|
 *reaction*
 
 | a|
-image:img//media/image5.jpg[image,width=56,height=33]
+image::img/crosslinking_ext/image5.jpg[image,width=56,height=33]
 
 crosslinker modified peptide
 
@@ -136,29 +136,29 @@ crosslinker modified peptide
 or dead-end link)
 
 a|
-image:img//media/image8.jpg[image,width=63,height=41]
+image::img/crosslinking_ext/image8.jpg[image,width=63,height=41]
 
 crosslinked peptides
 
 a|
-image:img//media/image4.png[image,width=46,height=34]
+image::img/crosslinking_ext/image4.png[image,width=46,height=34]
 
 cleavable
 
 crosslinker
 
 a|
-image:img//media/image6.jpg[image,width=56,height=26]
+image::img/crosslinking_ext/image6.jpg[image,width=56,height=26]
 
 internally linked peptide (looplink)
 
 | a|
-image:img//media/image7.jpg[image,width=63,height=45]
+image::img/crosslinking_ext/image7.jpg[image,width=63,height=45]
 
 crosslinked peptides from crosslinkers with more than two reactive groups
 
 a|
-image:img//media/image10.jpg[image,width=63,height=41]
+image::img/crosslinking_ext/image10.jpg[image,width=63,height=41]
 
 higher order
 
@@ -353,7 +353,7 @@ The rules that govern their use differ in each context, the details of these rul
 
 Figure 2 gives an overview of how the subsections here (§3) relate to the elements in an mzIdentML file.
 
-image:img//media/image2.png[image,width=864,height=562]
+image::img/crosslinking_ext/image2.png[image,width=864,height=562]
 
 *Figure 2. Overview of the mzIdentML 1.3.0. Format (crosslinking extension).* Elements are labelled with the section from this document that contains guidance on how to encode them.
 
@@ -1496,7 +1496,7 @@ mzIdentML encodes these with the same mechanism it uses to address the protein i
 
 As the encoding of interaction scores uses <ProteinAmbiguityGroup> elements, the guidance in Section 5.2.1 (Protein grouping encoding) of the main specification also applies here and MUST be followed. This means that ambiguity about which protein a crosslinked peptide came from must be reflected in how the <ProteinDetectionHypothesis> elements containing the score are assigned to <ProteinAmbiguityGroup> elements, see Figure 12.
 
-image:img//media/image1.png[image,width=624,height=396]
+image::img/crosslinking_ext/image1.png[image,width=624,height=396]
 
 *Figure 12. Ambiguity at PPI level.* Ambiguity regarding which protein is crosslinked (protein inference problem) MUST be reflected in how the <ProteinDetectionHypothesis> elements containing interaction scores are assigned to <ProteinAmbiguityGroup> elements, see Section 5.2.1 (Protein grouping encoding) of the main specification. Shown here with PPI level scores.
 
@@ -1826,7 +1826,6 @@ A new CV term “FDR applied separately to self crosslinks and protein heteromer
 
 The value of “FDR applied separately to self crosslinks and protein heteromeric crosslinks” (MS:1003343) is a boolean, stating whether or not this happened. This CV term SHOULD be supplied. If it is omitted then it is unspecified whether self and heteromeric links were grouped separately for analysis (there is no default value).
 
-==  +
 
 == *5. Unsupported Use Cases and Future Directions*
 
@@ -2464,7 +2463,7 @@ ____
 
 </SpectrumIdentificationProtocol>
 
-==  +
+
 
 [[authors]]
 == *8. Authors Information*
