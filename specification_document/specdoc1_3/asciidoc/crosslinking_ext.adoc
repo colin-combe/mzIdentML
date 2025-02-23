@@ -489,7 +489,6 @@ The encoding for crosslinked peptides MAY be combined with the encoding for modi
 [source,xml]
 ----
 <SequenceCollection>
-____
 <Peptide id="30491856_30492180_2_4_p1">
 <PeptideSequence>AAFTKQAADK</PeptideSequence>
 <Modification monoisotopicMassDelta="138.0680796" location="5">
@@ -508,7 +507,6 @@ name="search modification id ref" value="DSS_acceptor"/>
 </Modification>
 </Peptide>
 ...
-____
 </SequenceCollection>
 ----
 
