@@ -26,6 +26,7 @@ endif::[]
 :!sectnums:
 [preface]
 == Preface
+
 _Status of This Document_
 
 This document presents a final specification for the mzIdentML data format developed by the HUPO Proteomics Standards Initiative.
@@ -46,10 +47,6 @@ The latest (draft) version of this document may be found at https://github.com/H
 _Type of This Document_
 
 This document is a _recommendation_ for a common, community-driven standard data exchange format in proteomics.
-
-
-
-
 
 _Authors_
 
@@ -328,6 +325,9 @@ This document defines an XML schema that can be used to describe the outputs of 
 //
 // link:#copyright-notice[Copyright Notice 102]
 
+//reenable section numbering
+:sectnums:
+[[introduction]]
 == Introduction
 
 === Background
