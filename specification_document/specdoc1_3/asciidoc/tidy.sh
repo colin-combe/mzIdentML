@@ -16,24 +16,34 @@ for file in "$@"; do
     awk '
     BEGIN {inside=0; content="";}
     /^\[source,xml\]/ {inside=1; print; next;}
-    inside && /^----/ {inside++; if (inside == 2) {next;}}  # Start of XML content
-    inside == 1 {content = content $0 "\n"; next;}
-    inside == 2 {
-        # Write content to a temporary file
+    inside == 1 && /^----/ {inside=2; print; next;}  # Start XML block
+    inside == 2 && /^----/ {
+        # End of XML block, process XML
         tmpfile = "tidy_tmp.xml"
         print content > tmpfile
         close(tmpfile)
 
-        # Run tidy on the temporary file and capture output
+        # Run tidy and capture formatted XML
         cmd = "tidy -xml -indent -quiet -wrap 0 " tmpfile " 2>/dev/null"
-        while ((cmd | getline formatted) > 0) {
-            print formatted;
+        formatted = ""
+        while ((cmd | getline line) > 0) {
+            formatted = formatted line "\n";
         }
         close(cmd)
 
-        content=""; inside=0;
+        # Print formatted XML if available
+        if (formatted != "") {
+            print formatted;
+        } else {
+            print content;  # Fall back to original content if tidy fails
+        }
+
+        print;  # Print closing ----
+        inside=0;
+        next;
     }
-    !inside {print;}
+    inside == 2 {content = content $0 "\n"; next;}  # Collect XML content
+    {print;}  # Print everything else
     ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
 
 done
