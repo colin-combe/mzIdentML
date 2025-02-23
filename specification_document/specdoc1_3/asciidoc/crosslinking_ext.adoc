@@ -800,7 +800,6 @@ _[.underline]#New supported use case in this extension - internally linked pepti
 ----
 <SpectrumIdentificationResult spectraData_ref="SID_1" spectrumID="index=2776" id="SIR_1">
 
-____
 <SpectrumIdentificationItem passThreshold="true" rank="*1*"
 
 peptide_ref="*looplink_p1*" experimentalMassToCharge= "569.7912"
@@ -818,7 +817,6 @@ name="looplink spectrum identification item"/>
 value="1.3111826921077734" name="xi:score"/>
 
 </SpectrumIdentificationItem>
-____
 
 </SpectrumIdentificationResult>
 ----

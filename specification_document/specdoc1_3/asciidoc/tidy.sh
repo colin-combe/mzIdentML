@@ -18,6 +18,7 @@ for file in "$@"; do
     /^\[source,xml\]/ {inside=1; print; next;}
     inside == 1 && /^----/ {inside=2; print; next;}  # Start XML block
     inside == 2 && /^----/ {
+#        system("rm -f tidy_tmp.xml")
         # End of XML block, process XML
         tmpfile = "tidy_tmp.xml"
         print content > tmpfile
@@ -44,7 +45,7 @@ for file in "$@"; do
     }
     inside == 2 {content = content $0 "\n"; next;}  # Collect XML content
     {print;}  # Print everything else
-    ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+    ' "$file" > "$file.tmp"
 
 done
 
