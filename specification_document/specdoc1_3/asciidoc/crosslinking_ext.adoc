@@ -1,3 +1,4 @@
+[[mzidentml-extension-for-crosslinking-data]]
 = mzIdentML extension for crosslinking data
 :sectnums:
 :toc: left
@@ -25,6 +26,7 @@ endif::[]
 //disable section numbering
 :!sectnums:
 [preface]
+[[preface]]
 == Preface
 
 *mzIdentML: exchange format for peptides and proteins identified from mass spectra*
@@ -84,7 +86,7 @@ Particular attention is paid to workflows using cleavable crosslinkers.
 
 2- Provide further clarification and documentation on how to encode crosslinking data in an mzIdentML file.
 
-[[supported-use-cases]]
+[[supported-crosslinking-use-cases]]
 === Supported Crosslinking Use Cases
 
 Already supported use case in mzIdentML 1.2.0:
@@ -193,6 +195,7 @@ See Section §4. Seven CV terms have been created:
 * “residue pair ref” (MS:1003344).
 * “regular expression for residue-pair ref” (MS:1003345)
 
+[[availability-of-documentation-and-example-files]]
 === Availability of Documentation and Example Files
 
 All documents in their most recent form are available on the PSI website (http://www.psidev.info/mzidentml[[.underline]#http://www.psidev.info/mzidentml#]) and at the mzIdentML GitHub project (https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document[[.underline]#https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document#]).
@@ -206,6 +209,7 @@ The example files are:
 * noncovalently_assoc_1_3_0_draft.mzid (noncovalently associated peptides),
 * scores_and_thresholds_1_3_0_draft.mzid (scores and thresholds).
 
+[[controlled-vocabularies-for-encoding-crosslinks]]
 == Controlled Vocabularies for Encoding Crosslinks
 
 A collection of terms for describing a certain domain is called a controlled vocabulary (CV) https://paperpile.com/c/YrD2gH/9dZZN[[3]].
@@ -224,8 +228,10 @@ There is also some overlap between the information stored in these CVs and the c
 The <SearchModification> elements can encode: the derivatives of cleavable crosslinkers, namely the crosslinker stub as a peptide modification on the MS3 level and crosslinker cleavability as stub fragments on the MS2 level; and crosslinker specificity (including heterobifunctional crosslinkers).
 Implementers SHOULD describe the crosslinker modifications searched for as <SearchModification> elements; this provides a consistent way of retrieving crosslinker modification information regardless of which CV has been used, see §3.2.2.
 
+[[encoding-the-results-of-crosslinking-searches]]
 == Encoding the Results of Crosslinking Searches
 
+[[introduction]]
 === Introduction
 
 mzIdentML documents MUST indicate that they are implementing the guidance in this extension document by including the following CV term inside the top-level <MzIdentML> element, immediately after the <cvList> element:
@@ -256,6 +262,7 @@ image::img/crosslinking_ext/image2.png[image,width=864,height=562]
 
 *Figure 2. Overview of the mzIdentML 1.3.0. Format (crosslinking extension).* Elements are labelled with the section from this document that contains guidance on how to encode them.
 
+[[spectrumidentificationprotocol-elements]]
 === <SpectrumIdentificationProtocol> Elements
 
 A <SpectrumIdentificationProtocol> element describes the parameters and settings of a spectrum identification analysis.
@@ -271,6 +278,7 @@ Two child elements of <SpectrumIdentificationProtocol> are covered in more detai
 * <AdditionalSearchParams> (§3.2.1),
 * <ModificationParams> (§3.2.2).
 
+[[additional-search-parameters]]
 ==== Additional Search Parameters
 
 *Path:* [.underline]#/MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/AdditionalSearchParams#
@@ -314,6 +322,7 @@ name="FDR applied separately to self crosslinks and protein heteromeric crosslin
 If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present.
 The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown, see §4.4.
 
+[[modification-parameters]]
 ==== Modification Parameters
 
 *Path:* [.underline]#/MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ModificationParams/SearchModification#
@@ -442,6 +451,7 @@ It also shows a modification with a neutral loss.
 
 *(ii)* The rules applying to the use of the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms within <SearchModification>.
 
+[[encoding-crosslinked-peptides-in-the-element-sequencecollection]]
 === Encoding Crosslinked Peptides in the Element <SequenceCollection>
 
 [.underline]#*Path:* /MzIdentML/SequenceCollection#
@@ -640,8 +650,10 @@ name="search modification id ref" value="DSSO_crosslink_stub_t"/>
 *Figure 6. XML snippet showing the encoding of modifications from cleavable crosslinkers.* The new CV terms are shown: “crosslinker stub” (MS:1003346) and “Unimod derivative code” (MS:1003347).
 This example also uses the new CV term "search modification id ref" (MS:1003393) to reference the corresponding <SearchModification> elements.
 
+[[encoding-identified-crosslinks-in-spectrumidentificationitem-elements]]
 === Encoding Identified Crosslinks in <SpectrumIdentificationItem> Elements
 
+[[identifications-of-crosslinked-peptides]]
 ==== Identifications of Crosslinked Peptides
 
 [.underline]#*Path:* /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult#
@@ -721,6 +733,7 @@ ____
 
 *Figure 7.* *Encoding the identification of a pair of crosslinked peptides.* (i) Example XML snippet. (ii) The rules governing the use of “crosslink spectrum identification item”.
 
+[[identifications-of-noncovalently-associated-peptides]]
 ==== Identifications of Noncovalently Associated Peptides
 
 [.underline]#*Path:* /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult#
@@ -794,6 +807,7 @@ ____
 
 *Figure 8.* *Encoding the identification of a pair of noncovalently associated peptides.* (i) Example XML snippet. (ii) The rules governing the use of “noncovalently associated peptides spectrum identification item”.
 
+[[identifications-of-an-internally-linked-peptide]]
 ==== Identifications of an Internally Linked Peptide
 
 [.underline]#*Path:* /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult#
@@ -830,8 +844,10 @@ ____
 *Figure 9.* *XML snippet including the encoding of an identification of an internally linked peptide.* Within a <SpectrumIdentificationResult>, a <SpectrumIdentificationItem> element may be marked as referring to a looplink containing peptide by including the CV term “looplink spectrum identification item” (MS:1003329) CV term.
 This <SpectrumIdentificationItem> will refer to a <Peptide> containing both crosslink donor and crosslink acceptor modifications (as shown in Figure 5(iii)).
 
+[[scores-and-thresholds]]
 == Scores and Thresholds
 
+[[introduction]]
 === Introduction
 
 This section addresses the encoding of error control procedures.
@@ -878,6 +894,7 @@ There are three mutually exclusive definitions of “unique peptide”:
 If peptide level (re)scoring is used, exactly one of these CV terms must be placed in the <AdditionalSearchParams> element to state the definition of “unique peptide” in use (see Section 5.2.7 of the main specification document).
 As these are mutually exclusive, an error control procedure which uses more than one definition of “unique peptide” cannot be fully captured by mzIdentML.
 
+[[thresholds]]
 === Thresholds
 
 Section 7.4 of the main mzIdentML specification document gives general guidance on the encoding of thresholds and what has passed them.
@@ -1004,8 +1021,10 @@ ____
 *Figure 10. XML snippet showing the thresholds applied at all four levels of consolidation.* These are - PSM, peptide-pair, residue pair and PPI.
 The CV terms MS:1002490 and MS:1002496 are required to enable peptide level rescoring (mzIdentML main specification Section 5.2.7) and to state the definition of ‘unique peptide’ being used.
 
+[[scores]]
 === Scores
 
+[[match-level-scores]]
 ==== Match Level Scores
 
 Match level scores are stored in <SpectrumIdentificationItem> elements.
@@ -1018,6 +1037,7 @@ Those which also meet the CV mapping rules for the <Threshold> element can also 
 
 See Section 7.11 of the main mzIdentML document for guidance specific to PSM-level scores for identifications based on multiple spectra.
 
+[[peptide-level-scores]]
 ==== Peptide Level Scores
 
 Peptide level scores are also stored in <SpectrumIdentificationItem> elements and everything in §4.3.1 also applies here.
@@ -1193,6 +1213,7 @@ _<!-- residue pair ref value="22.a" -->_
 *Figure 11.* *XML snippet including the encoding of scores for PSM-level matches and peptide pairs.* These are encoded inside <SpectrumIdentificationItem> elements. “peptide-pair passes threshold” (MS:1003339) would become relevant if there was more than one score for that peptide pair (sharing the same “peptide group ID”), it states whether the peptide pair passed when all scores and thresholds are considered.
 This is analogous to the _passThreshold_ attribute of <SpectrumIdentificationItem> elements for PSM-level scores.
 
+[[interaction-level-scores-(unique-residue-pairs-and-ppi)]]
 ==== Interaction Level Scores (Unique Residue-Pairs and PPI)
 
 mzIdentML uses the same mechanism to encode scores for interactions at both the unique residue-pair level and protein-protein interaction level.
@@ -1497,6 +1518,7 @@ These are analogous to the _passThreshold_ attribute of <SpectrumIdentificationI
 *Figure 15. XML snippet including the encoding of positional ambiguity of residue pairs.* In panel (i), residue-pair 22 is a protein heteromeric crosslink where the “a” end of the crosslink is ambiguous between two proteins and there are three possible positions of the crosslink in peptide “a”.
 In panel (ii), residue pair 23 is a self link but there is ambiguity about where peptide “a” came from within that protein (two possible positions) and two possible link sites in peptide “a”, giving a total of four possible residues.
 
+[[fdr-specific-comments]]
 === FDR Specific Comments
 
 Section 7.5 of the main mzIdentML 1.3.0 specification document (‘Using decoy databases to set different thresholds of false discovery rate’) states that:
@@ -1524,6 +1546,7 @@ The value of “FDR applied separately to self crosslinks and protein heteromeri
 This CV term SHOULD be supplied.
 If it is omitted then it is unspecified whether self and heteromeric links were grouped separately for analysis (there is no default value).
 
+[[unsupported-use-cases-and-future-directions]]
 == Unsupported Use Cases and Future Directions
 
 The two unsupported crosslinking product types shown in Figure 1 are: crosslinkers with more than two reactive groups and higher order crosslinks (arbitrarily many peptides identified with many crosslinks between them).
@@ -1545,6 +1568,7 @@ This remains an open question for future versions of the specification.
 There are other use cases in which _n_ <SpectrumIdentificationItem> elements need to be associated.
 Characterisation of antibodies or other multi-chain proteins that contain complex patterns of disulfide bonds (representing endogenous crosslinks) by top-down mass spectrometry would be an example of this.
 
+[[appendix-i.-comparison-of-rules-for-“crosslink-donor”-and-“crosslink-acceptor”-depending-on-context]]
 == Appendix I. Comparison of rules for “crosslink donor” and “crosslink acceptor” depending on context
 
 The CV terms “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) are used in two different contexts:
@@ -1567,8 +1591,10 @@ Table 1 summarises the commonalities and differences between the rules governing
 
 *Table 1.* The rules governing the use of “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) differ depending on the context.
 
+[[appendix-ii.-example-encodings-of-crosslinker-reagents-as-searchmodification-elements]]
 == Appendix II. Example encodings of crosslinker reagents as <SearchModification> elements
 
+[[bis(sulfosuccinimidyl)-suberate-(bs3)]]
 === Bis(sulfosuccinimidyl) suberate (BS3)
 
 [source,xml]
@@ -1660,6 +1686,7 @@ ____
 </SpectrumIdentificationProtocol>
 ----
 
+[[1-ethyl-3-(3-dimethylaminopropyl)carbodiimide-hydrochloride-(edc)]]
 === 1-ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC)
 
 [source,xml]
@@ -1753,6 +1780,7 @@ ____
 
 ----
 
+[[(nhs-diazirine)-succinimidyl-4,4'-azipentanoate-(sda)]]
 === (NHS-Diazirine) succinimidyl 4,4'-azipentanoate (SDA)
 
 [source,xml]
@@ -1901,6 +1929,7 @@ ____
 
 </SpectrumIdentificationProtocol>
 
+[[*7.4-disuccinimidyl-sulfoxide-(dsso)*]]
 === *7.4 Disuccinimidyl sulfoxide (DSSO)*
 
 <SpectrumIdentificationProtocol>
@@ -2169,6 +2198,7 @@ ____
 ----
 
 [[authors]]
+[[authors-information]]
 == Authors Information
 
 Authors of this extension:
@@ -2193,6 +2223,7 @@ Andy Jones, University of Liverpool, Andrew.Jones@liverpool.ac.uk
 
 Juri Rappsilber, Technische Universität Berlin, Juri.Rappsilber@tu-Berlin.de
 
+[[glossary]]
 == Glossary
 
 Cleavable Crosslinker - a crosslinker that can be broken in two to release the individual peptides (in a modified form), thus enabling their individual analysis.
@@ -2271,6 +2302,7 @@ Self Crosslinks - crosslinks between peptides within one protein sequence.
 
 Trimeric Crosslinker - a crosslinker with three reactive groups.
 
+[[references]]
 == References
 
 {empty}1. http://paperpile.com/b/YrD2gH/vjf16[Vizcaíno JA, Mayer G, Perkins S, Barsnes H, Vaudel M, Perez-Riverol Y, et al. The mzIdentML Data Standard Version 1.2, Supporting Advances in Proteome Informatics. Mol Cell Proteomics. 2017;16: 1275–1285.]
@@ -2287,6 +2319,7 @@ Trimeric Crosslinker - a crosslinker with three reactive groups.
 
 {empty}7. http://paperpile.com/b/YrD2gH/8J3I[Mohr JP, Caudal A, Tian R, Bruce JE. Multidimensional Cross-Linking and Real-Time Informatics for Multiprotein Interaction Studies. J Proteome Res. 2024;23. doi:]http://dx.doi.org/10.1021/acs.jproteome.3c00455[10.1021/acs.jproteome.3c00455]
 
+[[intellectual-property-statement]]
 == Intellectual Property Statement
 
 The PSI takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights.
@@ -2295,6 +2328,7 @@ Copies of claims of rights made available for publication and any assurances of 
 The PSI invites any interested party to bring to its attention any copyrights, patents or patent applications, or other proprietary rights which may cover technology that may be required to practice this recommendation.
 Please address the information to the PSI Chair (see contacts information at PSI website).
 
+[[copyright-notice]]
 == Copyright Notice
 
 Copyright (C) Proteomics Standards Initiative (2023).
