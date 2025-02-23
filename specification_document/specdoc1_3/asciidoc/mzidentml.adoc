@@ -726,7 +726,7 @@ id="PSI-MS" />
 
 </cvList>
 
-<AnalysisSoftwareList>
+<AnalysisSoftwareList/>
 
 ...
 
