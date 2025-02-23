@@ -58,11 +58,6 @@ USER_GROUP="$(id -u ${USER}):$(id -g ${USER})"
 echo "Running docker containers with USER:GROUP=$USER_GROUP"
 
 echo "Building HTML5 version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
-# Define the Asciidoctor command separately
-ASCIIDOCTOR_CMD="asciidoctor -d book --attribute=\"commit-hash=$COMMIT_HASH\" --attribute=\"build-date=$BUILD_DATE\" -D /documents/output $ADOC_FILE"
-
-# Print the Asciidoctor command before running it
-echo "Running Asciidoctor command inside Docker: $ASCIIDOCTOR_CMD"
 docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
 
 ECODE=$?
@@ -72,16 +67,7 @@ if [ ! $ECODE -eq 0 ]; then
 fi
 
 echo "Building PDF version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
-
-# Define the Asciidoctor PDF command separately
-ASCIIDOCTOR_PDF_CMD="asciidoctor-pdf -d book --attribute=\"commit-hash=$COMMIT_HASH\" --attribute=\"build-date=$BUILD_DATE\" -D /documents/output $ADOC_FILE"
-
-# Print the Asciidoctor PDF command before running it
-echo "Running Asciidoctor PDF command inside Docker: $ASCIIDOCTOR_PDF_CMD"
-
-# Run Docker with the separate Asciidoctor PDF command
-docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-pdf \
-  asciidoctor/docker-asciidoctor $ASCIIDOCTOR_PDF_CMD
+docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
 
 #cp -R $INPUT_DIR/output/* $OUTPUT_DIR/
 
