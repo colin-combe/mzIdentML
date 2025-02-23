@@ -15,36 +15,61 @@ for file in "$@"; do
 
     awk '
     BEGIN {inside=0; content="";}
-    /^\[source,xml\]/ {inside=1; print; next;}
-    inside == 1 && /^----/ {inside=2; print; next;}  # Start XML block
+
+    # When encountering the start of an XML block
+    /^\[source,xml\]/ {
+        inside=1;
+        print;
+        next;
+    }
+
+    # When inside an XML block and encountering the first "----" line (start of XML content)
+    inside == 1 && /^----/ {
+        inside=2;
+        print;
+        next;
+    }
+
+    # When inside the XML content, accumulate the lines until the closing "----"
     inside == 2 && /^----/ {
-#        system("rm -f tidy_tmp.xml")
-        # End of XML block, process XML
+        # Ensure the temporary file is cleared before we write the new content
         tmpfile = "tidy_tmp.xml"
+        system("rm -f " tmpfile)  # Remove previous temporary file
+
+        # Write the collected content to the temporary file
         print content > tmpfile
         close(tmpfile)
 
-        # Run tidy and capture formatted XML
-        cmd = "tidy -xml -indent -quiet -wrap 0 " tmpfile " 2>/dev/null"
+        # Run tidy to format the XML content
+        cmd = "tidy -xml -indent -quiet -wrap 0 --indent-spaces 4 " tmpfile " 2>/dev/null"
         formatted = ""
         while ((cmd | getline line) > 0) {
             formatted = formatted line "\n";
         }
         close(cmd)
 
-        # Print formatted XML if available
+        # Print the formatted XML if tidy succeeded, otherwise print original content
         if (formatted != "") {
             print formatted;
         } else {
-            print content;  # Fall back to original content if tidy fails
+            print content;  # Fallback to original content if tidy fails
         }
 
-        print;  # Print closing ----
-        inside=0;
+        print;  # Print the closing ---- line
+        inside=0;  # Reset "inside" flag
+        content="";  # Clear accumulated content for next block
         next;
     }
-    inside == 2 {content = content $0 "\n"; next;}  # Collect XML content
-    {print;}  # Print everything else
+
+    # While inside an XML block, accumulate the content
+    inside == 2 {
+        content = content $0 "\n";
+        next;
+    }
+
+    # Print everything else (non-XML content) unchanged
+    {print;}
+
     ' "$file" > "$file.tmp"
 
 done
