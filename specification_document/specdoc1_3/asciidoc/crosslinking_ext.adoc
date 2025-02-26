@@ -1,7 +1,9 @@
-[[mzidentml-extension-for-crosslinking-data]]
 = mzIdentML extension for crosslinking data
-:sectnums:
+:source-highlighter: pygments
+:pygments-style: colorful
+// :pygments-style: murphy
 :toc: left
+:toclevels: 3
 :doctype: book
 //only works on some backends, not HTML
 :showcomments:
@@ -9,6 +11,9 @@
 :xrefstyle: short
 :figure-caption: Figure
 :pdf-page-size: A4
+
+// :stylesheet: asciidoctor.css
+// :stylesheet: ./crosslinking_ext.css
 
 //GitHub specific settings
 ifdef::env-github[]
@@ -60,6 +65,7 @@ _Authors_
 
 Please see <<authors>> for details on the authors and editors of this document.
 
+[abstract]
 [[abstract]]
 == Abstract
 
@@ -75,7 +81,7 @@ This document defines the extension of the mzIdentML data standard to describe t
 [[background]]
 === Background
 
-A large number of proteomics search engines are available, each outputting results in a variety of file formats. mzIdentML https://paperpile.com/c/YrD2gH/vjf16[[1]] is a HUPO-PSI endorsed community standard that provides a common file format for identification results.
+A large number of proteomics search engines are available, each outputting results in a variety of file formats. mzIdentML <<viz2017>> is a HUPO-PSI endorsed community standard that provides a common file format for identification results.
 This extension document has been released in parallel with mzIdentML version 1.3. mzIdentML version 1.3 supports extensions for additional features or use cases which can be described in additional documents, rather than editing the original specification document.
 
 This mzIdentML 1.3.0 extension document provides further information on the encoding of crosslinking Mass Spectrometry (MS) results in mzIdentML.
@@ -113,6 +119,8 @@ Identifying these noncovalently associated peptides may improve the accuracy of 
 
 An overview of the different crosslinking product types and their support in mzIdentML is given in Figure 1. For discussion of the product types that are not supported in this version of mzIdentML (crosslinkers with more than two reactive groups, higher order crosslinked peptides) see §5.
 
+[[summary-of-mzidentml-support-for-crosslinking-product-types]]
+.Summary of mzIdentML support for crosslinking product types.
 [cols="^.^3,^.^3,^.^3,^.^3,^.^4,^.^3,^.^3,^.^3,^.^3",",options="nowrap"]
 |===
 |[small]*no crosslinker reaction* a|
@@ -147,7 +155,7 @@ a|
 2+| [small]*1.1.0* |[small]*1.2.0* 3+|[small]*1.3.0* 2+|[small]*Unsupported*
 |===
 
-*Figure 1. Summary of mzIdentML support for crosslinking product types.*
+// *Figure 1. Summary of mzIdentML support for crosslinking product types.*
 
 [[document-structure]]
 === Document Structure and Changes from mzIdentML Version 1.2.0 to 1.3.0 to Support Crosslinking Results
@@ -198,16 +206,16 @@ See Section §4. Seven CV terms have been created:
 [[availability-of-documentation-and-example-files]]
 === Availability of Documentation and Example Files
 
-All documents in their most recent form are available on the PSI website (http://www.psidev.info/mzidentml[[.underline]#http://www.psidev.info/mzidentml#]) and at the mzIdentML GitHub project (https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document[[.underline]#https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document#]).
+All documents in their most recent form are available on the PSI website (http://www.psidev.info/mzidentml[http://www.psidev.info/mzidentml]) and at the mzIdentML GitHub project (https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document[https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document]).
 
-The example files supporting this extension document are available at https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/[[.underline]#https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/#].
+The example files supporting this extension document are available at https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/[https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/].
 
 The example files are:
 
-* Xlink_EDC_mzIdentML_1_3_0_draft.mzid (internally linked peptides),
-* multiple_spectra_per_id_1_3_0_draft.mzid (identification based on multiple spectra),
-* noncovalently_assoc_1_3_0_draft.mzid (noncovalently associated peptides),
-* scores_and_thresholds_1_3_0_draft.mzid (scores and thresholds).
+- Xlink_EDC_mzIdentML_1_3_0_draft.mzid (internally linked peptides),
+- multiple_spectra_per_id_1_3_0_draft.mzid (identification based on multiple spectra),
+- noncovalently_assoc_1_3_0_draft.mzid (noncovalently associated peptides),
+- scores_and_thresholds_1_3_0_draft.mzid (scores and thresholds).
 
 [[controlled-vocabularies-for-encoding-crosslinks]]
 == Controlled Vocabularies for Encoding Crosslinks
@@ -239,7 +247,6 @@ mzIdentML documents MUST indicate that they are implementing the guidance in thi
 [source,xml]
 ----
 <cvParam cvRef="PSI-MS" accession="MS:1003385" name="mzIdentML crosslinking extension document version" value="1.0.0" />
-
 ----
 
 Crosslinked peptides presented a challenge for mzIdentML 1.2.0, since more than one peptide can be identified from the same spectrum.
@@ -259,9 +266,10 @@ Appendix I presents no new information on how to encode crosslinking results in 
 
 Figure 2 gives an overview of how the subsections here (§3) relate to the elements in an mzIdentML file.
 
-image::img/crosslinking_ext/image2.png[image,width=864,height=562]
+.*Overview of the mzIdentML 1.3.0. Format (crosslinking extension).* Elements are labelled with the section from this document that contains guidance on how to encode them.
+image::img/crosslinking_ext/overview13.svg[width=100%,align="center"]
 
-*Figure 2. Overview of the mzIdentML 1.3.0. Format (crosslinking extension).* Elements are labelled with the section from this document that contains guidance on how to encode them.
+// *Figure 2. Overview of the mzIdentML 1.3.0. Format (crosslinking extension).* Elements are labelled with the section from this document that contains guidance on how to encode them.
 
 [[spectrumidentificationprotocol-elements]]
 === <SpectrumIdentificationProtocol> Elements
@@ -293,9 +301,12 @@ If pairs of noncovalently associated peptides were also searched for, then the <
 
 The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343), see §4.4, which SHOULD be present is also shown in Figure 3.
 
-(:source-highlighter: pygments)
+// ----
 
-[source,xml]
+
+[[xml-snippet-showing-crosslinking-related-cv-terms]]
+.XML snippet showing crosslinking related CV terms. [.palegreen_bg]#If a crosslinking search has been performed, MS:1002494 *MUST* be present.# If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present. The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown, see §4.4.
+[source,xml,highlight=4]
 ----
 <AnalysisProtocolCollection>
     <SpectrumIdentificationProtocol analysisSoftware_ref="ID_software" id="SearchProtocol_1">
@@ -306,6 +317,7 @@ The new CV term "FDR applied separately to self crosslinks and protein heteromer
         <cvParam accession="MS:1001211" cvRef="PSI-MS" name="parent mass type mono" />
         <cvParam accession="MS:1001256" cvRef="PSI-MS" name="fragment mass type mono" />
         <cvParam accession="MS:1002494" cvRef="PSI-MS" name="crosslinking search" />
+        <cvParam accession="MS:1003330" cvRef="PSI-MS" name="noncovalently associated peptides search"/>
         <cvParam accession="MS:1003343" cvRef="PSI-MS" name="FDR applied separately to self crosslinks and protein heteromeric crosslinks" value="true" />
         <cvParam cvRef="PSI-MS" accession="MS:1001118" name="param: b ion" />
         <cvParam cvRef="PSI-MS" accession="MS:1001262" name="param: y ion" />
@@ -313,12 +325,11 @@ The new CV term "FDR applied separately to self crosslinks and protein heteromer
     ...
     </SpectrumIdentificationProtocol>
 </AnalysisProtocolCollection>
-
 ----
 
-*Figure 3. XML snippet showing crosslinking related CV terms.* If a crosslinking search has been performed, MS:1002494 *MUST* be present.
-If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present.
-The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown, see §4.4.
+// *Figure 3. XML snippet showing crosslinking related CV terms.* If a crosslinking search has been performed, MS:1002494 *MUST* be present.
+// If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present.
+// The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown, see §4.4.
 
 [[modification-parameters]]
 ==== Modification Parameters
@@ -375,7 +386,8 @@ Note that the choice of which <SearchModification> is the donor and which one is
 
 [source,xml]
 ----
-<SpectrumIdentificationProtocol>... 
+<SpectrumIdentificationProtocol>
+...
 <ModificationParams>
     <SearchModification fixedMod="false" massDelta="138.06808" residues="S T Y K">
         <cvParam cvRef="PSI-MS" accession="MS:1003392" name="search modification id" value="BS3_donor" />
@@ -408,7 +420,9 @@ Note that the choice of which <SearchModification> is the donor and which one is
         <cvParam accession="UNIMOD:35" name="Oxidation" cvRef="UNIMOD" />
         <cvParam accession="MS:1001524" name="fragment neutral loss" cvRef="PSI-MS" value="63.998291" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO" />
     </SearchModification>
-</ModificationParams>...</SpectrumIdentificationProtocol>
+</ModificationParams>
+...
+</SpectrumIdentificationProtocol>
 
 ----
 
@@ -1467,98 +1481,100 @@ Juri Rappsilber, Technische Universität Berlin, Juri.Rappsilber@tu-Berlin.de
 [[glossary]]
 == Glossary
 
-Cleavable Crosslinker - a crosslinker that can be broken in two to release the individual peptides (in a modified form), thus enabling their individual analysis.
+Cleavable Crosslinker::
+a crosslinker that can be broken in two to release the individual peptides (in a modified form), thus enabling their individual analysis.
 In crosslinking studies this typically refers to _MS-cleavable crosslinkers_.
 
-Controlled Vocabulary (CV) - A structured collection of terms describing a certain Crosslink - The covalent bond formed by a _crosslinker_.
+Controlled Vocabulary (CV):: A structured collection of terms describing a certain Crosslink - The covalent bond formed by a _crosslinker_.
 
-Crosslink Acceptor - one end of a crosslinking reaction, the other is the _crosslink donor_.
+Crosslink Acceptor:: one end of a crosslinking reaction, the other is the _crosslink donor_.
 (Assumes the crosslinker has only two reactive groups.)
 
-Crosslink Donor - one end of a crosslinking reaction, the other is the _crosslink acceptor_.
+Crosslink Donor:: one end of a crosslinking reaction, the other is the _crosslink acceptor_.
 (Assumes the crosslinker has only two reactive groups.)
 
-Crosslinker - A chemical reagent.
+Crosslinker:: A chemical reagent.
 A molecule which creates a covalent bond either between proteins or within the same protein chain.
 This bond preserves proximity information which would otherwise be destroyed by the enzymatic digestion of the proteins.
 The proximity information is then recovered by identifying the peptides via mass spectrometry.
 
-Crosslinker Modified Peptide - a peptide where one reactive group of a _crosslinker_ has reacted with one of its amino acids, but the other reactive group has not reacted with any animo acid and no covalent bond is formed.
+Crosslinker Modified Peptide:: a peptide where one reactive group of a _crosslinker_ has reacted with one of its amino acids, but the other reactive group has not reacted with any animo acid and no covalent bond is formed.
 
-Crosslinker Specificity - The specificity of a crosslinker gives the amino acids it will react with.
+Crosslinker Specificity:: The specificity of a crosslinker gives the amino acids it will react with.
 A _crosslinker_ has reactive groups that react with amino acids or their side-chains, the reactive groups determine the specificity of the crosslinker.
 
-Crosslinking Product - the result of a crosslinking reaction.
+Crosslinking Product:: the result of a crosslinking reaction.
 
-Crosslink Spectrum Match (CSM) - the subset of PSM level matches that contain a crosslink.
+Crosslink Spectrum Match (CSM):: the subset of PSM level matches that contain a crosslink.
 
-Decoy (decoy databases, decoy peptide) - decoys are a set of artificially generated sequences used to assess the performance of an identification algorithm.
+Decoy (decoy databases, decoy peptide):: decoys are a set of artificially generated sequences used to assess the performance of an identification algorithm.
 Decoys are typically created by randomising or reversing the sequences of the target proteins.
 These new sequences are then added to the database used for analysis. _False Discovery Rates_ may use the identifications of decoys to estimate the error rate in the data.
 
-False Discovery Rate (FDR) - the fraction of identifications that are predicted to be incorrect (false positives) among the total number of identifications made.
+False Discovery Rate (FDR):: the fraction of identifications that are predicted to be incorrect (false positives) among the total number of identifications made.
 
-Global FDR - the False Discovery Rate across the whole dataset, as opposed to ‘local FDR’ which calculates the error rate within a given score window.
+Global FDR:: the False Discovery Rate across the whole dataset, as opposed to ‘local FDR’ which calculates the error rate within a given score window.
 
-Heterobifunctional Crosslinker - a _crosslinker_ with two reactive groups in which the reactive groups, and hence the specificity of each end, are different.
+Heterobifunctional Crosslinker:: a _crosslinker_ with two reactive groups in which the reactive groups, and hence the specificity of each end, are different.
 
-Higher Order Crosslink - A _crosslinking product_ in which there are arbitrarily many peptides with many crosslinks between them.
+Higher Order Crosslink:: A _crosslinking product_ in which there are arbitrarily many peptides with many crosslinks between them.
 
-Internally Linked Peptide - A crosslinking product in which both ends of the crosslinker have reacted within a single peptide (that is, within the same identical peptide, not between two copies of the same peptide).
+Internally Linked Peptide:: A crosslinking product in which both ends of the crosslinker have reacted within a single peptide (that is, within the same identical peptide, not between two copies of the same peptide).
 This type of crosslinking product is known to be intramolecular.
 
-Looplink - colloquial name for an _internally linked peptide_.
+Looplink:: colloquial name for an _internally linked peptide_.
 
-Modification - a chemical change to an amino acid.
+Modification:: a chemical change to an amino acid.
 
-MS-Cleavable Crosslinker - a type of _cleavable crosslinker_, MS-cleavable crosslinkers can cleave upon activation in the mass spectrometer, releasing the individual peptides and thus enabling their individual analysis.
+MS-Cleavable Crosslinker:: a type of _cleavable crosslinker_, MS-cleavable crosslinkers can cleave upon activation in the mass spectrometer, releasing the individual peptides and thus enabling their individual analysis.
 
-Noncovalently Associated Peptides - two different peptides which were not crosslinked but stayed associated with each other throughout the workflow, due to noncovalent interactions.
+Noncovalently Associated Peptides:: two different peptides which were not crosslinked but stayed associated with each other throughout the workflow, due to noncovalent interactions.
 
-Monolink - colloquial name for a _crosslinker modified peptide_.
+Monolink:: colloquial name for a _crosslinker modified peptide_.
 Unimod uses this term to describe some derivatives of crosslinkers (e.g. see http://www.unimod.org/modifications_view.php?editid1=1842).
 
-Open Modification Search - a search strategy which allows for any type of mass shift to occur at any residue within a peptide sequence.
+Open Modification Search:: a search strategy which allows for any type of mass shift to occur at any residue within a peptide sequence.
 In contrast to a "closed" search, which is limited to a defined set of modifications, an open modification search allows for the identification of novel or unexpected modifications
 
-Posterior Error Probability - a statistical measure of the probability that an identification is incorrect.
+Posterior Error Probability:: a statistical measure of the probability that an identification is incorrect.
 
-Protein Heteromeric Crosslinks - crosslinks between distinct protein sequences.
+Protein Heteromeric Crosslinks:: crosslinks between distinct protein sequences.
 
-Protein-Protein Interaction (PPI) - an interaction between proteins.
+Protein-Protein Interaction (PPI):: an interaction between proteins.
 In the context of crosslinking, it is a level of consolidation at which crosslinks may be analysed.
 
-PSI-MS - the Human Proteome Organization (HUPO) Proteomics Standards Initiative’s (PSI) controlled vocabulary for Mass Spectrometry (MS)
+PSI-MS:: the Human Proteome Organization (HUPO) Proteomics Standards Initiative’s (PSI) controlled vocabulary for Mass Spectrometry (MS)
 
-Peptide Spectrum Match (PSM) - a match to one or more peptides in a mass spectrum.
+Peptide Spectrum Match (PSM):: a match to one or more peptides in a mass spectrum.
 The lowest, unconsolidated level at which analysis of identifications can occur.
 Because a single “match” may identify more than one peptide, the concept ‘PSM’ does not correspond directly with “spectrum identification item” in mzIdentML, no element in mzIdentML does correspond directly to “a match”.
 
-PSM-level - the level of analysis that looks at individual _peptide spectrum matches_.
+PSM-level:: the level of analysis that looks at individual _peptide spectrum matches_.
 
-Residue-pair - a unique pair of crosslinked residues, irrespective of the peptides identified.
+Residue-pair:: a unique pair of crosslinked residues, irrespective of the peptides identified.
 A level of consolidation higher than unique peptide but lower than PPI.
 
-Self Crosslinks - crosslinks between peptides within one protein sequence.
+Self Crosslinks:: crosslinks between peptides within one protein sequence.
 
-Trimeric Crosslinker - a crosslinker with three reactive groups.
+Trimeric Crosslinker:: a crosslinker with three reactive groups.
 
+[bibliography]
 [[references]]
 == References
 
-{empty}1. http://paperpile.com/b/YrD2gH/vjf16[Vizcaíno JA, Mayer G, Perkins S, Barsnes H, Vaudel M, Perez-Riverol Y, et al. The mzIdentML Data Standard Version 1.2, Supporting Advances in Proteome Informatics. Mol Cell Proteomics. 2017;16: 1275–1285.]
+- [[[viz2017, 1]]] Vizcaíno JA, Mayer G, Perkins S, Barsnes H, Vaudel M, Perez-Riverol Y, et al. The mzIdentML Data Standard Version 1.2, Supporting Advances in Proteome Informatics. Mol Cell Proteomics. 2017;16: 1275–1285.
 
-{empty}2. http://paperpile.com/b/YrD2gH/IanGW[Giese SH, Belsom A, Sinn L, Fischer L, Rappsilber J. Noncovalently Associated Peptides Observed during Liquid Chromatography-Mass Spectrometry and Their Effect on Cross-Link Analyses. Anal Chem. 2019;91: 2678–2685.]
+- [[[giese2019, 2]]] Giese SH, Belsom A, Sinn L, Fischer L, Rappsilber J. Noncovalently Associated Peptides Observed during Liquid Chromatography-Mass Spectrometry and Their Effect on Cross-Link Analyses. Anal Chem. 2019;91: 2678–2685.
 
-{empty}3. http://paperpile.com/b/YrD2gH/9dZZN[Mayer G, Jones AR, Binz P-A, Deutsch EW, Orchard S, Montecchi-Palazzi L, et al. Controlled vocabularies and ontologies in proteomics: overview, principles and practice. Biochim Biophys Acta. 2014;1844: 98–107.]
+- [[[mayer2014, 3]]] Mayer G, Jones AR, Binz P-A, Deutsch EW, Orchard S, Montecchi-Palazzi L, et al. Controlled vocabularies and ontologies in proteomics: overview, principles and practice. Biochim Biophys Acta. 2014;1844: 98–107]
 
-{empty}4. http://paperpile.com/b/YrD2gH/osIjk[Liu F, Lössl P, Scheltema R, Viner R, Heck AJR. Optimized fragmentation schemes and data analysis strategies for proteome-wide cross-link identification. Nat Commun. 2017;8: 15473.]
+- [[[liu2017, 4]]] Liu F, Lössl P, Scheltema R, Viner R, Heck AJR. Optimized fragmentation schemes and data analysis strategies for proteome-wide cross-link identification. Nat Commun. 2017;8: 15473]
 
-{empty}5. http://paperpile.com/b/YrD2gH/kAbLF[Lenz S, Sinn LR, O’Reilly FJ, Fischer L, Wegner F, Rappsilber J. Reliable identification of protein-protein interactions by crosslinking mass spectrometry. Nat Commun. 2021;12: 1–11.]
+- [[[lenz2021, 5]]] Lenz S, Sinn LR, O’Reilly FJ, Fischer L, Wegner F, Rappsilber J. Reliable identification of protein-protein interactions by crosslinking mass spectrometry. Nat Commun. 2021;12: 1–11]
 
-{empty}6. http://paperpile.com/b/YrD2gH/ghaA0[Fischer L, Rappsilber J. Quirks of Error Estimation in Cross-Linking/Mass Spectrometry. Anal Chem. 2017;89: 3829.]
+- [[[fischer2017, 6]]] Fischer L, Rappsilber J. Quirks of Error Estimation in Cross-Linking/Mass Spectrometry. Anal Chem. 2017;89: 3829.
 
-{empty}7. http://paperpile.com/b/YrD2gH/8J3I[Mohr JP, Caudal A, Tian R, Bruce JE. Multidimensional Cross-Linking and Real-Time Informatics for Multiprotein Interaction Studies. J Proteome Res. 2024;23. doi:]http://dx.doi.org/10.1021/acs.jproteome.3c00455[10.1021/acs.jproteome.3c00455]
+- [[[mohr2024, 7]]] Mohr JP, Caudal A, Tian R, Bruce JE. Multidimensional Cross-Linking and Real-Time Informatics for Multiprotein Interaction Studies. J Proteome Res. 2024;23. doi:]http://dx.doi.org/10.1021/acs.jproteome.3c00455[10.1021/acs.jproteome.3c00455
 
 [[intellectual-property-statement]]
 == Intellectual Property Statement
