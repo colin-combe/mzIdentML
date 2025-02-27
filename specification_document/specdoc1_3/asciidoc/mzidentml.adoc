@@ -1744,8 +1744,8 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 
 |*Example cvParams:* a|
 [source,xml]
-----<cvParam accession="MS:1001088" cvRef="PSI-MS" value="sp|P36938|PGM_ECOLI Phosphoglucomutase OS=Escherichia coli (strain K12) GN=pgm PE=1 SV=1" name="protein description"/>
-
+----
+<cvParam accession="MS:1001088" cvRef="PSI-MS" value="sp|P36938|PGM_ECOLI Phosphoglucomutase OS=Escherichia coli (strain K12) GN=pgm PE=1 SV=1" name="protein description"/>
 
 ----
 |===
