@@ -1119,13 +1119,16 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 
 <SpectrumIdentificationItem chargeState="2" experimentalMassToCharge="679.817322" calculatedMassToCharge="679.818488" peptide_ref="AVMDDFAAFVEK_##Oxidation(M):3" rank="1" passThreshold="false" id="SIR_8947_SII_1">
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000401820|p:known_378_389"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000401820_p:known_378_389"></PeptideEvidenceRef>
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000421027|p:putative_420_431"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000421027_p:putative_420_431"></PeptideEvidenceRef>
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000483421|p:known_357_368"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000483421_p:known_357_368"></PeptideEvidenceRef>
 
 ...
+</SpectrumIdentificationItem>
+</SpectrumIdentificationResult>
+</SpectrumIdentificationList>
 </AnalysisData>
 ----
 |===
@@ -1852,11 +1855,11 @@ mouse_SWISS_can_iso_ECOLI.fasta" id="SearchDB_1">
 |*Example Context:* a|
 [source,xml]
 ----
-<DBSequence accession="sp|P20029|GRP78_MOUSE 78 kDa glucose-regulated protein OS=Mus musculus GN=Hspa5
+<DBSequence accession="sp_P20029_GRP78_MOUSE 78 kDa glucose-regulated protein OS=Mus musculus GN=Hspa5
 
-PE=1..." searchDatabase_ref="SearchDB_1" length="655" name="sp|P20029|GRP78_MOUSE 78 kDa glucose-regula
+PE=1..." searchDatabase_ref="SearchDB_1" length="655" name="sp_P20029_GRP78_MOUSE 78 kDa glucose-regula
 
-ted protein OS=Mus musculus GN=Hspa5 PE=1 SV=3" id="dbseq_sp|P20029|GRP78_MOUSE 78 kDa glucose-regulated
+ted protein OS=Mus musculus GN=Hspa5 PE=1 SV=3" id="dbseq_sp_P20029_GRP78_MOUSE 78 kDa glucose-regulated
 
 protein OS=Mus musculus GN=Hspa5 PE=1...">
 
@@ -3371,11 +3374,11 @@ If for any reason it is unknown (e.g. denovo), pre="?" should be used.
 |*Example Context:* a|
 [source,xml]
 ----
-<PeptideEvidence dBSequence_ref="dbseq_generic|B_GENSCAN00000036974_REVERSED|p:genscan" peptide_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_##Carbamidomethyl(C):1##Carbamidomethyl(C):
+<PeptideEvidence dBSequence_ref="dbseq_generic_B_GENSCAN00000036974_REVERSED_p:genscan" peptide_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_##Carbamidomethyl(C):1##Carbamidomethyl(C):
 
 3##Carbamidomethyl(C):12##Carbamidomethyl(C):18##Carbamidomethyl(C):25##Carbamidomethyl(C):
 
-31##Ammonia-loss(C):1" start="494" end="531" pre="R" post="L" isDecoy="true" id="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic|B_GENSCAN00000036974_REVERSED|p:genscan_494_531">
+31##Ammonia-loss(C):1" start="494" end="531" pre="R" post="L" isDecoy="true" id="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic_B_GENSCAN00000036974_REVERSED_p:genscan_494_531">
 
 </PeptideEvidence>
 ----
@@ -3666,7 +3669,7 @@ SHOULD supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://
 ----
 <ProteinAmbiguityGroup id="PAG_1">
 
-<ProteinDetectionHypothesis passThreshold="true" dBSequence_ref="dbseq_sp|Q64467|G3PT_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-specific OS=Mus..." id="PDH_11">
+<ProteinDetectionHypothesis passThreshold="true" dBSequence_ref="dbseq_sp_Q64467_G3PT_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-specific OS=Mus..." id="PDH_11">
 
 <PeptideHypothesis peptideEvidence_ref="PE13_2_63">
 
@@ -3679,6 +3682,7 @@ SHOULD supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://
 <cvParam accession="MS:1002235" cvRef="PSI-MS" value="34.57557513936462" name="ProteoGrouper:PDH score"/>
 
 ...
+</ProteinDetectionHypothesis>
 </ProteinAmbiguityGroup>
 ----
 
@@ -3814,7 +3818,7 @@ If no such threshold has been set, value of true should be given for all results
 |*Example Context:* a|
 [source,xml]
 ----
-<ProteinDetectionHypothesis passThreshold="true" dBSequence_ref="dbseq_tr|Q3V2I5|Q3V2I5_MOUSE Glyceraldehyde-3-phosphate dehydrogenase (Fragment) OS=Mus..." id="PDH_10">
+<ProteinDetectionHypothesis passThreshold="true" dBSequence_ref="dbseq_tr_Q3V2I5_Q3V2I5_MOUSE Glyceraldehyde-3-phosphate dehydrogenase (Fragment) OS=Mus..." id="PDH_10">
 
 <PeptideHypothesis peptideEvidence_ref="PE13_2_62">
 
@@ -3990,7 +3994,7 @@ MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pur
 
 <ProteinAmbiguityGroup id="PAG_0">
 
-<ProteinDetectionHypothesis passThreshold="true" dBSequence_ref="dbseq_sp|P16627|HS71L_MOUSE Heat shock 70 kDa protein 1-like OS=Mus musculus GN=Hspa1l..." id="PDH_15">
+<ProteinDetectionHypothesis passThreshold="true" dBSequence_ref="dbseq_sp_P16627_HS71L_MOUSE Heat shock 70 kDa protein 1-like OS=Mus musculus GN=Hspa1l..." id="PDH_15">
 
 <PeptideHypothesis peptideEvidence_ref="PE16_2_69">
 
@@ -4001,6 +4005,8 @@ MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pur
 <PeptideHypothesis peptideEvidence_ref="PE17_2_107">
 
 ...
+</PeptideHypothesis>
+</ProteinDetectionHypothesis>
 </ProteinDetectionList>
 ----
 
@@ -4607,13 +4613,7 @@ There MUST only be one PeptideEvidence item per Peptide-to-DBSequence-position.
 ----
 <SequenceCollection xmlns="http://psidev.info/psi/pi/mzIdentML/1.2">
 
-<DBSequence accession="sp|Q64467|G3PT_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-speci
-
-fic OS=Mus..." searchDatabase_ref="SearchDB_1" length="440" name="sp|Q64467|G3PT_MOUSE Glyceraldehyde-3
-
--phosphate dehydrogenase, testis-specific OS=Mus musculus GN=Gapdhs PE=1 SV=1" id="dbseq_sp|Q64467|G3PT
-
-_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-specific OS=Mus...">
+<DBSequence accession="sp_Q64467_G3PT_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-specific OS=Mus..." searchDatabase_ref="SearchDB_1" length="440" name="sp_Q64467_G3PT_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-specific OS=Mus musculus GN=Gapdhs PE=1 SV=1" id="dbseq_sp_Q64467_G3PT_MOUSE Glyceraldehyde-3-phosphate dehydrogenase, testis-specific OS=Mus...">
 
 <Seq>MSRRDVVLTNVTVVQLRRDRCPCPCPCPCPCPCPVIRPPPPKLEDPPPTVEEQPPPPPPPPPPPPPPPPPPPPQIEPDKFEEAPPPPP
 
@@ -4629,13 +4629,7 @@ NDNFVKLVAWYDNEYGYSNRVVDLLRYMFSREK</Seq>
 
 </DBSequence>
 
-<DBSequence accession="tr|Q3UEM8|Q3UEM8_MOUSE Putative uncharacterized protein (Fragment) OS=Mus
-
-musculus..." searchDatabase_ref="SearchDB_1" length="520" name="tr|Q3UEM8|Q3UEM8_MOUSE Putative unchar
-
-acterized protein (Fragment) OS=Mus musculus GN=Hspa5 PE=2 SV=1" id="dbseq_tr|Q3UEM8|Q3UEM8_MOUSE Puta
-
-tive uncharacterized protein (Fragment) OS=Mus musculus...">
+<DBSequence accession="tr_Q3UEM8_Q3UEM8_MOUSE Putative uncharacterized protein (Fragment) OS=Musmusculus..." searchDatabase_ref="SearchDB_1" length="520" name="tr_Q3UEM8_Q3UEM8_MOUSE Putative uncharacterized protein (Fragment) OS=Mus musculus GN=Hspa5 PE=2 SV=1" id="dbseq_tr_Q3UEM8_Q3UEM8_MOUSE Putative uncharacterized protein (Fragment) OS=Mus musculus...">
 
 <Seq>MMKFTVVAAALLLLGAVRAEEEDKKEDVGTVVGIDLGTTYSCVGVFKNGRVEIIANDQGNRITPSYVAFTPEGERLIGDAAKNQLTSNP
 
@@ -5291,13 +5285,13 @@ For MS/MS data, there will be ranked SpectrumIdentificationItems corresponding t
 
 <SpectrumIdentificationItem chargeState="2" experimentalMassToCharge="679.817322" calculatedMassToCharge="679.818488" peptide_ref="AVMDDFAAFVEK_##Oxidation(M):3" rank="1" passThreshold="false" id="SIR_8947_SII_1">
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000401820|p:known_378_389"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000401820_p:known_378_389"></PeptideEvidenceRef>
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000421027|p:putative_420_431"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000421027_p:putative_420_431"></PeptideEvidenceRef>
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000483421|p:known_357_368"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000483421_p:known_357_368"></PeptideEvidenceRef>
 
-<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic|A_ENSP00000480485|p:known_357_368"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="AVMDDFAAFVEK_generic_A_ENSP00000480485_p:known_357_368"></PeptideEvidenceRef>
 
 ...
 </SpectrumIdentificationList>
@@ -5407,35 +5401,17 @@ PeptideEvidence elements should be given for all mappings of the corresponding P
 ----
 <SpectrumIdentificationResult spectrumID="index=7665" spectraData_ref="SD_COMBINED_SE_0" id="SIR_7191">
 
-<SpectrumIdentificationItem chargeState="4" experimentalMassToCharge="1123.974121" calculatedMassTo
+<SpectrumIdentificationItem chargeState="4" experimentalMassToCharge="1123.974121" calculatedMassTo Charge="1123.968707" peptide_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_##Carbamidomethyl(C):1##Carbamidomethyl(C):3##Carbamidomethyl(C):12##Carbamidomethyl(C):18##Carbamidomethyl(C):25##Carbamidomethyl(C):31##Ammonia-loss(C):1" rank="1" passThreshold="false" id="SIR_7191_SII_1">
 
-Charge="1123.968707" peptide_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_##Carbamidomethyl(C):1##Carba
+<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic_A_ENSP00000376692_REVERSED_p:novel_575_612"></PeptideEvidenceRef>
 
-midomethyl(C):3##Carba
+<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic_B_GENSCAN00000036974_REVERSED_p:genscan_494_531"></PeptideEvidenceRef>
 
-midomethyl(C):12##Carbamidomethyl(C):18##Carbamidomethyl(C):25##Carbamidomethyl(C):31##Ammonia-loss(C):
+<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic_A_ENSP00000471297_REVERSED_p:putative_641_678"></PeptideEvidenceRef>
 
-1" rank="1" passThreshold="false" id="SIR_7191_SII_1">
+<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic_A_ENSP00000319883_REVERSED_p:known_633_670"></PeptideEvidenceRef>
 
-<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic|A_ENSP00000376692_REVERSED|p:
-
-novel_575_612"></PeptideEvidenceRef>
-
-<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic|B_GENSCAN00000036974_REVERSED|p:
-
-genscan_494_531"></PeptideEvidenceRef>
-
-<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic|A_ENSP00000471297_REVERSED|p:
-
-putative_641_678"></PeptideEvidenceRef>
-
-<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic|A_ENSP00000319883_REVERSED|p:
-
-known_633_670"></PeptideEvidenceRef>
-
-<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic|A_ENSP00000472280_REVERSED|p:
-
-putative_622_659"></PeptideEvidenceRef>
+<PeptideEvidenceRef peptideEvidence_ref="CRCQYSGVNNLCHTSSHCPNQGSTCENVDTCLKPDEPK_generic_A_ENSP00000472280_REVERSED_p:putative_622_659"></PeptideEvidenceRef>
 
 ...
 </SpectrumIdentificationResult>
