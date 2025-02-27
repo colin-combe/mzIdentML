@@ -21,29 +21,29 @@ echo
 cp $INPUT_DIR/asciidoctor-default.css $OUTPUT_DIR/asciidoctor-default.css
 #echo "Copied css files to $OUTPUT_DIR"
 
-#echo "Building main specification doc."
-#
-#echo
-#echo "Building HTML5 version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
-#asciidoctor -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
-#    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
-#    -D "$OUTPUT_DIR" "$MAIN_ADOC_FILE"
-#ECODE=$?
-#if [ ! $ECODE -eq 0 ]; then
-#  echo "Build failed with exit code $ECODE"
-#  exit $ECODE
-#fi
-#
-#echo
-#echo "Building PDF version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
-#asciidoctor-pdf -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
-#    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
-#    -D "$OUTPUT_DIR" "$MAIN_ADOC_FILE"
-#ECODE=$?
-#if [ ! $ECODE -eq 0 ]; then
-#  echo "Build failed with exit code $ECODE"
-#  exit $ECODE
-#fi
+echo "Building main specification doc."
+
+echo
+echo "Building HTML5 version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
+asciidoctor -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
+    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
+    -D "$OUTPUT_DIR"  -a stylesheet=crosslinking_ext.css  "$MAIN_ADOC_FILE"
+ECODE=$?
+if [ ! $ECODE -eq 0 ]; then
+  echo "Build failed with exit code $ECODE"
+  exit $ECODE
+fi
+
+echo
+echo "Building PDF version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
+asciidoctor-pdf -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" \
+    -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" \
+    -D "$OUTPUT_DIR" -a pdf-theme=crosslinking_ext.yml "$MAIN_ADOC_FILE"
+ECODE=$?
+if [ ! $ECODE -eq 0 ]; then
+  echo "Build failed with exit code $ECODE"
+  exit $ECODE
+fi
 #
 #echo
 #echo "Building docbook and DOCX version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
