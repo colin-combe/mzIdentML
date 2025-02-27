@@ -1444,7 +1444,11 @@ Any additional information such as the address, email etc. should be supplied ei
 |===
 
 |*Subelements:* |none
-|*Example Context:* |<BibliographicReference id="10.1002/(SICI)1522-2683(19991201)20:18<3551::AID-ELPS3551>3.0.CO;2-2" name="Probability-based protein identification by searching sequence databases using mass spectrometry data" authors="David N. Perkins, Darryl J. C. Pappin, David M. Creasy, John S. Cottrell" publication="Electrophoresis" publisher="Wiley VCH" editor="" year="1999" volume="20" issue="18" pages="3551-3567" title="Probability-based protein identification by searching sequence databases using mass spectrometry data" />
+|*Example Context:* |
+[source,mxl]
+----
+<BibliographicReference id="10.1002/(SICI)1522-2683(19991201)20:18<3551::AID-ELPS3551>3.0.CO;2-2" name="Probability-based protein identification by searching sequence databases using mass spectrometry data" authors="David N. Perkins, Darryl J. C. Pappin, David M. Creasy, John S. Cottrell" publication="Electrophoresis" publisher="Wiley VCH" editor="" year="1999" volume="20" issue="18" pages="3551-3567" title="Probability-based protein identification by searching sequence databases using mass spectrometry data" />
+----
 |===
 
 [[element-contactrole]]
@@ -1500,12 +1504,14 @@ Any additional information such as the address, email etc. should be supplied ei
 |*Attributes:* |none
 |*Subelements:* |none
 |*Example Context:* a|
+[source, xml]
+----
 <Customizations>
 
 No customisations
 
 </Customizations>
-
+----
 |===
 
 [[element-cv]]
@@ -3937,9 +3943,9 @@ MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pur
 
 *Example for protein grouping:*
 
-____
 [source,xml]
 ----
+<ProteinDetectionHupothesis>
 <cvParam cvRef="PSI-MS" accession="MS:1002394" name="PIA:protein score" value="107.73038501509386"></cvParam>
 
 <cvParam cvRef="PSI-MS" accession="MS:1002401" name="leading protein"></cvParam>
@@ -5986,9 +5992,9 @@ dBSequence_ref="dbseq_REV_psu|NC_LIV_113200" id="PE6_2_4"/>
 
 <SpectrumIdentificationResult>
 
-<SpectrumIdentificationItem passThreshold="false" rank="1" +
-peptide_ref="HAVGGRYSSLLCK__57.0215@C$403;_" +
-experimentalMassToCharge="1448.756" chargeState="2" id="SII_6_1"> +
+<SpectrumIdentificationItem passThreshold="false" rank="1"
+peptide_ref="HAVGGRYSSLLCK__57.0215@C$403;_"
+experimentalMassToCharge="1448.756" chargeState="2" id="SII_6_1">
 <PeptideEvidenceRef peptideEvidence_ref="PE6_2_4"/>
 
 <cvParam accession="MS:1001329" name="OMSSA:pvalue" cvRef="PSI-MS"
@@ -5997,7 +6003,7 @@ value="0.00073351" />
 
 </SpectrumIdentificationItem>
 
-<SpectrumIdentificationResult>
+</SpectrumIdentificationResult>
 
 </SpectrumIdentificationList>
 
@@ -6429,7 +6435,7 @@ peptide_ref="p1_t" rank="1" passThreshold="false" id="MS3_SII_2">
 
 <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1_t"/>
 
-<!-- this flags it as part of the crosslinked identification '1234' →
+<!-- this flags it as part of the crosslinked identification '1234' -->
 
 <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*"
 
