@@ -26,20 +26,20 @@ Changes to z should not affect prevent instance documents from validating.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvlist[cvList] !1 !1 !The list of controlled vocabularies used in the file.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvlist>> !1 !1 !The list of controlled vocabularies used in the file.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
 Here, it is used to declare which extension documents are used.
-!link:#element-analysissoftwarelist[AnalysisSoftwareList] !0 !1 !The software packages used to perform the analyses.
-!link:#element-provider[Provider] !0 !1 !The Provider of the mzIdentML record in terms of the contact and software.
-!link:#element-auditcollection[AuditCollection] !0 !1 !The complete set of Contacts (people and organisations) for this file.
-!link:#element-analysissamplecollection[AnalysisSampleCollection] !0 !1 !The samples analysed can optionally be recorded using CV terms for descriptions.
+!<<element-analysissoftwarelist>> !0 !1 !The software packages used to perform the analyses.
+!<<element-provider>> !0 !1 !The Provider of the mzIdentML record in terms of the contact and software.
+!<<element-auditcollection>> !0 !1 !The complete set of Contacts (people and organisations) for this file.
+!<<element-analysissamplecollection>> !0 !1 !The samples analysed can optionally be recorded using CV terms for descriptions.
 If a composite sample has been analysed, the subsample association can be used to build a hierarchical description.
-!link:#element-sequencecollection[SequenceCollection] !0 !1 !The collection of sequences (DBSequence or Peptide) identified and their relationship between each other (PeptideEvidence) to be referenced elsewhere in the results.
-!link:#element-analysiscollection[AnalysisCollection] !1 !1 !The analyses performed to get the results, which map the input and output data sets.
+!<<element-sequencecollection>> !0 !1 !The collection of sequences (DBSequence or Peptide) identified and their relationship between each other (PeptideEvidence) to be referenced elsewhere in the results.
+!<<element-analysiscollection>> !1 !1 !The analyses performed to get the results, which map the input and output data sets.
 Analyses are for example: SpectrumIdentification (resulting in peptides) or ProteinDetection (assemble proteins from peptides).
-!link:#element-analysisprotocolcollection[AnalysisProtocolCollection] !1 !1 !The collection of protocols which include the parameters and settings of the performed analyses.
-!link:#element-datacollection[DataCollection] !1 !1 !The collection of input and output data sets of the analyses.
-!link:#element-bibliographicreference[BibliographicReference] !0 !unbounded !Any bibliographic references associated with the file
+!<<element-analysisprotocolcollection>> !1 !1 !The collection of protocols which include the parameters and settings of the performed analyses.
+!<<element-datacollection>> !1 !1 !The collection of input and output data sets of the analyses.
+!<<element-bibliographicreference>> !0 !unbounded !Any bibliographic references associated with the file
 !===
 |*Graphical Context:* a|image::img/mzidentml/image5.png[image,width=282,height=496]
 |*Example Context:* a|
@@ -67,8 +67,8 @@ Analyses are for example: SpectrumIdentification (resulting in peptides) or Prot
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -250,8 +250,8 @@ MAY supply a *child* term of MS:1002489 (special processing) one or more times
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -280,8 +280,8 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-spectrumidentification[SpectrumIdentification] !1 !unbounded !An Analysis which tries to identify peptides in input spectra, referencing the database searched, the input spectra, the output results and the protocol that is run.
-!link:#element-proteindetection[ProteinDetection] !0 !1 !An Analysis which assembles a set of peptides (e.g. from a spectra search analysis) to proteins.
+!<<element-spectrumidentification>> !1 !unbounded !An Analysis which tries to identify peptides in input spectra, referencing the database searched, the input spectra, the output results and the protocol that is run.
+!<<element-proteindetection>> !0 !1 !An Analysis which assembles a set of peptides (e.g. from a spectra search analysis) to proteins.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -310,8 +310,8 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-spectrumidentificationlist[SpectrumIdentificationList] !1 !unbounded !Represents the set of all search results from SpectrumIdentification.
-!link:#element-proteindetectionlist[ProteinDetectionList] !0 !1 !The protein list resulting from a protein detection process.
+!<<element-spectrumidentificationlist>> !1 !unbounded !Represents the set of all search results from SpectrumIdentification.
+!<<element-proteindetectionlist>> !0 !1 !The protein list resulting from a protein detection process.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -341,8 +341,8 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -398,8 +398,8 @@ MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?i
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-spectrumidentificationprotocol[SpectrumIdentificationProtocol] !1 !unbounded !The parameters and settings of a SpectrumIdentification analysis.
-!link:#element-proteindetectionprotocol[ProteinDetectionProtocol] !0 !1 !The parameters and settings of a ProteinDetection process.
+!<<element-spectrumidentificationprotocol>> !1 !unbounded !The parameters and settings of a SpectrumIdentification analysis.
+!<<element-proteindetectionprotocol>> !0 !1 !The parameters and settings of a ProteinDetection process.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -428,7 +428,7 @@ MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?i
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-sample[Sample] !1 !unbounded !A description of the sample analysed by mass spectrometry using CVParams or UserParams.
+!<<element-sample>> !1 !unbounded !A description of the sample analysed by mass spectrometry using CVParams or UserParams.
 If a composite sample has been analysed, a parent sample should be defined, which references subsamples.
 This represents any kind of substance used in an experimental workflow, such as whole organisms, cells, DNA, solutions, compounds and experimental substances (gels, arrays etc.).
 !===
@@ -454,9 +454,9 @@ This represents any kind of substance used in an experimental workflow, such as 
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-contactrole[ContactRole] !0 !1 !The Contact that provided the document instance.
-!link:#element-softwarename[SoftwareName] !1 !1 !The name of the analysis software package, sourced from a CV if available.
-!link:#element-customizations[Customizations] !0 !1 !Any customizations to the software, such as alternative scoring mechanisms implemented, should be documented here as free text.
+!<<element-contactrole>> !0 !1 !The Contact that provided the document instance.
+!<<element-softwarename>> !1 !1 !The name of the analysis software package, sourced from a CV if available.
+!<<element-customizations>> !0 !1 !Any customizations to the software, such as alternative scoring mechanisms implemented, should be documented here as free text.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -484,7 +484,7 @@ This represents any kind of substance used in an experimental workflow, such as 
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-analysissoftware[AnalysisSoftware] !1 !unbounded !The software used for performing the analyses.
+!<<element-analysissoftware>> !1 !unbounded !The software used for performing the analyses.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -512,9 +512,9 @@ This represents any kind of substance used in an experimental workflow, such as 
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-person[Person] !1 !unbounded !A person's name and contact details.
+!<<element-person>> !1 !unbounded !A person's name and contact details.
 Any additional information such as the address, contact email etc. should be supplied using CV parameters or user parameters.
-!link:#element-organization[Organization] !1 !unbounded !Organizations are entities like companies, universities, government agencies.
+!<<element-organization>> !1 !unbounded !Organizations are entities like companies, universities, government agencies.
 Any additional information such as the address, email etc. should be supplied either as CV parameters or as user parameters.
 !===
 |*Example Context:* a|
@@ -583,7 +583,7 @@ Any additional information such as the address, email etc. should be supplied ei
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-role[Role] !1 !1 !The roles (lab equipment sales, contractor, etc.) the Contact fills.
+!<<element-role>> !1 !1 !The roles (lab equipment sales, contractor, etc.) the Contact fills.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -650,7 +650,7 @@ No customisations
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cv[cv] !1 !unbounded !A source-controlled vocabulary from which cvParams will be obtained.
+!<<element-cv>> !1 !unbounded !A source-controlled vocabulary from which cvParams will be obtained.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -703,7 +703,7 @@ No customisations
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-filter[Filter] !1 !unbounded !Filters applied to the search database.
+!<<element-filter>> !1 !unbounded !Filters applied to the search database.
 The filter MUST include at least one of Include and Exclude.
 If both are used, it is assumed that inclusion is performed first.
 !===
@@ -732,8 +732,8 @@ If both are used, it is assumed that inclusion is performed first.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !1 !A single user-defined parameter.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !1 !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -791,7 +791,7 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-translationtable[TranslationTable] !1 !unbounded !The table used to translate codons into nucleic acids e.g. by reference to the NCBI translation table.
+!<<element-translationtable>> !1 !unbounded !The table used to translate codons into nucleic acids e.g. by reference to the NCBI translation table.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -819,8 +819,8 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-inputs[Inputs] !1 !1 !The inputs to the analyses including the databases searched, the spectral data and the source file converted to mzIdentML.
-!link:#element-analysisdata[AnalysisData] !1 !1 !Data sets generated by the analyses, including peptide and protein lists.
+!<<element-inputs>> !1 !1 !The inputs to the analyses including the databases searched, the spectral data and the source file converted to mzIdentML.
+!<<element-analysisdata>> !1 !1 !Data sets generated by the analyses, including peptide and protein lists.
 !===
 |*Graphical Context:* a|image::img/mzidentml/image6.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/DataCollection.png,width=566,height=642]
 |*Example Context:* a|
@@ -861,9 +861,9 @@ mouse_SWISS_can_iso_ECOLI.fasta" id="SearchDB_1">
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-seq[Seq] !0 !1 !The actual sequence of amino acids or nucleic acid.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-seq>> !0 !1 !The actual sequence of amino acids or nucleic acid.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -935,8 +935,8 @@ The attribute MUST be provided if an enzyme has been used.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-siteregexp[SiteRegexp] !0 !1 !Regular expression for specifying the enzyme cleavage site.
-!link:#element-enzymename[EnzymeName] !0 !1 !The name of the enzyme from a CV.
+!<<element-siteregexp>> !0 !1 !Regular expression for specifying the enzyme cleavage site.
+!<<element-enzymename>> !0 !1 !The name of the enzyme from a CV.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -962,8 +962,8 @@ The attribute MUST be provided if an enzyme has been used.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1011,7 +1011,7 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-enzyme[Enzyme] !1 !unbounded !The details of an individual cleavage enzyme should be provided by giving a regular expression or a CV term if a "standard" enzyme cleavage has been performed.
+!<<element-enzyme>> !1 !unbounded !The details of an individual cleavage enzyme should be provided by giving a regular expression or a CV term if a "standard" enzyme cleavage has been performed.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1038,8 +1038,8 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* |
 |*cvParam Mapping Rules:* a|
@@ -1082,7 +1082,7 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1154,8 +1154,8 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-filtertype[FilterType] !1 !1 !The type of filter e.g. database taxonomy filter, pi filter, mw filter !link:#element-include[Include] !0 !1 !All sequences fulfilling the specifed criteria are included.
-!link:#element-exclude[Exclude] !0 !1 !All sequences fulfilling the specifed criteria are excluded.
+!<<element-filtertype>> !1 !1 !The type of filter e.g. database taxonomy filter, pi filter, mw filter !link:#element-include[Include] !0 !1 !All sequences fulfilling the specifed criteria are included.
+!<<element-exclude>> !0 !1 !All sequences fulfilling the specifed criteria are excluded.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1180,8 +1180,8 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !1 !A single user-defined parameter.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !1 !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1234,7 +1234,7 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-iontype[IonType] !1 !unbounded !IonType defines the index of fragmentation ions being reported, importing a CV term for the type of ion e.g. b ion.
+!<<element-iontype>> !1 !unbounded !IonType defines the index of fragmentation ions being reported, importing a CV term for the type of ion e.g. b ion.
 Example: if b3 b7 b8 and b10 have been identified, the index attribute will contain 3 7 8 10, and the corresponding values will be reported in parallel arrays below
 !===
 |*Example Context:* a|
@@ -1262,7 +1262,7 @@ Example: if b3 b7 b8 and b10 have been identified, the index attribute will cont
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-measure[Measure] !1 !unbounded !References to CV terms defining the measures about product ions to be reported in SpectrumIdentificationItem
+!<<element-measure>> !1 !unbounded !References to CV terms defining the measures about product ions to be reported in SpectrumIdentificationItem
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1289,7 +1289,7 @@ Example: if b3 b7 b8 and b10 have been identified, the index attribute will cont
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1323,8 +1323,8 @@ MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pu
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* |
 |*cvParam Mapping Rules:* a|
@@ -1357,10 +1357,10 @@ file converted to mzIdentML.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-sourcefile[SourceFile] !0 !unbounded !A file from which this mzIdentML instance was created.
-!link:#element-searchdatabase[SearchDatabase] !0 !unbounded !A database for searching mass spectra.
+!<<element-sourcefile>> !0 !unbounded !A file from which this mzIdentML instance was created.
+!<<element-searchdatabase>> !0 !unbounded !A database for searching mass spectra.
 Examples include a set of amino acid sequence entries, nucleotide databases (e.g. 6 frame translated) or annotated spectra libraries.
-!link:#element-spectradata[SpectraData] !1 !unbounded !A data set containing spectra data (consisting of one or more spectra).
+!<<element-spectradata>> !1 !unbounded !A data set containing spectra data (consisting of one or more spectra).
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1434,9 +1434,9 @@ For precursor ions, including neutral losses, the index value MUST be 0. For any
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-fragmentarray[FragmentArray] !0 !unbounded !An array of values for a given type of measure and for a particular ion type, in parallel to the index of ions identified.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-fragmentarray>> !0 !unbounded !An array of values for a given type of measure and for a particular ion type, in parallel to the index of ions identified.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1525,10 +1525,10 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-residue[Residue] !0 !unbounded !The specification of a single residue within the mass table.
-!link:#element-ambiguousresidue[AmbiguousResidue] !0 !unbounded !Ambiguous residues e.g. X can be specified by the Code attribute and a set of parameters for example giving the different masses that will be used in the search.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-residue>> !0 !unbounded !The specification of a single residue within the mass table.
+!<<element-ambiguousresidue>> !0 !unbounded !Ambiguous residues e.g. X can be specified by the Code attribute and a set of parameters for example giving the different masses that will be used in the search.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1565,7 +1565,7 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 <Measure id="Measure_Int">
@@ -1606,7 +1606,7 @@ Multiple residues would usually only be specified for PMF data.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1666,7 +1666,7 @@ Multiple residues would usually only be specified for PMF data.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-searchmodification[SearchModification] !1 !unbounded !Specification of a search modification as parameter for a spectra search.
+!<<element-searchmodification>> !1 !unbounded !Specification of a search modification as parameter for a spectra search.
 Contains the name of the modification, the mass, the specificity and whether it is a static modification.
 !===
 |*Example Context:* a|
@@ -1702,9 +1702,9 @@ Contains the name of the modification, the mass, the specificity and whether it 
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
-!link:#element-parent[Parent] !0 !1 !The containing organization (the university or business which a lab belongs to, etc.)
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
+!<<element-parent>> !0 !1 !The containing organization (the university or business which a lab belongs to, etc.)
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1761,7 +1761,7 @@ SHOULD supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1803,18 +1803,18 @@ modifications MUST be unique in the file.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-peptidesequence[PeptideSequence] !1 !1 !The amino acid sequence of the (poly)peptide.
+!<<element-peptidesequence>> !1 !1 !The amino acid sequence of the (poly)peptide.
 If a substitution modification has been found, the original sequence should be reported.
-!link:#element-modification[Modification] !0 !unbounded !A molecule modification specification.
+!<<element-modification>> !0 !unbounded !A molecule modification specification.
 If n modifications have been found on a peptide, there should be n instances of Modification.
 If multiple modifications are provided as cvParams, it is assumed that the modification is ambiguous i.e. one modification or another.
 A cvParam MUST be provided with the identification of the modification sourced from a suitable CV e.g. UNIMOD.
 If the modification is not present in the CV (and this will be checked by the semantic validator within a given tolerance window), there is a â€œunknown modificationâ€ CV term that MUST be used instead.
 A neutral loss should be defined as an additional CVParam within Modification.
 If more complex information should be given about neutral losses (such as presence/absence on particular product ions), this can additionally be encoded within the FragmentationArray.
-!link:#element-substitutionmodification[SubstitutionModification] !0 !unbounded !A modification where one residue is substituted by another (amino acid change).
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-substitutionmodification>> !0 !unbounded !A modification where one residue is substituted by another (amino acid change).
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1897,8 +1897,8 @@ If for any reason it is unknown (e.g. denovo), pre="?" should be used.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -1974,7 +1974,7 @@ referenced here.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-spectrumidentificationitemref[SpectrumIdentificationItemRef] !1 !unbounded !Reference(s) to the SpectrumIdentificationItem element(s) that support the given PeptideEvidence element.
+!<<element-spectrumidentificationitemref>> !1 !unbounded !Reference(s) to the SpectrumIdentificationItem element(s) that support the given PeptideEvidence element.
 Using these references it is possible to indicate which spectra were actually accepted as evidence for this peptide identification in the given protein.
 !===
 |*Example Context:* a|
@@ -2053,9 +2053,9 @@ Using these references it is possible to indicate which spectra were actually ac
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
-!link:#element-affiliation[Affiliation] !0 !unbounded !The organization a person belongs to.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
+!<<element-affiliation>> !0 !unbounded !The organization a person belongs to.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2099,9 +2099,9 @@ SHOULD supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-proteindetectionhypothesis[ProteinDetectionHypothesis] !1 !unbounded !A single result of the ProteinDetection analysis (i.e. a protein).
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-proteindetectionhypothesis>> !1 !unbounded !A single result of the ProteinDetection analysis (i.e. a protein).
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2168,7 +2168,7 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-inputspectrumidentifications[InputSpectrumIdentifications] !1 !unbounded !The lists of spectrum identifications that are input to the protein detection process.
+!<<element-inputspectrumidentifications>> !1 !unbounded !The lists of spectrum identifications that are input to the protein detection process.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2201,9 +2201,9 @@ If no such threshold has been set, value of true should be given for all results
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-peptidehypothesis[PeptideHypothesis] !1 !unbounded !Peptide evidence on which this ProteinHypothesis is based by reference to a PeptideEvidence element.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-peptidehypothesis>> !1 !unbounded !Peptide evidence on which this ProteinHypothesis is based by reference to a PeptideEvidence element.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2301,9 +2301,9 @@ MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pur
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-proteinambiguitygroup[ProteinAmbiguityGroup] !0 !unbounded !A set of logically related results from a protein detection, for example to represent conflicting assignments of peptides to proteins.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-proteinambiguitygroup>> !0 !unbounded !A set of logically related results from a protein detection, for example to represent conflicting assignments of peptides to proteins.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2349,8 +2349,8 @@ MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pu
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-analysisparams[AnalysisParams] !0 !1 !The parameters and settings for the protein detection given as CV terms.
-!link:#element-threshold[Threshold] !1 !1 !The threshold(s) applied to determine that a result is significant.
+!<<element-analysisparams>> !0 !1 !The parameters and settings for the protein detection given as CV terms.
+!<<element-threshold>> !1 !1 !The threshold(s) applied to determine that a result is significant.
 If multiple terms are used it is assumed that all conditions are satisfied by the passing results.
 !===
 |*Graphical Context:* a|image::img/mzidentml/image7.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/ProteinDetectionProtocol.png,width=566,height=336]
@@ -2387,7 +2387,7 @@ If multiple terms are used it is assumed that all conditions are satisfied by th
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-contactrole[ContactRole] !0 !1 !The Contact that provided the document instance.
+!<<element-contactrole>> !0 !1 !The Contact that provided the document instance.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2432,7 +2432,7 @@ If multiple terms are used it is assumed that all conditions are satisfied by th
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2486,10 +2486,10 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-contactrole[ContactRole] !0 !unbounded !The Contact that provided the document instance.
-!link:#element-subsample[SubSample] !0 !unbounded !References to the individual component samples within a mixed parent sample.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-contactrole>> !0 !unbounded !The Contact that provided the document instance.
+!<<element-subsample>> !0 !unbounded !References to the individual component samples within a mixed parent sample.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* |
 | |
@@ -2518,11 +2518,11 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-externalformatdocumentation[ExternalFormatDocumentation] !0 !1 !A URI to access documentation and tools to interpret the external format of the ExternalData instance.
+!<<element-externalformatdocumentation>> !0 !1 !A URI to access documentation and tools to interpret the external format of the ExternalData instance.
 For example, XML Schema or static libraries (APIs) to access binary formats.
-!link:#element-fileformat[FileFormat] !1 !1 !The format of the ExternalData file, for example "tiff" for image files.
-!link:#element-databasename[DatabaseName] !1 !1 !The database name may be given as a cvParam if it maps exactly to one of the release databases listed in the CV, otherwise a userParam should be used.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-fileformat>> !1 !1 !The format of the ExternalData file, for example "tiff" for image files.
+!<<element-databasename>> !1 !1 !The database name may be given as a cvParam if it maps exactly to one of the release databases listed in the CV, otherwise a userParam should be used.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2593,9 +2593,9 @@ For N or C terminal modifications that can occur on any residue, the . character
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-specificityrules[SpecificityRules] !0 !unbounded !The specificity rules of the searched modification including for example the probability of a modification's presence or peptide or protein termini.
+!<<element-specificityrules>> !0 !unbounded !The specificity rules of the searched modification including for example the probability of a modification's presence or peptide or protein termini.
 Standard fixed or variable status should be provided by the attribute fixedMod.
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2662,8 +2662,8 @@ MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?i
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !1 !A single user-defined parameter.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !1 !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2717,11 +2717,11 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-dbsequence[DBSequence] !0 !unbounded !A database sequence from the specified SearchDatabase (nucleic acid or amino acid).
+!<<element-dbsequence>> !0 !unbounded !A database sequence from the specified SearchDatabase (nucleic acid or amino acid).
 If the sequence is nucleic acid, the source nucleic acid sequence should be given in the seq attribute rather than a translated sequence.
-!link:#element-peptide[Peptide] !0 !unbounded !One (poly)peptide (a sequence with modifications).
+!<<element-peptide>> !0 !unbounded !One (poly)peptide (a sequence with modifications).
 The combination of Peptide sequence and modifications MUST be unique in the file.
-!link:#element-peptideevidence[PeptideEvidence] !0 !unbounded !PeptideEvidence links a specific Peptide element to a specific position in a DBSequence.
+!<<element-peptideevidence>> !0 !unbounded !PeptideEvidence links a specific Peptide element to a specific position in a DBSequence.
 There MUST only be one PeptideEvidence item per Peptide-to-DBSequence-position.
 !===
 |*Graphical Context:* a|image::img/mzidentml/image8.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SequenceCollection.png,width=576,height=652]
@@ -2762,8 +2762,8 @@ There MUST only be one PeptideEvidence item per Peptide-to-DBSequence-position.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !1 !A single user-defined parameter.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !1 !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2827,11 +2827,11 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-externalformatdocumentation[ExternalFormatDocumentation] !0 !1 !A URI to access documentation and tools to interpret the external format of the ExternalData instance.
+!<<element-externalformatdocumentation>> !0 !1 !A URI to access documentation and tools to interpret the external format of the ExternalData instance.
 For example, XML Schema or static libraries (APIs) to access binary formats.
-!link:#element-fileformat[FileFormat] !1 !1 !The format of the ExternalData file, for example "tiff" for image files.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-fileformat>> !1 !1 !The format of the ExternalData file, for example "tiff" for image files.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2864,7 +2864,7 @@ be provided by the attribute fixedMod.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2907,10 +2907,10 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-externalformatdocumentation[ExternalFormatDocumentation] !0 !1 !A URI to access documentation and tools to interpret the external format of the ExternalData instance.
+!<<element-externalformatdocumentation>> !0 !1 !A URI to access documentation and tools to interpret the external format of the ExternalData instance.
 For example, XML Schema or static libraries (APIs) to access binary formats.
-!link:#element-fileformat[FileFormat] !1 !1 !The format of the ExternalData file, for example "tiff" for image files.
-!link:#element-spectrumidformat[SpectrumIDFormat] !1 !1 !The format of the spectrum identifier within the source file
+!<<element-fileformat>> !1 !1 !The format of the ExternalData file, for example "tiff" for image files.
+!<<element-spectrumidformat>> !1 !1 !The format of the spectrum identifier within the source file
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2946,8 +2946,8 @@ For example, XML Schema or static libraries (APIs) to access binary formats.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-inputspectra[InputSpectra] !1 !unbounded !One of the spectra data sets used.
-!link:#element-searchdatabaseref[SearchDatabaseRef] !1 !unbounded !One of the search databases used.
+!<<element-inputspectra>> !1 !unbounded !One of the spectra data sets used.
+!<<element-searchdatabaseref>> !1 !unbounded !One of the search databases used.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -2992,11 +2992,11 @@ If multiple identifications have the same top score, they should all be assigned
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-peptideevidenceref[PeptideEvidenceRef] !0 !unbounded !Reference to the PeptideEvidence element identified.
+!<<element-peptideevidenceref>> !0 !unbounded !Reference to the PeptideEvidence element identified.
 If a specific sequence can be assigned to multiple proteins and or positions in a protein all possible PeptideEvidence elements should be referenced here.
-!link:#element-fragmentation[Fragmentation] !0 !1 !The product ions identified in this result.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-fragmentation>> !0 !1 !The product ions identified in this result.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Graphical Context:* a|image:img/mzidentml/image9.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationItem.png,width=576,height=326]
 |*Example Context:* a|
@@ -3153,11 +3153,11 @@ This value should be provided unless a de novo search has been performed.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-fragmentationtable[FragmentationTable] !0 !1 !Contains the types of measures that will be reported in generic arrays for each SpectrumIdentificationItem e.g. product ion m/z, product ion intensity, product ion m/z error !link:#element-spectrumidentificationresult[SpectrumIdentificationResult] !1 !unbounded !All identifications made from searching one spectrum.
+!<<element-fragmentationtable>> !0 !1 !Contains the types of measures that will be reported in generic arrays for each SpectrumIdentificationItem e.g. product ion m/z, product ion intensity, product ion m/z error !link:#element-spectrumidentificationresult[SpectrumIdentificationResult] !1 !unbounded !All identifications made from searching one spectrum.
 For PMF data, all peptide identifications will be listed underneath as SpectrumIdentificationItems.
 For MS/MS data, there will be ranked SpectrumIdentificationItems corresponding to possible different peptide IDs.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Graphical Context:* a|image:img/mzidentml/image10.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationList.png,width=575,height=432]
 |*Example Context:* a|
@@ -3195,15 +3195,15 @@ For MS/MS data, there will be ranked SpectrumIdentificationItems corresponding t
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-searchtype[SearchType] !1 !1 !The type of search performed e.g. PMF, Tag searches, MS-MS !link:#element-additionalsearchparams[AdditionalSearchParams] !0 !1 !The search parameters other than the modifications searched.
-!link:#element-modificationparams[ModificationParams] !0 !1 !The specification of static/variable modifications (e.g. Oxidation of Methionine) that are to be considered in the spectra search.
-!link:#element-enzymes[Enzymes] !0 !1 !The list of enzymes used in experiment !link:#element-masstable[MassTable] !0 !unbounded !The masses of residues used in the search.
-!link:#element-fragmenttolerance[FragmentTolerance] !0 !1 !The tolerance of the search given as a plus and minus value with units.
-!link:#element-parenttolerance[ParentTolerance] !0 !1 !The tolerance of the search given as a plus and minus value with units.
-!link:#element-threshold[Threshold] !1 !1 !The threshold(s) applied to determine that a result is significant.
+!<<element-searchtype>> !1 !1 !The type of search performed e.g. PMF, Tag searches, MS-MS !link:#element-additionalsearchparams[AdditionalSearchParams] !0 !1 !The search parameters other than the modifications searched.
+!<<element-modificationparams>> !0 !1 !The specification of static/variable modifications (e.g. Oxidation of Methionine) that are to be considered in the spectra search.
+!<<element-enzymes>> !0 !1 !The list of enzymes used in experiment !link:#element-masstable[MassTable] !0 !unbounded !The masses of residues used in the search.
+!<<element-fragmenttolerance>> !0 !1 !The tolerance of the search given as a plus and minus value with units.
+!<<element-parenttolerance>> !0 !1 !The tolerance of the search given as a plus and minus value with units.
+!<<element-threshold>> !1 !1 !The threshold(s) applied to determine that a result is significant.
 If multiple terms are used it is assumed that all conditions are satisfied by the passing results.
-!link:#element-databasefilters[DatabaseFilters] !0 !1 !The specification of filters applied to the database searched.
-!link:#element-databasetranslation[DatabaseTranslation] !0 !1 !A specification of how a nucleic acid sequence database was translated for searching.
+!<<element-databasefilters>> !0 !1 !The specification of filters applied to the database searched.
+!<<element-databasetranslation>> !0 !1 !A specification of how a nucleic acid sequence database was translated for searching.
 !===
 |*Graphical Context:* a|image::img/mzidentml/image11.png[http://www.peptideatlas.org/PSI/schemas/mzIdentML/1.2/figures/SpectrumIdentificationProtocol.png,width=557,height=813]
 |*Example Context:* a|
@@ -3244,10 +3244,10 @@ External guidelines are provided on the use of consistent identifiers for spectr
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-spectrumidentificationitem[SpectrumIdentificationItem] !1 !unbounded !An identification of a single (poly)peptide, resulting from querying an input spectra, along with the set of confidence values for that identification.
+!<<element-spectrumidentificationitem>> !1 !unbounded !An identification of a single (poly)peptide, resulting from querying an input spectra, along with the set of confidence values for that identification.
 PeptideEvidence elements should be given for all mappings of the corresponding Peptide sequence within protein sequences.
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !0 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !0 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -3289,7 +3289,7 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !1 !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !1 !1 !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -3375,8 +3375,8 @@ This should only be reported if the original amino acid is known i.e. it is not 
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
-!link:#element-userparam[userParam] !1 !unbounded !A single user-defined parameter.
+!<<element-cvparam>> !1 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-userparam>> !1 !unbounded !A single user-defined parameter.
 !===
 |*Example Context:* a|
 [source,xml]
@@ -3478,7 +3478,7 @@ table.
 [cols="2,1,1,4",options="header",]
 !===
 !*Subelement Name* !*minOccurs* !*maxOccurs* !*Definition*
-!link:#element-cvparam[cvParam] !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
+!<<element-cvparam>> !0 !unbounded !A single entry from an ontology or a controlled vocabulary.
 !===
 |*Example Context:* |
 |*cvParam Mapping Rules:* a|
