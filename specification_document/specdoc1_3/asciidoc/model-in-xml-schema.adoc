@@ -2029,7 +2029,11 @@ Using these references it is possible to indicate which spectra were actually ac
 |*Type:* |sequence
 |*Attributes:* |none
 |*Subelements:* |none
-|*Example Context:* |<PeptideSequence>GEGGAQDGSGTEGVGATGAAGGRGAQGAPGGTGGAGSGSGLHHQQDSGYQGASGSGGAQSGGR</PeptideSequence>
+|*Example Context:* a|
+[source, xml]
+----
+<PeptideSequence>GEGGAQDGSGTEGVGATGAAGGRGAQGAPGGTGGAGSGSGLHHQQDSGYQGASGSGGAQSGGR</PeptideSequence>
+----
 |===
 
 [[element-person, Person]]
