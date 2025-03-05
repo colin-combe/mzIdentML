@@ -379,7 +379,7 @@ To capture these cases, multiple PDHs in different PAGs MAY reference the same <
 
 The semantic validation software has been updated to encode these rules and report errors (“MUST” rule), warnings (“SHOULD” rule) or informational messages (“MAY” rule).
 
-[cols=",,,,",options="header",]
+[cols="1,1,1,1,3",options="header",]
 |===
 |*mzIdentML context* |*CV term* |*Values* |*Require-ment level* |*Description*
 |*ProteinDetection-List* |count of identified proteins |xsd:integer |MUST |The value reported MUST equal the number of PAGs with “protein group passes threshold” value = “true”
@@ -997,6 +997,7 @@ In version 1.1.0 onwards of mzIdentML there has been a change with respect to ho
 In version 1.0, <userParam> elements were allowed on <Peptide> to capture these modifications.
 In version 1.1.0 onwards, only <cvParam> elements can be given on <Peptide> and a term “unknown modification” has been added to the PSI-MS CV.
 This term MUST only be used if the identified modification is not present in Unimod (or other allowed CV such as PSI-MOD, although PSI-MOD is now deprecated), according to the identity of the residue modified and the delta mass, within the parent tolerance specified in the search.
+// todo - may need to update this reference to the semantic validator
 The semantic validator will check any uses of the “unknown modification” term (MS:1001460) and reject files if the modification is present in Unimod.
 
 [[identifications-based-on-multiple-mass-spectra]]
