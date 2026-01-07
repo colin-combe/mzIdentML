@@ -2,9 +2,10 @@ name: Spec Doc Release Workflow
 on:
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   build-spec-workflow:
-    uses: HUPO-PSI/mzTab/.github/workflows/ci.yml@master
+    uses: colin-combe/mzIdentML/.github/workflows/ci.yml@master
   test-examples-workflow:
-    uses: HUPO-PSI/mzTab/.github/workflows/validate.yml@master
+    uses: colin-combe/mzIdentML/.github/workflows/validate.yml@master

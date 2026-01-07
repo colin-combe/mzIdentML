@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master
+  workflow_dispatch:
+  workflow_call:
 env:
   DOC_IN: "${{ github.workspace }}/specification_document/spec1_3/asciidoc"
   # referencing $DOC_IN did not want to work, maybe there is a better way
@@ -39,7 +41,7 @@ jobs:
       - run: cp -v -R $DOC_OUT/img/* output/1_3-mzidentml-release/img
       - run: cp -v -R docs/* output/
       - name: Archive document build output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: output artefacts
           path: |

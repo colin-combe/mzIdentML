@@ -11,6 +11,8 @@ on:
       - master
     paths:
       - 'examples/**/**'
+  workflow_dispatch:
+  workflow_call:
 jobs:
   validate-examples:
     runs-on: '${{ matrix.os }}'
