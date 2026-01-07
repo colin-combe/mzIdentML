@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   workflow_call:
 env:
-  DOC_IN: "${{ github.workspace }}/specification_document/spec1_3/asciidoc"
+  DOC_IN: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc"
   # referencing $DOC_IN did not want to work, maybe there is a better way
   DOC_OUT: "${{ github.workspace }}/specification_document-releases/spec1_3/output"
   DOC_FILE: 'mzidentml.adoc'
