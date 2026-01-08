@@ -48,3 +48,21 @@ jobs:
             output/1_3-mzidentml-release/*.pdf
             output/1_3-mzidentml-release/*.html
             output/1_3-mzidentml-release/*.docx
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/1_3-mzidentml-release
+
+  deploy-pages:
+    needs: build-spec
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
