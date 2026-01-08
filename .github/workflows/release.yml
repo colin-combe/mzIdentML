@@ -6,6 +6,6 @@ on:
 
 jobs:
   build-spec-workflow:
-    uses: colin-combe/mzIdentML/.github/workflows/ci.yml@readme_and-asciidoc
+    uses: colin-combe/mzIdentML/.github/workflows/ci.yml@readme_and_asciidoc
   test-examples-workflow:
-    uses: colin-combe/mzIdentML/.github/workflows/validate.yml@readme_and-asciidoc
+    uses: colin-combe/mzIdentML/.github/workflows/validate.yml@readme_and_asciidoc
