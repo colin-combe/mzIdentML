@@ -20,8 +20,9 @@ Jones A.R., Eisenacher M., Mayer G., Kohlbacher O., Siepen J., Hubbard S.J., Sel
 **Version 1.3.0 (June 2024) - Current version:**
 
   Specification document
-  > Specification document [pdf](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_3/mzIdentML1.3.0-release.pdf),
-
+- [HTML Version](mzidentml.html)
+- [PDF Download](mzidentml.pdf)
+- [DOCX Download](mzidentml.docx)
 
 **Version 1.2.0 (April 2017) - Still supported:**
 
