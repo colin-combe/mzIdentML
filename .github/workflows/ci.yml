@@ -40,7 +40,9 @@ jobs:
       - run: mkdir -p output/1_3-mzidentml-release/img
       - run: cp -v -R $DOC_OUT/img/* output/1_3-mzidentml-release/img
       - name: Convert README to index.html
-        run: pandoc README.md -o output/1_3-mzidentml-release/index.html --standalone --metadata title="mzIdentML"
+        run: |
+          cp specification_document/specdoc1_3/asciidoc/asciidoctor-default.css output/1_3-mzidentml-release/
+          pandoc README.md -o output/1_3-mzidentml-release/index.html --standalone --css=asciidoctor-default.css --metadata title="mzIdentML"
       - name: Archive document build output
         uses: actions/upload-artifact@v4
         with:
