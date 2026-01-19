@@ -21,8 +21,9 @@ Jones A.R., Eisenacher M., Mayer G., Kohlbacher O., Siepen J., Hubbard S.J., Sel
 ## Specification documents
 
 **Version 1.3.0 (June 2024) - Current version:**
+
   Schema 
-- [XSD Version](schema_html/mzIdentML1_3_0_xsd.html  )
+- [XSD Version](schema/mzIdentML1.3.0.xsd)
 - [html Version](schema_html/mzIdentML1.3.0.html  )
 
   Specification document
