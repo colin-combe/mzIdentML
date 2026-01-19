@@ -40,6 +40,7 @@ jobs:
       - run: mkdir -p output/1_3-mzidentml-release/img
       - run: cp -v -R $DOC_OUT/img/* output/1_3-mzidentml-release/img
       - run: cp README.md output/1_3-mzidentml-release/
+      - run: cp _config.yml output/1_3-mzidentml-release/
       - name: Archive document build output
         uses: actions/upload-artifact@v4
         with:
