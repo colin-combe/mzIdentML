@@ -39,7 +39,7 @@ jobs:
       - run: cp -v -R $DOC_OUT/* output/1_3-mzidentml-release
       - run: mkdir -p output/1_3-mzidentml-release/img
       - run: cp -v -R $DOC_OUT/img/* output/1_3-mzidentml-release/img
-#      - run: cp -v -R docs/* output/
+      - run: cp README.md output/1_3-mzidentml-release/
       - name: Archive document build output
         uses: actions/upload-artifact@v4
         with:
