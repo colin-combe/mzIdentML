@@ -317,16 +317,17 @@ In mzIdentML, the spectrum ID attribute should be constructed following the data
 
 [source,xml]
 ----
-<SpectrumIdentificationResult id="Res1" spectrumID="index=2" SpectraData_ref="InputSpectra1">...
-<SpectraData location="local/mgf/merge.mgf" id="SD_1">
-    <FileFormat>
-        <cvParam accession="MS:1001062" name="Mascot MGF file" cvRef="PSI-MS" />
-    </FileFormat>
-    <SpectrumIDFormat>
-        <cvParam accession="MS:1000774" name="multiple peak list nativeID format" cvRef="PSI-MS" />
-    </SpectrumIDFormat>
-</SpectraData></SpectrumIdentificationResult>
-
+<SpectrumIdentificationResult id="Res1" spectrumID="index=2" SpectraData_ref="InputSpectra1">
+    ...
+    <SpectraData location="local/mgf/merge.mgf" id="SD_1">
+        <FileFormat>
+            <cvParam accession="MS:1001062" name="Mascot MGF file" cvRef="PSI-MS"/>
+        </FileFormat>
+        <SpectrumIDFormat>
+            <cvParam accession="MS:1000774" name="multiple peak list nativeID format" cvRef="PSI-MS"/>
+        </SpectrumIDFormat>
+    </SpectraData>
+</SpectrumIdentificationResult>
 ----
 
 [[comments-on-specific-use-cases]]
@@ -626,7 +627,8 @@ PASS_THRESHOLD holds a Boolean (true, false) value to indicate whether the modif
 
 [source,xml]
 ----
-<cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.03:2|3:true" name="modification rescored by false localization rate"/> +
+<cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.03:2|3:true" name="modification rescored by false localization rate"/>
+ +
 <cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.97:8|9:false" name="modification rescored by false localization rate"/>
 ----
 
@@ -698,17 +700,16 @@ In the <SpectrumIdentificationProtocol>, <TranslationTable> is used to specify h
 ----
 <DatabaseTranslation frames="1 2 3 -1 -2 -3">
     <TranslationTable id="TT_1" name="Standard">
-        <cvParam accession="MS:1001025" name="translation table" cvRef="PSI-MS" value="FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG" />
-        <cvParam accession="MS:1001410" name="translation start codons" cvRef="PSI-MS" value="---M---------------M---------------M----------------------------" />
-        <cvParam accession="MS:1001423" name="translation table description" cvRef="PSI-MS" value="http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG1" />
+        <cvParam accession="MS:1001025" name="translation table" cvRef="PSI-MS" value="FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG"/>
+        <cvParam accession="MS:1001410" name="translation start codons" cvRef="PSI-MS" value="---M---------------M---------------M----------------------------"/>
+        <cvParam accession="MS:1001423" name="translation table description" cvRef="PSI-MS" value="http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG1"/>
     </TranslationTable>
     <TranslationTable id="TT_2" name="Vertebrate Mitochondrial">
-        <cvParam accession="MS:1001025" name="translation table" cvRef="PSI-MS" value="FFLLSSSSYY**CCWWLLLLPPPPHHQQRRRRIIMMTTTTNNKKSS**VVVVAAAADDEEGGGG" />
-        <cvParam accession="MS:1001410" name="translation start codons" cvRef="PSI-MS" value="--------------------------------MMMM---------------M------------" />
-        <cvParam accession="MS:1001423" name="translation table description" cvRef="PSI-MS" value="http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG2" />
+        <cvParam accession="MS:1001025" name="translation table" cvRef="PSI-MS" value="FFLLSSSSYY**CCWWLLLLPPPPHHQQRRRRIIMMTTTTNNKKSS**VVVVAAAADDEEGGGG"/>
+        <cvParam accession="MS:1001410" name="translation start codons" cvRef="PSI-MS" value="--------------------------------MMMM---------------M------------"/>
+        <cvParam accession="MS:1001423" name="translation table description" cvRef="PSI-MS" value="http://www.ncbi.nlm.nih.gov/Taxonomy/taxonomyhome.html/index.cgi?chapter=cgencodes#SG2"/>
     </TranslationTable>
 </DatabaseTranslation>
-
 ----
 
 The attribute “frames” specifies which frames are considered and one or more translation tables can be specified using CV parameters.
@@ -730,8 +731,7 @@ However, if other amino acids are shown to be used as starts, this structure can
 For each peptide, the frame and translation table should be specified in the <PeptideEvidence> element:
 [source,xml]
 ----
-<PeptideEvidence id="”1”" TranslationTable_ref="TT_1" frame="1" />
-
+<PeptideEvidence id="”1”" TranslationTable_ref="TT_1" frame="1"/>
 ----
 
 [[reporting-peptide-and-protein-identifications-passing-a-significance-threshold]]
@@ -744,14 +744,20 @@ If the file producer does not want to indicate that a threshold has been set, al
 
 [source,xml]
 ----
-<SpectrumIdentificationProtocol id="SIP" AnalysisSoftware_ref="AS_mascot_server">…
-<Threshold>+
-<cvParam accession="MS:1001316" name="mascot:SigThreshold" cvRef="PSI-MS" value="0.05" />+</Threshold>
-<ProteinDetectionProtocol id="PDP_MascotParser_1" AnalysisSoftware_ref="AS_mascot_parser">…
-<Threshold>
-    <cvParam accession="MS:1001316" name="mascot:SigThreshold" cvRef="PSI-MS" value="0.05" />
-</Threshold></ProteinDetectionProtocol></SpectrumIdentificationProtocol>
-
+<SpectrumIdentificationProtocol id="SIP" AnalysisSoftware_ref="AS_mascot_server">
+    …
+    <Threshold>
+        +
+        <cvParam accession="MS:1001316" name="mascot:SigThreshold" cvRef="PSI-MS" value="0.05"/>
+        +
+    </Threshold>
+    <ProteinDetectionProtocol id="PDP_MascotParser_1" AnalysisSoftware_ref="AS_mascot_parser">
+        …
+        <Threshold>
+            <cvParam accession="MS:1001316" name="mascot:SigThreshold" cvRef="PSI-MS" value="0.05"/>
+        </Threshold>
+    </ProteinDetectionProtocol>
+</SpectrumIdentificationProtocol>
 ----
 
 The reporting of significance thresholds at the PSM and peptide level (mzIdentML 1.2) is explained in <<peptide-level-scores-and-statistical-measures>>. Reporting of threshold for modification position (also mzIdentML 1.2) is explained in <<encoding-modification-localisation-scores>>.
@@ -770,28 +776,28 @@ It is not guaranteed that a consumer of an mzIdentML file will be able to calcul
 [source,xml]
 ----
 <SequenceCollection>
-    <PeptideEvidence isDecoy="true" post="D" pre="K" end="404" start="392" peptide_ref="HAVGGRYSSLLCK__57.0215@C$403;_" dBSequence_ref="dbseq_REV_psu|NC_LIV_113200" id="PE6_2_4" />
+    <PeptideEvidence isDecoy="true" post="D" pre="K" end="404" start="392" peptide_ref="HAVGGRYSSLLCK__57.0215@C$403;_" dBSequence_ref="dbseq_REV_psu|NC_LIV_113200" id="PE6_2_4"/>
     <SequenceCollection>
         <DataCollection>
             <Inputs>
                 <SearchDatabase location="/localdirectory/18.E_coli_K12_edit.fasta" id="K12_nosignal" name="K12" numDatabaseSequences="9376" releaseDate="01-2008-08-2008" version="1.0">
                     <FileFormat>
-                        <cvParam accession="MS:1001348" name="FASTA format" cvRef="PSI-MS" />
+                        <cvParam accession="MS:1001348" name="FASTA format" cvRef="PSI-MS"/>
                     </FileFormat>
                     <DatabaseName>
-                        <userParam name="18.E_coli_K12_edit.fasta" />
+                        <userParam name="18.E_coli_K12_edit.fasta"/>
                     </DatabaseName>
-                    <cvParam accession="MS:1001197" name="*DB composition target+decoy*" cvRef="PSI-MS" />
-                    <cvParam accession="MS:1001283" name="*decoy DB accession regexp*" value="*Rnd*" cvRef="PSI-MS" />
-                    <cvParam accession="MS:1001195" name="*decoy DB type reverse*" cvRef="PSI-MS" />
+                    <cvParam accession="MS:1001197" name="*DB composition target+decoy*" cvRef="PSI-MS"/>
+                    <cvParam accession="MS:1001283" name="*decoy DB accession regexp*" value="*Rnd*" cvRef="PSI-MS"/>
+                    <cvParam accession="MS:1001195" name="*decoy DB type reverse*" cvRef="PSI-MS"/>
                 </SearchDatabase>
             </Inputs>
             <AnalysisData>
                 <SpectrumIdentificationList>
                     <SpectrumIdentificationResult>
                         <SpectrumIdentificationItem passThreshold="false" rank="1" peptide_ref="HAVGGRYSSLLCK__57.0215@C$403;_" experimentalMassToCharge="1448.756" chargeState="2" id="SII_6_1">
-                            <PeptideEvidenceRef peptideEvidence_ref="PE6_2_4" />
-                            <cvParam accession="MS:1001329" name="OMSSA:pvalue" cvRef="PSI-MS" value="0.00073351" />
+                            <PeptideEvidenceRef peptideEvidence_ref="PE6_2_4"/>
+                            <cvParam accession="MS:1001329" name="OMSSA:pvalue" cvRef="PSI-MS" value="0.00073351"/>
                         </SpectrumIdentificationItem>
                     </SpectrumIdentificationResult>
                 </SpectrumIdentificationList>
@@ -799,7 +805,6 @@ It is not guaranteed that a consumer of an mzIdentML file will be able to calcul
         </DataCollection>
     </SequenceCollection>
 </SequenceCollection>
-
 ----
 
 [[database-filter]]
@@ -813,17 +818,16 @@ For example, all animals except mice would be encoded as (NCBI:33208 is metazoa,
 <DatabaseFilters>
     <Filter>
         <FilterType>
-            <cvParam accession="MS:1001020" name="DB filter taxonomy" cvRef="PSI-MS" />
+            <cvParam accession="MS:1001020" name="DB filter taxonomy" cvRef="PSI-MS"/>
         </FilterType>
         <Include>
-            <cvParam accession="MS:1001467" name="taxonomy: NCBI TaxID" cvRef="PSI-MS" value="33208" />
+            <cvParam accession="MS:1001467" name="taxonomy: NCBI TaxID" cvRef="PSI-MS" value="33208"/>
         </Include>
         <Exclude>
-            <cvParam accession="MS:1001467" name="taxonomy: NCBI TaxID" cvRef="PSI-MS" value="10090" />
+            <cvParam accession="MS:1001467" name="taxonomy: NCBI TaxID" cvRef="PSI-MS" value="10090"/>
         </Exclude>
     </Filter>
 </DatabaseFilters>
-
 ----
 
 [[types-of-parameters-and-values]]
@@ -857,22 +861,21 @@ In the example, the _y8_ ion has a product ion _m/z_ = 436.4, product ion intens
 ----
 <FragmentationTable>
     <Measure id="m_mz">
-        <cvParam cvRef="PSI-MS" accession="MS:1001225" name="product ion m/z" />
+        <cvParam cvRef="PSI-MS" accession="MS:1001225" name="product ion m/z"/>
     </Measure>
     <Measure id="m_intensity">
-        <cvParam cvRef="PSI-MS" accession="MS:1001226" name="product ion intensity" />
+        <cvParam cvRef="PSI-MS" accession="MS:1001226" name="product ion intensity"/>
     </Measure>
     <Measure id="m_error">
-        <cvParam cvRef="PSI-MS" accession="MS:1001227" name="product ion m/z error" unitAccession="MS:1000040" unitName="m/z" unitCvRef="PSI-MS" />
+        <cvParam cvRef="PSI-MS" accession="MS:1001227" name="product ion m/z error" unitAccession="MS:1000040" unitName="m/z" unitCvRef="PSI-MS"/>
     </Measure>
 </FragmentationTable>
 <IonType index="11 8 7" charge="2">
-    <cvParam cvRef="PSI-MS" accession="MS:1001220" name="frag: y ion" />
-    <FragmentArray values="551.3 436.4 380.1" measure_ref="m_mz" />
-    <FragmentArray values="800 11 46" measure_ref="m_intensity" />
-    <FragmentArray values="0.4752 0.1284 0.3704" measure_ref="m_error" />
+    <cvParam cvRef="PSI-MS" accession="MS:1001220" name="frag: y ion"/>
+    <FragmentArray values="551.3 436.4 380.1" measure_ref="m_mz"/>
+    <FragmentArray values="800 11 46" measure_ref="m_intensity"/>
+    <FragmentArray values="0.4752 0.1284 0.3704" measure_ref="m_error"/>
 </IonType>
-
 ----
 
 [[internal-fragments-and-immonium-ions]]
@@ -886,12 +889,11 @@ The example shows how the index performs this different role, as it identifies p
 [source,xml]
 ----
 <IonType index="2 5 3 7 3 8 4 8 5 8 5 11 8 11" charge="1">
-    <FragmentArray values="315.2 388.1 501.4 444.1 342.8 669.901495 412.4" measure_ref="m_mz" />
-    <FragmentArray values="44 63 10430 75 48 6420 31" measure_ref="m_intensity" />
-    <FragmentArray values="-0.0027 -0.1191 0.0969 -0.1817 -0.4340 0.4721 0.1082" measure_ref="m_error" />
-    <cvParam cvRef="PSI-MS" accession="MS:1001366" name="frag: internal ya ion" />
+    <FragmentArray values="315.2 388.1 501.4 444.1 342.8 669.901495 412.4" measure_ref="m_mz"/>
+    <FragmentArray values="44 63 10430 75 48 6420 31" measure_ref="m_intensity"/>
+    <FragmentArray values="-0.0027 -0.1191 0.0969 -0.1817 -0.4340 0.4721 0.1082" measure_ref="m_error"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001366" name="frag: internal ya ion"/>
 </IonType>
-
 ----
 
 For immonium ions, the index is the position of the identified ion within the peptide sequence.
@@ -901,12 +903,11 @@ Example, where immonium ions have been found matching T and G in the following p
 [source,xml]
 ----
 <IonType charge="1" index="2 3 7">
-    <FragmentArray values="288.2 286.1 387.2 371.127841" measure_ref="m_mz" />
-    <FragmentArray values="2137 83 656 1663" measure_ref="m_intensity" />
-    <FragmentArray values="0.0260 -0.1125 -0.0602 -0.1011" measure_ref="m_error" />
-    <cvParam cvRef="PSI-MS" accession="MS:1001239" name="frag: immonium ion" />
+    <FragmentArray values="288.2 286.1 387.2 371.127841" measure_ref="m_mz"/>
+    <FragmentArray values="2137 83 656 1663" measure_ref="m_intensity"/>
+    <FragmentArray values="0.0260 -0.1125 -0.0602 -0.1011" measure_ref="m_error"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001239" name="frag: immonium ion"/>
 </IonType>
-
 ----
 
 [[encoding-neutral-loss-fragment-ions]]
@@ -918,13 +919,12 @@ As such, pairs of CV terms are now allowed in version 1.2.0 to describe both the
 [source,xml]
 ----
 <IonType charge="2" index="3">
-    <FragmentArray measure_ref="Measure_MZ" values="165.0899353" />
-    <FragmentArray measure_ref="Measure_Int" values="2058.2841796875" />
-    <FragmentArray measure_ref="Measure_Error" values="0.007899949187986977" />
-    <cvParam cvRef="PSI-MS" accession="MS:1001220" name="frag: y ion" />
-    <cvParam cvRef="PSI-MS" accession="MS:1000336" name="neutral loss" value="H3N" />
+    <FragmentArray measure_ref="Measure_MZ" values="165.0899353"/>
+    <FragmentArray measure_ref="Measure_Int" values="2058.2841796875"/>
+    <FragmentArray measure_ref="Measure_Error" values="0.007899949187986977"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1001220" name="frag: y ion"/>
+    <cvParam cvRef="PSI-MS" accession="MS:1000336" name="neutral loss" value="H3N"/>
 </IonType>
-
 ----
 
 [[enzyme-definition]]
@@ -1035,8 +1035,7 @@ For example:
 
 [source,xml]
 ----
-<cvParam accession="MS:1003332" cvRef="PSI-MS" value="1234:P" name="identification based on multiple spectra" />
-
+<cvParam accession="MS:1003332" cvRef="PSI-MS" value="1234:P" name="identification based on multiple spectra"/>
 ----
 
 The letters ‘P’ and ‘C’ refer to ‘parent’ and ‘child’.
@@ -1063,18 +1062,18 @@ Figure 6 shows this approach used in the context of encoding identifications of 
     <SpectrumIdentificationList id="sil_ETD">
         <SpectrumIdentificationResult spectrumID="index=2" spectraData_ref="pk_id" id="SIR_2">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="100" peptide_ref="p1" rank="1" passThreshold="false" id="ETD_SII_0">
-                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1" />
-                <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="1" />
+                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="1"/>
                 <!-- this flags it as part of the crosslinked identification '1234' -->
-                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:P*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*" />
+                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:P*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*"/>
             </SpectrumIdentificationItem>
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="100" peptide_ref="p2" rank="1" passThreshold="false" id="ETD_SII_1">
-                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p2" />
-                <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="1" />
+                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p2"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1002511" name="crosslink spectrum identification item" value="1"/>
                 <!-- this flags it as part of the crosslinked identification '1234' -->
-                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:P*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*" />
+                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:P*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
     </SpectrumIdentificationList>
@@ -1083,42 +1082,41 @@ Figure 6 shows this approach used in the context of encoding identifications of 
         <!-- HCD MS3 match peptide 1 A-->
         <SpectrumIdentificationResult spectrumID="index=3" spectraData_ref="pk_id" id="SIR_3">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="50" peptide_ref="p1_a" rank="1" passThreshold="false" id="MS3_SII_0">
-                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1_a" />
+                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1_a"/>
                 <!-- this flags it as part of the crosslinked identification '1234' -->
-                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="**1234:1E-0**8" />
+                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="**1234:1E-0**8"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
         <!-- HCD MS3 match peptide 2 T-->
         <SpectrumIdentificationResult spectrumID="index=4" spectraData_ref="pk_id" id="SIR_4">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="50" peptide_ref="p2_t" rank="1" passThreshold="false" id="MS3_SII_1">
-                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p2_t" />
+                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p2_t"/>
                 <!-- this flags it as part of the crosslinked identification '1234' -->
-                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*" />
+                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
         <!-- HCD MS3 match peptide 1 T-->
         <SpectrumIdentificationResult spectrumID="index=3" spectraData_ref="pk_id" id="SIR_5">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="51" peptide_ref="p1_t" rank="1" passThreshold="false" id="MS3_SII_2">
-                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1_t" />
+                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p1_t"/>
                 <!-- this flags it as part of the crosslinked identification '1234' -->
-                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*" />
+                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
         <!-- HCD MS3 match peptide 2 A-->
         <SpectrumIdentificationResult spectrumID="index=4" spectraData_ref="pk_id" id="SIR_6">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="49" peptide_ref="p2_a" rank="1" passThreshold="false" id="MS3_SII_3">
-                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p2_a" />
+                <PeptideEvidenceRef peptideEvidence_ref="pepevid_p2_a"/>
                 <!-- this flags it as part of the crosslinked identification '1234' -->
-                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*" />
+                <cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:C*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="*1234:1E-08*"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
     </SpectrumIdentificationList>
 </AnalysisData>
-
 ----
 
 *Figure 5.* XML snippet showing the new CV terms "identification based on multiple spectra" (MS:1003332) and "Posterior Error Probability from multiple spectra identification" (MS:1003336) used in the context of crosslinking.
@@ -1130,9 +1128,8 @@ For example:
 
 [source,xml]
 ----
-<cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:P*" name="identification based on multiple spectra" />
-<cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability for an identification based on multiple spectra" value="*1234:1E-08*" />
-
+<cvParam accession="MS:1003332" cvRef="PSI-MS" value="*1234:P*" name="identification based on multiple spectra"/>
+<cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability for an identification based on multiple spectra" value="*1234:1E-08*"/>
 ----
 
 A new CV term for "Posterior Error Probability from multiple spectra identification" (MS:1003336) has also been introduced in this context.
@@ -1145,11 +1142,11 @@ For search specific, match level scores for identifications based on multiple sp
     <SpectrumIdentificationList id="SII_LIST_4_1">
         <SpectrumIdentificationResult spectrumID="controllerType=0 controllerNumber=1 scan=3832" spectraData_ref="SD_17022_recal_B210619_02_Lumos_ZC_CO_190_D2I_SDA- WT12019_09_19_OPRmix_35trig_EThcD35.raw" id="SIR_4">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="821.6863" calculatedMassToCharge="821.68451" peptide_ref="T_O-Glycosylation_EAQT_O-Glycosylation_T_O- Glycosylation_PLAA_Hex_4_HexNAc_4" rank="1" passThreshold="true" id="SII_4_1">
-                <PeptideEvidenceRef peptideEvidence_ref="T_O-Glycosylation_EAQT_O-Glycosylation_T_O- Glycosylation_PLAA_Hex_4_HexNAc_4_pe1" />
-                <cvParam cvRef="PSI-MS" accession="MS:1002520" value="T_O-Glycosylation_EAQT_O- Glycosylation_T_O-Glycosylation_PLAA_Hex_4_HexNAc_4:256" name="peptide group ID" />
-                <cvParam cvRef="PSI-MS" accession="MS:1002354" value="0.005" name="PSM-level q-value" />
-                <cvParam cvRef="”PSI-MS”" accession="MS:1003332" value="*256*" name="identification based on multiple spectra" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="256:1E-08" />
+                <PeptideEvidenceRef peptideEvidence_ref="T_O-Glycosylation_EAQT_O-Glycosylation_T_O- Glycosylation_PLAA_Hex_4_HexNAc_4_pe1"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1002520" value="T_O-Glycosylation_EAQT_O- Glycosylation_T_O-Glycosylation_PLAA_Hex_4_HexNAc_4:256" name="peptide group ID"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1002354" value="0.005" name="PSM-level q-value"/>
+                <cvParam cvRef="”PSI-MS”" accession="MS:1003332" value="*256*" name="identification based on multiple spectra"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="256:1E-08"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
     </SpectrumIdentificationList>
@@ -1157,19 +1154,18 @@ For search specific, match level scores for identifications based on multiple sp
     <SpectrumIdentificationList id="SII_LIST_5_1">
         <SpectrumIdentificationResult spectrumID="controllerType=0 controllerNumber=1 scan=3836" spectraData_ref="SD_17022_recal_B210619_02_Lumos_ZC_CO_190_D2I_SDA- WT12019_09_19_OPRmix_35trig_EThcD35.raw" id="SIR_5">
             <SpectrumIdentificationItem chargeState="3" experimentalMassToCharge="821.6863" calculatedMassToCharge="821.68451" peptide_ref="T_O-Glycosylation_EAQT_O-Glycosylation_T_O- Glycosylation_PLAA_Hex_4_HexNAc_4" rank="1" passThreshold="true" id="SII_5_1">
-                <PeptideEvidenceRef peptideEvidence_ref="T_Hex_1_HexNAc_1_EAQT_Hex_2_HexNAc_2_T_Hex_1_HexNAc_1_PLAA_pe1" />
-                <cvParam cvRef="PSI-MS" accession="MS:1002520" value="T_O-Glycosylation_EAQT_O-Glycosylation_T_O- Glycosylation_PLAA_Hex_4_HexNAc_4:256" name="peptide group ID" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003147" value="1:0.97:1:true" name="PTMProphet probability" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003147" value="2:0.83:5:true" name="PTMProphet probability" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003147" value="3:0.89:6:true" name="PTMProphet probability" />
-                <cvParam cvRef="PSI-MS" accession="MS:1002354" value="0.001" name="PSM-level q-value" />
-                <cvParam cvRef="”PSI-MS”" accession="MS:1003332" name="identification based on multiple spectra" value="*256*" />
-                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="256:1E-08" />
+                <PeptideEvidenceRef peptideEvidence_ref="T_Hex_1_HexNAc_1_EAQT_Hex_2_HexNAc_2_T_Hex_1_HexNAc_1_PLAA_pe1"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1002520" value="T_O-Glycosylation_EAQT_O-Glycosylation_T_O- Glycosylation_PLAA_Hex_4_HexNAc_4:256" name="peptide group ID"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003147" value="1:0.97:1:true" name="PTMProphet probability"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003147" value="2:0.83:5:true" name="PTMProphet probability"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003147" value="3:0.89:6:true" name="PTMProphet probability"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1002354" value="0.001" name="PSM-level q-value"/>
+                <cvParam cvRef="”PSI-MS”" accession="MS:1003332" name="identification based on multiple spectra" value="*256*"/>
+                <cvParam cvRef="PSI-MS" accession="MS:1003336" name="Posterior Error Probability from multiple spectra identification" value="256:1E-08"/>
             </SpectrumIdentificationItem>
         </SpectrumIdentificationResult>
     </SpectrumIdentificationList>
 </AnalysisData>
-
 ----
 
 *Figure 6.* XML snippet showing the new CV terms "identification based on multiple spectra" (MS:1003332) and "Posterior Error Probability from multiple spectra identification" (MS:1003336) used in the context of encoding glycopeptides, using HCD-EThCD spectrum pairs for glycan localization (taken from dataset PXD020077).
