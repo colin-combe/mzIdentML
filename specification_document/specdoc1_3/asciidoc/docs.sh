@@ -44,30 +44,23 @@ if [ ! $ECODE -eq 0 ]; then
   echo "Build failed with exit code $ECODE"
   exit $ECODE
 fi
-#
-#echo
-#echo "Building docbook and DOCX version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
-#OUTPUT_DOCBOOK="${MAIN_ADOC_FILE%.*}.xml"
-#OUTPUT_DOCX="${MAIN_ADOC_FILE%.*}.docx"
-#asciidoctor -v -w -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D $OUTPUT_DIR $MAIN_ADOC_FILE
-#echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
-#CDIR="$(pwd)"
-#cd $OUTPUT_DIR
-#pandoc --from docbook --to docx --output $OUTPUT_DOCX $OUTPUT_DOCBOOK
-#cd $CDIR
-#ECODE=$?
-#if [ ! $ECODE -eq 0 ]; then
-#  echo "Build failed with exit code $ECODE"
-#  exit $ECODE
-#fi
-#
-#echo "Experimental attempt to generate asciidoc from xsd schema"
-#python3 xsd_to_asciidoc.py
-#asciidoctor -v -w --attribute="allow-uri-read" --attribute="missing-image-warning" -d book --attribute="commit-hash=COMMITHASH" --attribute="build-date=BUILDDATE" -D "$OUTPUT_DIR" out/spec.adoc
-#if [ ! $ECODE -eq 0 ]; then
-#  echo "Build failed with exit code $ECODE"
-#  exit $ECODE
-#fi
+
+echo
+echo "Building docbook and DOCX version of $INPUT_DIR/$MAIN_ADOC_FILE in $OUTPUT_DIR"
+OUTPUT_DOCBOOK="${MAIN_ADOC_FILE%.*}.xml"
+OUTPUT_DOCX="${MAIN_ADOC_FILE%.*}.docx"
+asciidoctor -v -w -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D $OUTPUT_DIR $MAIN_ADOC_FILE
+echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
+CDIR="$(pwd)"
+cd $OUTPUT_DIR
+pandoc --from docbook --to docx --output $OUTPUT_DOCX $OUTPUT_DOCBOOK
+cd $CDIR
+ECODE=$?
+if [ ! $ECODE -eq 0 ]; then
+  echo "Build failed with exit code $ECODE"
+  exit $ECODE
+fi
+
 
 
 echo "Building crosslinking extension doc."
@@ -100,20 +93,20 @@ if [ ! $ECODE -eq 0 ]; then
   exit $ECODE
 fi
 
-#echo
-#echo "Building docbook and DOCX version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
-#OUTPUT_DOCBOOK="${EXT_ADOC_FILE%.*}.xml"
-#OUTPUT_DOCX="${EXT_ADOC_FILE%.*}.docx"
-#asciidoctor -v -w -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D $OUTPUT_DIR $EXT_ADOC_FILE
-#echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
-#CDIR="$(pwd)"
-#cd $OUTPUT_DIR
-#pandoc --from docbook --to docx --output $OUTPUT_DOCX $OUTPUT_DOCBOOK
-#cd $CDIR
-#ECODE=$?
-#if [ ! $ECODE -eq 0 ]; then
-#  echo "Build failed with exit code $ECODE"
-#  exit $ECODE
-#fi
+echo
+echo "Building docbook and DOCX version of $INPUT_DIR/$EXT_ADOC_FILE in $OUTPUT_DIR"
+OUTPUT_DOCBOOK="${EXT_ADOC_FILE%.*}.xml"
+OUTPUT_DOCX="${EXT_ADOC_FILE%.*}.docx"
+asciidoctor -v -w -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D $OUTPUT_DIR $EXT_ADOC_FILE
+echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
+CDIR="$(pwd)"
+cd $OUTPUT_DIR
+pandoc --from docbook --to docx --output $OUTPUT_DOCX $OUTPUT_DOCBOOK
+cd $CDIR
+ECODE=$?
+if [ ! $ECODE -eq 0 ]; then
+  echo "Build failed with exit code $ECODE"
+  exit $ECODE
+fi
 
 

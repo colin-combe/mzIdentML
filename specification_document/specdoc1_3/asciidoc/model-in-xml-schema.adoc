@@ -84,44 +84,25 @@ Analyses are for example: SpectrumIdentification (resulting in peptides) or Prot
 </AdditionalSearchParams>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/AdditionalSearchParams
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.]
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001066[MS:1001066] (ions series considered in search) one or more times
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001210[MS:1001210] (mass type settings) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001211[MS:1001211] (parent mass type mono)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001212[MS:1001212] (parent mass type average)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001255[MS:1001255] (fragment mass type average)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001256[MS:1001256] (fragment mass type mono)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/AdditionalSearchParams +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.] +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001066[MS:1001066] (ions series considered in search) one or more times +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001210[MS:1001210] (mass type settings) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001211[MS:1001211] (parent mass type mono) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001212[MS:1001212] (parent mass type average) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001255[MS:1001255] (fragment mass type average) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001256[MS:1001256] (fragment mass type mono) +
 MAY supply a *child* term of MS:1002489 (special processing) one or more times
 |*Example cvParams:* a|
 [source,xml]
@@ -286,12 +267,9 @@ MAY supply a *child* term of MS:1002489 (special processing) one or more times
 </AmbiguousResidue>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/MassTable/AmbiguousResidue
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001359[MS:1001359] (ambiguous residues) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001360[MS:1001360] (alternate single letter codes)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/MassTable/AmbiguousResidue +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001359[MS:1001359] (ambiguous residues) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001360[MS:1001360] (alternate single letter codes) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001361[MS:1001361] (alternate mass)
 
 |*Example cvParams:* |<cvParam accession="MS:1001360" cvRef="PSI-MS" value="D N" name="alternate single letter codes"/>
@@ -385,32 +363,19 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 <cvParam name="mascot:ShowHomologousProteinsWithSubsetOfPeptides" value="10" cvRef="PSI-MS" accession="MS:1001321" />...</AnalysisParams>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/ProteinDetectionProtocol/AnalysisParams
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.]
-
+Path /MzIdentML/AnalysisProtocolCollection/ProteinDetectionProtocol/AnalysisParams +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.] +
 MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001194[MS:1001194] (quality estimation with decoy database) one or more times
 
 |*Example cvParams:* a|
@@ -786,28 +751,17 @@ If both are used, it is assumed that inclusion is performed first.
 </DatabaseName>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/Inputs/SearchDatabase/DatabaseName
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001013[MS:1001013] (database name) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001084[MS:1001084] (database nr)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001104[MS:1001104] (database UniProtKB/Swiss-Prot)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001142[MS:1001142] (database IPI_human)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001285[MS:1001285] (database IPI_mouse)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001286[MS:1001286] (database IPI_rat)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001287[MS:1001287] (database IPI_zebrafish)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001288[MS:1001288] (database IPI_chicken)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001289[MS:1001289] (database IPI_cow)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001290[MS:1001290] (database IPI_arabidopsis)
-
+Path /MzIdentML/DataCollection/Inputs/SearchDatabase/DatabaseName +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001013[MS:1001013] (database name) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001084[MS:1001084] (database nr) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001104[MS:1001104] (database UniProtKB/Swiss-Prot) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001142[MS:1001142] (database IPI_human) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001285[MS:1001285] (database IPI_mouse) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001286[MS:1001286] (database IPI_rat) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001287[MS:1001287] (database IPI_zebrafish) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001288[MS:1001288] (database IPI_chicken) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001289[MS:1001289] (database IPI_cow) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001290[MS:1001290] (database IPI_arabidopsis) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002060[MS:1002060] (database UniProtKB/TrEMBL)
 
 |*Example cvParams:* a|
@@ -928,36 +882,21 @@ mouse_SWISS_can_iso_ECOLI.fasta" id="SearchDB_1">
 </DBSequence>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/SequenceCollection/DBSequence
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001342[MS:1001342] (database sequence details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001088[MS:1001088] (protein description)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001343[MS:1001343] (NA sequence)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001344[MS:1001344] (AA sequence)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID)
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001089[MS:1001089] (molecule taxonomy) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name)
-
+Path /MzIdentML/SequenceCollection/DBSequence +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001342[MS:1001342] (database sequence details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001088[MS:1001088] (protein description) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001343[MS:1001343] (NA sequence) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001344[MS:1001344] (AA sequence) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID) +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001089[MS:1001089] (molecule taxonomy) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID)
 
 |*Example cvParams:* a|
@@ -1044,30 +983,18 @@ The attribute MUST be provided if an enzyme has been used.
 </EnzymeName>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/Enzymes/Enzyme/EnzymeName
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001045[MS:1001045] (cleavage agent name) only once
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001091[MS:1001091] (NoEnzyme)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001251[MS:1001251] (Trypsin)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001303[MS:1001303] (Arg-C)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001304[MS:1001304] (Asp-N)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001305[MS:1001305] (Asp-N_ambic)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001306[MS:1001306] (Chymotrypsin)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001307[MS:1001307] (CNBr)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001308[MS:1001308] (Formic_acid)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001309[MS:1001309] (Lys-C)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001310[MS:1001310] (Lys-C/P)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/Enzymes/Enzyme/EnzymeName +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001045[MS:1001045] (cleavage agent name) only once +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001091[MS:1001091] (NoEnzyme) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001251[MS:1001251] (Trypsin) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001303[MS:1001303] (Arg-C) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001304[MS:1001304] (Asp-N) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001305[MS:1001305] (Asp-N_ambic) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001306[MS:1001306] (Chymotrypsin) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001307[MS:1001307] (CNBr) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001308[MS:1001308] (Formic_acid) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001309[MS:1001309] (Lys-C) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001310[MS:1001310] (Lys-C/P) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001045[et al.]
 
 |*Example cvParams:* a|
@@ -1127,30 +1054,18 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 !===
 |*Example Context:* |
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseFilters/Filter/Exclude
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001512[MS:1001512] (Sequence database filters) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001201[MS:1001201] (DB MW filter maximum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001202[MS:1001202] (DB MW filter minimum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001203[MS:1001203] (DB PI filter maximum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001204[MS:1001204] (DB PI filter minimum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001513[MS:1001513] (DB sequence filter pattern)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseFilters/Filter/Exclude +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001512[MS:1001512] (Sequence database filters) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001201[MS:1001201] (DB MW filter maximum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001202[MS:1001202] (DB MW filter minimum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001203[MS:1001203] (DB PI filter maximum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001204[MS:1001204] (DB PI filter minimum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001513[MS:1001513] (DB sequence filter pattern) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001512[et al.]
 
 |===
@@ -1189,78 +1104,43 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 </FileFormat>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/Inputs/SearchDatabase/FileFormat
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001347[MS:1001347] (database file formats) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001348[MS:1001348] (FASTA format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001349[MS:1001349] (ASN.1)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001350[MS:1001350] (NCBI *.p*)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001351[MS:1001351] (clustal aln)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001352[MS:1001352] (embl em)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001353[MS:1001353] (NBRF PIR)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001462[MS:1001462] (PEFF format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002659[MS:1002659] (UniProtKB text sequence format)
-
+Path /MzIdentML/DataCollection/Inputs/SearchDatabase/FileFormat +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001347[MS:1001347] (database file formats) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001348[MS:1001348] (FASTA format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001349[MS:1001349] (ASN.1) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001350[MS:1001350] (NCBI *.p*) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001351[MS:1001351] (clustal aln) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001352[MS:1001352] (embl em) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001353[MS:1001353] (NBRF PIR) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001462[MS:1001462] (PEFF format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002659[MS:1002659] (UniProtKB text sequence format) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002660[MS:1002660] (UniProtKB XML sequence format)
 
-Path /MzIdentML/DataCollection/Inputs/SourceFile/FileFormat
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001040[MS:1001040] (intermediate analysis format) only once
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000742[MS:1000742] (Bioworks SRF format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001107[MS:1001107] (data stored in database)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001199[MS:1001199] (Mascot DAT format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001200[MS:1001200] (SEQUEST out file format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001242[MS:1001242] (SEQUEST out folder)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001243[MS:1001243] (SEQUEST summary)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001275[MS:1001275] (ProteinScape SearchEvent)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001276[MS:1001276] (ProteinScape Gel)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001399[MS:1001399] (OMSSA csv format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001400[MS:1001400] (OMSSA xml format)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001040[et al.]
-
-Path /MzIdentML/DataCollection/Inputs/SpectraData/FileFormat
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000560[MS:1000560] (mass spectrometer file format) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000526[MS:1000526] (Waters raw format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000562[MS:1000562] (ABI WIFF format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000563[MS:1000563] (Thermo RAW format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000564[MS:1000564] (PSI mzData format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000565[MS:1000565] (Micromass PKL format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000566[MS:1000566] (ISB mzXML format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000567[MS:1000567] (Bruker/Agilent YEP format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000584[MS:1000584] (mzML format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000613[MS:1000613] (DTA format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000614[MS:1000614] (ProteinLynx Global Server mass spectrum XML format)
-
+Path /MzIdentML/DataCollection/Inputs/SourceFile/FileFormat +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001040[MS:1001040] (intermediate analysis format) only once +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000742[MS:1000742] (Bioworks SRF format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001107[MS:1001107] (data stored in database) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001199[MS:1001199] (Mascot DAT format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001200[MS:1001200] (SEQUEST out file format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001242[MS:1001242] (SEQUEST out folder) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001243[MS:1001243] (SEQUEST summary) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001275[MS:1001275] (ProteinScape SearchEvent) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001276[MS:1001276] (ProteinScape Gel) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001399[MS:1001399] (OMSSA csv format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001400[MS:1001400] (OMSSA xml format) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001040[et al.] +
+Path /MzIdentML/DataCollection/Inputs/SpectraData/FileFormat +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000560[MS:1000560] (mass spectrometer file format) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000526[MS:1000526] (Waters raw format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000562[MS:1000562] (ABI WIFF format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000563[MS:1000563] (Thermo RAW format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000564[MS:1000564] (PSI mzData format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000565[MS:1000565] (Micromass PKL format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000566[MS:1000566] (ISB mzXML format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000567[MS:1000567] (Bruker/Agilent YEP format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000584[MS:1000584] (mzML format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000613[MS:1000613] (DTA format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000614[MS:1000614] (ProteinLynx Global Server mass spectrum XML format) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000560[et al.]
 
 |*Example cvParams:* a|
@@ -1325,18 +1205,12 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 </FilterType>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseFilters/Filter/FilterType
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001511[MS:1001511] (Sequence database filter types) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001020[MS:1001020] (DB filter taxonomy)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001021[MS:1001021] (DB filter on accession numbers)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001022[MS:1001022] (DB MW filter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001023[MS:1001023] (DB PI filter)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseFilters/Filter/FilterType +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001511[MS:1001511] (Sequence database filter types) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001020[MS:1001020] (DB filter taxonomy) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001021[MS:1001021] (DB filter on accession numbers) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001022[MS:1001022] (DB MW filter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001023[MS:1001023] (DB PI filter) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001027[MS:1001027] (DB filter on sequence pattern)
 
 |*Example cvParams:* |<cvParam accession="MS:1001020" cvRef="PSI-MS" name="DB filter taxonomy"/>
@@ -1441,10 +1315,8 @@ Example: if b3 b7 b8 and b10 have been identified, the index attribute will cont
 </FragmentTolerance>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/FragmentTolerance
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001412[MS:1001412] (search tolerance plus value) only once
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/FragmentTolerance +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001412[MS:1001412] (search tolerance plus value) only once +
 MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001413[MS:1001413] (search tolerance minus value) only once
 
 |*Example cvParams:* a|
@@ -1472,30 +1344,18 @@ MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pu
 !===
 |*Example Context:* |
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseFilters/Filter/Include
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001512[MS:1001512] (Sequence database filters) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001201[MS:1001201] (DB MW filter maximum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001202[MS:1001202] (DB MW filter minimum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001203[MS:1001203] (DB PI filter maximum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001204[MS:1001204] (DB PI filter minimum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001513[MS:1001513] (DB sequence filter pattern)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseFilters/Filter/Include +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001512[MS:1001512] (Sequence database filters) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001090[MS:1001090] (taxonomy nomenclature) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001201[MS:1001201] (DB MW filter maximum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001202[MS:1001202] (DB MW filter minimum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001203[MS:1001203] (DB PI filter maximum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001204[MS:1001204] (DB PI filter minimum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001467[MS:1001467] (taxonomy: NCBI TaxID) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001468[MS:1001468] (taxonomy: common name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001469[MS:1001469] (taxonomy: scientific name) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001470[MS:1001470] (taxonomy: Swiss-Prot ID) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001513[MS:1001513] (DB sequence filter pattern) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001512[et al.]
 
 |===
@@ -1606,30 +1466,18 @@ For precursor ions, including neutral losses, the index value MUST be 0. For any
 </IonType>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult/SpectrumIdentificationItem/Fragmentation/IonType
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001221[MS:1001221] (fragmentation information) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000903[MS:1000903] (product ion series ordinal)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000904[MS:1000904] (product ion m/z delta)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000926[MS:1000926] (product interpretation rank)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001220[MS:1001220] (frag: y ion)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001222[MS:1001222] (frag: b ion - H2O)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001223[MS:1001223] (frag: y ion - H2O)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001224[MS:1001224] (frag: b ion)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001225[MS:1001225] (product ion m/z)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001227[MS:1001227] (product ion m/z error)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001228[MS:1001228] (frag: x ion)
-
+Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult/SpectrumIdentificationItem/Fragmentation/IonType +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001221[MS:1001221] (fragmentation information) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000903[MS:1000903] (product ion series ordinal) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000904[MS:1000904] (product ion m/z delta) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000926[MS:1000926] (product interpretation rank) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001220[MS:1001220] (frag: y ion) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001222[MS:1001222] (frag: b ion - H2O) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001223[MS:1001223] (frag: y ion - H2O) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001224[MS:1001224] (frag: b ion) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001225[MS:1001225] (product ion m/z) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001227[MS:1001227] (product ion m/z error) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001228[MS:1001228] (frag: x ion) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001221[et al.]
 
 |*Example cvParams:* a|
@@ -1711,10 +1559,8 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 <Residue mass="57.021465" code="G" />...</MassTable>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/MassTable
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001354[MS:1001354] (mass table options) one or more times
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/MassTable +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001354[MS:1001354] (mass table options) one or more times +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001346[MS:1001346] (AAIndex mass table)
 
 |===
@@ -1744,12 +1590,9 @@ e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibra
 <cvParam cvRef="PSI-MS" accession="MS:1001226" name="product ion intensity" unitCvRef="PSI-MS" unitAccession="MS:1000131" unitName="number of detector counts"/>
 </Measure>
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/FragmentationTable/Measure
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001226[MS:1001226] (product ion intensity) only once
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001225[MS:1001225] (product ion m/z) only once
-
+Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/FragmentationTable/Measure +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001226[MS:1001226] (product ion intensity) only once +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001225[MS:1001225] (product ion m/z) only once +
 MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001227[MS:1001227] (product ion m/z error) only once
 
 |*Example cvParams:* a|
@@ -1956,10 +1799,8 @@ SHOULD supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://
 </ParentTolerance>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ParentTolerance
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001412[MS:1001412] (search tolerance plus value) only once
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ParentTolerance +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001412[MS:1001412] (search tolerance plus value) only once +
 MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001413[MS:1001413] (search tolerance minus value) only once
 
 |*Example cvParams:* a|
@@ -2019,8 +1860,7 @@ If more complex information should be given about neutral losses (such as presen
 </Peptide>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/SequenceCollection/Peptide
-
+Path /MzIdentML/SequenceCollection/Peptide +
 MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001355[MS:1001355] (peptide descriptions) one or more times
 
 |===
@@ -2309,28 +2149,17 @@ SHOULD supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://
 </ProteinAmbiguityGroup>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/AnalysisData/ProteinDetectionList/ProteinAmbiguityGroup
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002415[MS:1002415] (protein group passes threshold) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001147[MS:1001147] (protein ambiguity group result details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001164[MS:1001164] (Paragon:unused protscore)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001165[MS:1001165] (Paragon:total protscore)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001301[MS:1001301] (protein rank)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002236[MS:1002236] (ProteoGrouper:PAG score)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002407[MS:1002407] (cluster identifier)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002415[MS:1002415] (protein group passes threshold)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002474[MS:1002474] (ProteoAnnotator:non-canonical gene model score)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002475[MS:1002475] (ProteoAnnotator:count alternative peptides)
-
+Path /MzIdentML/DataCollection/AnalysisData/ProteinDetectionList/ProteinAmbiguityGroup +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002415[MS:1002415] (protein group passes threshold) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001147[MS:1001147] (protein ambiguity group result details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001164[MS:1001164] (Paragon:unused protscore) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001165[MS:1001165] (Paragon:total protscore) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001301[MS:1001301] (protein rank) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002236[MS:1002236] (ProteoGrouper:PAG score) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002407[MS:1002407] (cluster identifier) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002415[MS:1002415] (protein group passes threshold) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002474[MS:1002474] (ProteoAnnotator:non-canonical gene model score) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002475[MS:1002475] (ProteoAnnotator:count alternative peptides) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002663[MS:1002663] (Morpheus:summed Morpheus score)
 
 |===
@@ -2423,108 +2252,57 @@ If no such threshold has been set, value of true should be given for all results
 ----
 |*cvParam Mapping Rules:* a|
 Path /MzIdentML/DataCollection/AnalysisData/ProteinDetectionList/ProteinAmbiguityGroup/ProteinDetection
-Hypothesis
-
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002403[MS:1002403] (group representative) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001116[MS:1001116] (single protein result details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001088[MS:1001088] (protein description)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001093[MS:1001093] (sequence coverage)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001097[MS:1001097] (distinct peptide sequences)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001098[MS:1001098] (confident distinct peptide sequences)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001099[MS:1001099] (confident peptide qualification)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001100[MS:1001100] (confident peptide sequence number)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001125[MS:1001125] (manual validation)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq) WARNING: Term has no definition!
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001169[MS:1001169] (Paragon:expression change p-value)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001116[et al.]
-
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002402[MS:1002402] (non-leading protein) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[MS:1001153] (search engine specific score) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001154[MS:1001154] (SEQUEST:probability)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001155[MS:1001155] (SEQUEST:xcorr)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001156[MS:1001156] (SEQUEST:deltacn)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq) WARNING: Term has no definition!
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001159[MS:1001159] (SEQUEST:expectation value)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001160[MS:1001160] (SEQUEST:sf)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001161[MS:1001161] (SEQUEST:matched ions)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001162[MS:1001162] (SEQUEST:total ions)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001163[MS:1001163] (SEQUEST:consensus score)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[et al.]
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001060[MS:1001060] (quality estimation method details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001058[MS:1001058] (quality estimation by manual validation)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001194[MS:1001194] (quality estimation with decoy database)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001447[MS:1001447] (prot:FDR threshold)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001448[MS:1001448] (pep:FDR threshold)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001454[MS:1001454] (quality estimation with implicite decoy sequences)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001494[MS:1001494] (no threshold)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001574[MS:1001574] (report only spectra assigned to identified proteins)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001060[et al.]
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001101[MS:1001101] (protein group or subset relationship) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001591[MS:1001591] (anchor protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001592[MS:1001592] (family member protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001593[MS:1001593] (group member with undefined relationship OR ortholog protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001594[MS:1001594] (sequence same-set protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001595[MS:1001595] (spectrum same-set protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001596[MS:1001596] (sequence sub-set protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001597[MS:1001597] (spectrum sub-set protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001598[MS:1001598] (sequence subsumable protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001599[MS:1001599] (spectrum subsumable protein)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002213[MS:1002213] (PAnalyzer:conclusive protein)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001101[et al.]
-
-MAY supply a *child* term of MS:1002664 (interaction score derived from cross-linking) one or more times
-
-e.g.: MS:1002677 (residue-pair-level global FDR)
-
-e.g.: MS:1002676 (protein-pair-level global FDR)
-
+Hypothesis +
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002403[MS:1002403] (group representative) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001116[MS:1001116] (single protein result details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001088[MS:1001088] (protein description) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001093[MS:1001093] (sequence coverage) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001097[MS:1001097] (distinct peptide sequences) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001098[MS:1001098] (confident distinct peptide sequences) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001099[MS:1001099] (confident peptide qualification) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001100[MS:1001100] (confident peptide sequence number) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001125[MS:1001125] (manual validation) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq) WARNING: Term has no definition! +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001169[MS:1001169] (Paragon:expression change p-value) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001116[et al.] +
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002402[MS:1002402] (non-leading protein) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[MS:1001153] (search engine specific score) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001154[MS:1001154] (SEQUEST:probability) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001155[MS:1001155] (SEQUEST:xcorr) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001156[MS:1001156] (SEQUEST:deltacn) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq) WARNING: Term has no definition! +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001159[MS:1001159] (SEQUEST:expectation value) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001160[MS:1001160] (SEQUEST:sf) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001161[MS:1001161] (SEQUEST:matched ions) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001162[MS:1001162] (SEQUEST:total ions) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001163[MS:1001163] (SEQUEST:consensus score) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[et al.] +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001060[MS:1001060] (quality estimation method details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001058[MS:1001058] (quality estimation by manual validation) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001194[MS:1001194] (quality estimation with decoy database) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001447[MS:1001447] (prot:FDR threshold) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001448[MS:1001448] (pep:FDR threshold) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001454[MS:1001454] (quality estimation with implicite decoy sequences) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001494[MS:1001494] (no threshold) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001574[MS:1001574] (report only spectra assigned to identified proteins) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001060[et al.] +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001101[MS:1001101] (protein group or subset relationship) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001591[MS:1001591] (anchor protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001592[MS:1001592] (family member protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001593[MS:1001593] (group member with undefined relationship OR ortholog protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001594[MS:1001594] (sequence same-set protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001595[MS:1001595] (spectrum same-set protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001596[MS:1001596] (sequence sub-set protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001597[MS:1001597] (spectrum sub-set protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001598[MS:1001598] (sequence subsumable protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001599[MS:1001599] (spectrum subsumable protein) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002213[MS:1002213] (PAnalyzer:conclusive protein) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001101[et al.] +
+MAY supply a *child* term of MS:1002664 (interaction score derived from cross-linking) one or more times +
+e.g.: MS:1002677 (residue-pair-level global FDR) +
+e.g.: MS:1002676 (protein-pair-level global FDR) +
 MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002401[MS:1002401] (leading protein) only once
 
 |===
@@ -2578,18 +2356,12 @@ MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://pur
 </ProteinDetectionList>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/AnalysisData/ProteinDetectionList
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001184[MS:1001184] (search statistics) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001035[MS:1001035] (date / time search performed)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001036[MS:1001036] (search time taken)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001177[MS:1001177] (number of molecular hypothesis considered)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002404[MS:1002404] (count of identified proteins)
-
+Path /MzIdentML/DataCollection/AnalysisData/ProteinDetectionList +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001184[MS:1001184] (search statistics) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001035[MS:1001035] (date / time search performed) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001036[MS:1001036] (search time taken) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001177[MS:1001177] (number of molecular hypothesis considered) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002404[MS:1002404] (count of identified proteins) +
 MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002404[MS:1002404] (count of identified proteins) only once
 
 |===
@@ -2706,46 +2478,28 @@ If multiple terms are used it is assumed that all conditions are satisfied by th
 </Role>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/Provider/ContactRole/Role
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001266[MS:1001266] (role type) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001267[MS:1001267] (software vendor)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001268[MS:1001268] (programmer)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001269[MS:1001269] (instrument vendor)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001270[MS:1001270] (lab personnel)
-
+Path /MzIdentML/Provider/ContactRole/Role +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001266[MS:1001266] (role type) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001267[MS:1001267] (software vendor) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001268[MS:1001268] (programmer) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001269[MS:1001269] (instrument vendor) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001270[MS:1001270] (lab personnel) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001271[MS:1001271] (researcher)
 
-Path /MzIdentML/AnalysisSoftwareList/AnalysisSoftware/ContactRole/Role
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001266[MS:1001266] (role type) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001267[MS:1001267] (software vendor)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001268[MS:1001268] (programmer)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001269[MS:1001269] (instrument vendor)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001270[MS:1001270] (lab personnel)
-
+Path /MzIdentML/AnalysisSoftwareList/AnalysisSoftware/ContactRole/Role +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001266[MS:1001266] (role type) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001267[MS:1001267] (software vendor) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001268[MS:1001268] (programmer) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001269[MS:1001269] (instrument vendor) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001270[MS:1001270] (lab personnel) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001271[MS:1001271] (researcher)
 
-Path /MzIdentML/AnalysisSampleCollection/Sample/ContactRole/Role
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001266[MS:1001266] (role type) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001267[MS:1001267] (software vendor)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001268[MS:1001268] (programmer)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001269[MS:1001269] (instrument vendor)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001270[MS:1001270] (lab personnel)
-
+Path /MzIdentML/AnalysisSampleCollection/Sample/ContactRole/Role +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001266[MS:1001266] (role type) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001267[MS:1001267] (software vendor) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001268[MS:1001268] (programmer) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001269[MS:1001269] (instrument vendor) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001270[MS:1001270] (lab personnel) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001271[MS:1001271] (researcher)
 
 |*Example cvParams:* a|
@@ -2824,36 +2578,21 @@ For example, XML Schema or static libraries (APIs) to access binary formats.
 </DatabaseName>...</SearchDatabase>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/Inputs/SearchDatabase
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000561[MS:1000561] (data file checksum type) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000568[MS:1000568] (MD5)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000569[MS:1000569] (SHA-1)
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001011[MS:1001011] (search database details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001014[MS:1001014] (database local file path)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001015[MS:1001015] (database original uri)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001016[MS:1001016] (database version)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001017[MS:1001017] (database release date)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001020[MS:1001020] (DB filter taxonomy)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001021[MS:1001021] (DB filter on accession numbers)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001022[MS:1001022] (DB MW filter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001023[MS:1001023] (DB PI filter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001024[MS:1001024] (translation frame)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001025[MS:1001025] (translation table)
-
+Path /MzIdentML/DataCollection/Inputs/SearchDatabase +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000561[MS:1000561] (data file checksum type) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000568[MS:1000568] (MD5) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000569[MS:1000569] (SHA-1) +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001011[MS:1001011] (search database details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001014[MS:1001014] (database local file path) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001015[MS:1001015] (database original uri) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001016[MS:1001016] (database version) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001017[MS:1001017] (database release date) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001020[MS:1001020] (DB filter taxonomy) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001021[MS:1001021] (DB filter on accession numbers) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001022[MS:1001022] (DB MW filter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001023[MS:1001023] (DB PI filter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001024[MS:1001024] (translation frame) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001025[MS:1001025] (translation table) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001011[et al.]
 
 |===
@@ -2917,40 +2656,23 @@ Standard fixed or variable status should be provided by the attribute fixedMod.
 </SearchModification>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ModificationParams/SearchModification
-
-MAY supply term [.underline]#MS:1003392# (search modification id) only once
-
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002509[[.underline]#MS:1002509#] (crosslink donor) only once
-
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002510[[.underline]#MS:1002510#] (crosslink acceptor) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/UNIMOD:0[[.underline]#UNIMOD:0#] (unimod root node) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001471[[.underline]#MS:1001471#] (peptide modification details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001460[[.underline]#MS:1001460#] (unknown modification)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001524[[.underline]#MS:1001524#] (fragment neutral loss)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001525[[.underline]#MS:1001525#] (precursor neutral loss)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001972[[.underline]#MS:1001972#] (PTM scoring algorithm version)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002028[[.underline]#MS:1002028#] (nucleic acid base modification)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002029[[.underline]#MS:1002029#] (original nucleic acid sequence)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002030[[.underline]#MS:1002030#] (modified nucleic acid sequence)
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001460[[.underline]#MS:1001460#] (unknown modification) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/XLMOD:00002[[.underline]#XLMOD:00002#] (cross-linker related PTM) only once
-
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002504[[.underline]#MS:1002504#] (modification index) only once
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/XLMOD:00004[[.underline]#XLMOD:00004#] (cross-linker) only once
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ModificationParams/SearchModification +
+MAY supply term [.underline]#MS:1003392# (search modification id) only once +
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002509[[.underline]#MS:1002509#] (crosslink donor) only once +
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002510[[.underline]#MS:1002510#] (crosslink acceptor) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/UNIMOD:0[[.underline]#UNIMOD:0#] (unimod root node) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001471[[.underline]#MS:1001471#] (peptide modification details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001460[[.underline]#MS:1001460#] (unknown modification) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001524[[.underline]#MS:1001524#] (fragment neutral loss) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001525[[.underline]#MS:1001525#] (precursor neutral loss) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001972[[.underline]#MS:1001972#] (PTM scoring algorithm version) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002028[[.underline]#MS:1002028#] (nucleic acid base modification) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002029[[.underline]#MS:1002029#] (original nucleic acid sequence) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002030[[.underline]#MS:1002030#] (modified nucleic acid sequence) +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001460[[.underline]#MS:1001460#] (unknown modification) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/XLMOD:00002[[.underline]#XLMOD:00002#] (cross-linker related PTM) only once +
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002504[[.underline]#MS:1002504#] (modification index) only once +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/XLMOD:00004[[.underline]#XLMOD:00004#] (cross-linker) only once +
 MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MOD:00000[[.underline]#MOD:00000#] (protein modification) only once
 
 |*Example cvParams:* a|
@@ -2998,30 +2720,18 @@ MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?i
 </SearchType>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/SearchType
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001080[MS:1001080] (search type) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001010[MS:1001010] (de novo search)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001031[MS:1001031] (spectral library search)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001081[MS:1001081] (pmf search)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001082[MS:1001082] (tag search)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001083[MS:1001083] (ms-ms search)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001584[MS:1001584] (combined pmf + ms-ms search)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002490[MS:1002490] (peptide-level scoring)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002491[MS:1002491] (modification localization scoring)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002492[MS:1002492] (consensus scoring)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002493[MS:1002493] (sample pre-fractionation)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/SearchType +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001080[MS:1001080] (search type) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001010[MS:1001010] (de novo search) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001031[MS:1001031] (spectral library search) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001081[MS:1001081] (pmf search) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001082[MS:1001082] (tag search) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001083[MS:1001083] (ms-ms search) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001584[MS:1001584] (combined pmf + ms-ms search) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002490[MS:1002490] (peptide-level scoring) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002491[MS:1002491] (modification localization scoring) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002492[MS:1002492] (consensus scoring) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002493[MS:1002493] (sample pre-fractionation) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001080[et al.]
 
 |*Example cvParams:* a|
@@ -3115,30 +2825,18 @@ There MUST only be one PeptideEvidence item per Peptide-to-DBSequence-position.
 </SoftwareName>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisSoftwareList/AnalysisSoftware/SoftwareName
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001456[MS:1001456] (analysis software) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000532[MS:1000532] (Xcalibur)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000533[MS:1000533] (Bioworks)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000534[MS:1000534] (MassLynx)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000535[MS:1000535] (FlexAnalysis)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000536[MS:1000536] (Data Explorer)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000537[MS:1000537] (4700 Explorer)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000539[MS:1000539] (Voyager Biospectrometry Workstation System)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000551[MS:1000551] (Analyst)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000600[MS:1000600] (Proteios)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000601[MS:1000601] (ProteinLynx Global Server)
-
+Path /MzIdentML/AnalysisSoftwareList/AnalysisSoftware/SoftwareName +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001456[MS:1001456] (analysis software) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000532[MS:1000532] (Xcalibur) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000533[MS:1000533] (Bioworks) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000534[MS:1000534] (MassLynx) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000535[MS:1000535] (FlexAnalysis) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000536[MS:1000536] (Data Explorer) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000537[MS:1000537] (4700 Explorer) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000539[MS:1000539] (Voyager Biospectrometry Workstation System) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000551[MS:1000551] (Analyst) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000600[MS:1000600] (Proteios) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000601[MS:1000601] (ProteinLynx Global Server) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001456[et al.]
 
 |*Example cvParams:* a|
@@ -3198,12 +2896,9 @@ For example, XML Schema or static libraries (APIs) to access binary formats.
 </SourceFile>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/Inputs/SourceFile
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000561[MS:1000561] (data file checksum type) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000568[MS:1000568] (MD5)
-
+Path /MzIdentML/DataCollection/Inputs/SourceFile +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000561[MS:1000561] (data file checksum type) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000568[MS:1000568] (MD5) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000569[MS:1000569] (SHA-1)
 
 |===
@@ -3233,20 +2928,13 @@ be provided by the attribute fixedMod.
 </SpecificityRules>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ModificationParams/SearchModification/SpecificityRules
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001056[MS:1001056] (modification specificity rule) only once
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001189[MS:1001189] (modification specificity peptide N-term)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001190[MS:1001190] (modification specificity peptide C-term)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001875[MS:1001875] (modification motif)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001876[MS:1001876] (modification probability)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002057[MS:1002057] (modification specificity protein N-term)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/ModificationParams/SearchModification/SpecificityRules +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001056[MS:1001056] (modification specificity rule) only once +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001189[MS:1001189] (modification specificity peptide N-term) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001190[MS:1001190] (modification specificity peptide C-term) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001875[MS:1001875] (modification motif) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001876[MS:1001876] (modification probability) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002057[MS:1002057] (modification specificity protein N-term) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1002058[MS:1002058] (modification specificity protein C-term)
 
 |*Example cvParams:* a|
@@ -3396,30 +3084,18 @@ If a specific sequence can be assigned to multiple proteins and or positions in 
 </SpectrumIdentificationItem>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult/SpectrumIdentificationItem
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001405[MS:1001405] (spectrum identification result details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000016[MS:1000016] (scan start time)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000796[MS:1000796] (spectrum title)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000797[MS:1000797] (peak list scans)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000798[MS:1000798] (peak list raw scans)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000903[MS:1000903] (product ion series ordinal)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000904[MS:1000904] (product ion m/z delta)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000926[MS:1000926] (product interpretation rank)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001030[MS:1001030] (number of peptide seqs compared to each spectrum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001035[MS:1001035] (date / time search performed)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001036[MS:1001036] (search time taken)
-
+Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult/SpectrumIdentificationItem +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001405[MS:1001405] (spectrum identification result details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000016[MS:1000016] (scan start time) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000796[MS:1000796] (spectrum title) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000797[MS:1000797] (peak list scans) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000798[MS:1000798] (peak list raw scans) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000903[MS:1000903] (product ion series ordinal) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000904[MS:1000904] (product ion m/z delta) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000926[MS:1000926] (product interpretation rank) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001030[MS:1001030] (number of peptide seqs compared to each spectrum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001035[MS:1001035] (date / time search performed) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001036[MS:1001036] (search time taken) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001405[et al.]
 
 |*Example cvParams:* a|
@@ -3643,30 +3319,18 @@ PeptideEvidence elements should be given for all mappings of the corresponding P
 </SpectrumIdentificationResult>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001405[MS:1001405] (spectrum identification result details) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000016[MS:1000016] (scan start time)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000796[MS:1000796] (spectrum title)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000797[MS:1000797] (peak list scans)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000798[MS:1000798] (peak list raw scans)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000903[MS:1000903] (product ion series ordinal)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000904[MS:1000904] (product ion m/z delta)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000926[MS:1000926] (product interpretation rank)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001030[MS:1001030] (number of peptide seqs compared to each spectrum)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001035[MS:1001035] (date / time search performed)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001036[MS:1001036] (search time taken)
-
+Path /MzIdentML/DataCollection/AnalysisData/SpectrumIdentificationList/SpectrumIdentificationResult +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001405[MS:1001405] (spectrum identification result details) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000016[MS:1000016] (scan start time) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000796[MS:1000796] (spectrum title) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000797[MS:1000797] (peak list scans) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000798[MS:1000798] (peak list raw scans) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000903[MS:1000903] (product ion series ordinal) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000904[MS:1000904] (product ion m/z delta) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000926[MS:1000926] (product interpretation rank) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001030[MS:1001030] (number of peptide seqs compared to each spectrum) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001035[MS:1001035] (date / time search performed) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001036[MS:1001036] (search time taken) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001405[et al.]
 
 |===
@@ -3693,38 +3357,22 @@ http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org
 </SpectrumIDFormat>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/DataCollection/Inputs/SpectraData/SpectrumIDFormat
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000767[MS:1000767] (native spectrum identifier format) only once
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000768[MS:1000768] (Thermo nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000769[MS:1000769] (Waters nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000770[MS:1000770] (WIFF nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000771[MS:1000771] (Bruker/Agilent YEP nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000772[MS:1000772] (Bruker BAF nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000773[MS:1000773] (Bruker FID nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000774[MS:1000774] (multiple peak list nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000775[MS:1000775] (single peak list nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000776[MS:1000776] (scan number only nativeID format)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000777[MS:1000777] (spectrum identifier nativeID format)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000767[et al.]
-
-MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001529[MS:1001529] (spectra data details) only once
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001530[MS:1001530] (mzML unique identifier)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001531[MS:1001531] (spectrum from ProteinScape database nativeID format)
-
+Path /MzIdentML/DataCollection/Inputs/SpectraData/SpectrumIDFormat +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000767[MS:1000767] (native spectrum identifier format) only once +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000768[MS:1000768] (Thermo nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000769[MS:1000769] (Waters nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000770[MS:1000770] (WIFF nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000771[MS:1000771] (Bruker/Agilent YEP nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000772[MS:1000772] (Bruker BAF nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000773[MS:1000773] (Bruker FID nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000774[MS:1000774] (multiple peak list nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000775[MS:1000775] (single peak list nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000776[MS:1000776] (scan number only nativeID format) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000777[MS:1000777] (spectrum identifier nativeID format) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1000767[et al.] +
+MUST supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001529[MS:1001529] (spectra data details) only once +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001530[MS:1001530] (mzML unique identifier) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001531[MS:1001531] (spectrum from ProteinScape database nativeID format) +
 e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001532[MS:1001532] (spectrum from database string nativeID format)
 
 |*Example cvParams:* a|
@@ -3804,113 +3452,61 @@ This should only be reported if the original amino acid is known i.e. it is not 
 </Threshold>
 ----
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/Threshold
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.]
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[MS:1001153] (search engine specific score) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001154[MS:1001154] (SEQUEST:probability)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001155[MS:1001155] (SEQUEST:xcorr)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001156[MS:1001156] (SEQUEST:deltacn)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001159[MS:1001159] (SEQUEST:expectation value)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001160[MS:1001160] (SEQUEST:sf)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001161[MS:1001161] (SEQUEST:matched ions)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001162[MS:1001162] (SEQUEST:total ions)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001163[MS:1001163] (SEQUEST:consensus score)
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/Threshold +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.] +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[MS:1001153] (search engine specific score) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001154[MS:1001154] (SEQUEST:probability) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001155[MS:1001155] (SEQUEST:xcorr) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001156[MS:1001156] (SEQUEST:deltacn) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001159[MS:1001159] (SEQUEST:expectation value) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001160[MS:1001160] (SEQUEST:sf) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001161[MS:1001161] (SEQUEST:matched ions) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001162[MS:1001162] (SEQUEST:total ions) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001163[MS:1001163] (SEQUEST:consensus score) +
 http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[et al.]
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001494[MS:1001494] (no threshold) only once
-
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001494[MS:1001494] (no threshold) only once +
 MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001448[MS:1001448] (pep:FDR threshold) only once
 
-Path /MzIdentML/AnalysisProtocolCollection/ProteinDetectionProtocol/Threshold
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.]
-
-MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[MS:1001153] (search engine specific score) one or more times
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001154[MS:1001154] (SEQUEST:probability)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001155[MS:1001155] (SEQUEST:xcorr)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001156[MS:1001156] (SEQUEST:deltacn)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001159[MS:1001159] (SEQUEST:expectation value)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001160[MS:1001160] (SEQUEST:sf)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001161[MS:1001161] (SEQUEST:matched ions)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001162[MS:1001162] (SEQUEST:total ions)
-
-e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001163[MS:1001163] (SEQUEST:consensus score)
-
-http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[et al.]
-
-MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001447[MS:1001447] (prot:FDR threshold) only once
-
-MAY supply a *child* term of https://www.ebi.ac.uk/ols/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1002664&lang=en&viewMode=All&siblings=false[MS:1002664] (interaction score derived from crosslinking) one or more times
-
+Path /MzIdentML/AnalysisProtocolCollection/ProteinDetectionProtocol/Threshold +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[MS:1001302] (search engine specific input parameter) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001005[MS:1001005] (SEQUEST:CleavesAt) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001007[MS:1001007] (SEQUEST:OutputLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001009[MS:1001009] (SEQUEST:DescriptionLines) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001026[MS:1001026] (SEQUEST:NormalizeXCorrValues) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001028[MS:1001028] (SEQUEST:SequenceHeaderFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001032[MS:1001032] (SEQUEST:SequencePartialFilter) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001037[MS:1001037] (SEQUEST:ShowFragmentIons) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001038[MS:1001038] (SEQUEST:Consensus) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001042[MS:1001042] (SEQUEST:LimitTo) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001046[MS:1001046] (SEQUEST:sort by dCn) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001302[et al.] +
+MAY supply a *child* term of http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[MS:1001153] (search engine specific score) one or more times +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001154[MS:1001154] (SEQUEST:probability) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001155[MS:1001155] (SEQUEST:xcorr) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001156[MS:1001156] (SEQUEST:deltacn) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001157[MS:1001157] (SEQUEST:sp) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001158[MS:1001158] (SEQUEST:Uniq) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001159[MS:1001159] (SEQUEST:expectation value) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001160[MS:1001160] (SEQUEST:sf) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001161[MS:1001161] (SEQUEST:matched ions) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001162[MS:1001162] (SEQUEST:total ions) +
+e.g.: http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001163[MS:1001163] (SEQUEST:consensus score) +
+http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001153[et al.] +
+MAY supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001447[MS:1001447] (prot:FDR threshold) only once +
+MAY supply a *child* term of https://www.ebi.ac.uk/ols/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1002664&lang=en&viewMode=All&siblings=false[MS:1002664] (interaction score derived from crosslinking) one or more times +
 MAY supply a *child* term of https://www.ebi.ac.uk/ols/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1002482&lang=en&viewMode=All&siblings=false[MS:1002482] (statistical threshold) one or more times
 
 |*Example cvParams:* a|
@@ -3951,12 +3547,9 @@ table.
 !===
 |*Example Context:* |
 |*cvParam Mapping Rules:* a|
-Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseTranslation/TranslationTable
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001410[MS:1001410] (translation start codons) only once
-
-MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001025[MS:1001025] (translation table) only once
-
+Path /MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/DatabaseTranslation/TranslationTable +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001410[MS:1001410] (translation start codons) only once +
+MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001025[MS:1001025] (translation table) only once +
 MUST supply term http://www.ebi.ac.uk/ols/beta/ontologies/ms/terms?iri=http://purl.obolibrary.org/obo/MS_1001423[MS:1001423] (translation table description) only once
 
 |===
