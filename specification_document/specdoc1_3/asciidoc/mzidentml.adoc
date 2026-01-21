@@ -4,6 +4,7 @@
 //:pygments-style: colorful
 :pygments-style: murphy
 :toc: left
+:toclevels: 3
 :doctype: book
 //only works on some backends, not HTML
 :showcomments:
@@ -143,7 +144,7 @@ There should be limited support for:
 [arabic]
 . Sequence tagging, in which short sequences defined by a _de novo_ process are used to characterize spectra.
 The final results from a sequence-tag-filtered search can be stored in mzIdentML, but the details of tag generation and filtering cannot.
-
+//todo - make that 1.3?
 The following use cases [.underline]#will not be# supported in version 1.2 of mzIdentML:
 
 [arabic]
@@ -616,17 +617,20 @@ The (re-usable) <Peptide> element has an attribute _via_ which the residue and l
 To remain backwards compatible, we recommend that the software implementing mod scoring (and export) in mzIdentML should continue to use these attributes, populating with the most likely modification position (Figure 2C).
 A new CV term (REQUIRED when MS:1002491 is present in the protocol) must be added to every <Modification> element – called “modification index” (MS:1002504), where the value serves as a unique identifier (local only to the containing <Peptide>) to be referenced from the PSM (Figure 2D).
 
-The modification scores themselves are added as CV terms to the <SpectrumIdentificationItem> element referencing the peptide (e.g. “phosphoRS score”, Figure 2E), with a value provided as a regular expression of four values in a defined order - *MOD_INDEX, SCORE*, *POSITION*, *PASS_THRESHOLD.
-MOD_INDEX is a reference to the* “modification index” *identifier provided in the referenced <Peptide> - <Modification> element.
+The modification scores themselves are added as CV terms to the <SpectrumIdentificationItem> element referencing the peptide (e.g. “phosphoRS score”, Figure 2E), with a value provided as a regular expression of four values in a defined order - MOD_INDEX, SCORE, POSITION, PASS_THRESHOLD.
+MOD_INDEX is a reference to the* “modification index” identifier provided in the referenced <Peptide> - <Modification> element.
 SCORE represents the score or statistical value (double data type) for the given position.
 POSITION is the scored modification position with respect to the peptide sequence (where position = 0 is the N-terminus, and the peptide length + 1 is used to indicate the C-terminus).
 The POSITION can include the bar symbol ‘|’, as a logical OR, if the score relates to multiple positions that can be distinguished.
 PASS_THRESHOLD holds a Boolean (true, false) value to indicate whether the modification position passes the threshold described above.*
 
-*<cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.03:2|3:true" name="modification rescored by false localization rate"/> +
-<cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.97:8|9:false" name="modification rescored by false localization rate"/>*
+[source,xml]
+----
+<cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.03:2|3:true" name="modification rescored by false localization rate"/> +
+<cvParam accession="MS:1002380" cvRef="PSI-MS" value="1:0.97:8|9:false" name="modification rescored by false localization rate"/>
+----
 
-*The mechanism described MAY be used in conjunction with peptide-level scoring, using specific CV terms for peptide-level modification re-scoring.*
+The mechanism described MAY be used in conjunction with peptide-level scoring, using specific CV terms for peptide-level modification re-scoring.
 
 image::img/mzidentml/image2.png[width=100%,align=centre]
 
