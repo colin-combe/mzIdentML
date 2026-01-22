@@ -1,4 +1,5 @@
 = mzIdentML extension for crosslinking data
+:listing-caption: Listing
 :source-highlighter: pygments
 //:pygments-style: colorful
 :pygments-style: murphy
@@ -266,8 +267,8 @@ The rules that govern their use differ in each context, the details of these rul
 
 <<overview-of-the-mzidentml-1-3-0-format-crosslinking-extension>> gives an overview of how the subsections here (<<encoding-the-results-of-crosslinking-searches>>) relate to the elements in an mzIdentML file.
 
-.Overview of the mzIdentML 1.3.0 format (crosslinking extension). Elements are labelled with the section from this document that contains guidance on how to encode them.
 [[overview-of-the-mzidentml-1-3-0-format-crosslinking-extension]]
+.Overview of the mzIdentML 1.3.0 format (crosslinking extension). Elements are labelled with the section from this document that contains guidance on how to encode them.
 image::img/crosslinking_ext/overview13.svg[width=100%,align="center"]
 
 [[spectrumidentificationprotocol-elements]]
@@ -302,8 +303,8 @@ The new CV term "FDR applied separately to self crosslinks and protein heteromer
 
 //todo - make this a figure
 [[xml-snippet-showing-crosslinking-related-cv-terms]]
-.XML snippet showing crosslinking related CV terms. If a crosslinking search has been performed, MS:1002494 *MUST* be present. If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present. The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown, see §4.4.
-[source,xml,highlight="4"]
+.XML snippet showing crosslinking related CV terms. If a crosslinking search has been performed, MS:1002494 *MUST* be present #(1)#. If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present #(2)#. The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown #(3)#, see §4.4.
+[source,xml,highlight="9, 10, 11"]
 ----
 <AnalysisProtocolCollection>
     <SpectrumIdentificationProtocol analysisSoftware_ref="ID_software" id="SearchProtocol_1">
@@ -313,13 +314,13 @@ The new CV term "FDR applied separately to self crosslinks and protein heteromer
         <AdditionalSearchParams>
             <cvParam accession="MS:1001211" cvRef="PSI-MS" name="parent mass type mono"/>
             <cvParam accession="MS:1001256" cvRef="PSI-MS" name="fragment mass type mono"/>
-            <cvParam accession="MS:1002494" cvRef="PSI-MS" name="crosslinking search"/>
-            <cvParam accession="MS:1003330" cvRef="PSI-MS" name="noncovalently associated peptides search"/>
-            <cvParam accession="MS:1003343" cvRef="PSI-MS" name="FDR applied separately to self crosslinks and protein heteromeric crosslinks" value="true"/>
+            <cvParam accession="MS:1002494" cvRef="PSI-MS" name="crosslinking search"/> <!--1-->
+            <cvParam accession="MS:1003330" cvRef="PSI-MS" name="noncovalently associated peptides search"/> <!--2-->
+            <cvParam accession="MS:1003343" cvRef="PSI-MS" name="FDR applied separately to self crosslinks and protein heteromeric crosslinks" value="true"/> <!--3-->
             <cvParam cvRef="PSI-MS" accession="MS:1001118" name="param: b ion"/>
             <cvParam cvRef="PSI-MS" accession="MS:1001262" name="param: y ion"/>
         </AdditionalSearchParams>
-...
+        ...
     </SpectrumIdentificationProtocol>
 </AnalysisProtocolCollection>
 ----
