@@ -659,7 +659,7 @@ Figure 3. The encoding for chromosomal coordinates in mzIdentML in support of pr
 [[other-supporting-materials]]
 === Other supporting materials
 
-Example files demonstrating the different uses cases have been developed and are available from the following location: https://github.com/HUPO-PSI/mzIdentML/tree/master/examples/1_2examples[https://github.com/HUPO-PSI/mzIdentML/tree/master/examples/].
+Example files demonstrating the different uses cases have been developed and are available from the following location: https://github.com/HUPO-PSI/mzIdentML/tree/master/examples[https://github.com/HUPO-PSI/mzIdentML/tree/master/examples].
 The sub-folder names indicate the features of the format being used in each example.
 
 include::model-in-xml-schema.adoc[]
@@ -932,7 +932,7 @@ As such, pairs of CV terms are now allowed in version 1.2.0 to describe both the
 
 The <SpectrumIdentificationProtocol> SHOULD contain a specification of which enzyme (if any) was applied in the search.
 The element <Enzyme> has optional sub-elements for specifying the <EnzymeName> using a CV term and the cleavage site, using a regular expression.
-Regular expressions should be encoded following the notation of Perl Compatible Regular Expressions (PCRE regex, http://www.pcre.org/[http://www.pcre.org], matching the syntax and semantics of Perl version 5).
+Regular expressions should be encoded following the notation of Perl Compatible Regular Expressions (PCRE regex, https://www.pcre.org/[https://www.pcre.org], matching the syntax and semantics of Perl version 5).
 The PSI-MS CV contains terms for the most common enzymes with pre-defined regular expressions (Table 6).
 If the enzyme used is present in the PSI-MS CV, the term MUST be encoded under <EnzymeName> unless the rule given in the CV does not match that used by the software or if the enzyme used is not present in the CV, in which case the regular expression used MUST be given in the element <SiteRegexp>.
 If the <EnzymeName> element is used, the regular expression MAY also be provided additionally.
@@ -1049,7 +1049,7 @@ These <SpectrumIdentificationList> elements can then be associated with differen
 There may not be a parent-child relationship between the scan events supporting an identification since one scan may not represent a constituent part of the other.
 To describe such a sibling relationship between scans, the ‘P’ and ‘C’ can be omitted, as is the case in Figure 6.
 
-The associated example file https://github.com/colin-combe/mzIdentML/blob/master/examples/1_3_0examples/crosslinking/multiple_spectra_per_id_1.3.0_draft.mzid[multiple_spectra_per_id_1.3.0]_draft.mzid shows a common workflow for cleavable crosslinkers which uses two levels of MS2 (one using HCD as the fragmentation mode, one using ETD as the fragmentation mode) followed by MS3 scans.
+The associated example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/multiple_spectra_per_id_1_3_0_draft.mzid[multiple_spectra_per_id_1_3_0_draft.mzid] shows a common workflow for cleavable crosslinkers which uses two levels of MS2 (one using HCD as the fragmentation mode, one using ETD as the fragmentation mode) followed by MS3 scans.
 To encode this, three distinct <SpectrumIdentificationProtocol> elements are needed: one for HCD MS2 scans, one for ETD MS2 scans, and one for MS3 scans.
 Three distinct <SpectrumIdentification> elements associate each of the <SpectrumIdentificationProtocol> elements with different <SpectrumIdentificationList> elements.
 Figure 5 shows an excerpt from this example file to illustrate the use of the new CV terms.

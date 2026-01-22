@@ -205,9 +205,9 @@ See <<scores-and-thresholds>>. Seven CV terms have been created:
 [[availability-of-documentation-and-example-files]]
 === Availability of Documentation and Example Files
 
-All documents in their most recent form are available on the PSI website (http://www.psidev.info/mzidentml[http://www.psidev.info/mzidentml]) and at the mzIdentML GitHub project (https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document[https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document]).
+All documents in their most recent form are available on the PSI website (https://www.psidev.info/mzidentml[https://www.psidev.info/mzidentml]) and at the mzIdentML GitHub project (https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document[https://github.com/HUPO-PSI/mzIdentML/tree/master/specification_document]).
 
-The example files supporting this extension document are available at https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/[https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/].
+The example files supporting this extension document are available at https://github.com/HUPO-PSI/mzIdentML/tree/master/examples/1_3examples/crosslinking[https://github.com/HUPO-PSI/mzIdentML/tree/master/examples/1_3examples/crosslinking].
 
 The example files are:
 
@@ -303,7 +303,7 @@ The new CV term "FDR applied separately to self crosslinks and protein heteromer
 //todo - make this a figure
 [[xml-snippet-showing-crosslinking-related-cv-terms]]
 .XML snippet showing crosslinking related CV terms. If a crosslinking search has been performed, MS:1002494 *MUST* be present. If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present. The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown, see §4.4.
-[source,xml,highlight=4]
+[source,xml,highlight="4"]
 ----
 <AnalysisProtocolCollection>
     <SpectrumIdentificationProtocol analysisSoftware_ref="ID_software" id="SearchProtocol_1">
@@ -464,7 +464,7 @@ To encode an internally crosslinked peptide the <Peptide> can contain one <Modif
 The same rules apply to these CV terms when encoding internally linked peptides as when encoding crosslinked peptides (Figure 5 (ii)).
 For an example of how to encode an internally linked peptide, see Figure 5(iii).
 
-The accompanying example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3_0examples/crosslinking/multiple_spectra_per_id_1.3.0_draft.mzid[[.underline]#multiple_spectra_per_id_1.3.0_draft.mzid#] illustrates a common cleavable crosslinker workflow https://paperpile.com/c/YrD2gH/osIjk[[4]].
+The accompanying example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/multiple_spectra_per_id_1_3_0_draft.mzid[[.underline]#multiple_spectra_per_id_1_3_0_draft.mzid#] illustrates a common cleavable crosslinker workflow https://paperpile.com/c/YrD2gH/osIjk[[4]].
 
 Child CV terms of “peptide modification details” (MS:1001471) can be included in <Modification> elements to provide additional information about the modification, including the new cleavable crosslinker related CV terms, see §3.2.2. This is not recommended if the <Modification> elements have "search modification id ref" (MS:1003393) CV terms to link them to a <SearchModification> element, as it would add unnecessary duplication to the file.
 
@@ -760,7 +760,7 @@ For crosslinking studies encoded in mzIdentML, the possible levels are:
 
 Unique residue-pair and protein-protein interaction level scores are described in the same section as they are encoded using the same mechanism.
 
-The example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3_0examples/crosslinking/scores_and_thresholds_1_3_0_draft.mzid[[.underline]#scores_and_thresholds_1_3_0_draft.mzid#] gives a simplified example containing two crosslinks and shows scores and thresholds applied at all four levels.
+The example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/scores_and_thresholds_1_3_0_draft.mzid[[.underline]#scores_and_thresholds_1_3_0_draft.mzid#] gives a simplified example containing two crosslinks and shows scores and thresholds applied at all four levels.
 Figures 10, 11, 14 and 15 are XML-snippets from that example file.
 
 mzIdentML allows peptide-level scores to be associated with “unique peptides” (not arbitrary groups of peptides).
@@ -1578,7 +1578,7 @@ Trimeric Crosslinker:: a crosslinker with three reactive groups.
 
 - [[[fischer2017, 6]]] Fischer L, Rappsilber J. Quirks of Error Estimation in Cross-Linking/Mass Spectrometry. Anal Chem. 2017;89: 3829.
 
-- [[[mohr2024, 7]]] Mohr JP, Caudal A, Tian R, Bruce JE. Multidimensional Cross-Linking and Real-Time Informatics for Multiprotein Interaction Studies. J Proteome Res. 2024;23. doi:]http://dx.doi.org/10.1021/acs.jproteome.3c00455[10.1021/acs.jproteome.3c00455
+- [[[mohr2024, 7]]] Mohr JP, Caudal A, Tian R, Bruce JE. Multidimensional Cross-Linking and Real-Time Informatics for Multiprotein Interaction Studies. J Proteome Res. 2024;23. doi:10.1021/acs.jproteome.3c00455
 
 [[intellectual-property-statement]]
 == Intellectual Property Statement
