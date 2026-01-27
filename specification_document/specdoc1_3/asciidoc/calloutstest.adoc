@@ -2,6 +2,7 @@
 :source-highlighter: pygments
 :pygments-style: murphy
 :listing-caption: Listing
+:xrefstyle: short
 
 This demonstrates listing captions with callouts in AsciiDoc.
 
