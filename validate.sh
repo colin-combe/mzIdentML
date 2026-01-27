@@ -1,17 +1,42 @@
 #!/bin/bash
-V_DIR="./examples/1_3examples/"
+V_DIR="./examples/"
 V_FAILED=()
 # run validation for all example files
 for i in $(find "$V_DIR" -maxdepth 3 -iname '*.mzid'); do
   echo -e "################################################################################"
   echo -e "# Starting basic validation of $i"
-  xmllint --noout --schema ./schema/mzIdentML1.3.0.xsd $i
-  if [ $? -ne 0 ];
-  then
-    echo -e "# Validation of file $i failed! Please check console output for errors!"
+
+  # Extract version from XML file's version attribute (e.g., version="1.2.0")
+  VERSION=$(grep -oP 'version="\K[0-9]+\.[0-9]+\.[0-9]+' "$i" | head -1)
+
+  # Default to 1.3.0 if not found
+  if [ -z "$VERSION" ]; then
+    VERSION="1.3.0"
+    echo "# Warning: Could not determine version from file, using default 1.3.0"
+  fi
+
+  SCHEMA="./schema/mzIdentML${VERSION}.xsd"
+
+  # Verify schema file exists
+  if [ ! -f "$SCHEMA" ]; then
+    echo "# Warning: Schema $SCHEMA not found, using default 1.3.0"
+    SCHEMA="./schema/mzIdentML1.3.0.xsd"
+  fi
+
+  # Run validation and capture output
+  echo "# Using schema: $SCHEMA"
+  ERRORS=$(xmllint --noout --schema "$SCHEMA" "$i" 2>&1)
+  RESULT=$?
+
+  if [ $RESULT -ne 0 ]; then
+    echo -e "# VALIDATION FAILED"
+    echo -e "# Errors:"
+    echo "$ERRORS" | while IFS= read -r line; do
+      echo "#   $line"
+    done
     V_FAILED+=($i)
   else
-    echo -e "# Validation of file $i was successful. Please check console output for hints for improvment!"
+    echo -e "# Validation successful"
   fi
   echo -e "################################################################################"
 done
