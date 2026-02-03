@@ -292,18 +292,17 @@ Two child elements of <SpectrumIdentificationProtocol> are covered in more detai
 
 *Path:* [.underline]#/MzIdentML/AnalysisProtocolCollection/SpectrumIdentificationProtocol/AdditionalSearchParams#
 
-If a crosslinking search has been performed then the CV term “crosslinking search” (MS:1002494) MUST be present within the <AdditionalSearchParams> subelement of every <SpectrumIdentificationProtocol> associated with that search (see <<xml-snippet-showing-crosslinking-related-cv-terms>>).
+If a crosslinking search has been performed then the CV term “crosslinking search” (MS:1002494) MUST be present within the <AdditionalSearchParams> subelement of every <SpectrumIdentificationProtocol> associated with that search (see <<xml-snippet-showing-crosslinking-related-cv-terms>> #(1)#).
 
 The ion series that were searched for SHOULD also be included here.
 
 _[.underline]#New supported use case in this extension - noncovalently associated peptides:#_ mzIdentML 1.2.1 introduces a new CV term – “noncovalently associated peptides search” (MS:1003330).
-If pairs of noncovalently associated peptides were also searched for, then the <SpectrumIdentificationProtocol> elements MUST also contain this new CV term within their <AdditionalSearchParams> subelement, see <<xml-snippet-showing-crosslinking-related-cv-terms>>.
+If pairs of noncovalently associated peptides were also searched for, then the <SpectrumIdentificationProtocol> elements MUST also contain this new CV term within their <AdditionalSearchParams> subelement, see <<xml-snippet-showing-crosslinking-related-cv-terms>> #(2)#.
 
-The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343), see §4.4, which SHOULD be present is also shown in <<xml-snippet-showing-crosslinking-related-cv-terms>>.
+The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343), see §4.4, which SHOULD be present is also shown in <<xml-snippet-showing-crosslinking-related-cv-terms>> #(3)#.
 
-//todo - make this a figure
 [[xml-snippet-showing-crosslinking-related-cv-terms]]
-.XML snippet showing crosslinking related CV terms. If a crosslinking search has been performed, MS:1002494 *MUST* be present #(1)#. If noncovalently associated peptides have also been searched for, then MS:1003330 *MUST* also be present #(2)#. The new CV term "FDR applied separately to self crosslinks and protein heteromeric crosslinks" (MS:1003343) which *SHOULD* be present is also shown #(3)#, see §4.4.
+.XML snippet showing crosslinking related CV terms in <AdditionalSearchParams> element.
 [source,xml,highlight="9, 10, 11"]
 ----
 <AnalysisProtocolCollection>
@@ -339,23 +338,23 @@ In the case of open modification searches, such a link cannot be made.
 See Section 7.12 of the main mzIdentML specification document.
 
 Each crosslinker reagent is defined by multiple <SearchModification> elements that contain either the “crosslink donor” (MS:1002509) or “crosslink acceptor” (MS:1002510) CV term.
-An example is given in Figure 4(i).
-The residue specificities of the crosslinkers used SHOULD be encoded here, examples are given in Appendix II.
+An example is given in <<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>>.
+The residue specificities of the crosslinkers used SHOULD be encoded here, examples are given in <<example-encodings-of-crosslinker-reagents-as-searchmodification-elements>>.
 
 The value slot of the crosslink donor and acceptor CV terms is interpreted as a local identifier for the <SearchModification> elements describing a single reagent.
-The rules governing the use of the crosslink donor and acceptor CV terms in <SearchModification> elements are given in Figure 4(ii).
+The rules governing the use of the crosslink donor and acceptor CV terms in <SearchModification> elements are given below  <<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>>.
 
 There may be more than two <SearchModification> elements required.
-For example, if the crosslinker reacts with the sidechains and also with the protein termini, see Appendix II for examples.
+For example, if the crosslinker reacts with the sidechains and also with the protein termini, see <<example-encodings-of-crosslinker-reagents-as-searchmodification-elements>> for examples.
 
 <SearchModification> elements can contain one or more children of the CV term “peptide modification details” (MS:1001471).
-These CV terms can encode information on neutral losses, see Figure 4(i).
+These CV terms can encode information on neutral losses, see <<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>>.
 
 _[.underline]#New supported use case in this extension - cleavable crosslinkers:#_ mzIdentML 1.3.0 adds three new CV terms relating to modifications from cleavable crosslinkers – “cleavable crosslinker stub” (MS:1003346), “Unimod derivative code” (MS:1003347) and “crosslinker cleavage characteristics” (MS:1003390).
 
 At the MS3 level, where single peptides and part of the cleaved crosslinker are identified, the crosslinker modifications SHOULD include the CV term “cleavable crosslinker stub” (MS:1003346).
 
-The crosslink stub modification MUST also have a suitably sourced CV term for the reagent (see Appendix II).
+The crosslink stub modification MUST also have a suitably sourced CV term for the reagent (see <<example-encodings-of-crosslinker-reagents-as-searchmodification-elements>>).
 Additionally, if Unimod is being used as the CV, then the CV term “Unimod derivative code” (MS:1003347) MAY be used to state which derivative of the cleaved crosslinker is identified.
 The single-letter derivative codes in Unimod are chosen arbitrarily when a linker definition is added to Unimod.
 For instance, in https://unimod.org/xlink.html[[.underline]#https://unimod.org/xlink.html#] one can find the examples "A for alkene, S for sulfenic acid, and T for thiol", and e.g. Xlink:DSS uses W for loss of water.
@@ -376,38 +375,38 @@ See Appendix II for examples.
 
 Note that the choice of which <SearchModification> is the donor and which one is the acceptor is arbitrary.
 
-*(i)*
-
-[source,xml]
+[[crosslink-donor-and-crosslink-acceptor-searchmodification-elements]]
+.XML snippet showing the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms used in <SearchModification>, shows encoding for the BS3 crosslinking reagent. It also shows a modification with a neutral loss.
+[source,xml,highlight="4,6,7,9,14,15,17,19,20,22,27,28"]
 ----
 <SpectrumIdentificationProtocol>
-...
+    ...
     <ModificationParams>
-        <SearchModification fixedMod="false" massDelta="138.06808" residues="S T Y K">
+        <SearchModification fixedMod="false" massDelta="138.06808" residues="S T Y K"><!--2-->
             <cvParam cvRef="PSI-MS" accession="MS:1003392" name="search modification id" value="BS3_donor"/>
-            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor" value="0"/>
+            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/><!--4-->
+            <cvParam cvRef="PSI-MS" accession="MS:1002509" name="crosslink donor" value="0"/><!--1-->
         </SearchModification>
-        <SearchModification fixedMod="false" massDelta="138.06808" residues=".">
+        <SearchModification fixedMod="false" massDelta="138.06808" residues="."><!--2-->
             <SpecificityRules>
                 <cvParam cvRef="PSI-MS" accession="MS:1002057" name="modification specificity protein N-term"/>
             </SpecificityRules>
             <cvParam cvRef="PSI-MS" accession="MS:1003392" name="search modification id" value="BS3_donor_n_term"/>
-            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor" value="0"/>
+            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/><!--4-->
+            <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink donor" value="0"/><!--1-->
         </SearchModification>
-        <SearchModification fixedMod="false" massDelta="0.0" residues="S T Y K">
+        <SearchModification fixedMod="false" massDelta="0.0" residues="S T Y K"><!--2-->
             <cvParam cvRef="PSI-MS" accession="MS:1003392" name="search modification id" value="BS3_acceptor"/>
-            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor" value="0"/>
+            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/><!--4-->
+            <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor" value="0"/><!--1-->
         </SearchModification>
-        <SearchModification fixedMod="false" massDelta="0.0" residues=".">
+        <SearchModification fixedMod="false" massDelta="0.0" residues="."><!--3-->
             <SpecificityRules>
                 <cvParam cvRef="PSI-MS" accession="MS:1002058" name="modification specificity protein N-term"/>
             </SpecificityRules>
             <cvParam cvRef="PSI-MS" accession="MS:1003392" name="search modification id" value="BS3_acceptor_n_term"/>
-            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor" value="0"/>
+            <cvParam cvRef="XLMOD" accession="XLMOD:02000" name="BS3"/><!--4-->
+            <cvParam cvRef="PSI-MS" accession="MS:1002510" name="crosslink acceptor" value="0"/><!--1-->
         </SearchModification>
         <SearchModification fixedMod="false" massDelta="15.994919" residues="M">
             <cvParam cvRef="PSI-MS" accession="MS:1003392" name="search modification id" value="Mox"/>
@@ -415,30 +414,22 @@ Note that the choice of which <SearchModification> is the donor and which one is
             <cvParam accession="MS:1001524" name="fragment neutral loss" cvRef="PSI-MS" value="63.998291" unitAccession="UO:0000221" unitName="dalton" unitCvRef="UO"/>
         </SearchModification>
     </ModificationParams>
-...
+    ...
 </SpectrumIdentificationProtocol>
 ----
+The rules applying to the use of the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms within <SearchModification>:
 
-*(ii)*
+* *At least two* <SearchModification> elements SHOULD be used to encode each crosslink reagent, to encode the site specificity of both the donor and acceptor termini of the reagent. (<<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>> #(1)#)
 
-* *At least two* <SearchModification> elements SHOULD be used to encode each crosslink reagent, to encode the site specificity of both the donor and acceptor termini of the reagent.
-
-* The value slot of the crosslink donor and acceptor CV terms is interpreted as a local identifier for the <SearchModification> elements describing a single reagent.
+* The value slot of the crosslink donor and acceptor CV terms is interpreted as a local identifier for the <SearchModification> elements describing a single reagent. (<<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>> #(1)#)
 
 * The choice of which reactive group is the donor and which is the acceptor is arbitrary.
 
-* The crosslink donor <SearchModification> element *MUST* have the attribute massDelta = the mass gain from the crosslink reagent.
+* The crosslink donor <SearchModification> element *MUST* have the attribute massDelta = the mass gain from the crosslink reagent. (<<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>> #(2)#)
 
-* The crosslink acceptor peptide’s <SearchModification> element *MUST* have massDelta = 0.
+* The crosslink acceptor peptide’s <SearchModification> element *MUST* have massDelta = 0. (<<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>> #(3)#)
 
-* *Both* acceptor and donor *MUST* have a suitably sourced <cvParam>.
-
-*Figure 4.* *The use of the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms in <SearchModification> elements.*
-
-*(i)* XML snippet showing the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms used in <SearchModification>, shows encoding for the BS3 crosslinking reagent.
-It also shows a modification with a neutral loss.
-
-*(ii)* The rules applying to the use of the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms within <SearchModification>.
+* *Both* acceptor and donor *MUST* have a suitably sourced <cvParam>. (<<crosslink-donor-and-crosslink-acceptor-searchmodification-elements>> #(4)#)
 
 [[encoding-crosslinked-peptides-in-the-element-sequencecollection]]
 === Encoding Crosslinked Peptides in the Element <SequenceCollection>
@@ -452,9 +443,9 @@ A word of warning about redundancy, it is not the intention of mzIdentML that ev
 However, each distinct combination of crosslinked peptides will require a new pair of <Peptide> elements in <SequenceCollection>.
 
 To represent the crosslinked peptides, mzIdentML 1.2.0 added a mechanism for linking two different <Peptide> elements together, using the CV terms “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510).
-An identical value for these terms indicates that they are grouped together, see Figure 5(i).
+An identical value for these terms indicates that they are grouped together, see <<encoding-of-crosslinked-peptides-in-sequencecollection-element>>.
 
-The rules governing the use of the crosslink donor and acceptor CV terms in <Modification> elements are given in Figure 5(ii).
+The rules governing the use of the crosslink donor and acceptor CV terms in <Modification> elements are given below <<encoding-of-crosslinked-peptides-in-sequencecollection-element>>.
 
 As of mzIdentML 1.3.0, <Modification> elements MAY contain the CV term "search modification id ref" (MS:1003393) to link a <Modification> to a <SearchModification> element.
 The value of this term is the unique id of the <SearchModification> as defined by its "search modification id" (MS:1003392) CV term.
@@ -462,57 +453,57 @@ It is recommended to use this approach for the encoding of modifications from cr
 
 _[.underline]#New supported use case in this extension - internally linked peptide:#_ An internally linked peptide has both ends of the crosslinker within it.
 To encode an internally crosslinked peptide the <Peptide> can contain one <Modification> element with the “crosslink donor” CV term and one <Modification> element with the “crosslink acceptor” CV term.
-The same rules apply to these CV terms when encoding internally linked peptides as when encoding crosslinked peptides (Figure 5 (ii)).
-For an example of how to encode an internally linked peptide, see Figure 5(iii).
+The same rules apply to these CV terms when encoding internally linked peptides as when encoding crosslinked peptides (below <<encoding-of-crosslinked-peptides-in-sequencecollection-element>>).
+For an example of how to encode an internally linked peptide, see <<encoding-internally-linked-peptide-in-sequencecollection-element>>.
 
 The accompanying example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/multiple_spectra_per_id_1_3_0_draft.mzid[[.underline]#multiple_spectra_per_id_1_3_0_draft.mzid#] illustrates a common cleavable crosslinker workflow https://paperpile.com/c/YrD2gH/osIjk[[4]].
 
-Child CV terms of “peptide modification details” (MS:1001471) can be included in <Modification> elements to provide additional information about the modification, including the new cleavable crosslinker related CV terms, see §3.2.2. This is not recommended if the <Modification> elements have "search modification id ref" (MS:1003393) CV terms to link them to a <SearchModification> element, as it would add unnecessary duplication to the file.
+Child CV terms of “peptide modification details” (MS:1001471) can be included in <Modification> elements to provide additional information about the modification, including the new cleavable crosslinker related CV terms, see <<modification-parameters>>. This is not recommended if the <Modification> elements have "search modification id ref" (MS:1003393) CV terms to link them to a <SearchModification> element, as it would add unnecessary duplication to the file.
 
 The encoding for crosslinked peptides MAY be combined with the encoding for modification localisation scoring, using the same mechanism (main mzIdentML 1.3.0 document, Section 5.2.8).
 
-*(i)*
-
-[source,xml]
+[[encoding-of-crosslinked-peptides-in-sequencecollection-element]]
+.XML snippet showing the encoding of crosslinked peptides in <SequenceCollection> element.
+[source,xml,highlight="4,6,7,12,14"]
 ----
 <SequenceCollection>
     <Peptide id="30491856_30492180_2_4_p1">
         <PeptideSequence>AAFTKQAADK</PeptideSequence>
-        <Modification monoisotopicMassDelta="138.0680796" location="5">
+        <Modification monoisotopicMassDelta="138.0680796" location="5"><!--2-->
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSS_donor"/>
-            <cvParam accession="XL:00002" cvRef="PSI-MS" name="Xlink:DSS"/>
-            <cvParam accession="MS:1002509" cvRef="PSI-MS" name="crosslink donor" value="*5448*"/>
+            <cvParam accession="XL:00002" cvRef="PSI-MS" name="Xlink:DSS"/><!--4-->
+            <cvParam accession="MS:1002509" cvRef="PSI-MS" name="crosslink donor" value="*5448*"/><!--1-->
         </Modification>
     </Peptide>
     <Peptide id="30491856_30492180_2_4_p2">
         <PeptideSequence>AMYPPKEDR</PeptideSequence>
-        <Modification monoisotopicMassDelta="0.0" location="6">
+        <Modification monoisotopicMassDelta="0.0" location="6"><!--3-->
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSS_acceptor"/>
-            <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink acceptor" value="*5448*"/>
+            <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink acceptor" value="*5448*"/><!--1-->
         </Modification>
     </Peptide>
-...
+    ...
 </SequenceCollection>
 ----
 
-*(ii)* If a pair of crosslinked peptides has been identified:
+If a pair of crosslinked peptides has been identified, the rules applying to the use of the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms within <Modification> elements are:
 
-* One peptide’s <Modification> element MUST be flagged as “crosslink donor” and one MUST be flagged as “crosslink acceptor”.
+* One peptide’s <Modification> element MUST be flagged as “crosslink donor” and one MUST be flagged as “crosslink acceptor”. (<<encoding-of-crosslinked-peptides-in-sequencecollection-element>> #(1)#)
 
-* A unique identifier linking exactly *two* <Modification> elements together *MUST* be in the value slot.
+* A unique identifier linking exactly *two* <Modification> elements together *MUST* be in the value slot. (<<encoding-of-crosslinked-peptides-in-sequencecollection-element>> #(1)#)
 (Thereby excluding the representation of trimeric crosslinkers, see §6.)
 
 * If the CV term “search modification id ref” (MS:1003393) is being used then the crosslink donor MUST be chosen to match the end marked as the donor in the corresponding <SearchModification> elements, see §3.2.2. If that CV term is not used, or if the preceding rule does not unambiguously define which end to mark as donor (e.g. because the crosslinker is symmetrical) then the export software SHOULD use the following rules to choose the crosslink donor as the: longer peptide, then higher peptide neutral mass, then alphabetical order.
 
-* The crosslink donor <Modification> element *MUST* have the attribute monoisotopicMassDelta = the mass gain from the crosslink reagent.
+* The crosslink donor <Modification> element *MUST* have the attribute monoisotopicMassDelta = the mass gain from the crosslink reagent. (<<encoding-of-crosslinked-peptides-in-sequencecollection-element>> #(2)#)
 
-* The crosslink acceptor peptide’s <Modification> element *MUST* have monoisotopicMassDelta = 0.
+* The crosslink acceptor peptide’s <Modification> element *MUST* have monoisotopicMassDelta = 0. (<<encoding-of-crosslinked-peptides-in-sequencecollection-element>> #(3)#)
 
 * The crosslink donor peptide’s <Modification> element *MUST* have a suitably sourced cvParam for the crosslink.
-The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cvParam for the reagent.
+The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cvParam for the reagent. (<<encoding-of-crosslinked-peptides-in-sequencecollection-element>> #(4)#)
 
-*(iii)*
-
+[[encoding-internally-linked-peptide-in-sequencecollection-element]]
+.XML snippet showing the encoding of an internally linked peptide.
 [source,xml]
 ----
 <SequenceCollection>
@@ -528,19 +519,13 @@ The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cv
             <cvParam accession="MS:1002510" cvRef="PSI-MS" name="crosslink acceptor" value="*100*"/>
         </Modification>
     </Peptide>
-...
+    ...
 </SequenceCollection>
 ----
 
-*Figure 5. Encoding Crosslinked Peptides in the Element <SequenceCollection>*
-
-{empty}(i) XML snippet showing the encoding of crosslinked peptides.
-
-{empty}(ii) The rules applying to the use of the “crosslink donor” (MS:1002509) and “crosslink acceptor” (MS:1002510) CV terms within <Modification> elements.
-
-{empty}(iii) XML snippet showing the encoding of an internally linked peptide.
-
-[source,xml]
+[[encoding-of-modifications-from-cleavable-crosslinkers]]
+.*XML snippet showing the encoding of modifications from cleavable crosslinkers.* The new CV terms are shown: “crosslinker stub” (MS:1003346) #(1)# and “Unimod derivative code” (MS:1003347) #(2)#. This example also uses the new CV term "search modification id ref" (MS:1003393) to reference the corresponding <SearchModification> elements.
+[source,xml,highlight="8,33,34,42,43,51,52,60,61"]
 ----
 <SequenceCollection>
     <!-- linear peptides-->
@@ -549,7 +534,7 @@ The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cv
         <Modification location="4" monoisotopicMassDelta="176.01433">
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSSO_monolink_W"/>
             <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
-            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="W" cvRef="PSI-MS"/>
+            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="W" cvRef="PSI-MS"/><!--2-->
         </Modification>
     </Peptide>
     <!-- crosslinked peptides -->
@@ -574,8 +559,8 @@ The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cv
         <Modification location="4" monoisotopicMassDelta="54.010565">
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSSO_crosslink_stub_a"/>
             <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
-            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A" cvRef="PSI-MS"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
+            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A" cvRef="PSI-MS"/><!--2-->
+            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/><!--1-->
         </Modification>
     </Peptide>
     <Peptide id="p1_t">
@@ -583,8 +568,8 @@ The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cv
         <Modification location="4" monoisotopicMassDelta="85.982635">
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSSO_crosslink_stub_t"/>
             <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
-            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T" cvRef="PSI-MS"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
+            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T" cvRef="PSI-MS"/><!--2-->
+            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/><!--1-->
         </Modification>
     </Peptide>
     <Peptide id="p2_a">
@@ -592,8 +577,8 @@ The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cv
         <Modification location="4" monoisotopicMassDelta="54.010565">
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSSO_crosslink_stub_a"/>
             <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
-            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A" cvRef="PSI-MS"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
+            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="A" cvRef="PSI-MS"/><!--2-->
+            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/><!--1-->
         </Modification>
     </Peptide>
     <Peptide id="p2_t">
@@ -601,15 +586,12 @@ The crosslink acceptor peptide’s <Modification> element *MUST* *NOT* have a cv
         <Modification location="4" monoisotopicMassDelta="85.982635">
             <cvParam cvRef="PSI-MS" accession="MS:1003393" name="search modification id ref" value="DSSO_crosslink_stub_t"/>
             <cvParam accession="UNIMOD:1842" cvRef="UNIMOD" name="Xlink:DSSO"/>
-            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T" cvRef="PSI-MS"/>
-            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/>
+            <cvParam accession="MS:1003347" name="UNIMOD derivative code" value="T" cvRef="PSI-MS"/><!--2-->
+            <cvParam cvRef="PSI-MS" accession="MS:1003346" name="cleavable crosslinker stub"/><!--1-->
         </Modification>
     </Peptide>
 </SequenceCollection>
 ----
-
-*Figure 6. XML snippet showing the encoding of modifications from cleavable crosslinkers.* The new CV terms are shown: “crosslinker stub” (MS:1003346) and “Unimod derivative code” (MS:1003347).
-This example also uses the new CV term "search modification id ref" (MS:1003393) to reference the corresponding <SearchModification> elements.
 
 [[encoding-identified-crosslinks-in-spectrumidentificationitem-elements]]
 === Encoding Identified Crosslinks in <SpectrumIdentificationItem> Elements
@@ -628,6 +610,8 @@ The rules governing the use of the “crosslink spectrum identification item” 
 
 *(i)*
 
+[[encoding-the-identification-of-a-pair-of-crosslinked-peptides]]
+.*Encoding the identification of a pair of crosslinked peptides.* (i) Example XML snippet. (ii) The rules governing the use of “crosslink spectrum identification item”.
 [source,xml]
 ----
 <SpectrumIdentificationResult spectraData_ref="SID_1" spectrumID="index=2776" id="SIR_1">
@@ -657,8 +641,6 @@ The rules governing the use of the “crosslink spectrum identification item” 
 * If the search engine applies a score to the paired identification, both <SpectrumIdentificationItem> elements MUST have the same cvParam capturing the value.
 
 * The two <SpectrumIdentificationItem> elements MAY also have independent scores for the two chains (not shown).
-
-*Figure 7.* *Encoding the identification of a pair of crosslinked peptides.* (i) Example XML snippet. (ii) The rules governing the use of “crosslink spectrum identification item”.
 
 [[identifications-of-noncovalently-associated-peptides]]
 ==== Identifications of Noncovalently Associated Peptides
