@@ -456,7 +456,7 @@ To encode an internally crosslinked peptide the <Peptide> can contain one <Modif
 The same rules apply to these CV terms when encoding internally linked peptides as when encoding crosslinked peptides (below <<encoding-of-crosslinked-peptides-in-sequencecollection-element>>).
 For an example of how to encode an internally linked peptide, see <<encoding-internally-linked-peptide-in-sequencecollection-element>>.
 
-The accompanying example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/multiple_spectra_per_id_1_3_0_draft.mzid[[.underline]#multiple_spectra_per_id_1_3_0_draft.mzid#] illustrates a common cleavable crosslinker workflow https://paperpile.com/c/YrD2gH/osIjk[[4]].
+The accompanying example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/multiple_spectra_per_id_1_3_0_draft.mzid[[.underline]#multiple_spectra_per_id_1_3_0_draft.mzid#] illustrates a common cleavable crosslinker workflow <<liu2017>>.
 
 Child CV terms of “peptide modification details” (MS:1001471) can be included in <Modification> elements to provide additional information about the modification, including the new cleavable crosslinker related CV terms, see <<modification-parameters>>. This is not recommended if the <Modification> elements have "search modification id ref" (MS:1003393) CV terms to link them to a <SearchModification> element, as it would add unnecessary duplication to the file.
 
@@ -723,7 +723,7 @@ That is, the same CV term will be used within the <Threshold> element and within
 One specific type of score is an FDR (False Discovery Rate) score.
 Comments specific to FDR are in <<fdr-specific-comments>>.
 
-There are different points in the analysis at which thresholds may be applied https://paperpile.com/c/YrD2gH/kAbLF[[5]] https://paperpile.com/c/YrD2gH/ghaA0[[6]].
+There are different points in the analysis at which thresholds may be applied <<lenz2021>> <<fischer2017>>.
 These correspond to different levels of consolidation at which analyses may be performed.
 Scores and thresholds are encoded differently in mzIdentML depending on the level of consolidation at which they were applied.
 For crosslinking studies encoded in mzIdentML, the possible levels are:
@@ -739,7 +739,7 @@ For crosslinking studies encoded in mzIdentML, the possible levels are:
 Unique residue-pair and protein-protein interaction level scores are described in the same section as they are encoded using the same mechanism.
 
 The example file https://github.com/HUPO-PSI/mzIdentML/blob/master/examples/1_3examples/crosslinking/scores_and_thresholds_1_3_0_draft.mzid[[.underline]#scores_and_thresholds_1_3_0_draft.mzid#] gives a simplified example containing two crosslinks and shows scores and thresholds applied at all four levels.
-Figures 10, 11, 14 and 15 are XML-snippets from that example file.
+<<xml-showing-thresholds-applied-at-all-four-levels-of-consolidation>>, <<xml-encoding-of-scores-for-psm-level-matches-and-peptide-pairs>>, <<xml-encoding-of-scores-for-residue-pairs-and-ppis>> and <<xml-ambiguity-at-ppi-level>> are XML-snippets from that example file.
 
 mzIdentML allows peptide-level scores to be associated with “unique peptides” (not arbitrary groups of peptides).
 There are three mutually exclusive definitions of “unique peptide”:
@@ -835,9 +835,9 @@ In this case, the new “residue-pair passes threshold" (MS:1003340) and “prot
 
 Match level scores are stored in <SpectrumIdentificationItem> elements.
 
-The CV mapping rules for <SpectrumIdentificationItem> are straightforward – there is only one, which states ‘MAY supply a child term of https://www.ebi.ac.uk/ols/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1001405[[.underline]#MS:1001405 (spectrum identification result details)#] one or more times’.
+The CV mapping rules for <SpectrumIdentificationItem> are straightforward – there is only one, which states ‘MAY supply a child term of https://www.ebi.ac.uk/ols4/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1001405[[.underline]#MS:1001405 (spectrum identification result details)#] one or more times’.
 
-CV terms to encode match level scores must therefore be children of https://www.ebi.ac.uk/ols/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1001405[[.underline]#MS:1001405#] in the CV’s “is a” hierarchy.
+CV terms to encode match level scores must therefore be children of https://www.ebi.ac.uk/ols4/ontologies/ms/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMS_1001405[[.underline]#MS:1001405#] in the CV’s “is a” hierarchy.
 
 Those which also meet the CV mapping rules for the <Threshold> element can also be used to encode the Threshold applied.
 
@@ -997,7 +997,7 @@ If no threshold is defined, then PASS_THRESHOLD is always true.
 The first “int_ID” part of the value MUST be identical/shared between interaction level scores if they refer to the same residue pair or PPI.
 
 The new CV term “Residue pair ref” (MS:1003344) SHOULD be included within <SpectrumIdentificationItem> elements to indicate that these are the spectra which supported the linking of a specific residue pair.
-The value of the new “Residue pair ref” CV term is the “_int_ID.a|b_” part of the values, see Figure 11. More than one “Residue pair ref” (MS:1003344) CV term (with different values) can be included in a single <SpectrumIdentificationItem> element if it has been taken as evidence for more than one linked residue pair.
+The value of the new “Residue pair ref” CV term is the “_int_ID.a|b_” part of the values, see <<xml-encoding-of-scores-for-psm-level-matches-and-peptide-pairs>>. More than one “Residue pair ref” (MS:1003344) CV term (with different values) can be included in a single <SpectrumIdentificationItem> element if it has been taken as evidence for more than one linked residue pair.
 
 It is not a requirement that the <SpectrumIdentificationItem> elements containing “Residue pair ref” (MS:1003344) place the linkage sites at the same position in the peptide as the residue-pair they are claiming to support.
 Hence, analyses which utilise link site reassignment can be encoded in mzIdentML.
@@ -1136,8 +1136,8 @@ CV terms exist for FDR scores at each level of consolidation:
 
 * “protein-pair-level global FDR” (MS:1002676)
 
-A new CV term “FDR applied separately to self crosslinks and protein heteromeric crosslinks” (MS:1003343) has been introduced to encode whether self crosslinks (crosslinks between peptides within one protein sequence) and protein heteromeric crosslinks (crosslinks between distinct protein sequences) were grouped separately for FDR analysis https://paperpile.com/c/YrD2gH/kAbLF[[5]].
-This CV term goes within the <AdditionalSearchParameters> element (see Figure 3).
+A new CV term “FDR applied separately to self crosslinks and protein heteromeric crosslinks” (MS:1003343) has been introduced to encode whether self crosslinks (crosslinks between peptides within one protein sequence) and protein heteromeric crosslinks (crosslinks between distinct protein sequences) were grouped separately for FDR analysis <<lenz2021>>.
+This CV term goes within the <AdditionalSearchParameters> element (see <<spectrumidentificationprotocol-elements>>).
 
 The value of “FDR applied separately to self crosslinks and protein heteromeric crosslinks” (MS:1003343) is a boolean, stating whether or not this happened.
 This CV term SHOULD be supplied.
@@ -1146,9 +1146,9 @@ If it is omitted then it is unspecified whether self and heteromeric links were 
 [[unsupported-use-cases-and-future-directions]]
 == Unsupported Use Cases and Future Directions
 
-The two unsupported crosslinking product types shown in Figure 1 are: crosslinkers with more than two reactive groups and higher order crosslinks (arbitrarily many peptides identified with many crosslinks between them).
+The two unsupported crosslinking product types shown in <<summary-of-mzidentml-support-for-crosslinking-product-types>> are: crosslinkers with more than two reactive groups and higher order crosslinks (arbitrarily many peptides identified with many crosslinks between them).
 
-Crosslinkers with more than two reactive groups https://paperpile.com/c/YrD2gH/8J3I[[7]] cannot be represented using the current model for two reasons.
+Crosslinkers with more than two reactive groups <<mohr2024>> cannot be represented using the current model for two reasons.
 First, the donor/acceptor mechanism for crosslinked Peptides in <SequenceCollection> elements (<<spectrumidentificationprotocol-elements>>) restricts the number of reactive groups to two.
 Second, there can be at most two crosslinked <SpectrumidentificationItem> elements, each of which references an identified peptide within a <SpectrumIdentificationResult> (<<encoding-of-crosslinked-peptides-in-sequencecollection-element>>).
 
