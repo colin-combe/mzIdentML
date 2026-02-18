@@ -89,10 +89,7 @@ echo "Building Docbook version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
 docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-docbook asciidoctor/docker-asciidoctor asciidoctor -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
 
 echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
-CDIR="$(pwd)"
-cd $OUTPUT_DIR
-pandoc --from docbook --to docx --output $OUTPUT_DOCX $OUTPUT_DOCBOOK
-cd $CDIR
+pandoc --from docbook --to docx --output $OUTPUT_DIR/$OUTPUT_DOCX $INPUT_DIR/output/$OUTPUT_DOCBOOK
 
 ECODE=$?
 if [ ! $ECODE -eq 0 ]; then

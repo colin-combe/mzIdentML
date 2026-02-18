@@ -32,9 +32,9 @@ Jones A.R., Eisenacher M., Mayer G., Kohlbacher O., Siepen J., Hubbard S.J., Sel
 - [DOCX Download](https://colin-combe.github.io/mzIdentML/mzidentml.docx)
 
   Crosslinking extension
-- [HTML Version](mzidentml_crosslinking.html)
-- [PDF Download](mzidentml_crosslinking.pdf)
-- [DOCX Download](mzidentml_crosslinking.docx)
+- [HTML Version](https://colin-combe.github.io/mzIdentML/crosslinking_ext.html)
+- [PDF Download](https://colin-combe.github.io/mzIdentML/crosslinking_ext.pdf)
+- [DOCX Download](https://colin-combe.github.io/mzIdentML/crosslinking_ext.docx)
 
 **Version 1.2.0 (April 2017) - Still supported:**
 
