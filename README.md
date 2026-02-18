@@ -27,9 +27,9 @@ Jones A.R., Eisenacher M., Mayer G., Kohlbacher O., Siepen J., Hubbard S.J., Sel
 - [html Version](schema_html/mzIdentML1.3.0.html  )
 
   Specification document
-- [HTML Version](mzidentml.html)
-- [PDF Download](mzidentml.pdf)
-- [DOCX Download](mzidentml.docx)
+- [HTML Version](https://colin-combe.github.io/mzIdentML/mzidentml.html)
+- [PDF Download](https://colin-combe.github.io/mzIdentML/mzidentml.pdf)
+- [DOCX Download](https://colin-combe.github.io/mzIdentML/mzidentml.docx)
 
   Crosslinking extension
 - [HTML Version](mzidentml_crosslinking.html)
