@@ -69,6 +69,21 @@ fi
 echo "Building PDF version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
 docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
 
+OUTPUT_DOCBOOK="${ADOC_FILE%.*}.xml"
+OUTPUT_DOCX="${ADOC_FILE%.*}.docx"
+
+echo "Building Docbook version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
+docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-docbook asciidoctor/docker-asciidoctor asciidoctor -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
+
+echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX"
+pandoc --from docbook --to docx --output $INPUT_DIR/output/$OUTPUT_DOCX $INPUT_DIR/output/$OUTPUT_DOCBOOK
+
+ECODE=$?
+if [ ! $ECODE -eq 0 ]; then
+  echo "Build failed with exit code $ECODE"
+  exit $ECODE
+fi
+
 mkdir -p $OUTPUT_DIR
 cp -R $INPUT_DIR/output/* $OUTPUT_DIR/
 
@@ -80,19 +95,3 @@ fi
 
 mkdir -p $OUTPUT_DIR/img
 cp -R $INPUT_DIR/img/* $OUTPUT_DIR/img/
-
-echo "Building DOCX version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
-OUTPUT_DOCBOOK="${ADOC_FILE%.*}.xml"
-OUTPUT_DOCX="${ADOC_FILE%.*}.docx"
-
-echo "Building Docbook version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
-docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-docbook asciidoctor/docker-asciidoctor asciidoctor -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
-
-echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
-pandoc --from docbook --to docx --output $OUTPUT_DIR/$OUTPUT_DOCX $INPUT_DIR/output/$OUTPUT_DOCBOOK
-
-ECODE=$?
-if [ ! $ECODE -eq 0 ]; then
-  echo "Build failed with exit code $ECODE"
-  exit $ECODE
-fi
