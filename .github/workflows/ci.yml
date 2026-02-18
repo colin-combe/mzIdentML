@@ -43,7 +43,7 @@ jobs:
       - run: cp -v -R $DOC_OUT/* output/1_3-mzidentml-release
       - run: mkdir -p output/1_3-mzidentml-release/img
       - run: cp -v -R $DOC_OUT/img/* output/1_3-mzidentml-release/img
-      - run: cp -R specification_document-releases/specdoc1_3/html/schema_html output/1_3-mzidentml-release/
+      - run: cp -R specification_document/specdoc1_3/schema_html output/1_3-mzidentml-release/
       - name: Convert README to index.html
         run: |
           cp specification_document/specdoc1_3/asciidoc/asciidoctor-default.css output/1_3-mzidentml-release/
