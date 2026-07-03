@@ -1,0 +1,4 @@
+.About
+* xref:index.adoc[About mzIdentML]
+* xref:cite.adoc[How to Cite]
+* xref:license.adoc[License]

@@ -1,0 +1,39 @@
+= Validator
+
+Beyond structural xref:index.adoc[schema validation], the mzIdentML *semantic
+validator* checks that a document uses the required controlled-vocabulary (CV)
+terms correctly, according to a CV mapping rules file.
+
+== The mzIdentML Validator
+
+The reference semantic validator (a Java GUI application) is maintained in the
+`validator/` directory of the
+https://github.com/HUPO-PSI/mzIdentML/tree/master/validator[mzIdentML repository].
+Packaged releases are published on the
+https://github.com/HUPO-PSI/mzIdentML/releases[releases page].
+
+The validator combines:
+
+* *Schema validation* against the mzIdentML XSD; and
+* *CV-mapping rules*, which assert that particular CV terms (or terms from a given
+  branch of an ontology) appear in the required places in the document.
+
+== Quick Structural Check
+
+For a fast structural check without the GUI validator, use `xmllint` directly
+against the schema:
+
+[source,bash]
+----
+xmllint --noout --schema schema/mzIdentML1.3.0.xsd your-file.mzid
+----
+
+The repository's `validate.sh` script wraps this for all example files and selects
+the schema version automatically.
+
+== Which Should I Use?
+
+* Use *schema validation* (`xmllint` / `validate.sh`) for a quick check that a file
+  is structurally valid.
+* Use the *semantic validator* before submitting to a repository or releasing a
+  producer, to confirm CV usage is correct as well.

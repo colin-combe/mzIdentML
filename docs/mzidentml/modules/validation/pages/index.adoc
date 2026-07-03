@@ -1,0 +1,34 @@
+= Validation
+
+Validating an mzIdentML file confirms that it conforms to the standard before you
+share it, submit it to a repository, or load it into another tool. There are two
+complementary levels of validation.
+
+== Schema (Structural) Validation
+
+The first level checks that a document is well-formed XML and conforms to the
+xref:developers:schema.adoc[mzIdentML XSD] — the correct elements, types, and
+structure. Any XML Schema validator can do this. The repository ships a
+`validate.sh` script that runs `xmllint` against the appropriate schema for every
+example file:
+
+[source,bash]
+----
+./validate.sh
+----
+
+It reads the `version` attribute from each `.mzid` file and validates it against
+the matching `schema/mzIdentML<version>.xsd`.
+
+== Semantic Validation
+
+Schema validation cannot check everything — for example, whether the required
+controlled-vocabulary terms are present and used correctly. The mzIdentML
+*semantic validator* applies a mapping file of CV rules on top of schema
+validation. See xref:validator.adoc[Validator] for how to obtain and run it.
+
+== In Continuous Integration
+
+The repository's CI runs schema validation over the xref:users:examples.adoc[example
+files] on every change, so regressions in the schema or examples are caught
+automatically.

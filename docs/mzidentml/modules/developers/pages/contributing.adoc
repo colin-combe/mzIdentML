@@ -1,0 +1,32 @@
+= Contributing
+
+mzIdentML is an open, community-driven HUPO-PSI standard. Proposals, corrections,
+and discussion are welcome.
+
+== Reporting Issues
+
+Use the https://github.com/HUPO-PSI/mzIdentML/issues[issue tracker] to report
+errors in the specification, schema, or documentation, or to propose changes to
+the format.
+
+== Editing the Documentation
+
+This documentation site is built with https://antora.org[Antora] from AsciiDoc
+sources in the https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository].
+
+* Narrative pages live under `docs/mzidentml/modules/<module>/pages/`.
+* The specification and crosslinking extension are authored as standalone AsciiDoc
+  documents under `specification_document/specdoc1_3/asciidoc/`. After editing them,
+  run `./gen-docs.sh` to regenerate the Antora partials that this site includes.
+* Preview your changes locally with `./build-site.sh --serve` and open
+  http://localhost:8080.
+
+Every page has an *Edit this page* link (top of the page) that points at the
+corresponding source file on GitHub.
+
+== Proposing Format Changes
+
+Substantive changes to the format follow the
+https://www.psidev.info/page/hupo-psi-standards-process[HUPO-PSI standards process].
+Open an issue to start the discussion before submitting a pull request that
+modifies the schema or specification.

@@ -1,0 +1,29 @@
+= Implementations
+
+A wide range of proteomics software reads and writes mzIdentML. The list below is
+a starting point; the HUPO-PSI website maintains a broader,
+https://www.psidev.info/tools-implementing-mzidentml[up-to-date catalogue of tools
+implementing mzIdentML].
+
+== Libraries
+
+https://github.com/PRIDE-Utilities/jmzidentml[jmzIdentML]:: The Java reference
+library for reading and writing mzIdentML, maintained by the PRIDE team.
+
+https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository]:: The schema,
+specification sources, example files, and the reference validator.
+
+== Producers and Consumers
+
+Many search engines and analysis pipelines export mzIdentML, and public
+repositories such as https://www.ebi.ac.uk/pride/[PRIDE] accept it as an
+identification-results format. See the
+https://www.psidev.info/tools-implementing-mzidentml[PSI tools list] for the
+current set of producers and consumers.
+
+[TIP]
+====
+If you have implemented mzIdentML support and would like it listed, please open an
+issue or pull request against the https://github.com/HUPO-PSI/mzIdentML[mzIdentML
+repository] — see xref:contributing.adoc[Contributing].
+====

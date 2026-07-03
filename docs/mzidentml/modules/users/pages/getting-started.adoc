@@ -1,0 +1,32 @@
+= Getting Started
+
+== Obtaining mzIdentML Files
+
+Most proteomics search engines and analysis pipelines can export mzIdentML
+directly. Consult the export or "save as" options of your search engine, or the
+https://www.psidev.info/tools-implementing-mzidentml[list of tools implementing
+mzIdentML] for producers that generate the format.
+
+You can also download ready-made xref:examples.adoc[example files] from the
+repository to explore the structure before working with your own data.
+
+== Reading and Writing Programmatically
+
+To work with mzIdentML in code, use an existing library rather than parsing the
+XML by hand:
+
+* https://github.com/PRIDE-Utilities/jmzidentml[jmzIdentML] — the Java reference
+  library for reading and writing mzIdentML.
+
+See xref:developers:implementations.adoc[Implementations] for more.
+
+== Understanding a File
+
+Once you have a file, the xref:file-format.adoc[File Format] page gives a
+high-level tour of how it is organised, and the
+xref:developers:specification.adoc[specification] provides the full detail.
+
+== Validating a File
+
+Before sharing or submitting a file, confirm it conforms to the standard — see
+xref:validation:index.adoc[Validation].

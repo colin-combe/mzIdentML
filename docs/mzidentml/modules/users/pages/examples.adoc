@@ -1,0 +1,19 @@
+= Example Files
+
+The mzIdentML repository includes a collection of example files that exercise
+different features of the format. They are a good way to see valid mzIdentML in
+practice.
+
+* Browse the examples on GitHub:
+  https://github.com/HUPO-PSI/mzIdentML/tree/master/examples[HUPO-PSI/mzIdentML/examples]
+
+These examples are also used by the reference xref:validation:validator.adoc[validator]
+and continuous-integration checks to guard against regressions in the schema and
+tooling.
+
+== Using the Examples
+
+* Open a file in any text or XML editor to inspect its structure — see
+  xref:file-format.adoc[File Format] for orientation.
+* Run a file through xref:validation:index.adoc[validation] to see the checks in action.
+* Use a file as a template when generating mzIdentML from your own tool.

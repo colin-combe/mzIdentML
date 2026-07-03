@@ -5,6 +5,20 @@
 
 A large number of different proteomics search engines are available that produce output in a variety of different formats. It is intended that **mzIdentML** will provide a common format for the export of identification results from any search engine, as well as an import format for post-processing software and public databases. 
 
+## Documentation
+
+📖 **The full mzIdentML documentation is published at [hupo-psi.github.io/mzIdentML](https://hupo-psi.github.io/mzIdentML).**
+
+The site is built with [Antora](https://antora.org) and includes:
+
+- [Specification 1.3.0](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/developers/specification.html)
+- [Crosslinking Extension](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/developers/crosslinking.html)
+- [Schema Reference](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/developers/schema.html)
+- [Getting Started (Users)](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/users/getting-started.html)
+- [Validation](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/validation/index.html)
+
+Downloadable versions of the specification documents (PDF/DOCX/XML) are linked under [Specification documents](#specification-documents) below.
+
 ## Citing mzIdentML
 When you use mzIdentML format, please cite the following publications:
 
@@ -60,5 +74,15 @@ https://github.com/HUPO-PSI/mzIdentML/tree/master/examples
 )
 
 ## Tools, Libraries, readers and exporters - see (http://www.psidev.info/tools-implementing-mzidentml)
+
+## Building the documentation
+
+The documentation site is built with [Antora](https://antora.org) from AsciiDoc sources in this repository:
+
+- Narrative pages live under `docs/mzidentml/modules/<module>/pages/`.
+- The specification and crosslinking extension are authored as standalone AsciiDoc documents under `specification_document/specdoc1_3/asciidoc/` (also built to HTML/PDF/DOCX by `build-docs.sh`). After editing them, run `./gen-docs.sh` to regenerate the Antora partials that the site includes.
+- Build and preview the site locally with `./build-site.sh --serve` (requires Docker) and open <http://localhost:8080>.
+
+On push to `master` (and on merged pull requests), the `Spec Build Workflow` builds the site and deploys it to GitHub Pages. Tagged releases additionally create a versioned `v{MAJOR}.{MINOR}` documentation branch. See `antora-playbook.yml` and `.github/workflows/`.
 
 

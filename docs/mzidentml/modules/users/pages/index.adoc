@@ -1,0 +1,26 @@
+= mzIdentML for Users
+
+This section is for people who *produce or consume* mzIdentML files — for example
+when exporting search-engine results, submitting to a repository, or loading
+identifications into an analysis tool.
+
+== What is mzIdentML?
+
+mzIdentML is a standard XML format for the results of identifying peptides and
+proteins from mass spectra. Rather than every search engine using its own output
+format, mzIdentML gives you one format that downstream tools, repositories, and
+collaborators can all read.
+
+A single mzIdentML file captures:
+
+* the *input evidence* — spectra data files and the sequence database that was searched;
+* the *search settings* — enzyme, tolerances, modifications, and scoring parameters;
+* the *results* — the peptides identified, the spectra supporting them, and how those
+  peptides map onto proteins.
+
+== Next Steps
+
+xref:getting-started.adoc[Getting Started]:: Obtain or produce your first mzIdentML file.
+xref:file-format.adoc[File Format]:: A high-level tour of how an mzIdentML document is organised.
+xref:examples.adoc[Examples]:: Ready-made example files to inspect.
+xref:validation:index.adoc[Validation]:: Check that a file conforms to the standard.

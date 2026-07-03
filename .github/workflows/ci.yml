@@ -1,5 +1,6 @@
 name: Spec Build Workflow
-# This workflow triggers on direct pushes to master or PRs
+# Builds the standalone specification documents (PDF/HTML/DOCX/XML) and the
+# Antora documentation site, then publishes the site to GitHub Pages.
 on:
   push:
     branches:
@@ -7,71 +8,124 @@ on:
   pull_request:
     branches:
       - master
+    types: [opened, synchronize, reopened, closed]
   workflow_dispatch:
   workflow_call:
+
 env:
   DOC_IN: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc"
-  # referencing $DOC_IN did not want to work, maybe there is a better way
   DOC_OUT: "${{ github.workspace }}/specification_document-releases/specdoc1_3/output"
   DOC_FILE: 'mzidentml.adoc'
+  RELEASE_DIR: '1_3-mzidentml-release'
 
 jobs:
+  # ---------------------------------------------------------------------------
+  # Build the standalone specification documents (PDF/HTML/DOCX/XML) with
+  # asciidoctor + pandoc, exactly as before. These are the downloadable release
+  # artifacts, and they are overlaid onto the published Antora site so that the
+  # existing hupo-psi.github.io/mzIdentML/*.pdf download links keep working.
+  # ---------------------------------------------------------------------------
   build-spec:
-    runs-on: '${{ matrix.os }}'
-    strategy:
-      matrix:
-        os:
-          - ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Set Build timestamp
-        run: |
-          echo "BUILD_DATE=$(date -u)" >> $GITHUB_ENV 
-      - uses: actions/checkout@v2
+        run: echo "BUILD_DATE=$(date -u)" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
       - run: sudo apt-get update -qq
       - run: sudo apt-get install -y pandoc
-      - run: mkdir -p output
       - run: 'docker pull asciidoctor/docker-asciidoctor:1'
       - name: Build spec doc outputs
-        run: |
-          ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "$DOC_FILE" -r
+        run: ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "$DOC_FILE" -r
         shell: bash
       - name: Build crosslinking extension doc
-        run: |
-          ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "crosslinking_ext.adoc" -r
+        run: ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "crosslinking_ext.adoc" -r
         shell: bash
-      - run: mkdir output/1_3-mzidentml-release
-      - run: cp -v -R $DOC_OUT/* output/1_3-mzidentml-release
-      - run: mkdir -p output/1_3-mzidentml-release/img
-      - run: cp -v -R $DOC_OUT/img/* output/1_3-mzidentml-release/img
-      - run: cp -R specification_document/specdoc1_3/schema_html output/1_3-mzidentml-release/
-      - name: Convert README to index.html
+      - name: Assemble release directory
         run: |
-          cp specification_document/specdoc1_3/asciidoc/asciidoctor-default.css output/1_3-mzidentml-release/
-          pandoc README.md -o output/1_3-mzidentml-release/index.html --standalone --css=asciidoctor-default.css --metadata title="mzIdentML"
+          mkdir -p "output/$RELEASE_DIR/img"
+          cp -v -R "$DOC_OUT"/* "output/$RELEASE_DIR/"
+          cp -v -R "$DOC_OUT"/img/* "output/$RELEASE_DIR/img/"
+          cp -R specification_document/specdoc1_3/schema_html "output/$RELEASE_DIR/"
       - name: Archive document build output
         uses: actions/upload-artifact@v4
         with:
-          name: output artefacts
-          path: |
-            output/1_3-mzidentml-release/*.pdf
-            output/1_3-mzidentml-release/*.html
-            output/1_3-mzidentml-release/*.docx
-      - name: Upload to GitHub Pages
+          name: spec-release
+          path: output/${{ env.RELEASE_DIR }}
+          retention-days: 90
+
+  # ---------------------------------------------------------------------------
+  # Build the Antora documentation site and overlay the standalone documents +
+  # generated schema HTML at the site root.
+  # ---------------------------------------------------------------------------
+  build-docs:
+    name: Build Antora documentation
+    needs: build-spec
+    # Skip in workflow_call context — release.yml has its own publish-site job.
+    # Also skip when a PR is closed without merging (no deployment value).
+    if: github.event_name != 'workflow_call' && !(github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false)
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch all remote branches
+        run: git fetch --all
+
+      - name: Create local tracking branches for existing release versions
+        run: |
+          for branch in $(git branch -r | grep 'origin/v' | sed 's|.*origin/||'); do
+            git branch "$branch" "origin/$branch" 2>/dev/null || true
+          done
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Antora and extensions
+        run: npm ci
+
+      - name: Build Antora site
+        env:
+          ANTORA_EDIT_BRANCH: master
+        run: |
+          npx antora antora-playbook.yml \
+            --attribute "commit-hash=${{ github.sha }}" \
+            --attribute "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+      - name: Download standalone specification documents
+        uses: actions/download-artifact@v4
+        with:
+          name: spec-release
+          path: spec-release
+
+      - name: Overlay standalone documents and schema HTML at site root
+        run: |
+          # Downloadable documents referenced from the site's spec/schema pages.
+          cp -v spec-release/mzidentml.* spec-release/crosslinking_ext.* build/site/ 2>/dev/null || true
+          cp -R spec-release/schema_html build/site/schema_html
+
+      - name: Upload GitHub Pages artifact
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: output/1_3-mzidentml-release
+          path: build/site/
 
-  deploy-pages:
-    needs: build-spec
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+  deploy-docs:
+    name: Deploy documentation to GitHub Pages
+    needs: build-docs
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy
         uses: actions/deploy-pages@v4

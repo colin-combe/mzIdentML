@@ -1,0 +1,11 @@
+= mzIdentML 1.3.0 Specification
+:xrefstyle: short
+:figure-caption: Figure
+
+The full mzIdentML 1.3.0 specification is reproduced below. It is generated from
+the same AsciiDoc source that produces the downloadable
+https://hupo-psi.github.io/mzIdentML/mzidentml.html[HTML],
+https://hupo-psi.github.io/mzIdentML/mzidentml.pdf[PDF] and
+https://hupo-psi.github.io/mzIdentML/mzidentml.docx[DOCX] release documents.
+
+include::partial$mzidentml.adoc[]

@@ -4,3 +4,10 @@
 /validator/trunk/target/
 .idea/
 specification_document/specdoc1_3/asciidoc/out/
+
+# Antora site build output and dependencies
+/build/
+/node_modules/
+/.npm-cache/
+/.cache/
+.DS_Store

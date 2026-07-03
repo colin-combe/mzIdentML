@@ -1,0 +1,33 @@
+= About mzIdentML
+
+== The Format
+
+mzIdentML is the community standard for reporting the identification of peptides
+and proteins from mass spectra. It was developed by the
+https://psidev.info[HUPO Proteomics Standards Initiative (PSI)] to provide a
+common export format for identification results from any search engine, and a
+common import format for post-processing software and public databases.
+
+== Versions
+
+mzIdentML 1.3.0 (June 2024) — current:: Adds essential support for crosslinking and
+other identifications based on multiple spectra. See the
+xref:developers:specification.adoc[specification] and the
+xref:developers:crosslinking.adoc[crosslinking extension].
+
+mzIdentML 1.2.0 (April 2017):: Supported advances in proteome informatics.
+
+mzIdentML 1.1.0 (June 2014):: The first widely adopted version of the format.
+
+See xref:cite.adoc[How to Cite] for the publication accompanying each version.
+
+== HUPO-PSI
+
+The https://psidev.info[Human Proteome Organization Proteomics Standards
+Initiative] develops open, community-driven data standards for proteomics and
+metabolomics. mzIdentML is one of a family of PSI formats that includes mzML,
+mzTab, mzQuantML, and others.
+
+Participation is open. See https://psidev.info[psidev.info] for the working groups
+and how to get involved, and xref:developers:contributing.adoc[Contributing] for how
+to propose changes to mzIdentML.

@@ -1,0 +1,43 @@
+= File Format
+
+An mzIdentML document is a single XML file, defined by the
+xref:developers:schema.adoc[mzIdentML XML Schema]. This page gives a high-level
+tour; for the authoritative detail see the
+xref:developers:specification.adoc[specification].
+
+== Overall Structure
+
+At the top level an mzIdentML file separates the *inputs* to an identification
+analysis from the *results*:
+
+Data collection — inputs:: The spectra data files that were searched and the
+sequence database(s) used, described once and referenced elsewhere by identifier.
+
+Analysis protocol:: The search settings — enzyme, tolerances, modifications,
+thresholds, and the scoring parameters — recorded as controlled-vocabulary terms.
+
+Analysis data — results:: The peptide identifications, the evidence linking each
+peptide to positions in protein sequences, and the spectra supporting them.
+
+Auxiliary collections:: Reusable descriptions of the software, databases, people,
+and organisations involved in the analysis.
+
+== Controlled Vocabularies
+
+Instead of fixing every score and parameter as a named XML element, mzIdentML
+references controlled-vocabulary (CV) terms — mainly from the
+https://www.ebi.ac.uk/ols4/ontologies/ms[PSI-MS ontology] — by accession. This
+keeps the format stable while allowing new scores, instruments, and methods to be
+described without changing the schema.
+
+== Identifications Based on Multiple Spectra
+
+mzIdentML 1.3 improved support for identifications that draw on more than one
+spectrum — most notably crosslinking-MS. The
+xref:developers:crosslinking.adoc[crosslinking extension] documents how these
+results are encoded.
+
+== Learn More
+
+* xref:developers:specification.adoc#model-in-xml-schema[Model in XML Schema] — the element-by-element definition.
+* xref:examples.adoc[Examples] — real files to inspect.

@@ -1,0 +1,64 @@
+= mzIdentML Documentation Hub
+:description: The official documentation for mzIdentML, the HUPO-PSI standard for reporting identifications from MS-based proteomics experiments.
+
+mzIdentML is the https://psidev.info[HUPO Proteomics Standards Initiative (PSI)]
+community standard for reporting the results of identifying peptides and proteins
+from mass spectra. It provides a single, well-defined format for exporting
+identification results from any search engine, and for importing them into
+post-processing software and public databases.
+
+== Highlights
+
+[cols="1,3",frame=none,grid=none]
+|===
+|*Search-engine neutral*
+|A common export and interchange format for identification results, independent of
+the software that produced them.
+
+|*Semantically enriched*
+|Scores, parameters, and identifiers are anchored to controlled-vocabulary terms
+from the https://www.ebi.ac.uk/ols4/ontologies/ms[PSI-MS ontology], so their meaning
+is unambiguous across tools.
+
+|*XSD-defined*
+|The xref:developers:schema.adoc[XML Schema] formally defines every element and type,
+enabling validation and automated tooling.
+
+|*Crosslinking support*
+|The xref:developers:crosslinking.adoc[crosslinking extension] describes how
+crosslinking mass-spectrometry results — identifications based on multiple spectra —
+are represented.
+
+|*Repository-ready*
+|mzIdentML is accepted by public repositories such as
+https://www.ebi.ac.uk/pride/[PRIDE] as a standard identification-results format.
+|===
+
+== Quick Links
+
+[cols="1,1,1",frame=none,grid=none]
+|===
+|xref:users:getting-started.adoc[Getting Started]
+|xref:developers:specification.adoc[Specification 1.3.0]
+|xref:validation:index.adoc[Validate a File]
+
+|xref:users:examples.adoc[Example Files]
+|xref:developers:schema.adoc[Schema Reference]
+|xref:about:cite.adoc[How to Cite]
+|===
+
+== Cite
+
+When you use mzIdentML 1.3 in your work, please cite:
+
+____
+Combe, C. W., Kolbowski, L., Fischer, L., Koskinen, V., Klein, J., Leitner, A.,
+Jones, A. R., Vizcaíno, J. A., & Rappsilber, J. (2024).
+_mzIdentML 1.3.0 — Essential progress on the support of crosslinking and other
+identifications based on multiple spectra._
+Proteomics, 24(17), e2300385.
+https://doi.org/10.1002/pmic.202300385[DOI: 10.1002/pmic.202300385] |
+https://pubmed.ncbi.nlm.nih.gov/39001627/[PubMed PMID: 39001627]
+____
+
+See xref:about:cite.adoc[How to Cite] for earlier versions.

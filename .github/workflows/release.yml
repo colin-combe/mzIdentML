@@ -4,8 +4,129 @@ on:
     types: [created]
   workflow_dispatch:
 
+# Required permissions:
+#   contents:write – push the documentation version branch (v{MAJOR}.{MINOR})
+#   pages:write    – deploy to GitHub Pages (scoped to the publish-site job)
+#   id-token:write – OIDC token for the Pages deployment
+#
+# NOTE: The GitHub Pages source must be set to "GitHub Actions" (Settings → Pages)
+# for the Antora site to be published.
+permissions:
+  contents: write
+
 jobs:
   build-spec-workflow:
     uses: HUPO-PSI/mzIdentML/.github/workflows/ci.yml@master
+
   test-examples-workflow:
     uses: HUPO-PSI/mzIdentML/.github/workflows/validate.yml@master
+
+  create-doc-branch:
+    name: Create documentation version branch
+    runs-on: ubuntu-latest
+    outputs:
+      doc_branch: ${{ steps.branch.outputs.doc_branch }}
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Derive documentation branch name
+        id: branch
+        run: |
+          # github.ref_name is the tag name, e.g. "v1.3.0"
+          TAG="${{ github.ref_name }}"
+          # Strip leading 'v' and the patch segment → "1.3"
+          MAJOR_MINOR="$(echo "${TAG#v}" | cut -d. -f1,2)"
+          DOC_BRANCH="v${MAJOR_MINOR}"
+          echo "doc_branch=${DOC_BRANCH}" >> "${GITHUB_OUTPUT}"
+          echo "Creating documentation branch: ${DOC_BRANCH} from tag ${TAG}"
+
+      - name: Create and push documentation version branch
+        run: |
+          DOC_BRANCH="${{ steps.branch.outputs.doc_branch }}"
+          TAG="${{ github.ref_name }}"
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+          # Create the branch from the tagged commit (already checked out)
+          git checkout -b "${DOC_BRANCH}"
+
+          # Remove the prerelease marker so Antora treats this branch as the
+          # stable published version (e.g. "1.3" instead of "1.3-dev").
+          sed -i '/^prerelease:/d' docs/mzidentml/antora.yml
+
+          git add docs/mzidentml/antora.yml
+          git commit -m "release: mark ${TAG} as stable Antora documentation version"
+
+          git push origin "${DOC_BRANCH}"
+          echo "Pushed documentation branch: ${DOC_BRANCH}"
+
+  publish-site:
+    name: Build and publish Antora site
+    needs: [build-spec-workflow, create-doc-branch]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch all remote branches (including the new doc branch)
+        run: git fetch --all
+
+      - name: Check out doc branch locally so Antora can resolve it
+        run: |
+          DOC_BRANCH="${{ needs.create-doc-branch.outputs.doc_branch }}"
+          # Make the remote branch available as a local branch so Antora's
+          # "url: ." source can see it via the 'v*' glob in antora-playbook.yml.
+          git checkout -b "${DOC_BRANCH}" "origin/${DOC_BRANCH}"
+          # Return to the release commit (HEAD) for the build
+          git checkout -
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Antora and extensions
+        run: npm ci
+
+      - name: Build Antora site
+        env:
+          ANTORA_EDIT_BRANCH: master
+        run: |
+          npx antora antora-playbook.yml \
+            --attribute "commit-hash=${{ github.sha }}" \
+            --attribute "build-date=${{ github.event.release.created_at }}" \
+            --attribute "document-version=${{ github.ref_name }}"
+
+      - name: Download standalone specification documents
+        uses: actions/download-artifact@v4
+        with:
+          name: spec-release
+          path: spec-release
+
+      - name: Overlay standalone documents and schema HTML at site root
+        run: |
+          cp -v spec-release/mzidentml.* spec-release/crosslinking_ext.* build/site/ 2>/dev/null || true
+          cp -R spec-release/schema_html build/site/schema_html
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/site/
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

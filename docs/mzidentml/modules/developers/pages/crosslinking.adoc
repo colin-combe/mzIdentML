@@ -1,0 +1,12 @@
+= mzIdentML Crosslinking Extension 1.0.0
+:xrefstyle: short
+:figure-caption: Figure
+
+This extension is an _addendum_ to mzIdentML version 1.3.0, describing how
+crosslinking mass spectrometry (crosslinking-MS) results are encoded in mzIdentML.
+It is also available as downloadable
+https://hupo-psi.github.io/mzIdentML/crosslinking_ext.html[HTML],
+https://hupo-psi.github.io/mzIdentML/crosslinking_ext.pdf[PDF] and
+https://hupo-psi.github.io/mzIdentML/crosslinking_ext.docx[DOCX] documents.
+
+include::partial$crosslinking_ext.adoc[]

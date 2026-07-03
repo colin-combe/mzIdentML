@@ -1,0 +1,43 @@
+site:
+  title: mzIdentML
+  url: https://hupo-psi.github.io/mzIdentML
+  start_page: mzidentml::index.adoc
+  keys:
+    site_home_url: https://hupo-psi.github.io/mzIdentML
+    site_home_label: mzIdentML Home
+    header_doc_title: mzIdentML Specification
+    github_profile_url: https://github.com/HUPO-PSI/mzIdentML
+
+content:
+  sources:
+    - url: .
+      # HEAD picks up the current branch (e.g. main / antora during local dev).
+      # 'v*' automatically includes all release documentation branches (v1.3, v1.4, …)
+      # created by the release workflow.  If no v* branches exist yet the glob is
+      # silently ignored by Antora, so this is safe before the first release.
+      branches: [HEAD, 'v*']
+      # worktrees: . lets Antora read uncommitted changes during local preview.
+      # In CI the working tree matches HEAD, so this is harmless there too.
+      worktrees: .
+      start_path: docs/mzidentml
+      edit_url: 'https://github.com/HUPO-PSI/mzIdentML/edit/{refname}/{path}'
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./docs/supplemental-ui
+
+asciidoc:
+  attributes:
+    commit-hash: 'see git log'
+    build-date: 'see CI build'
+    document-version: '1.3.0'
+
+antora:
+  extensions:
+    - require: '@antora/lunr-extension'
+      index_latest_only: true
+
+output:
+  dir: ./build/site
