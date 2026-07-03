@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Set Build timestamp
         run: echo "BUILD_DATE=$(date -u)" >> $GITHUB_ENV
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: sudo apt-get update -qq
       - run: sudo apt-get install -y pandoc
       - run: 'docker pull asciidoctor/docker-asciidoctor:1'
@@ -46,7 +46,7 @@ jobs:
           cp -v -R "$DOC_OUT"/img/* "output/$RELEASE_DIR/img/"
           cp -R specification_document/specdoc1_3/schema_html "output/$RELEASE_DIR/"
       - name: Archive document build output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: spec-release
           path: output/${{ env.RELEASE_DIR }}
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -78,7 +78,7 @@ jobs:
           done
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: lts/*
           cache: npm
@@ -95,7 +95,7 @@ jobs:
             --attribute "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Download standalone specification documents
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: spec-release
           path: spec-release
@@ -107,7 +107,7 @@ jobs:
           cp -R spec-release/schema_html build/site/schema_html
 
       - name: Upload GitHub Pages artifact
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/site/
@@ -115,7 +115,7 @@ jobs:
   deploy-docs:
     name: Deploy documentation to GitHub Pages
     needs: build-docs
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       pages: write

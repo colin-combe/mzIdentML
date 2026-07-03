@@ -28,7 +28,7 @@ jobs:
       doc_branch: ${{ steps.branch.outputs.doc_branch }}
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -77,7 +77,7 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -94,7 +94,7 @@ jobs:
           git checkout -
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: lts/*
           cache: npm
@@ -112,7 +112,7 @@ jobs:
             --attribute "document-version=${{ github.ref_name }}"
 
       - name: Download standalone specification documents
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: spec-release
           path: spec-release
