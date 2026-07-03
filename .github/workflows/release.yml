@@ -112,7 +112,7 @@ jobs:
             --attribute "document-version=${{ github.ref_name }}"
 
       - name: Download standalone specification documents
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: spec-release
           path: spec-release

@@ -46,7 +46,7 @@ jobs:
           cp -v -R "$DOC_OUT"/img/* "output/$RELEASE_DIR/img/"
           cp -R specification_document/specdoc1_3/schema_html "output/$RELEASE_DIR/"
       - name: Archive document build output
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: spec-release
           path: output/${{ env.RELEASE_DIR }}
@@ -95,7 +95,7 @@ jobs:
             --attribute "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Download standalone specification documents
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
           name: spec-release
           path: spec-release
