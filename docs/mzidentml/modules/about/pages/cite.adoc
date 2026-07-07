@@ -1,7 +1,6 @@
 = How to Cite
 
-When you use the mzIdentML format, please cite the publication for the version you
-use.
+When you use the mzIdentML format please cite the following publications.
 
 == mzIdentML 1.3
 

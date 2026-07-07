@@ -2,7 +2,6 @@ name: Spec Doc Release Workflow
 on:
   release:
     types: [created]
-  workflow_dispatch:
 
 # Required permissions:
 #   contents:write – push the documentation version branch (v{MAJOR}.{MINOR})
@@ -16,29 +15,31 @@ permissions:
 
 jobs:
   build-spec-workflow:
-    uses: HUPO-PSI/mzIdentML/.github/workflows/ci.yml@master
+    uses: HUPO-PSI/mzIdentML/.github/workflows/ci.yml@main
 
   test-examples-workflow:
-    uses: HUPO-PSI/mzIdentML/.github/workflows/validate.yml@master
+    uses: HUPO-PSI/mzIdentML/.github/workflows/validate.yml@main
 
   create-doc-branch:
     name: Create documentation version branch
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       doc_branch: ${{ steps.branch.outputs.doc_branch }}
+
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Use a PAT or the default GITHUB_TOKEN with contents:write
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Derive documentation branch name
         id: branch
         run: |
-          # github.ref_name is the tag name, e.g. "v1.3.0"
+          # github.ref_name is the tag name, e.g. "v2.1.0"
           TAG="${{ github.ref_name }}"
-          # Strip leading 'v' and the patch segment → "1.3"
+          # Strip leading 'v' and the patch segment → "2.1"
           MAJOR_MINOR="$(echo "${TAG#v}" | cut -d. -f1,2)"
           DOC_BRANCH="v${MAJOR_MINOR}"
           echo "doc_branch=${DOC_BRANCH}" >> "${GITHUB_OUTPUT}"
@@ -68,16 +69,17 @@ jobs:
   publish-site:
     name: Build and publish Antora site
     needs: [build-spec-workflow, create-doc-branch]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
+
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -94,7 +96,7 @@ jobs:
           git checkout -
 
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: npm
@@ -104,7 +106,7 @@ jobs:
 
       - name: Build Antora site
         env:
-          ANTORA_EDIT_BRANCH: master
+          ANTORA_EDIT_BRANCH: main
         run: |
           npx antora antora-playbook.yml \
             --attribute "commit-hash=${{ github.sha }}" \

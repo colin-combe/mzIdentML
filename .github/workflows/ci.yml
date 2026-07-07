@@ -4,11 +4,11 @@ name: Spec Build Workflow
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
-  workflow_dispatch:
+      - main
+    types: [opened, synchronize, reopened, closed]
   workflow_call:
 
 env:
@@ -25,31 +25,52 @@ jobs:
   # existing hupo-psi.github.io/mzIdentML/*.pdf download links keep working.
   # ---------------------------------------------------------------------------
   build-spec:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    
     steps:
-      - name: Set Build timestamp
-        run: echo "BUILD_DATE=$(date -u)" >> $GITHUB_ENV
-      - uses: actions/checkout@v5
-      - run: sudo apt-get update -qq
-      - run: sudo apt-get install -y pandoc
-      - run: 'docker pull asciidoctor/docker-asciidoctor:1'
-      - name: Build spec doc outputs
-        run: ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "$DOC_FILE" -r
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set build timestamp
+        run: echo "BUILD_DATE=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_ENV
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc
+      
+      - name: Pull Asciidoctor Docker image
+        run: docker pull asciidoctor/docker-asciidoctor:1
+      
+      - name: Build specification documents
+        run: |
+          ./build-docs.sh \
+            -i "$DOC_IN" \
+            -o "$DOC_OUT" \
+            -c "$GITHUB_SHA" \
+            -d "$BUILD_DATE" \
+            -f "$DOC_FILE"
         shell: bash
+
       - name: Build crosslinking extension doc
         run: ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "crosslinking_ext.adoc" -r
         shell: bash
-      - name: Assemble release directory
+
+      - name: Prepare output directory
         run: |
-          mkdir -p "output/$RELEASE_DIR/img"
-          cp -v -R "$DOC_OUT"/* "output/$RELEASE_DIR/"
-          cp -v -R "$DOC_OUT"/img/* "output/$RELEASE_DIR/img/"
-          cp -R specification_document/specdoc1_3/schema_html "output/$RELEASE_DIR/"
-      - name: Archive document build output
-        uses: actions/upload-artifact@v7
+          mkdir -p output/$RELEASE_DIR/img
+          cp -v -R $DOC_OUT/* output/$RELEASE_DIR/
+          cp -v -R $DOC_OUT/img/* output/$RELEASE_DIR/img/
+          cp -v -R docs/* output/
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: spec-release
-          path: output/${{ env.RELEASE_DIR }}
+          name: specification-documents
+          path: |
+            output/${{ env.RELEASE_DIR }}/*.pdf
+            output/${{ env.RELEASE_DIR }}/*.html
+            output/${{ env.RELEASE_DIR }}/*.docx
           retention-days: 90
 
   # ---------------------------------------------------------------------------
@@ -60,11 +81,13 @@ jobs:
     name: Build Antora documentation
     needs: build-spec
     # Skip in workflow_call context — release.yml has its own publish-site job.
-    if: github.event_name != 'workflow_call'
-    runs-on: ubuntu-22.04
+    # Also skip when a PR is closed without merging (no deployment value).
+    if: github.event_name != 'workflow_call' && !(github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false)
+    runs-on: ubuntu-24.04
+
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -78,7 +101,7 @@ jobs:
           done
 
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: npm
@@ -88,7 +111,7 @@ jobs:
 
       - name: Build Antora site
         env:
-          ANTORA_EDIT_BRANCH: master
+          ANTORA_EDIT_BRANCH: main
         run: |
           npx antora antora-playbook.yml \
             --attribute "commit-hash=${{ github.sha }}" \
@@ -107,7 +130,7 @@ jobs:
           cp -R spec-release/schema_html build/site/schema_html
 
       - name: Upload GitHub Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/site/
@@ -115,14 +138,15 @@ jobs:
   deploy-docs:
     name: Deploy documentation to GitHub Pages
     needs: build-docs
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-24.04
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
+
     steps:
       - name: Deploy to GitHub Pages
         id: deploy

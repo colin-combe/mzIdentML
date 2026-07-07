@@ -49,7 +49,9 @@ https://www.ebi.ac.uk/pride/[PRIDE] as a standard identification-results format.
 
 == Cite
 
-When you use mzIdentML 1.3 in your work, please cite:
+When you use the mzIdentML format please cite the following publications:
+
+*mzIdentML 1.3*
 
 ____
 Combe, C. W., Kolbowski, L., Fischer, L., Koskinen, V., Klein, J., Leitner, A.,
@@ -61,4 +63,28 @@ https://doi.org/10.1002/pmic.202300385[DOI: 10.1002/pmic.202300385] |
 https://pubmed.ncbi.nlm.nih.gov/39001627/[PubMed PMID: 39001627]
 ____
 
-See xref:about:cite.adoc[How to Cite] for earlier versions.
+*mzIdentML 1.2*
+
+____
+Vizcaíno, J. A., Mayer, G., Perkins, S. R., Barsnes, H., Vaudel, M., Perez-Riverol, Y.,
+Ternent, T., Uszkoreit, J., Eisenacher, M., Fischer, L., Rappsilber, J., Netz, E.,
+Walzer, M., Kohlbacher, O., Leitner, A., Chalkley, R. J., Ghali, F.,
+Martinez-Bartolomé, S., Deutsch, E. W., & Jones, A. R. (2017).
+_The mzIdentML data standard version 1.2, supporting advances in proteome informatics._
+Molecular & Cellular Proteomics, 16(7), 1275–1285.
+https://doi.org/10.1074/mcp.M117.068429[DOI: 10.1074/mcp.M117.068429]
+____
+
+*mzIdentML 1.1*
+
+____
+Jones, A. R., Eisenacher, M., Mayer, G., Kohlbacher, O., Siepen, J., Hubbard, S. J.,
+Selley, J. N., Searle, B. C., Shofstahl, J., Seymour, S. L., Julian, R., Binz, P.-A.,
+Deutsch, E. W., Hermjakob, H., Reisinger, F., Griss, J., Vizcaíno, J. A., Chambers, M.,
+Pizarro, A., & Creasy, D. (2012).
+_The mzIdentML data standard for mass spectrometry-based proteomics results._
+Molecular & Cellular Proteomics, 11(7), M111.014381.
+https://doi.org/10.1074/mcp.M111.014381[DOI: 10.1074/mcp.M111.014381]
+____
+
+See xref:about:cite.adoc[How to Cite] for full citation details.

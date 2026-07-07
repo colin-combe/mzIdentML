@@ -102,6 +102,41 @@ if [ "${DO_XL}" = true ]; then
   CHANGED+=("${XL_PARTIAL}")
 fi
 
+# --- Changes document ---------------------------------------------------------
+if [ "${DO_CHANGES}" = true ]; then
+  echo "==> Generating v2.0→v2.1 element comparison document..."
+  echo "    Old spec: ${CHANGES_OLD}"
+  echo "    New spec: ${CHANGES_NEW}"
+  echo "    Output:   ${CHANGES_OUT}"
+
+  if ! command -v python3 &>/dev/null; then
+    echo "ERROR: python3 is required but not found on PATH." >&2
+    exit 1
+  fi
+
+  if [ ! -f "${CHANGES_OLD}" ]; then
+    echo "ERROR: old spec not found: ${CHANGES_OLD}" >&2
+    exit 1
+  fi
+  if [ ! -f "${CHANGES_NEW}" ]; then
+    echo "ERROR: new spec not found: ${CHANGES_NEW}" >&2
+    exit 1
+  fi
+
+  python3 "${CHANGES_PY}" \
+    --old "${CHANGES_OLD}" \
+    --new "${CHANGES_NEW}" \
+    --out "${CHANGES_OUT}"
+
+  # Strip the standalone document header so the file is usable as an
+  # Antora include:: partial (same treatment as the schema and spec partials).
+  awk '/^== /{found=1} found{print}' "${CHANGES_OUT}" > "${CHANGES_PARTIAL}"
+  echo "    Antora partial: ${CHANGES_PARTIAL}"
+
+  echo "    Done."
+  CHANGED+=("${CHANGES_OUT}" "${CHANGES_PARTIAL}")
+fi
+
 echo ""
 echo "==> Complete. Stage and commit the updated files:"
 for f in "${CHANGED[@]}"; do
