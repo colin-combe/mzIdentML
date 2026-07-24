@@ -1,9 +1,9 @@
 = mzIdentML Documentation Hub
 :description: The official documentation for mzIdentML, the HUPO-PSI standard for reporting identifications from MS-based proteomics experiments.
 
-mzIdentML is the https://psidev.info[HUPO Proteomics Standards Initiative (PSI)]
+mzIdentML is a https://psidev.info[HUPO Proteomics Standards Initiative (PSI)]
 community standard for reporting the results of identifying peptides and proteins
-from mass spectra. It provides a single, well-defined format for exporting
+from mass spectra. It provides a single, well-defined XML format for exporting
 identification results from any search engine, and for importing them into
 post-processing software and public databases.
 
@@ -18,7 +18,10 @@ the software that produced them.
 |*Semantically enriched*
 |Scores, parameters, and identifiers are anchored to controlled-vocabulary terms
 from the https://www.ebi.ac.uk/ols4/ontologies/ms[PSI-MS ontology], so their meaning
-is unambiguous across tools.
+is unambiguous across tools. Modifications are described using the
+https://www.unimod.org/[Unimod] and
+https://www.ebi.ac.uk/ols4/ontologies/xlmod[XLMOD] controlled vocabularies — see the
+xref:developers:specification.adoc[specification] for details.
 
 |*XSD-defined*
 |The xref:developers:schema.adoc[XML Schema] formally defines every element and type,
@@ -30,8 +33,8 @@ crosslinking mass-spectrometry results — identifications based on multiple spe
 are represented.
 
 |*Repository-ready*
-|mzIdentML is accepted by public repositories such as
-https://www.ebi.ac.uk/pride/[PRIDE] as a standard identification-results format.
+|mzIdentML is a PSI open standard format and as such receives Complete Submission status at
+https://www.ebi.ac.uk/pride/markdownpage/submitdatapage[PRIDE].
 |===
 
 == Quick Links
