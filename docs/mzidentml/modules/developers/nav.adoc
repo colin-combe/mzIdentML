@@ -3,5 +3,6 @@
 * xref:specification.adoc[Specification 1.3.0]
 * xref:crosslinking.adoc[Crosslinking Extension]
 * xref:schema.adoc[Schema Reference]
+* xref:changes.adoc[1.3.0 → 1.3.x Changes]
 * xref:implementations.adoc[Implementations]
 * xref:contributing.adoc[Contributing]

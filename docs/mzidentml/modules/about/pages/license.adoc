@@ -1,20 +1,3 @@
 = License
 
-mzIdentML is an open HUPO-PSI community standard. The specification, XML schema,
-example files, and documentation are published in the
-https://github.com/HUPO-PSI/mzIdentML[HUPO-PSI/mzIdentML repository], where they are
-freely available for implementation and reuse.
-
-== Reference Validator
-
-The mzIdentML validator and its dependencies are distributed via the
-https://github.com/HUPO-PSI/mzIdentML/releases[mzIdentML releases] and the
-`validator/` directory of the repository. Refer to the licensing information bundled
-with each component for its specific terms.
-
-[NOTE]
-====
-Formal license terms for the mzIdentML specification and schema are governed by the
-HUPO-PSI. Consult the https://github.com/HUPO-PSI/mzIdentML[repository] and
-https://psidev.info[psidev.info] for authoritative licensing details.
-====
+missing license?

@@ -7,7 +7,7 @@ post-processing tools, repositories, and libraries.
 
 xref:specification.adoc[Specification 1.3.0]:: The complete, authoritative format specification.
 xref:crosslinking.adoc[Crosslinking Extension]:: The addendum describing how crosslinking-MS results are encoded.
-xref:schema.adoc[Schema Reference]:: The XSD schema and generated schema documentation.
+xref:schema.adoc[Schema Reference]:: The XSD schema and schema documentation.
 xref:implementations.adoc[Implementations]:: Existing readers, writers, and libraries you can build on.
 xref:contributing.adoc[Contributing]:: How to propose changes to the format and its documentation.
 

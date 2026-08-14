@@ -41,7 +41,7 @@ while getopts "$OPTS" opt; do
     r)
       RM_DOCKER="--rm"
       echo "RM_DOCKER='$RM_DOCKER'" >&2
-      docker rm asciidoc-to-html asciidoc-to-pdf asciidoc-to-docbook
+      docker rm asciidoc-to-html asciidoc-to-pdf asciidoc-to-docx-html
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -69,27 +69,38 @@ fi
 echo "Building PDF version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
 docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -d book --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
 
+#cp -R $INPUT_DIR/output/* $OUTPUT_DIR/
+
 ECODE=$?
 if [ ! $ECODE -eq 0 ]; then
   echo "Build failed with exit code $ECODE"
   exit $ECODE
 fi
 
-echo "Building DOCX version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
-OUTPUT_DOCBOOK="${ADOC_FILE%.*}.xml"
-OUTPUT_DOCX="${ADOC_FILE%.*}.docx"
-
-echo "Building Docbook version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
-docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-docbook asciidoctor/docker-asciidoctor asciidoctor -d book --backend docbook --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output $ADOC_FILE
-
 mkdir -p $OUTPUT_DIR/img
-cp -R $INPUT_DIR/output/* $OUTPUT_DIR/
 cp -R $INPUT_DIR/img/* $OUTPUT_DIR/img/
 
-echo "Running pandoc to convert from $OUTPUT_DOCBOOK to $OUTPUT_DOCX in $OUTPUT_DIR"
+echo "Building DOCX version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
+OUTPUT_DOCX_HTML="${ADOC_FILE%.*}-forDocx.html"
+OUTPUT_DOCX="${ADOC_FILE%.*}.docx"
+
+# The DOCX is converted from HTML rather than DocBook.  pandoc's DocBook reader
+# ignores <imagedata> contentwidth/contentdepth, so every sized image is scaled
+# to the full text width -- which wrecks tables containing small inline images.
+# Its HTML reader honours the img width/height attributes.
+#   -a toc! / -a nofooter  keep the site TOC and "Last updated" footer out of
+#                          the document body (this HTML is not published).
+#   --shift-heading-level-by=-1  compensates for the HTML title being <h1> and
+#                          top-level sections <h2>, so Word heading levels match.
+echo "Building intermediate HTML version of $INPUT_DIR/$ADOC_FILE in $OUTPUT_DIR"
+docker run $RM_DOCKER -u $USER_GROUP -v $INPUT_DIR:/documents/ --name asciidoc-to-docx-html asciidoctor/docker-asciidoctor asciidoctor -d book -a toc! -a nofooter --attribute="commit-hash=$COMMIT_HASH" --attribute="build-date=$BUILD_DATE" -D /documents/output -o $OUTPUT_DOCX_HTML $ADOC_FILE
+
+echo "Running pandoc to convert from $OUTPUT_DOCX_HTML to $OUTPUT_DOCX in $OUTPUT_DIR"
 CDIR="$(pwd)"
 cd $OUTPUT_DIR
-pandoc --from docbook --to docx --output $OUTPUT_DOCX $OUTPUT_DOCBOOK
+pandoc --from html --to docx --shift-heading-level-by=-1 --output $OUTPUT_DOCX $OUTPUT_DOCX_HTML
+# Remove the intermediate: it would otherwise match the *.html release glob.
+rm -f $OUTPUT_DOCX_HTML
 cd $CDIR
 
 ECODE=$?

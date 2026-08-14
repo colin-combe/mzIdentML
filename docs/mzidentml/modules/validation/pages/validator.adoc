@@ -29,11 +29,13 @@ xmllint --noout --schema schema/mzIdentML1.3.0.xsd your-file.mzid
 ----
 
 The repository's `validate.sh` script wraps this for all example files and selects
-the schema version automatically.
+the schema version automatically. It also runs the semantic validator on each file
+when it can find the validator's command line jar; see
+xref:index.adoc[Validation] for how it is located and configured.
 
 == Which Should I Use?
 
-* Use *schema validation* (`xmllint` / `validate.sh`) for a quick check that a file
-  is structurally valid.
+* Use *schema validation* (`xmllint` / `validate.sh --schema-only`) for a quick
+  check that a file is structurally valid.
 * Use the *semantic validator* before submitting to a repository or releasing a
   producer, to confirm CV usage is correct as well.

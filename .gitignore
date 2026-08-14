@@ -4,6 +4,7 @@
 /validator/trunk/target/
 .idea/
 specification_document/specdoc1_3/asciidoc/out/
+specification_document/specdoc1_3/asciidoc/output/
 
 # Antora site build output and dependencies
 /build/
@@ -11,3 +12,6 @@ specification_document/specdoc1_3/asciidoc/out/
 /.npm-cache/
 /.cache/
 .DS_Store
+
+# Python bytecode from compare_adoc_specs.py
+__pycache__/

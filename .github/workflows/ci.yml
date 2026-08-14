@@ -1,5 +1,5 @@
 name: Spec Build Workflow
-# Builds the standalone specification documents (PDF/HTML/DOCX/XML) and the
+# Builds the standalone specification documents (PDF/HTML/DOCX) and the
 # Antora documentation site, then publishes the site to GitHub Pages.
 on:
   push:
@@ -13,7 +13,7 @@ on:
 
 env:
   DOC_IN: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc"
-  DOC_OUT: "${{ github.workspace }}/specification_document-releases/specdoc1_3/output"
+  DOC_OUT: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc/output"
   DOC_FILE: 'mzidentml.adoc'
   RELEASE_DIR: '1_3-mzidentml-release'
 
@@ -35,9 +35,12 @@ jobs:
         run: echo "BUILD_DATE=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_ENV
       
       - name: Install dependencies
+        # librsvg2-bin provides rsvg-convert, which pandoc shells out to when
+        # rasterising SVG figures for DOCX output.  Without it the SVG is
+        # embedded with no PNG fallback and renders blank outside recent Word.
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y pandoc
+          sudo apt-get install -y pandoc librsvg2-bin
       
       - name: Pull Asciidoctor Docker image
         run: docker pull asciidoctor/docker-asciidoctor:1
@@ -49,7 +52,8 @@ jobs:
             -o "$DOC_OUT" \
             -c "$GITHUB_SHA" \
             -d "$BUILD_DATE" \
-            -f "$DOC_FILE"
+            -f "$DOC_FILE" \
+            -r
         shell: bash
 
       - name: Build crosslinking extension doc
@@ -109,6 +113,14 @@ jobs:
       - name: Install Antora and extensions
         run: npm ci
 
+      - name: Regenerate documentation partials and changes documents
+        # antora-playbook.yml sets 'worktrees: .', so the current branch is read
+        # from the working tree.  Regenerating here means the published site
+        # always matches the specification sources, even if the committed
+        # partials or changes documents were not refreshed before commit.
+        run: ./gen-docs.sh
+        shell: bash
+
       - name: Build Antora site
         env:
           ANTORA_EDIT_BRANCH: main
@@ -118,16 +130,16 @@ jobs:
             --attribute "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
       - name: Download standalone specification documents
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v4
         with:
-          name: spec-release
+          name: specification-documents
           path: spec-release
 
-      - name: Overlay standalone documents and schema HTML at site root
+      - name: Overlay standalone documents at site root
         run: |
-          # Downloadable documents referenced from the site's spec/schema pages.
-          cp -v spec-release/mzidentml.* spec-release/crosslinking_ext.* build/site/ 2>/dev/null || true
-          cp -R spec-release/schema_html build/site/schema_html
+          # Downloadable documents referenced from README.md and the site's
+          # spec/crosslinking pages (mzidentml.{html,pdf,docx,xml}, etc).
+          cp -v spec-release/mzidentml.* spec-release/crosslinking_ext.* build/site/
 
       - name: Upload GitHub Pages artifact
         if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)

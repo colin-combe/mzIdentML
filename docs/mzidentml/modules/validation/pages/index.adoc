@@ -27,8 +27,21 @@ controlled-vocabulary terms are present and used correctly. The mzIdentML
 *semantic validator* applies a mapping file of CV rules on top of schema
 validation. See xref:validator.adoc[Validator] for how to obtain and run it.
 
+`validate.sh` runs it as a second step for every file that passes schema
+validation, provided it can find the validator's command line jar — by default
+the newest `*-cmd.jar` under `../mzidentml-validator/bin` or
+`../mzidentml-validator/target`, otherwise the one named by
+`MZID_VALIDATOR_JAR`. Without such a jar (or with `--schema-only`) the script
+prints a notice and does the schema validation alone.
+
+Semantic messages are reported but do not fail the run, since some of them come
+from rule definitions rather than from the files; pass `--strict` to have them
+set a non-zero exit code as well. Run `./validate.sh --help` for the remaining
+options, and pass a path to validate a single file or directory.
+
 == In Continuous Integration
 
 The repository's CI runs schema validation over the xref:users:examples.adoc[example
 files] on every change, so regressions in the schema or examples are caught
-automatically.
+automatically. It does not install the semantic validator, so that step is
+skipped there.

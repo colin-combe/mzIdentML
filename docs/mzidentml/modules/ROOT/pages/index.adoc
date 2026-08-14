@@ -2,7 +2,7 @@
 :description: The official documentation for mzIdentML, the HUPO-PSI standard for reporting identifications from MS-based proteomics experiments.
 
 mzIdentML is a https://psidev.info[HUPO Proteomics Standards Initiative (PSI)]
-community standard for reporting the results of identifying peptides and proteins
+community standard for reporting identifications of peptides and proteins
 from mass spectra. It provides a single, well-defined XML format for exporting
 identification results from any search engine, and for importing them into
 post-processing software and public databases.
@@ -15,22 +15,21 @@ post-processing software and public databases.
 |A common export and interchange format for identification results, independent of
 the software that produced them.
 
+|*XSD-defined*
+|The xref:developers:schema.adoc[XML Schema] formally defines every element and type,
+enabling validation and automated tooling.
+
 |*Semantically enriched*
 |Scores, parameters, and identifiers are anchored to controlled-vocabulary terms
 from the https://www.ebi.ac.uk/ols4/ontologies/ms[PSI-MS ontology], so their meaning
 is unambiguous across tools. Modifications are described using the
 https://www.unimod.org/[Unimod] and
-https://www.ebi.ac.uk/ols4/ontologies/xlmod[XLMOD] controlled vocabularies — see the
-xref:developers:specification.adoc[specification] for details.
-
-|*XSD-defined*
-|The xref:developers:schema.adoc[XML Schema] formally defines every element and type,
-enabling validation and automated tooling.
+https://www.ebi.ac.uk/ols4/ontologies/xlmod[XLMOD] controlled vocabularies. See
+xref:developers:specification.adoc#the-psi-mass-spectrometry-controlled-vocabulary-cv[specification Section 4.1] and xref:developers:crosslinking.adoc#controlled-vocabularies-for-encoding-crosslinks[crosslinking extension Section 2].
 
 |*Crosslinking support*
 |The xref:developers:crosslinking.adoc[crosslinking extension] describes how
-crosslinking mass-spectrometry results — identifications based on multiple spectra —
-are represented.
+crosslinking mass spectrometry results are represented.
 
 |*Repository-ready*
 |mzIdentML is a PSI open standard format and as such receives Complete Submission status at

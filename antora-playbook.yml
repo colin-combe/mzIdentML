@@ -39,5 +39,12 @@ antora:
     - require: '@antora/lunr-extension'
       index_latest_only: true
 
+# Fail the build on error-level messages rather than publishing a broken page.
+# Without this a missing include (e.g. an absent partial on a v* release branch)
+# is only logged, and the affected page is published empty with a green build.
+runtime:
+  log:
+    failure_level: error
+
 output:
   dir: ./build/site

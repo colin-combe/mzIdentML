@@ -13,21 +13,20 @@ The schema lives in the `schema/` directory of the repository:
 The schema imports the shared PSI object model, so identifications reuse the same
 controlled-vocabulary (CV) and structural conventions as other HUPO-PSI formats.
 
-== Generated Schema Documentation
+== Schema Documentation
 
-A human-readable, hyperlinked reference generated directly from the XSD is
-published alongside this site:
-
-* link:../../../schema_html/mzIdentML1.3.0.html[mzIdentML 1.3.0 schema documentation (HTML)]
-
-The same content is embedded in the xref:specification.adoc#model-in-xml-schema[Model in XML Schema]
-section of the specification.
+A human-readable walkthrough of the schema is embedded in the
+xref:specification.adoc#model-in-xml-schema[Model in XML Schema] section of the
+specification.
 
 [NOTE]
 ====
-The schema documentation is generated from `schema/mzIdentML1.3.0.xsd`. When the
-schema changes, regenerate the specification partials with `./gen-docs.sh` so the
-embedded "Model in XML Schema" section stays in sync.
+That section is maintained as AsciiDoc at
+`specification_document/specdoc1_3/asciidoc/model-in-xml-schema.adoc`. Its element
+definitions originate from the `xsd:documentation` annotations in
+`schema/mzIdentML1.3.0.xsd`, but no tool in this repository regenerates it — when the
+schema changes, the AsciiDoc must be updated by hand. `./gen-docs.sh` only copies the
+file into the Antora partials directory.
 ====
 
 == Controlled Vocabularies

@@ -156,9 +156,7 @@ Terms that need to be qualified with units are denoted by having a â€œhas_unitsâ
 // todo - are these mapping files maintained?
 The details of which terms are allowed or required in a given schema section is reported in the mapping file (<<validation-of-controlled-vocabulary-terms>>).
 
-// todo - sourceforge mailing lists?
-As recommended by the PSI CV guidelines, psi-ms.obo should be dynamically maintained _via_ the psidev-ms-vocab@lists.sourceforge.net mailing list that allows any user to request new terms, in agreement with the community involved.
-Once a consensus is reached among the community the new terms are added within a few business days.
+The PSI-MS CV is maintained by the PSI Mass Spectrometry Working Group via issues and pull requests at the GitHub repository https://github.com/HUPO-PSI/psi-ms-CV.
 
 In general, modifications SHOULD be sourced from Unimod (http://www.unimod.org/obo/unimod.obo) where possible.
 For encoding crosslinking results, the XLMOD-CV SHOULD be used (https://raw.githubusercontent.com/HUPO-PSI/mzIdentML/master/cv/XLMOD.obo), unless suitable terms can be obtained from Unimod at a later date.
