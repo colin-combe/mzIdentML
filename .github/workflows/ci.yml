@@ -19,6 +19,44 @@ env:
 
 jobs:
   # ---------------------------------------------------------------------------
+  # Fail if the committed Antora partials differ from what gen-docs.sh produces
+  # from the specification sources, i.e. a partial was edited by hand or a
+  # source was edited without regenerating.  The partials must be committed
+  # because Antora reads the v* release branches straight from git, where
+  # gen-docs.sh never runs.
+  #
+  # Only --spec and --crosslinking are checked for now: the --changes documents
+  # need frozen 1.3.0 / 1.0.0 baseline files that are not in the repo yet.  Once
+  # they are, replace the two runs below with a plain ./gen-docs.sh.
+  # ---------------------------------------------------------------------------
+  check-partials:
+    name: Check generated partials are up to date
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Regenerate partials
+        run: |
+          ./gen-docs.sh --spec
+          ./gen-docs.sh --crosslinking
+        shell: bash
+
+      - name: Compare with committed partials
+        run: |
+          partials=docs/mzidentml/modules/developers/partials
+          if [ -n "$(git status --porcelain -- "$partials")" ]; then
+            echo "::error::Generated partials are out of date with the specification sources."
+            echo "Edit the sources under specification_document/specdoc1_3/asciidoc/, run ./gen-docs.sh and commit the result."
+            git status --short -- "$partials"
+            git diff -- "$partials"
+            exit 1
+          fi
+          echo "Partials are up to date."
+        shell: bash
+
+  # ---------------------------------------------------------------------------
   # Build the standalone specification documents (PDF/HTML/DOCX/XML) with
   # asciidoctor + pandoc, exactly as before. These are the downloadable release
   # artifacts, and they are overlaid onto the published Antora site so that the
@@ -113,12 +151,16 @@ jobs:
       - name: Install Antora and extensions
         run: npm ci
 
-      - name: Regenerate documentation partials and changes documents
+      - name: Regenerate documentation partials
         # antora-playbook.yml sets 'worktrees: .', so the current branch is read
         # from the working tree.  Regenerating here means the published site
         # always matches the specification sources, even if the committed
         # partials or changes documents were not refreshed before commit.
-        run: ./gen-docs.sh
+        # The --changes documents are skipped until the frozen 1.3.0 / 1.0.0
+        # baseline files are committed; then go back to a plain ./gen-docs.sh.
+        run: |
+          ./gen-docs.sh --spec
+          ./gen-docs.sh --crosslinking
         shell: bash
 
       - name: Build Antora site

@@ -104,11 +104,15 @@ jobs:
       - name: Install Antora and extensions
         run: npm ci
 
-      - name: Regenerate documentation partials and changes documents
+      - name: Regenerate documentation partials
         # See the equivalent step in ci.yml: 'worktrees: .' means the current
         # branch is read from the working tree, so this keeps the published
         # site in step with the specification sources.
-        run: ./gen-docs.sh
+        # The --changes documents are skipped until the frozen 1.3.0 / 1.0.0
+        # baseline files are committed; then go back to a plain ./gen-docs.sh.
+        run: |
+          ./gen-docs.sh --spec
+          ./gen-docs.sh --crosslinking
         shell: bash
 
       - name: Build Antora site
