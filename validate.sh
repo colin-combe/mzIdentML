@@ -1,25 +1,28 @@
 #!/bin/bash
 #
-# Validates the example files: first against the XML schema with xmllint, then - if the
-# mzidentml-validator command line jar can be found - semantically against the CV mapping
-# and object rules of the version each file declares.
+# Validates the example files: first against the XML schema with xmllint, then semantically
+# against the CV mapping and object rules of the version each file declares, using the
+# command line jar of the latest mzidentml-validator release from
+# https://github.com/HUPO-PSI/mzidentml-validator (downloaded once and cached).
 #
 # Usage: ./validate.sh [options] [path ...]
 #
 #   path            file or directory to validate; defaults to ./examples
-#   --strict        let semantic messages fail the run too (they are report-only by default)
+#   --report-only   report semantic messages without failing the run (they fail it by default)
 #   --schema-only   skip the semantic validation
 #   -h, --help      show this help
 #
 # Environment:
-#   MZID_VALIDATOR_JAR        the mzidentml-validator *-cmd.jar to use; by default the newest
-#                             one in ../mzidentml-validator/bin and ../mzidentml-validator/target
-#   MZID_SEMANTIC_STRICT      same as --strict when set to 1
+#   MZID_VALIDATOR_JAR        a local mzidentml-validator *-cmd.jar to use instead of a release
+#   MZID_VALIDATOR_VERSION    release tag to download (default latest)
+#   MZID_VALIDATOR_CACHE      where downloaded jars are kept (default ./.cache/mzidentml-validator)
+#   MZID_SEMANTIC_STRICT      set to 0 for the same as --report-only
 #   MZID_SEMANTIC_LEVEL       lowest message level to report (default ERROR)
 #   MZID_SEMANTIC_TIMEOUT     seconds a single file may take (default 1800)
 #   MZID_VALIDATOR_JAVA_OPTS  options passed to java (default -Xmx4g)
+#   GITHUB_TOKEN              optional, used for the GitHub API call to avoid rate limits
 #
-# Exit codes: 0 ok, 2 setup error, 3 schema validation failed, 4 semantic messages under --strict.
+# Exit codes: 0 ok, 2 setup error, 3 schema validation failed, 4 semantic validation failed.
 #
 set -uo pipefail
 
@@ -39,17 +42,20 @@ SEM_ERRORED=()
 
 SEMANTIC_REQUESTED=1
 SEMANTIC_ENABLED=0
-SEMANTIC_STRICT="${MZID_SEMANTIC_STRICT:-0}"
+SEMANTIC_STRICT="${MZID_SEMANTIC_STRICT:-1}"
 SEMANTIC_LEVEL="${MZID_SEMANTIC_LEVEL:-ERROR}"
 SEMANTIC_TIMEOUT="${MZID_SEMANTIC_TIMEOUT:-1800}"
 JAVA_OPTS="${MZID_VALIDATOR_JAVA_OPTS:--Xmx4g}"
 VALIDATOR_JAR=""
+VALIDATOR_REPO="HUPO-PSI/mzidentml-validator"
+VALIDATOR_VERSION="${MZID_VALIDATOR_VERSION:-latest}"
+VALIDATOR_CACHE="${MZID_VALIDATOR_CACHE:-./.cache/mzidentml-validator}"
 
 # The versions the mzidentml-validator has rule files for; anything else gets schema checks only.
 SEMANTIC_VERSIONS=" 1.1.0 1.1.1 1.2.0 1.3.0 "
 
 usage() {
-  sed -n '3,22p' "${BASH_SOURCE[0]}" | sed 's/^#\{1,2\} \{0,1\}//'
+  sed -n '3,25p' "${BASH_SOURCE[0]}" | sed 's/^#\{1,2\} \{0,1\}//'
 }
 
 # Prefix each line of stdin so error output stays inside the "#" banner style.
@@ -59,18 +65,73 @@ indent() {
   done
 }
 
-# Newest *-cmd.jar of the sibling validator checkout, or nothing if there is none.
+# Downloads the *-cmd.jar of the requested validator release into the cache (unless it is
+# there already) and prints its path. Progress and problems go to stderr.
+fetch_release_jar() {
+  local api json tag url dest
+  local auth=()
+  [ -n "${GITHUB_TOKEN:-}" ] && auth=(-H "Authorization: Bearer $GITHUB_TOKEN")
+
+  if ! command -v curl >/dev/null 2>&1; then
+    echo "# curl not found, cannot download the validator" >&2
+    return 1
+  fi
+
+  if [ "$VALIDATOR_VERSION" = "latest" ]; then
+    api="https://api.github.com/repos/$VALIDATOR_REPO/releases/latest"
+  else
+    api="https://api.github.com/repos/$VALIDATOR_REPO/releases/tags/$VALIDATOR_VERSION"
+  fi
+
+  if ! json=$(curl -fsSL ${auth[@]+"${auth[@]}"} -H "Accept: application/vnd.github+json" "$api" 2>&1); then
+    echo "# could not query $api: $json" >&2
+    return 1
+  fi
+
+  tag=$(sed -n 's/^ *"tag_name": *"\([^"]*\)".*/\1/p' <<<"$json" | head -1)
+  url=$(grep -o '"browser_download_url": *"[^"]*-cmd\.jar"' <<<"$json" | sed 's/.*: *"\(.*\)"/\1/' | head -1)
+  if [ -z "$tag" ] || [ -z "$url" ]; then
+    echo "# release $VALIDATOR_VERSION of $VALIDATOR_REPO has no *-cmd.jar asset" >&2
+    return 1
+  fi
+
+  mkdir -p "$VALIDATOR_CACHE" || return 1
+  dest="$VALIDATOR_CACHE/$(basename "$url")"
+  if [ ! -s "$dest" ]; then
+    echo "# Downloading mzidentml-validator $tag from $url" >&2
+    if ! curl -fsSL -o "$dest.part" "$url" || ! unzip -tq "$dest.part" >/dev/null 2>&1; then
+      echo "# download of $url failed" >&2
+      rm -f "$dest.part"
+      return 1
+    fi
+    mv "$dest.part" "$dest"
+  fi
+  echo "$dest"
+}
+
+# The jar to validate with: MZID_VALIDATOR_JAR if given, else the requested release, else -
+# when the download is not possible (e.g. offline) - the newest jar already in the cache.
 find_validator_jar() {
   if [ -n "${MZID_VALIDATOR_JAR:-}" ]; then
     if [ -f "$MZID_VALIDATOR_JAR" ]; then
       echo "$MZID_VALIDATOR_JAR"
+    else
+      echo "# MZID_VALIDATOR_JAR=$MZID_VALIDATOR_JAR does not exist" >&2
     fi
     return
   fi
 
   local jar
-  jar=$(ls -t ../mzidentml-validator/bin/*-cmd.jar ../mzidentml-validator/target/*-cmd.jar 2>/dev/null | head -1)
-  [ -n "$jar" ] && echo "$jar"
+  if jar=$(fetch_release_jar); then
+    echo "$jar"
+    return
+  fi
+
+  jar=$(ls -t "$VALIDATOR_CACHE"/*-cmd.jar 2>/dev/null | head -1)
+  if [ -n "$jar" ]; then
+    echo "# WARNING: falling back to the cached $jar, which may not be the latest release" >&2
+    echo "$jar"
+  fi
 }
 
 TARGETS=()
@@ -80,7 +141,11 @@ while [ $# -gt 0 ]; do
       usage
       exit 0
       ;;
+    --report-only)
+      SEMANTIC_STRICT=0
+      ;;
     --strict)
+      # The old opt-in flag; strict is the default now.
       SEMANTIC_STRICT=1
       ;;
     --schema-only)
@@ -138,19 +203,25 @@ if [ ${#V_FILES[@]} -eq 0 ]; then
   exit 2
 fi
 
-# Semantic validation is a bonus: without java or a validator jar (as on CI) the schema
-# validation still runs and still decides the exit code.
+# In strict mode (the default) not being able to run the semantic validation is an error,
+# so that CI cannot pass by silently skipping it. With --report-only it is just skipped.
+semantic_unavailable() {
+  echo "################################################################################"
+  if [ "$SEMANTIC_STRICT" = "1" ]; then
+    echo "# ERROR: cannot run the semantic validation: $1"
+    echo "#   install it, or use --schema-only / --report-only to do without"
+    echo "################################################################################"
+    exit 2
+  fi
+  echo "# Skipping semantic validation: $1"
+  echo "################################################################################"
+}
+
 if [ "$SEMANTIC_REQUESTED" -eq 1 ]; then
-  VALIDATOR_JAR=$(find_validator_jar)
   if ! command -v java >/dev/null 2>&1; then
-    echo "################################################################################"
-    echo "# Skipping semantic validation: java not found"
-    echo "################################################################################"
-  elif [ -z "$VALIDATOR_JAR" ]; then
-    echo "################################################################################"
-    echo "# Skipping semantic validation: no mzidentml-validator *-cmd.jar found"
-    echo "#   looked in ../mzidentml-validator/{bin,target}; set MZID_VALIDATOR_JAR to point at one"
-    echo "################################################################################"
+    semantic_unavailable "java (11 or later) not found"
+  elif ! VALIDATOR_JAR=$(find_validator_jar) || [ -z "$VALIDATOR_JAR" ]; then
+    semantic_unavailable "no mzidentml-validator *-cmd.jar (set MZID_VALIDATOR_JAR to use a local one)"
   else
     SEMANTIC_ENABLED=1
     echo "################################################################################"
@@ -307,7 +378,7 @@ if [ "$SEMANTIC_ENABLED" -eq 1 ]; then
     if [ "$SEMANTIC_STRICT" = "1" ]; then
       [ "$EXIT_CODE" -eq 0 ] && EXIT_CODE=4
     else
-      echo "# (report-only - re-run with --strict to let these fail the build)"
+      echo "# (report-only - drop --report-only to let these fail the run)"
     fi
   fi
   echo -e "################################################################################"

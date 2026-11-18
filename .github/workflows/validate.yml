@@ -1,16 +1,24 @@
 name: Example File Validation Workflow
-# This workflow triggers on direct pushes to master or PRs affecting changes in the specified subdirectory
+# Validates every example file against its XML schema and - with the latest release of
+# https://github.com/HUPO-PSI/mzidentml-validator - semantically. Any failure fails the run.
+# Triggers on direct pushes to master or PRs that touch the examples or what checks them.
 on:
   push:
     branches:
       - master
     paths:
-      - 'examples/**/**'
+      - 'examples/**'
+      - 'schema/**'
+      - 'validate.sh'
+      - '.github/workflows/validate.yml'
   pull_request:
     branches:
       - master
     paths:
-      - 'examples/**/**'
+      - 'examples/**'
+      - 'schema/**'
+      - 'validate.sh'
+      - '.github/workflows/validate.yml'
   workflow_dispatch:
   workflow_call:
 jobs:
@@ -24,6 +32,15 @@ jobs:
       - uses: actions/checkout@v5
       - name: Install xmllint
         run: sudo apt-get update -qq && sudo apt-get install -y libxml2-utils
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
       - name: Validate Examples
+        # Strict by default: schema errors, semantic messages, or not being able to run the
+        # semantic validator at all make this step fail.
         run: ./validate.sh
         shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
