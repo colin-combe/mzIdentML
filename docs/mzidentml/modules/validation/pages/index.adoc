@@ -1,47 +1,104 @@
 = Validation
 
 Validating an mzIdentML file confirms that it conforms to the standard before you
-share it, submit it to a repository, or load it into another tool. There are two
-complementary levels of validation.
+share it, submit it to a repository, or load it into another tool. Validation is
+done in two steps:
 
-== Schema (Structural) Validation
+. *Schema validation* checks that the file is well-formed XML and matches the
+  mzIdentML XML schema (XSD). Any XML schema validator can do this; the examples
+  below use `xmllint`.
+. *Semantic validation* checks what the schema cannot: that the required
+  controlled-vocabulary (CV) terms are present and correctly used, and that the
+  contents are consistent. This needs the mzIdentML semantic validator,
+  https://github.com/HUPO-PSI/mzidentml-validator[mzidentml-validator].
 
-The first level checks that a document is well-formed XML and conforms to the
-xref:developers:schema.adoc[mzIdentML XSD] — the correct elements, types, and
-structure. Any XML Schema validator can do this. The repository ships a
-`validate.sh` script that runs `xmllint` against the appropriate schema for every
-example file:
+Run schema validation first. A file that is not schema-valid will not pass
+semantic validation either, and the XSD errors are easier to act on.
+
+== Step 1: Schema Validation with xmllint
+
+`xmllint` is part of libxml2 and is available on most systems (on Debian and
+Ubuntu, install the `libxml2-utils` package).
+
+=== Get the Schema
+
+Each version of mzIdentML has its own schema. They are in the
+https://github.com/HUPO-PSI/mzIdentML/tree/master/schema[`schema/` directory] of
+the mzIdentML repository, named `mzIdentML<version>.xsd`, e.g.
+`mzIdentML1.3.0.xsd`. See xref:developers:schema.adoc[Schema] for more about
+the schema itself.
+
+Use the schema for the version the file declares in the `version` attribute of
+its root `MzIdentML` element. To read it:
 
 [source,bash]
 ----
-./validate.sh
+xmllint --xpath 'string(/*/@version)' your-file.mzid
 ----
 
-It reads the `version` attribute from each `.mzid` file and validates it against
-the matching `schema/mzIdentML<version>.xsd`.
+=== Validate
 
-== Semantic Validation
+[source,bash]
+----
+xmllint --noout --schema mzIdentML1.3.0.xsd your-file.mzid
+----
 
-Schema validation cannot check everything — for example, whether the required
-controlled-vocabulary terms are present and used correctly. The mzIdentML
-*semantic validator* applies a mapping file of CV rules on top of schema
-validation. See xref:validator.adoc[Validator] for how to obtain and run it.
+`xmllint` prints `your-file.mzid validates` and exits with 0 if the file is
+valid. Otherwise it lists each error with its line number and exits with a
+non-zero code.
 
-`validate.sh` runs it as a second step for every file that passes schema
-validation, provided it can find the validator's command line jar — by default
-the newest `*-cmd.jar` under `../mzidentml-validator/bin` or
-`../mzidentml-validator/target`, otherwise the one named by
-`MZID_VALIDATOR_JAR`. Without such a jar (or with `--schema-only`) the script
-prints a notice and does the schema validation alone.
+Pass `--schema` explicitly even though mzIdentML files name their schema in
+`xsi:schemaLocation`: `xmllint` does not follow that hint.
 
-Semantic messages are reported but do not fail the run, since some of them come
-from rule definitions rather than from the files; pass `--strict` to have them
-set a non-zero exit code as well. Run `./validate.sh --help` for the remaining
-options, and pass a path to validate a single file or directory.
+Most builds of `xmllint` read gzipped files (`.mzid.gz`) directly. If yours does
+not, decompress the file on the fly:
 
-== In Continuous Integration
+[source,bash]
+----
+gzip -cd your-file.mzid.gz | xmllint --noout --schema mzIdentML1.3.0.xsd -
+----
 
-The repository's CI runs schema validation over the xref:users:examples.adoc[example
-files] on every change, so regressions in the schema or examples are caught
-automatically. It does not install the semantic validator, so that step is
-skipped there.
+== Step 2: Semantic Validation with mzidentml-validator
+
+The semantic validator is developed at
+https://github.com/HUPO-PSI/mzidentml-validator[HUPO-PSI/mzidentml-validator].
+It checks a file against the CV mapping rules and coded object rules for its
+version, and it repeats the schema validation as part of this. It supports
+mzIdentML 1.1.0, 1.1.1, 1.2.0 and 1.3.0; there are no semantic rules for 1.0.0.
+
+=== Get the Validator
+
+Download the command line jar, `mzidentml-validator-<version>-cmd.jar`, from the
+latest release on the
+https://github.com/HUPO-PSI/mzidentml-validator/releases/latest[releases page].
+It needs Java 11 or later. Everything else it needs is bundled in the jar,
+including the rules and a copy of the ontologies.
+
+=== Validate
+
+[source,bash]
+----
+java -jar mzidentml-validator-<version>-cmd.jar -e -f your-file.mzid -l ERROR
+----
+
+* `-e` runs the full validation: schema, CV mapping rules and object rules.
+* `-f` names the file to validate. The validator picks the rules for the version
+  the file declares.
+* `-l` sets the lowest message level to report, e.g. `WARN` to see warnings as
+  well.
+
+The validator lists the messages it found and exits with 0 if there were none,
+1 if there were messages, and 2 if it could not validate the file at all. For
+large files, give Java more memory, e.g. `java -Xmx4g -jar ...`.
+
+There is also a desktop application, `mzidentml-validator-<version>-gui.jar`, in
+the same release. See xref:validator.adoc[Validator] for more about the validator
+and its options.
+
+== Reporting Problems
+
+If you think the validator reports a problem wrongly, or a rule is missing,
+please open an issue on the
+https://github.com/HUPO-PSI/mzidentml-validator/issues[mzidentml-validator issue
+tracker]. Report problems with the schema or the specification on the
+https://github.com/HUPO-PSI/mzIdentML/issues[mzIdentML issue tracker].

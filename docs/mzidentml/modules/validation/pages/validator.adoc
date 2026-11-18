@@ -1,41 +1,68 @@
 = Validator
 
-Beyond structural xref:index.adoc[schema validation], the mzIdentML *semantic
-validator* checks that a document uses the required controlled-vocabulary (CV)
-terms correctly, according to a CV mapping rules file.
+The mzIdentML *semantic validator* checks that a document uses the required
+controlled-vocabulary (CV) terms correctly and that its contents are consistent.
+It goes beyond what xref:index.adoc#_step_1_schema_validation_with_xmllint[schema
+validation] can check. For step-by-step instructions, see
+xref:index.adoc[Validation].
 
-== The mzIdentML Validator
+== Where to Get It
 
-The reference semantic validator (a Java GUI application) is maintained in the
-`validator/` directory of the
-https://github.com/HUPO-PSI/mzIdentML/tree/master/validator[mzIdentML repository].
-Packaged releases are published on the
-https://github.com/HUPO-PSI/mzIdentML/releases[releases page].
+The validator is developed in its own repository,
+https://github.com/HUPO-PSI/mzidentml-validator[HUPO-PSI/mzidentml-validator].
+Each https://github.com/HUPO-PSI/mzidentml-validator/releases[release] provides
+two Java jars:
+
+* `mzidentml-validator-<version>-cmd.jar` — the command line validator; and
+* `mzidentml-validator-<version>-gui.jar` — a desktop application.
+
+Both need Java 11 or later. Report problems with the validator in that
+repository's https://github.com/HUPO-PSI/mzidentml-validator/issues[issue tracker].
+
+NOTE: The validator used to live in the `validator/` directory of the mzIdentML
+repository. That copy is obsolete; only a README pointing to the new repository
+remains.
+
+== What It Checks
 
 The validator combines:
 
-* *Schema validation* against the mzIdentML XSD; and
-* *CV-mapping rules*, which assert that particular CV terms (or terms from a given
-  branch of an ontology) appear in the required places in the document.
+* *Schema validation* against the mzIdentML XSD;
+* *CV mapping rules*, which assert that particular CV terms (or terms from a given
+  branch of an ontology) appear in the required places in the document; and
+* *Object rules*, coded checks of consistency, e.g. that peptide evidence matches
+  the peptides it references.
 
-== Quick Structural Check
+It supports mzIdentML 1.1.0, 1.1.1, 1.2.0 and 1.3.0 and applies the rules for the
+version a file declares. The rule files and the ontologies they refer to are
+bundled with each release.
 
-For a fast structural check without the GUI validator, use `xmllint` directly
-against the schema:
+== Command Line Options
 
-[source,bash]
-----
-xmllint --noout --schema schema/mzIdentML1.3.0.xsd your-file.mzid
-----
+Run the command line jar without arguments to list all its options. The ones used
+most are:
 
-The repository's `validate.sh` script wraps this for all example files and selects
-the schema version automatically. It also runs the semantic validator on each file
-when it can find the validator's command line jar; see
-xref:index.adoc[Validation] for how it is located and configured.
+[cols="1,3"]
+|===
+| Option | Effect
 
-== Which Should I Use?
+| `-f <file>`
+| The mzIdentML file to validate (required).
 
-* Use *schema validation* (`xmllint` / `validate.sh --schema-only`) for a quick
-  check that a file is structurally valid.
-* Use the *semantic validator* before submitting to a repository or releasing a
-  producer, to confirm CV usage is correct as well.
+| `-e`
+| Full validation: schema, CV mapping rules and object rules.
+
+| `-l <level>`
+| The lowest message level to report, e.g. `ERROR` or `WARN`.
+
+| `-x <version>`
+| Validate against this schema version instead of the one the file declares.
+
+| `-R`
+| Look ontology terms up in the https://www.ebi.ac.uk/ols4/[Ontology Lookup
+  Service] instead of using the bundled ontologies.
+
+| `-m`, `-r`, `-o`
+| Use your own CV mapping, coded rules or ontology configuration file instead of
+  the bundled ones.
+|===

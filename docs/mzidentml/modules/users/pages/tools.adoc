@@ -1,0 +1,270 @@
+= Tools Supporting mzIdentML
+
+This page lists proteomics software that reads (imports) or writes (exports)
+mzIdentML, and the version of the format each tool supports. It is based on the
+https://www.psidev.info/tools-implementing-mzidentml[HUPO-PSI list of tools
+implementing mzIdentML].
+
+Key to the columns:
+
+I/E:: `I` = imports (reads) mzIdentML, `E` = exports (writes) mzIdentML.
+License:: The software license, linked to where it is stated (a license file,
+source header or package page). Commercial products link to the vendor's pricing
+or quote page where one could be found. Licenses were checked in November 2026.
+
+[NOTE]
+====
+Support details change as tools are released. Check each tool's own documentation
+for its current mzIdentML support. If your tool is missing or a row is out of date,
+please open an issue or pull request against the
+https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository].
+====
+
+[cols="3,2,4,1,3",options="header"]
+|===
+| Tool | Type | mzIdentML support | I/E | License
+
+| http://www.proteinmetrics.com/products/byonic/[Byonic] (Protein Metrics Inc.)
+| Search
+| Writes mzIdentML 1.1.
+| E
+| Commercial, closed source (https://www.proteinmetrics.com/pricing[pricing])
+
+| http://crux.ms/[Crux]
+| Search
+| Writes 1.1. Also reads 1.1 to produce spectral counts.
+| I & E
+| https://github.com/crux-toolkit/crux-toolkit/blob/master/license.txt[Apache-2.0]
+
+| https://medschool.vanderbilt.edu/msrc-bioinformatics/software[IDPicker]
+| Grouping
+| Version 3.x reads 1.1.
+| I
+| https://github.com/bioconda/bioconda-recipes/blob/master/recipes/bumbershoot/meta.yaml[Apache-2.0] (Bumbershoot suite)
+
+| http://www.integratedproteomics.com/[IP2]
+| Search & Quant
+| Exports results as 1.1.
+| E
+| Commercial, closed source
+
+| https://sourceforge.net/projects/iquant/[Iquant]
+| Quant
+| Reads identifications in 1.1.
+| I
+| https://sourceforge.net/projects/iquant/[GPL-2.0]
+
+| https://github.com/PRIDE-Utilities/jmzIdentML[jmzIdentML]
+| IO
+| Java API that reads and writes 1.1.
+| I & E
+| No license stated in the https://github.com/PRIDE-Utilities/jmzIdentML[repository]
+
+| http://jpostdb.org/[jPOST]
+| Database
+| Accepts 1.1 uploads.
+| I
+| Free public repository
+
+| http://www.matrixscience.com/[Mascot] (Matrix Science)
+| Search & Quant
+| Writes 1.1 from Mascot 2.4 onward.
+| E
+| Commercial, closed source (https://www.matrixscience.com/licensing.html[licensing and quotes])
+
+| https://massive.ucsd.edu[MassIVE]
+| Database
+| Accepts 1.1 uploads.
+| I
+| Free public repository
+
+| https://github.com/PRIDE-Utilities/ms-data-core-api[ms-data-core-api]
+| IO
+| Java API that reads PSI formats, including mzIdentML.
+| I
+| https://github.com/PRIDE-Archive/ms-data-core-api/blob/master/LICENCE[Apache-2.0]
+
+| https://omics.pnl.gov/software/ms-gf[MS-GF+]
+| Search
+| Full 1.1 export.
+| E
+| https://github.com/MSGFPlus/msgfplus/blob/master/LICENSE.txt[Custom]: free for educational, research and non-profit use; commercial use by agreement
+
+| https://medschool.vanderbilt.edu/msrc-bioinformatics/software[MyriMatch]
+| Search
+| Writes 1.1.
+| E
+| https://github.com/bioconda/bioconda-recipes/blob/master/recipes/bumbershoot/meta.yaml[Apache-2.0] (Bumbershoot suite)
+
+| http://www.bioconductor.org/packages/release/bioc/html/mzID.html[mzID]
+| IO
+| R/Bioconductor package that reads 1.1.
+| I
+| https://bioconductor.org/packages/release/bioc/html/mzID.html[GPL-2.0-or-later]
+
+| https://github.com/PGB-LIV/mzidlib[mzidLibrary]
+| Post-processing
+| Supports 1.1 and 1.2. Includes a viewer, statistics, protein inference, CSV
+import and export, and proteogenomics tools.
+| I & E
+| https://github.com/PGB-LIV/mzidlib/blob/master/LICENSE.txt[Apache-2.0]
+
+| OMSSA (via https://github.com/PGB-LIV/mzidlib[mzidLibrary])
+| Search
+| Converts OMSSA `.omx` files to 1.1 or 1.2.
+| E
+| https://github.com/PGB-LIV/mzidlib/blob/master/LICENSE.txt[Apache-2.0] (mzidLibrary converter)
+
+| https://www.openms.de/[OpenMS]
+| Pipeline
+| Full 1.1 support from release 1.9 onward.
+| I & E
+| https://github.com/OpenMS/OpenMS/blob/develop/LICENSE[BSD-3-Clause]
+
+| https://github.com/akrogp/EhuBio/wiki/Panalyzer[PAnalyzer]
+| Grouping
+| Reads and writes 1.1 and 1.2.
+| I & E
+| https://github.com/akrogp/EhuBio/blob/master/LICENSE[GPL-2.0]
+
+| http://www.bioinfor.com/[PEAKS] (Bioinformatics Solutions Inc.)
+| Search & Quant
+| Native 1.1 export.
+| E
+| Commercial, closed source (https://www.bioinfor.com/price-inquiry/[price inquiry])
+
+| http://compomics.github.io/projects/peptide-shaker.html[PeptideShaker]
+| Post-processing
+| Supports 1.1 and 1.2.
+| I & E
+| https://github.com/compomics/peptide-shaker/blob/master/pom.xml[Apache-2.0]
+
+| http://www.bioconductor.org/packages/devel/bioc/html/PGA.html[PGA]
+| Proteogenomics
+| Reads 1.1 as input for post-processing.
+| I
+| https://github.com/bioc/PGA/blob/devel/DESCRIPTION[GPL-2.0]
+
+| https://github.com/mpc-bioinformatics/pia[PIA]
+| Grouping
+| Supports 1.1.
+| I & E
+| https://github.com/mpc-bioinformatics/pia/blob/master/LICENSE[BSD-3-Clause]
+
+| http://www.waters.com/waters/en_GB/ProteinLynx-Global-SERVER-%28PLGS%29/nav.htm?cid=513821&locale=en_GB[ProteinLynx Global Server]
+| Search & Quant
+| Writes 1.1 from version 3.0.3 onward.
+| E
+| Commercial, closed source
+
+| https://www.ebi.ac.uk/pride/archive/[PRIDE]
+| Database
+| Reads 1.1 as part of the "complete" submission pipeline.
+| I
+| Free public repository
+
+| https://github.com/PRIDE-Toolsuite/pride-inspector[PRIDE Inspector]
+| Visualisation
+| Java desktop tool that displays 1.1 files, on their own or with spectra files.
+| I
+| https://github.com/PRIDE-Toolsuite/pride-inspector#license[Apache-2.0]
+
+| http://www.nonlinear.com/progenesis/qi-for-proteomics/[Progenesis QI for proteomics] (Waters Corp.)
+| Quant
+| Reads Byonic identifications in 1.1.
+| I
+| Commercial, closed source
+
+| https://sciex.com/products/software/proteinpilot-software[ProteinPilot]
+| Search & Quant
+| Writes 1.2 from version 5.0 onward.
+| E
+| Commercial, closed source
+
+| https://www.bruker.com/products/mass-spectrometry-and-separations/ms-software/proteinscape/overview.html[ProteinScape] (Bruker)
+| Search & Quant
+| Reads non-Mascot search results in 1.1.
+| I
+| Commercial, closed source
+
+| SEQUEST / Proteome Discoverer (Thermo), via
+https://bitbucket.org/paiyetan/m2lite/downloads/[m2Lite] or
+http://www.ruhr-uni-bochum.de/mpc/software/ProCon/index.html.en[ProCon]
+| Search & Quant
+| Free converters that turn Proteome Discoverer `.msf` files into 1.1. ProCon also converts
+ProteinScape and Comet results.
+| E
+| Converters: license not found
+
+| http://www.proteoannotator.org/[ProteoAnnotator]
+| Proteogenomics
+| Uses 1.1 as its internal format.
+| E
+| https://github.com/PGB-LIV/mzidlib/blob/master/LICENSE.txt[Apache-2.0] (part of mzidLibrary)
+
+| http://proteowizard.sourceforge.net/[ProteoWizard]
+| IO
+| Reads and writes 1.1. Includes a pepXML converter.
+| I & E
+| https://github.com/ProteoWizard/pwiz/blob/master/LICENSE[Apache-2.0]
+
+| http://www.proteomesoftware.com/products/scaffold/[Scaffold]
+| Search & Quant
+| Reads and writes 1.1 from version 4.0 onward.
+| I & E
+| Commercial, closed source (https://www.proteomesoftware.com/pricing[pricing])
+
+| http://patternlabforproteomics.org/sim-xl/[SIM-XL] (Spectrum Identification Machine for Cross-Linked Peptides)
+| Search
+| Search tool for cross-linked peptides (PMID 25638023).
+| E
+| License not found
+
+| https://skyline.ms[Skyline]
+| Quant
+| Reads 1.1 to build spectral libraries for SRM/MRM, PRM, DIA and targeted DDA.
+| I
+| https://github.com/ProteoWizard/pwiz/blob/master/pwiz_tools/Skyline/Program.cs[Apache-2.0] (source header)
+
+| Trans-Proteomic Pipeline (via http://proteowizard.sourceforge.net/[ProteoWizard])
+| Pipeline
+| Converts pepXML to 1.1.
+| I & E
+| https://sourceforge.net/projects/sashimi/[GPL-2.0 / LGPL-2.0]
+
+| X!Tandem (via https://github.com/PGB-LIV/mzidlib[mzidLibrary])
+| Search
+| Converts X!Tandem XML output to 1.1 or 1.2.
+| E
+| https://github.com/PGB-LIV/mzidlib/blob/master/LICENSE.txt[Apache-2.0] (mzidLibrary converter)
+
+| https://github.com/smdb21/PACOM/wiki[PACom] (Proteomics Assay Comparator)
+| Integration, visualisation, comparison
+| Supports 1.1 and 1.2.
+| I
+| https://github.com/smdb21/PACOM/blob/master/PACom/LICENSE[Apache-2.0]
+
+| https://github.com/proteomicsyates/DTASelect2MzId[DTASelect2MzId]
+| IO
+| Converts DTASelect output to 1.2.
+| E
+| https://github.com/proteomicsyates/DTASelect2MzId/blob/master/LICENSE[Apache-2.0]
+
+| https://www.thermofisher.com/uk/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-software/multi-omics-data-analysis/proteome-discoverer-software.html[Proteome Discoverer] (Thermo)
+| Analysis
+| Writes mzIdentML. The source list does not give a version.
+| E
+| Commercial, closed source
+
+| https://www.rappsilberlab.org/software/xifdr/[xiFDR]
+| Analysis
+| Error control for cross-linking MS. Writes 1.2.
+| E
+| https://github.com/Rappsilber-Laboratory/xiFDR/blob/master/LICENSE[Apache-2.0]
+
+| https://www.rappsilberlab.org/software/xiview/[xiVIEW]
+| Visualisation
+| Web-based visualisation of cross-linking MS results. Reads 1.2.
+| I
+| https://github.com/Rappsilber-Laboratory/xiview/blob/main/LICENSE[GPL-3.0]
+|===
