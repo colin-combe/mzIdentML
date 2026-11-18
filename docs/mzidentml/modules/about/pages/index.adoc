@@ -2,7 +2,7 @@
 
 == The Format
 
-mzIdentML is the community standard for reporting the identification of peptides
+mzIdentML is a community standard for reporting the identification of peptides
 and proteins from mass spectra. It was developed by the
 https://psidev.info[HUPO Proteomics Standards Initiative (PSI)] to provide a
 common export format for identification results from any search engine, and a
