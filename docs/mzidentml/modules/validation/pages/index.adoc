@@ -78,9 +78,12 @@ including the rules and a copy of the ontologies.
 
 [source,bash]
 ----
-java -jar mzidentml-validator-<version>-cmd.jar -e -f your-file.mzid -l ERROR
+java -Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0 \
+  -jar mzidentml-validator-<version>-cmd.jar -e -f your-file.mzid -l ERROR
 ----
 
+* The two `-D` options lift the JDK's limits on the size of XML entities; see
+  <<xml-entity-limits>> below.
 * `-e` runs the full validation: schema, CV mapping rules and object rules.
 * `-f` names the file to validate. The validator picks the rules for the version
   the file declares.
@@ -89,7 +92,24 @@ java -jar mzidentml-validator-<version>-cmd.jar -e -f your-file.mzid -l ERROR
 
 The validator lists the messages it found and exits with 0 if there were none,
 1 if there were messages, and 2 if it could not validate the file at all. For
-large files, give Java more memory, e.g. `java -Xmx4g -jar ...`.
+large files, give Java more memory as well, e.g. `-Xmx4g`.
+
+[#xml-entity-limits]
+=== XML Entity Size Limits
+
+Java 24 and later limit the size of XML entities by default. On a large file with
+many entity references, such as `&quot;` in attribute values, the validator then
+stops during schema validation with an error like:
+
+----
+JAXP00010003: The length of entity "[xml]" is "100,001" that exceeds the "100,000"
+limit set by "jdk.xml.maxGeneralEntitySizeLimit".
+----
+
+This does not mean the file is invalid. Run the validator with
+`-Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0`, as
+above, to remove the limits; `0` means no limit, which is the default of earlier
+Java versions. The options must come before `-jar`.
 
 There is also a desktop application, `mzidentml-validator-<version>-gui.jar`, in
 the same release. See xref:validator.adoc[Validator] for more about the validator

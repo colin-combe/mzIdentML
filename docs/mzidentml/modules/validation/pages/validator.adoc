@@ -66,3 +66,8 @@ most are:
 | Use your own CV mapping, coded rules or ontology configuration file instead of
   the bundled ones.
 |===
+
+Java options go before `-jar`. With Java 24 and later, add
+`-Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0` so that
+large files are not rejected because of the JDK's XML entity size limits; see
+xref:index.adoc#xml-entity-limits[XML Entity Size Limits].

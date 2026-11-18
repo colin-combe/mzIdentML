@@ -19,7 +19,8 @@
 #   MZID_SEMANTIC_STRICT      set to 0 for the same as --report-only
 #   MZID_SEMANTIC_LEVEL       lowest message level to report (default ERROR)
 #   MZID_SEMANTIC_TIMEOUT     seconds a single file may take (default 1800)
-#   MZID_VALIDATOR_JAVA_OPTS  options passed to java (default -Xmx4g)
+#   MZID_VALIDATOR_JAVA_OPTS  options passed to java (default -Xmx4g); the JDK's XML
+#                             entity size limits are always lifted as well
 #   GITHUB_TOKEN              optional, used for the GitHub API call to avoid rate limits
 #
 # Exit codes: 0 ok, 2 setup error, 3 schema validation failed, 4 semantic validation failed.
@@ -46,6 +47,11 @@ SEMANTIC_STRICT="${MZID_SEMANTIC_STRICT:-1}"
 SEMANTIC_LEVEL="${MZID_SEMANTIC_LEVEL:-ERROR}"
 SEMANTIC_TIMEOUT="${MZID_SEMANTIC_TIMEOUT:-1800}"
 JAVA_OPTS="${MZID_VALIDATOR_JAVA_OPTS:--Xmx4g}"
+# Newer JDKs (24 and later) cap the size of XML entities by default, and the validator stops
+# at that cap on large files with many entity references (e.g. &quot;), with
+# "JAXP00010003: The length of entity ... exceeds the 100,000 limit". 0 means no limit,
+# which is the default of older JDKs. They go before JAVA_OPTS, which can still override them.
+XML_LIMIT_OPTS="-Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0"
 VALIDATOR_JAR=""
 VALIDATOR_REPO="HUPO-PSI/mzidentml-validator"
 VALIDATOR_VERSION="${MZID_VALIDATOR_VERSION:-latest}"
@@ -55,7 +61,7 @@ VALIDATOR_CACHE="${MZID_VALIDATOR_CACHE:-./.cache/mzidentml-validator}"
 SEMANTIC_VERSIONS=" 1.1.0 1.1.1 1.2.0 1.3.0 "
 
 usage() {
-  sed -n '3,25p' "${BASH_SOURCE[0]}" | sed 's/^#\{1,2\} \{0,1\}//'
+  sed -n '3,26p' "${BASH_SOURCE[0]}" | sed 's/^#\{1,2\} \{0,1\}//'
 }
 
 # Prefix each line of stdin so error output stays inside the "#" banner style.
@@ -247,7 +253,7 @@ semantic_validation() {
   # The validator loads the rules for the version the file declares, so it needs no more
   # than the file itself. It exits 0 when nothing was reported, 1 when it has messages
   # and 2 when it could not validate at all.
-  timeout "$SEMANTIC_TIMEOUT" java $JAVA_OPTS -jar "$VALIDATOR_JAR" \
+  timeout "$SEMANTIC_TIMEOUT" java $XML_LIMIT_OPTS $JAVA_OPTS -jar "$VALIDATOR_JAR" \
     -e -f "$xml" -l "$SEMANTIC_LEVEL" >"$TMP_DIR/sem.out" 2>"$TMP_DIR/sem.err"
   local result=$?
   SEM_COUNT=$((SEM_COUNT + 1))
