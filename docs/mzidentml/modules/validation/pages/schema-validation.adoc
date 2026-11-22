@@ -1,0 +1,83 @@
+= Schema Validation
+
+Schema validation checks that a file is well-formed XML and matches the mzIdentML
+XML schema (XSD) for its version. It does not check controlled-vocabulary terms or
+the consistency of the contents; for that, see
+xref:semantic-validator.adoc[Semantic Validator].
+
+== Get the Schema
+
+Each version of mzIdentML has its own schema. They are in the
+https://github.com/HUPO-PSI/mzIdentML/tree/master/schema[`schema/` directory] of
+the mzIdentML repository, named `mzIdentML<version>.xsd`, e.g.
+`mzIdentML1.3.0.xsd`. See xref:developers:schema.adoc[Schema] for more about
+the schema itself.
+
+Use the schema for the version the file declares in the `version` attribute of
+its root `MzIdentML` element, e.g. `<MzIdentML version="1.3.0" ...>`.
+
+== Tools
+
+mzIdentML is plain XML, so any validator that supports XML Schema 1.0 can check
+it. A selection:
+
+Command line::
+* `xmllint`, part of http://xmlsoft.org/[libxml2]. Available on most Linux and
+  macOS systems; on Debian and Ubuntu, install the `libxml2-utils` package. See
+  <<xmllint>> below.
+* https://xerces.apache.org/[Apache Xerces] (Java and C++), e.g. the
+  `StdInParse` sample of Xerces-C++.
+
+Programming libraries::
+* Python: https://lxml.de/[lxml] (`lxml.etree.XMLSchema`) or
+  https://pypi.org/project/xmlschema/[xmlschema].
+* Java: the built-in `javax.xml.validation` API.
+* .NET: `System.Xml.Schema` (`XmlReaderSettings` with `ValidationType.Schema`).
+
+Editors::
+* https://www.oxygenxml.com/[Oxygen XML Editor] and
+  https://www.altova.com/xmlspy-xml-editor[Altova XMLSpy].
+* Visual Studio Code with the
+  https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml[XML
+  extension by Red Hat].
+
+Many of these follow the `xsi:schemaLocation` hint in the file to find the
+schema. It is safer to point them at the right local `.xsd` file explicitly.
+mzIdentML files can be large; command line tools and streaming libraries cope
+with big files better than editors do.
+
+[#xmllint]
+== Example: xmllint
+
+Find the version the file declares:
+
+[source,bash]
+----
+xmllint --xpath 'string(/*/@version)' your-file.mzid
+----
+
+Then validate the file against the schema for that version:
+
+[source,bash]
+----
+xmllint --noout --schema mzIdentML1.3.0.xsd your-file.mzid
+----
+
+`xmllint` prints `your-file.mzid validates` and exits with 0 if the file is
+valid. Otherwise it lists each error with its line number and exits with a
+non-zero code.
+
+Pass `--schema` explicitly even though mzIdentML files name their schema in
+`xsi:schemaLocation`: `xmllint` does not follow that hint.
+
+Most builds of `xmllint` read gzipped files (`.mzid.gz`) directly. If yours does
+not, decompress the file on the fly:
+
+[source,bash]
+----
+gzip -cd your-file.mzid.gz | xmllint --noout --schema mzIdentML1.3.0.xsd -
+----
+
+The xref:semantic-validator.adoc[semantic validator] also performs schema
+validation, picking the right schema for each file, so you can use it for both
+checks at once.

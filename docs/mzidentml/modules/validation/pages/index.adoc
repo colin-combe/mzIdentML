@@ -1,124 +1,25 @@
 = Validation
 
 Validating an mzIdentML file confirms that it conforms to the standard before you
-share it, submit it to a repository, or load it into another tool. Validation is
-done in two steps:
+share it, submit it to a repository, or load it into another tool. There are two
+kinds of validation:
 
-. *Schema validation* checks that the file is well-formed XML and matches the
-  mzIdentML XML schema (XSD). Any XML schema validator can do this; the examples
-  below use `xmllint`.
-. *Semantic validation* checks what the schema cannot: that the required
-  controlled-vocabulary (CV) terms are present and correctly used, and that the
-  contents are consistent. This needs the mzIdentML semantic validator,
-  https://github.com/HUPO-PSI/mzidentml-validator[mzidentml-validator].
+xref:schema-validation.adoc[Schema validation]:: Checks that the file is
+  well-formed XML and matches the mzIdentML XML schema (XSD) for its version: the
+  right elements and attributes, in the right places, with values of the right
+  type. Any XML schema validator can do this.
+xref:semantic-validator.adoc[Semantic validation]:: Checks what the schema cannot: that
+  the required controlled-vocabulary (CV) terms are present and correctly used,
+  and that the contents of the file are consistent. The semantic validator
+  can run the schema validation as part of this.
 
-Run schema validation first. A file that is not schema-valid will not pass
-semantic validation either, and the XSD errors are easier to act on.
-
-== Step 1: Schema Validation with xmllint
-
-`xmllint` is part of libxml2 and is available on most systems (on Debian and
-Ubuntu, install the `libxml2-utils` package).
-
-=== Get the Schema
-
-Each version of mzIdentML has its own schema. They are in the
-https://github.com/HUPO-PSI/mzIdentML/tree/master/schema[`schema/` directory] of
-the mzIdentML repository, named `mzIdentML<version>.xsd`, e.g.
-`mzIdentML1.3.0.xsd`. See xref:developers:schema.adoc[Schema] for more about
-the schema itself.
-
-Use the schema for the version the file declares in the `version` attribute of
-its root `MzIdentML` element. To read it:
-
-[source,bash]
-----
-xmllint --xpath 'string(/*/@version)' your-file.mzid
-----
-
-=== Validate
-
-[source,bash]
-----
-xmllint --noout --schema mzIdentML1.3.0.xsd your-file.mzid
-----
-
-`xmllint` prints `your-file.mzid validates` and exits with 0 if the file is
-valid. Otherwise it lists each error with its line number and exits with a
-non-zero code.
-
-Pass `--schema` explicitly even though mzIdentML files name their schema in
-`xsi:schemaLocation`: `xmllint` does not follow that hint.
-
-Most builds of `xmllint` read gzipped files (`.mzid.gz`) directly. If yours does
-not, decompress the file on the fly:
-
-[source,bash]
-----
-gzip -cd your-file.mzid.gz | xmllint --noout --schema mzIdentML1.3.0.xsd -
-----
-
-== Step 2: Semantic Validation with mzidentml-validator
-
-The semantic validator is developed at
-https://github.com/HUPO-PSI/mzidentml-validator[HUPO-PSI/mzidentml-validator].
-It checks a file against the CV mapping rules and coded object rules for its
-version, and it repeats the schema validation as part of this. It supports
-mzIdentML 1.1.0, 1.1.1, 1.2.0 and 1.3.0; there are no semantic rules for 1.0.0.
-
-=== Get the Validator
-
-Download the command line jar, `mzidentml-validator-<version>-cmd.jar`, from the
-latest release on the
-https://github.com/HUPO-PSI/mzidentml-validator/releases/latest[releases page].
-It needs Java 11 or later. Everything else it needs is bundled in the jar,
-including the rules and a copy of the ontologies.
-
-=== Validate
-
-[source,bash]
-----
-java -Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0 \
-  -jar mzidentml-validator-<version>-cmd.jar -e -f your-file.mzid -l ERROR
-----
-
-* The two `-D` options lift the JDK's limits on the size of XML entities; see
-  <<xml-entity-limits>> below.
-* `-e` runs the full validation: schema, CV mapping rules and object rules.
-* `-f` names the file to validate. The validator picks the rules for the version
-  the file declares.
-* `-l` sets the lowest message level to report, e.g. `WARN` to see warnings as
-  well.
-
-The validator lists the messages it found and exits with 0 if there were none,
-1 if there were messages, and 2 if it could not validate the file at all. For
-large files, give Java more memory as well, e.g. `-Xmx4g`.
-
-[#xml-entity-limits]
-=== XML Entity Size Limits
-
-Java 24 and later limit the size of XML entities by default. On a large file with
-many entity references, such as `&quot;` in attribute values, the validator then
-stops during schema validation with an error like:
-
-----
-JAXP00010003: The length of entity "[xml]" is "100,001" that exceeds the "100,000"
-limit set by "jdk.xml.maxGeneralEntitySizeLimit".
-----
-
-This does not mean the file is invalid. Run the validator with
-`-Djdk.xml.maxGeneralEntitySizeLimit=0 -Djdk.xml.totalEntitySizeLimit=0`, as
-above, to remove the limits; `0` means no limit, which is the default of earlier
-Java versions. The options must come before `-jar`.
-
-There is also a desktop application, `mzidentml-validator-<version>-gui.jar`, in
-the same release. See xref:validator.adoc[Validator] for more about the validator
-and its options.
+A valid mzIdentML file passes both. Check the schema first, XSD errors are easier
+to act on.
 
 == Reporting Problems
 
-If you think the validator reports a problem wrongly, or a rule is missing,
-please open an issue on the
+If you think the semantic validator reports a problem wrongly, or a rule is
+missing, please open an issue on the
 https://github.com/HUPO-PSI/mzidentml-validator/issues[mzidentml-validator issue
-tracker]. Report problems with the schema or the specification on the
-https://github.com/HUPO-PSI/mzIdentML/issues[mzIdentML issue tracker].
+tracker]. Report problems with the schema or the specification on
+the https://github.com/HUPO-PSI/mzIdentML/issues[mzIdentML issue tracker].

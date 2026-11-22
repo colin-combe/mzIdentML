@@ -4,4 +4,4 @@ The mzIdentML specification, schema, and documentation are made available under 
 
 You are free to share and adapt the material for any purpose, provided appropriate credit is given.
 
-The full license text for the specification and schema is available in link:https://github.com/HUPO-PSI/mzTab-M/blob/main/LICENSE.txt[LICENSE.txt] in the repository.
+The full license text for the specification and schema is available in link:https://github.com/HUPO-PSI/mzIdentML/blob/master/LICENSE.txt[LICENSE.txt] in the repository.

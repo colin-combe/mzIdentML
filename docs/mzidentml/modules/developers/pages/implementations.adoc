@@ -13,7 +13,7 @@ https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository]:: The schema,
 specification sources, and example files.
 
 https://github.com/HUPO-PSI/mzidentml-validator[mzidentml-validator]:: The
-semantic validator for mzIdentML files. See xref:validation:index.adoc[Validation].
+semantic validator for mzIdentML files. See xref:validation:semantic-validator.adoc[Semantic Validator].
 
 == Producers and Consumers
 

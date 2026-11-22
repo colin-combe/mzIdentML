@@ -7,13 +7,20 @@ practice.
 * Browse the examples on GitHub:
   https://github.com/HUPO-PSI/mzIdentML/tree/master/examples[HUPO-PSI/mzIdentML/examples]
 
-These examples are also used by the reference xref:validation:validator.adoc[validator]
-and continuous-integration checks to guard against regressions in the schema and
-tooling.
+The repository's continuous-integration checks
+xref:validation:index.adoc[validate] these examples to guard against regressions
+in the schema and tooling.
 
-== Using the Examples
+== Contributing Examples
 
-* Open a file in any text or XML editor to inspect its structure — see
-  xref:file-format.adoc[File Format] for orientation.
-* Run a file through xref:validation:index.adoc[validation] to see the checks in action.
-* Use a file as a template when generating mzIdentML from your own tool.
+If you have a dataset that illustrates a scenario or tool output not covered
+by the existing examples, please open a pull request against the
+https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository] that adds your
+example file to the
+https://github.com/HUPO-PSI/mzIdentML/tree/master/examples[`examples/` folder],
+together with a brief description of what it demonstrates.
+
+IMPORTANT: Contributed examples must be *semantically valid*. Check your file with the
+xref:validation:semantic-validator.adoc[semantic validator] and fix any errors before
+opening the pull request. The semantic validator checks the file against the
+schema as well.

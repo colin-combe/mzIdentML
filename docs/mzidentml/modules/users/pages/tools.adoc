@@ -15,9 +15,9 @@ or quote page where one could be found. Licenses were checked in November 2026.
 [NOTE]
 ====
 Support details change as tools are released. Check each tool's own documentation
-for its current mzIdentML support. If your tool is missing or a row is out of date,
+for its current mzIdentML support. If your tool is missing or a row is inaccurate,
 please open an issue or pull request against the
-https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository].
+https://github.com/HUPO-PSI/mzIdentML/blob/master/docs/mzidentml/modules/users/pages/tools.adoc[source of this page] in the mzIdentML repository.
 ====
 
 [cols="3,2,4,1,3",options="header"]
@@ -266,5 +266,5 @@ ProteinScape and Comet results.
 | Visualisation
 | Web-based visualisation of cross-linking MS results. Reads 1.2.
 | I
-| https://github.com/Rappsilber-Laboratory/xiview/blob/main/LICENSE[GPL-3.0]
+| https://github.com/Rappsilber-Laboratory/xiview/blob/main/LICENSE[AGPL-3.0]
 |===
