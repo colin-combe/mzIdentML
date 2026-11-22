@@ -1,0 +1,90 @@
+= Libraries
+:page-aliases: implementations.adoc
+
+To work with mzIdentML in code, use an existing library rather than parsing the
+XML by hand. The libraries below are available for several languages. For
+end-user software that reads or writes mzIdentML, see
+xref:users:index.adoc[Tools Supporting mzIdentML].
+
+[NOTE]
+====
+*Requesting changes or additions:* if your library is missing or a row is
+inaccurate, the easiest way to fix it is the *Edit* button at the top of this
+page. It opens the page source on GitHub, where you can make the change and
+propose it as a pull request (GitHub will create a fork for you if needed).
+Alternatively, https://github.com/HUPO-PSI/mzIdentML/issues[open an issue]
+describing the change.
+====
+
+[cols="2,3,2,5,3",options="header"]
+|===
+| Language | Library | Supports | Notes | License
+
+| Java
+| https://github.com/PRIDE-Utilities/jmzidentml[jmzIdentML]
+| Read, write
+| The Java reference library, maintained by the PRIDE team. Maps the schema to
+  Java objects via JAXB and supports indexed, on-demand access to large files.
+| No license stated in the https://github.com/PRIDE-Utilities/jmzIdentML[repository]
+
+| Java
+| https://github.com/PRIDE-Utilities/ms-data-core-api[ms-data-core-api]
+| Read
+| Java API that reads PSI formats, including mzIdentML.
+| https://github.com/PRIDE-Archive/ms-data-core-api/blob/master/LICENCE[Apache-2.0]
+
+| Python
+| https://pyteomics.readthedocs.io/en/latest/api/mzid.html[pyteomics] (`pyteomics.mzid`)
+| Read
+| General-purpose proteomics toolkit; iterates over spectrum identification
+  results as Python dictionaries, with optional conversion to a pandas DataFrame.
+| https://github.com/levitsky/pyteomics/blob/master/LICENSE[Apache-2.0]
+
+| Python
+| https://github.com/mobiusklein/psims[psims]
+| Write
+| A declarative writer for mzIdentML (and mzML) by Joshua Klein, with a
+  built-in controlled vocabulary manager
+  (https://doi.org/10.1074/mcp.RP118.001070[Klein & Zaia, 2018]).
+| https://github.com/mobiusklein/psims/blob/master/LICENSE[Apache-2.0]
+
+| R
+| https://bioconductor.org/packages/mzR[mzR] (Bioconductor)
+| Read
+| `openIDfile()` reads mzIdentML via the ProteoWizard backend; `psms()`,
+  `score()` and `modifications()` return the results as data frames.
+| https://bioconductor.org/packages/mzR[Artistic-2.0]
+
+| R
+| https://bioconductor.org/packages/mzID[mzID] (Bioconductor)
+| Read
+| Parses mzIdentML 1.1 into R objects and flattens it to a data frame.
+| https://bioconductor.org/packages/mzID[GPL-2.0-or-later]
+
+| C++
+| http://proteowizard.sourceforge.net/[ProteoWizard]
+| Read, write
+| C++ library underlying many tools, including mzR. Includes a pepXML converter.
+| https://github.com/ProteoWizard/pwiz/blob/master/LICENSE[Apache-2.0]
+
+| C++ / Python
+| https://openms.de/[OpenMS] (`MzIdentMLFile`)
+| Read, write
+| Available from C++ and from Python via pyOpenMS.
+| https://github.com/OpenMS/OpenMS/blob/develop/LICENSE[BSD-3-Clause]
+|===
+
+== Resources
+
+https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository]:: The schema,
+specification sources, and example files.
+
+https://github.com/HUPO-PSI/mzidentml-validator[mzidentml-validator]:: The
+semantic validator for mzIdentML files. See xref:validation:semantic-validator.adoc[Semantic Validator].
+
+[TIP]
+====
+If you maintain an mzIdentML library and would like it listed, please open an
+issue or pull request against the https://github.com/HUPO-PSI/mzIdentML[mzIdentML
+repository] — see xref:contributing.adoc[Contributing].
+====

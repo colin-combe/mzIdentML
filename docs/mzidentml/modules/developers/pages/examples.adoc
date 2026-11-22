@@ -1,26 +1,20 @@
 = Example Files
+:page-aliases: users:examples.adoc
 
 The mzIdentML repository includes a collection of example files that exercise
-different features of the format. They are a good way to see valid mzIdentML in
-practice.
-
-* Browse the examples on GitHub:
+different features of the format:
   https://github.com/HUPO-PSI/mzIdentML/tree/master/examples[HUPO-PSI/mzIdentML/examples]
-
-The repository's continuous-integration checks
-xref:validation:index.adoc[validate] these examples to guard against regressions
-in the schema and tooling.
 
 == Contributing Examples
 
-If you have a dataset that illustrates a scenario or tool output not covered
+If you have a dataset that illustrates a scenario not covered
 by the existing examples, please open a pull request against the
 https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository] that adds your
 example file to the
 https://github.com/HUPO-PSI/mzIdentML/tree/master/examples[`examples/` folder],
 together with a brief description of what it demonstrates.
 
-IMPORTANT: Contributed examples must be *semantically valid*. Check your file with the
+IMPORTANT: Contributed examples must be *schema valid and semantically valid*. Check your file with the
 xref:validation:semantic-validator.adoc[semantic validator] and fix any errors before
 opening the pull request. The semantic validator checks the file against the
 schema as well.
