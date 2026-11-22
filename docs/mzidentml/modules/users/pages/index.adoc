@@ -41,17 +41,18 @@ https://github.com/HUPO-PSI/mzIdentML/issues[open an issue] describing the chang
 
 | http://crux.ms/[Crux]
 | Search
-| Writes 1.1. Also reads 1.1 to produce spectral counts.
+| Writes 1.1 (`tide-search` and `comet`). Also reads 1.1 in `spectral-counts` and
+`assign-confidence`.
 | I & E
 | https://github.com/crux-toolkit/crux-toolkit/blob/master/license.txt[Apache-2.0]
 
 | https://github.com/proteomicsyates/DTASelect2MzId[DTASelect2MzId]
 | IO
-| Converts DTASelect output to 1.2.
+| Converts DTASelect output to 1.1 or 1.2.
 | E
 | https://github.com/proteomicsyates/DTASelect2MzId/blob/master/LICENSE[Apache-2.0]
 
-| https://medschool.vanderbilt.edu/msrc-bioinformatics/software[IDPicker]
+| https://proteowizard.sourceforge.io/idpicker[IDPicker]
 | Grouping
 | Version 3.x reads 1.1.
 | I
@@ -77,7 +78,8 @@ https://github.com/HUPO-PSI/mzIdentML/issues[open an issue] describing the chang
 
 | http://www.matrixscience.com/[Mascot] (Matrix Science)
 | Search & Quant
-| Writes 1.1 from Mascot 2.4 onward.
+| Writes 1.1 from Mascot 2.4 onward. From Mascot 2.8.1, can also write 1.2 (chosen
+at export).
 | E
 | Commercial, closed source (https://www.matrixscience.com/licensing.html[licensing and quotes])
 
@@ -93,7 +95,7 @@ https://github.com/HUPO-PSI/mzIdentML/issues[open an issue] describing the chang
 | E
 | https://github.com/MSGFPlus/msgfplus/blob/master/LICENSE.txt[Custom]: free for educational, research and non-profit use; commercial use by agreement
 
-| https://medschool.vanderbilt.edu/msrc-bioinformatics/software[MyriMatch]
+| https://anaconda.org/bioconda/bumbershoot[MyriMatch]
 | Search
 | Writes 1.1.
 | E
@@ -121,7 +123,8 @@ import and export, and proteogenomics tools.
 
 | https://www.openms.de/[OpenMS]
 | Pipeline
-| Full 1.1 support from release 1.9 onward.
+| Full 1.1 support from release 1.9 onward. From release 3.6.0, writes 1.3 and
+reads 1.1, 1.2 and 1.3.
 | I & E
 | https://github.com/OpenMS/OpenMS/blob/develop/LICENSE[BSD-3-Clause]
 
@@ -149,9 +152,10 @@ import and export, and proteogenomics tools.
 | I & E
 | https://github.com/compomics/peptide-shaker/blob/master/pom.xml[Apache-2.0]
 
-| http://www.bioconductor.org/packages/devel/bioc/html/PGA.html[PGA]
+| https://bioconductor.org/packages/3.12/bioc/html/PGA.html[PGA]
 | Proteogenomics
-| Reads 1.1 as input for post-processing.
+| Reads 1.1 as input for post-processing. Removed from Bioconductor in release 3.13;
+the link is to the last release that included it.
 | I
 | https://github.com/bioc/PGA/blob/devel/DESCRIPTION[GPL-2.0]
 
@@ -170,6 +174,7 @@ import and export, and proteogenomics tools.
 | https://github.com/PRIDE-Toolsuite/pride-inspector[PRIDE Inspector]
 | Visualisation
 | Java desktop tool that displays 1.1 files, on their own or with spectra files.
+No longer maintained: the repository is archived.
 | I
 | https://github.com/PRIDE-Toolsuite/pride-inspector#license[Apache-2.0]
 
@@ -191,21 +196,23 @@ import and export, and proteogenomics tools.
 | E
 | Commercial, closed source
 
-| https://www.bruker.com/products/mass-spectrometry-and-separations/ms-software/proteinscape/overview.html[ProteinScape] (Bruker)
+| ProteinScape (Bruker)
 | Search & Quant
 | Reads non-Mascot search results in 1.1.
 | I
 | Commercial, closed source
 
-| http://www.proteoannotator.org/[ProteoAnnotator]
+| https://github.com/PGB-LIV/mzidlib[ProteoAnnotator]
 | Proteogenomics
-| Uses 1.1 as its internal format.
+| Uses 1.1 as its internal format. Deprecated and no longer supported, according
+to the mzidLibrary README.
 | E
 | https://github.com/PGB-LIV/mzidlib/blob/master/LICENSE.txt[Apache-2.0] (part of mzidLibrary)
 
 | https://www.thermofisher.com/uk/en/home/industrial/mass-spectrometry/liquid-chromatography-mass-spectrometry-lc-ms/lc-ms-software/multi-omics-data-analysis/proteome-discoverer-software.html[Proteome Discoverer] (Thermo)
 | Analysis
-| Writes mzIdentML. The source list does not give a version.
+| Native export (File > Export > To MzIdentML), documented in the Proteome
+Discoverer 3.1 User Guide. The version written is not stated.
 | E
 | Commercial, closed source
 
@@ -217,7 +224,7 @@ import and export, and proteogenomics tools.
 
 | SEQUEST / Proteome Discoverer (Thermo), via
 https://bitbucket.org/paiyetan/m2lite/downloads/[m2Lite] or
-http://www.ruhr-uni-bochum.de/mpc/software/ProCon/index.html.en[ProCon]
+https://www.mpc.ruhr-uni-bochum.de/mpc/mam/pdf/procon_user_manual.pdf[ProCon] (user manual)
 | Search & Quant
 | Free converters that turn Proteome Discoverer `.msf` files into 1.1. ProCon also converts
 ProteinScape and Comet results.
@@ -232,13 +239,14 @@ ProteinScape and Comet results.
 
 | https://skyline.ms[Skyline]
 | Quant
-| Reads 1.1 to build spectral libraries for SRM/MRM, PRM, DIA and targeted DDA.
+| Reads 1.1 and 1.2 to build spectral libraries for SRM/MRM, PRM, DIA and targeted DDA.
 | I
 | https://github.com/ProteoWizard/pwiz/blob/master/pwiz_tools/Skyline/Program.cs[Apache-2.0] (source header)
 
 | Trans-Proteomic Pipeline (via http://proteowizard.sourceforge.net/[ProteoWizard])
 | Pipeline
-| Converts pepXML to 1.1.
+| ProteoWizard's `idconvert` tool converts pepXML to 1.1. It is only in the older
+C++ releases of ProteoWizard; the current C# version has no converter tool.
 | I & E
 | https://sourceforge.net/projects/sashimi/[GPL-2.0 / LGPL-2.0]
 
@@ -250,8 +258,8 @@ ProteinScape and Comet results.
 
 | https://www.rappsilberlab.org/software/xifdr/[xiFDR]
 | Analysis
-| Error control for cross-linking MS. Writes 1.3.
-| E
+| Error control for cross-linking MS. Reads mzIdentML and writes 1.3.
+| I & E
 | https://github.com/Rappsilber-Laboratory/xiFDR/blob/master/LICENSE[Apache-2.0]
 
 | https://www.rappsilberlab.org/software/xiview/[xiVIEW]
