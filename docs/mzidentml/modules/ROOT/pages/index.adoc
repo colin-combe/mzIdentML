@@ -31,7 +31,7 @@ xref:developers:specification.adoc#the-psi-mass-spectrometry-controlled-vocabula
 crosslinking mass spectrometry results are represented.
 
 |*Repository-ready*
-|mzIdentML is a PSI open standard format and as such receives Complete Submission status at
+|mzIdentML is a PSI open standard format and receives the "Standard formats" badge at
 https://www.ebi.ac.uk/pride/markdownpage/submitdatapage[PRIDE].
 |===
 

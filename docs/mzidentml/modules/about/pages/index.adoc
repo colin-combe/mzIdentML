@@ -15,9 +15,14 @@ other identifications based on multiple spectra. See the
 xref:developers:specification.adoc[specification] and the
 xref:developers:crosslinking.adoc[crosslinking extension].
 
-mzIdentML 1.2.0 (April 2017):: Supported advances in proteome informatics.
+mzIdentML 1.2.0 (March 2017):: Supported advances in proteome informatics.
 
-mzIdentML 1.1.0 (June 2014):: The first widely adopted version of the format.
+mzIdentML 1.1.1:: A minor update to 1.1.0.
+
+mzIdentML 1.1.0 (August 2011):: The first widely adopted version of the format.
+
+mzIdentML 1.0.0:: The first release. It is a legacy version and is no
+longer broadly supported by software.
 
 See xref:cite.adoc[How to Cite] for the publication accompanying each version.
 
@@ -25,8 +30,8 @@ See xref:cite.adoc[How to Cite] for the publication accompanying each version.
 
 The https://psidev.info[Human Proteome Organization Proteomics Standards
 Initiative] develops open, community-driven data standards for proteomics and
-metabolomics. mzIdentML is one of a family of PSI formats that includes mzML,
-mzTab, mzQuantML, and others.
+related fields, such as molecular interactions. mzIdentML is one of a family of
+PSI formats that includes mzML, mzTab, mzQuantML, and others.
 
 Participation is open. See https://psidev.info[psidev.info] for the working groups
 and how to get involved, and xref:developers:contributing.adoc[Contributing] for how

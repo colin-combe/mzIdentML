@@ -10,9 +10,6 @@ The schema lives in the `schema/` directory of the repository:
 
 `schema/mzIdentML1.3.0.xsd`:: The XML Schema for mzIdentML 1.3.0 (the current version).
 
-The schema imports the shared PSI object model, so identifications reuse the same
-controlled-vocabulary (CV) and structural conventions as other HUPO-PSI formats.
-
 == Schema Documentation
 
 A human-readable walkthrough of the schema is embedded in the
