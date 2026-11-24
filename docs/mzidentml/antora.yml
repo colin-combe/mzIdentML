@@ -6,7 +6,6 @@ nav:
   - modules/users/nav.adoc
   - modules/developers/nav.adoc
   - modules/validation/nav.adoc
-  - modules/about/nav.adoc
 asciidoc:
   attributes:
     # Base names of the specification PDF/DOCX attachments (modules/ROOT/attachments/),

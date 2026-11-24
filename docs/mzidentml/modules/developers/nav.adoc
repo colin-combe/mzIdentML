@@ -1,5 +1,4 @@
 .mzIdentML for Developers
-* xref:index.adoc[Overview]
 * xref:specification.adoc[Specification 1.3.0]
 * xref:crosslinking.adoc[Crosslinking Extension]
 * xref:schema.adoc[Schema Reference]
