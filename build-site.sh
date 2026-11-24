@@ -9,8 +9,11 @@
 #   ./build-site.sh          # build only
 #   ./build-site.sh --serve  # build and start a local HTTP server for preview
 #   ./build-site.sh --clean  # remove node_modules before building (force reinstall)
-#   ./build-site.sh --with-spec  # also build the spec PDF/DOCX and publish them
-#                                # as Antora attachments (per-version downloads)
+#   ./build-site.sh --with-spec  # rebuild the spec PDF/DOCX even if present
+#
+# The spec PDF/DOCX (Antora attachments, i.e. the per-version downloads) are
+# built automatically when missing; --with-spec forces a rebuild after the spec
+# sources change.
 
 set -euo pipefail
 
@@ -24,7 +27,6 @@ SPEC_FILES=(mzidentml.adoc crosslinking_ext.adoc)
 ATTACHMENTS_DIR="${SCRIPT_DIR}/docs/mzidentml/modules/ROOT/attachments"
 CLEANUP=()
 trap 'rm -rf ${CLEANUP[@]+"${CLEANUP[@]}"}' EXIT
-ANTORA_ARGS=()
 
 for arg in "$@"; do
   case "$arg" in
@@ -35,7 +37,8 @@ for arg in "$@"; do
       echo "Usage: $0 [--serve] [--clean] [--with-spec]"
       echo "  --serve      Start a local HTTP server after building (requires Python 3)"
       echo "  --clean      Remove node_modules and reinstall before building"
-      echo "  --with-spec  Build the specification PDF/DOCX and add them as site downloads"
+      echo "  --with-spec  Rebuild the specification PDF/DOCX even if already present"
+      echo "               (they are built automatically when missing)"
       exit 0
       ;;
   esac
@@ -64,6 +67,17 @@ else
   echo "==> node_modules present, skipping npm install (use --clean to force reinstall)."
 fi
 
+# Build the spec PDF/DOCX when any is missing, so the download links resolve.
+if [ "${WITH_SPEC}" = false ]; then
+  for f in "${SPEC_FILES[@]}"; do
+    if [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.pdf" ] || [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.docx" ]; then
+      echo "==> Spec PDF/DOCX not found in ${ATTACHMENTS_DIR}; building them."
+      WITH_SPEC=true
+      break
+    fi
+  done
+fi
+
 if [ "${WITH_SPEC}" = true ]; then
   echo "==> Building specification PDF/DOCX..."
   SPEC_TMP="$(mktemp -d)"
@@ -80,18 +94,6 @@ if [ "${WITH_SPEC}" = true ]; then
     cp "${SPEC_TMP}/src/output/${f%.adoc}".{pdf,docx} "${ATTACHMENTS_DIR}/"
   done
   echo "    Copied PDF/DOCX to ${ATTACHMENTS_DIR}"
-else
-  for f in "${SPEC_FILES[@]}"; do
-    if [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.pdf" ] || [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.docx" ]; then
-      # The playbook fails the build on error-level messages, and a missing
-      # attachment is one, so relax that for this local preview only.
-      echo "==> NOTE: spec PDF/DOCX not found in ${ATTACHMENTS_DIR};"
-      echo "    download links will be broken and Antora errors will not fail this build."
-      echo "    Use --with-spec to build them."
-      ANTORA_ARGS=(--log-failure-level=fatal)
-      break
-    fi
-  done
 fi
 
 # Same playbook, but reading only the current branch (HEAD) from this checkout. It sits next to
@@ -109,7 +111,6 @@ docker run --rm \
   "${ANTORA_IMAGE}" \
   --cache-dir /antora/.cache/antora \
   --clean \
-  ${ANTORA_ARGS[@]+"${ANTORA_ARGS[@]}"} \
   "$(basename "${PREVIEW_PLAYBOOK}")"
 
 echo ""
