@@ -5,10 +5,10 @@
 # release is out.
 #
 # With every version on its own v* branch, the changes can be derived from git,
-# e.g.  git diff v1.3.0 v1.3.1-dev -- docs/mzidentml/modules/developers/partials/
+# e.g.  git diff v1.3.0 v1.3.1-dev -- docs/mzidentml/modules/developers/pages/
 #
-# The specification sources are docs/mzidentml/modules/developers/partials/
-# (mzidentml.adoc, model-in-xml-schema.adoc, crosslinking_ext.adoc). They are
+# The specification sources are docs/mzidentml/modules/developers/pages/
+# (specification.adoc, _model-in-xml-schema.adoc, crosslinking.adoc). They are
 # edited in place: nothing needs regenerating after editing them.
 
 echo "scripts/gen-docs.sh: generating changes documents is not implemented yet; see the comment in this script." >&2

@@ -16,9 +16,9 @@ sources in the https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository].
 
 * Narrative pages live under `docs/mzidentml/modules/<module>/pages/`.
 * The specification and crosslinking extension are standalone AsciiDoc documents
-  under `docs/mzidentml/modules/developers/partials/`. Edit them in place: this site
-  includes the part of each between `tag::body[]` and `end::body[]`, and the
-  downloadable PDF/DOCX are built from the whole document.
+  under `docs/mzidentml/modules/developers/pages/` (`specification.adoc`, which
+  includes `_model-in-xml-schema.adoc`, and `crosslinking.adoc`). They are
+  pages of this site and also the sources of the downloadable PDF/DOCX.
 * Preview your changes locally with `scripts/build-site.sh --serve` and open
   http://localhost:8080.
 

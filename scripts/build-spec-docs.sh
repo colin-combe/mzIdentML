@@ -1,9 +1,12 @@
 #!/bin/bash
 # Build the standalone specification documents (PDF and DOCX) of this checkout.
 #
-# The specification sources are the Antora partials under
-# docs/mzidentml/modules/developers/partials/ (each a complete AsciiDoc document;
-# the site includes only their tagged body). Their figures are the Antora images
+# The specification sources are Antora pages under
+# docs/mzidentml/modules/developers/pages/ (specification.adoc, which includes
+# _model-in-xml-schema.adoc, and crosslinking.adoc), each a complete AsciiDoc
+# document. The PDF/DOCX are named after spec-basename and xl-basename in this
+# checkout's docs/mzidentml/antora.yml (e.g. mzidentml-1.3.0), which also link
+# them on the site. Their figures are the Antora images
 # under docs/mzidentml/modules/developers/images/img/. Both are copied into a
 # temporary folder, so that the documents find their figures at img/... as they
 # do in Antora, and built there:
@@ -17,18 +20,20 @@
 # Used by prepare-versions.sh (CI, every v* branch with its own copy of this
 # script) and build-site.sh (local preview). Needs Docker and pandoc.
 #
-# Usage: scripts/build-spec-docs.sh -o <output_dir> -c <commit_hash> -d <build_date> <name>...
-#   <name>  document base name, e.g. mzidentml or crosslinking_ext
-# Writes <output_dir>/<name>.pdf and <output_dir>/<name>.docx for each name.
+# Usage: scripts/build-spec-docs.sh -o <output_dir> -c <commit_hash> -d <build_date>
+# Writes <output_dir>/<spec-basename>.{pdf,docx} and <output_dir>/<xl-basename>.{pdf,docx}.
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MODULE="${ROOT}/docs/mzidentml/modules/developers"
+ANTORA_YML="${ROOT}/docs/mzidentml/antora.yml"
 ASCIIDOCTOR_IMAGE="asciidoctor/docker-asciidoctor:1"
+# Source page (without .adoc) and the antora.yml attribute naming its PDF/DOCX.
+DOCS=("specification:spec-basename" "crosslinking:xl-basename")
 
 usage() {
-  echo "Usage: $0 -o <output_dir> -c <commit_hash> -d <build_date> <name>..." >&2
+  echo "Usage: $0 -o <output_dir> -c <commit_hash> -d <build_date>" >&2
   exit 1
 }
 
@@ -42,14 +47,14 @@ while getopts "o:c:d:h" opt; do
   esac
 done
 shift $((OPTIND - 1))
-[ -n "${OUT}" ] && [ -n "${SHA}" ] && [ -n "${DATE}" ] && [ "$#" -gt 0 ] || usage
+[ -n "${OUT}" ] && [ -n "${SHA}" ] && [ -n "${DATE}" ] && [ "$#" -eq 0 ] || usage
 command -v docker > /dev/null || { echo "ERROR: docker not found on PATH" >&2; exit 1; }
 command -v pandoc > /dev/null || { echo "ERROR: pandoc not found on PATH" >&2; exit 1; }
 
 SRC="$(mktemp -d)"
 trap 'rm -rf "${SRC}"' EXIT
-# Copy all partials: mzidentml.adoc includes model-in-xml-schema.adoc.
-cp "${MODULE}"/partials/*.adoc "${SRC}/"
+# Copy all pages: specification.adoc includes _model-in-xml-schema.adoc.
+cp "${MODULE}"/pages/*.adoc "${SRC}/"
 cp -R "${MODULE}/images/img" "${SRC}/img"
 mkdir -p "${SRC}/output" "${OUT}"
 
@@ -63,22 +68,25 @@ asciidoctor_run() {
     -d book -a "commit-hash=${SHA}" -a "build-date=${DATE}" "$@"
 }
 
-for name in "$@"; do
-  if [ ! -f "${SRC}/${name}.adoc" ]; then
-    echo "ERROR: ${MODULE}/partials/${name}.adoc not found" >&2
+for doc in "${DOCS[@]}"; do
+  page="${doc%%:*}"
+  key="${doc#*:}"
+  name="$(sed -n "s/^ *${key}: *//p" "${ANTORA_YML}" | tr -d "'\"")"
+  if [ -z "${name}" ]; then
+    echo "ERROR: ${key} is not set in ${ANTORA_YML}" >&2
     exit 1
   fi
 
-  echo "==> ${name}.pdf"
-  asciidoctor_run asciidoctor-pdf -D output "${name}.adoc"
+  echo "==> ${name}.pdf (from ${page}.adoc)"
+  asciidoctor_run asciidoctor-pdf -o "output/${name}.pdf" "${page}.adoc"
 
-  echo "==> ${name}.docx"
+  echo "==> ${name}.docx (from ${page}.adoc)"
   # Written next to img/ so pandoc finds the figures. toc! and nofooter keep the
   # TOC and "Last updated" footer out of the document body; the shift makes the
   # HTML's <h1> title and <h2> sections into Word's title and Heading 1.
-  asciidoctor_run asciidoctor -a toc! -a nofooter -o "${name}-forDocx.html" "${name}.adoc"
+  asciidoctor_run asciidoctor -a toc! -a nofooter -o "${page}-forDocx.html" "${page}.adoc"
   (cd "${SRC}" && pandoc --from html --to docx --shift-heading-level-by=-1 \
-    --output "output/${name}.docx" "${name}-forDocx.html")
+    --output "output/${name}.docx" "${page}-forDocx.html")
 
   cp -v "${SRC}/output/${name}".{pdf,docx} "${OUT}/"
 done

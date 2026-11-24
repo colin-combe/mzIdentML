@@ -19,7 +19,7 @@ specification.
 [NOTE]
 ====
 That section is maintained as AsciiDoc at
-`docs/mzidentml/modules/developers/partials/model-in-xml-schema.adoc`. Its element
+`docs/mzidentml/modules/developers/pages/_model-in-xml-schema.adoc`. Its element
 definitions originate from the `xsd:documentation` annotations in
 `schema/mzIdentML1.3.0.xsd`, but no tool in this repository regenerates it — when the
 schema changes, the AsciiDoc must be updated by hand.

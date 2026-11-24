@@ -24,7 +24,6 @@ OUTPUT_DIR="${ROOT}/build/site"
 NODE_IMAGE="node:lts-alpine"
 SERVE=false
 WITH_SPEC=false
-SPEC_NAMES=(mzidentml crosslinking_ext)
 ATTACHMENTS_DIR="${ROOT}/docs/mzidentml/modules/ROOT/attachments"
 CLEANUP=()
 trap 'rm -rf ${CLEANUP[@]+"${CLEANUP[@]}"}' EXIT
@@ -71,6 +70,11 @@ else
 fi
 
 # Build the spec PDF/DOCX when any is missing, so the download links resolve.
+# Their names are spec-basename / xl-basename in antora.yml (e.g. mzidentml-1.3.0).
+SPEC_NAMES=()
+for key in spec-basename xl-basename; do
+  SPEC_NAMES+=("$(sed -n "s/^ *${key}: *//p" "${ROOT}/docs/mzidentml/antora.yml" | tr -d "'\"")")
+done
 if [ "${WITH_SPEC}" = false ]; then
   for f in "${SPEC_NAMES[@]}"; do
     if [ ! -f "${ATTACHMENTS_DIR}/${f}.pdf" ] || [ ! -f "${ATTACHMENTS_DIR}/${f}.docx" ]; then
@@ -83,9 +87,11 @@ fi
 
 if [ "${WITH_SPEC}" = true ]; then
   echo "==> Building specification PDF/DOCX..."
+  # Drop any left from earlier names, so the site only carries the current ones.
+  rm -f "${ATTACHMENTS_DIR}"/*.pdf "${ATTACHMENTS_DIR}"/*.docx
   "${ROOT}/scripts/build-spec-docs.sh" -o "${ATTACHMENTS_DIR}" \
     -c "$(git -C "${ROOT}" rev-parse --short HEAD 2>/dev/null || echo local)" \
-    -d "$(date -u +'%Y-%m-%d %H:%M:%S UTC')" "${SPEC_NAMES[@]}"
+    -d "$(date -u +'%Y-%m-%d %H:%M:%S UTC')"
   echo "    Copied PDF/DOCX to ${ATTACHMENTS_DIR}"
 fi
 

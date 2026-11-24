@@ -44,16 +44,8 @@ for branch in "${BRANCHES[@]}"; do
   attachments="${component}/modules/ROOT/attachments"
   mkdir -p "${attachments}"
 
-  names=()
-  for key in spec-basename xl-basename; do
-    name="$(sed -n "s/^ *${key}: *//p" "${component}/antora.yml")"
-    if [ -z "${name}" ]; then
-      echo "ERROR: ${key} is not set in ${component}/antora.yml" >&2
-      exit 1
-    fi
-    names+=("${name}")
-  done
-  "${wt}/scripts/build-spec-docs.sh" -o "${attachments}" -c "${sha}" -d "${date}" "${names[@]}"
+  # Named after spec-basename / xl-basename in the branch's antora.yml.
+  "${wt}/scripts/build-spec-docs.sh" -o "${attachments}" -c "${sha}" -d "${date}"
 
   sed -i -E \
     -e "s|^( *commit-hash:).*|\1 '${sha}'|" \

@@ -32,12 +32,12 @@ Jones A.R., Eisenacher M., Mayer G., Kohlbacher O., Siepen J., Hubbard S.J., Sel
   Specification document
 - [HTML Version](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/developers/specification.html)
 - [PDF Download](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_3/mzIdentML1.3.0-release.pdf)
-- [DOCX Download](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/_attachments/mzidentml.docx)
+- [DOCX Download](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/_attachments/mzidentml-1.3.0.docx)
 
   Crosslinking extension
 - [HTML Version](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/developers/crosslinking.html)
 - [PDF Download](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_3/mzIdentML%201.3.0%20Crosslinking%20Extension%201.0.0%20release.pdf)
-- [DOCX Download](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/_attachments/crosslinking_ext.docx)
+- [DOCX Download](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/_attachments/crosslinking_ext-1.0.0.docx)
 
 **Version 1.2.0 (April 2017) - Still supported:**
 
