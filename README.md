@@ -9,16 +9,6 @@ A large number of different proteomics search engines are available that produce
 
 📖 **The full mzIdentML documentation is published at [hupo-psi.github.io/mzIdentML](https://hupo-psi.github.io/mzIdentML).**
 
-The site is built with [Antora](https://antora.org) and includes:
-
-- [Specification 1.3.0](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/developers/specification.html)
-- [Crosslinking Extension](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/developers/crosslinking.html)
-- [Schema Reference](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/developers/schema.html)
-- [Getting Started (Users)](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/users/getting-started.html)
-- [Validation](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3/validation/index.html)
-
-Downloadable versions of the specification documents (PDF/DOCX/XML) are linked under [Specification documents](#specification-documents) below.
-
 ## Citing mzIdentML
 When you use mzIdentML format, please cite the following publications:
 
@@ -40,19 +30,19 @@ Jones A.R., Eisenacher M., Mayer G., Kohlbacher O., Siepen J., Hubbard S.J., Sel
 - [XSD Version](schema/mzIdentML1.3.0.xsd)
 
   Specification document
-- [HTML Version](https://HUPO-PSI.github.io/mzIdentML/mzidentml.html)
-- [PDF Download](https://HUPO-PSI.github.io/mzIdentML/mzidentml.pdf)
-- [DOCX Download](https://HUPO-PSI.github.io/mzIdentML/mzidentml.docx)
+- [HTML Version](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/developers/specification.html)
+- [PDF Download](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_3/mzIdentML1.3.0-release.pdf)
+- [DOCX Download](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/_attachments/mzidentml.docx)
 
   Crosslinking extension
-- [HTML Version](https://HUPO-PSI.github.io/mzIdentML/crosslinking_ext.html)
-- [PDF Download](https://HUPO-PSI.github.io/mzIdentML/crosslinking_ext.pdf)
-- [DOCX Download](https://HUPO-PSI.github.io/mzIdentML/crosslinking_ext.docx)
+- [HTML Version](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/developers/crosslinking.html)
+- [PDF Download](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_3/mzIdentML%201.3.0%20Crosslinking%20Extension%201.0.0%20release.pdf)
+- [DOCX Download](https://hupo-psi.github.io/mzIdentML/mzidentml/1.3.0/_attachments/crosslinking_ext.docx)
 
 **Version 1.2.0 (April 2017) - Still supported:**
 
   Specification document
-  > Specification document [docx](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_1/mzIdentML1.1.0.doc),
+  > Specification document [docx](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_2/mzIdentML1%202.0-release.docx), [pdf](https://github.com/HUPO-PSI/mzIdentML/blob/master/specification_document-releases/specdoc1_2/mzIdentML1%202.0-release.pdf)
 
   Validator:
   > Validator (Java) (https://github.com/HUPO-PSI/mzIdentML/releases)
@@ -71,17 +61,3 @@ https://github.com/HUPO-PSI/mzIdentML/tree/master/examples
 )
 
 ## Tools, Libraries, readers and exporters - see (http://www.psidev.info/tools-implementing-mzidentml)
-
-## Building the documentation
-
-The documentation site is built with [Antora](https://antora.org) from AsciiDoc sources in this repository:
-
-- Narrative pages live under `docs/mzidentml/modules/<module>/pages/`.
-- The specification and crosslinking extension are standalone AsciiDoc documents under `docs/mzidentml/modules/developers/partials/` (`mzidentml.adoc`, which includes `model-in-xml-schema.adoc`, and `crosslinking_ext.adoc`), with their figures under `docs/mzidentml/modules/developers/images/img/`. Edit them in place: the site includes the part of each between `tag::body[]` and `end::body[]`, and `scripts/build-spec-docs.sh` builds the whole document to PDF/DOCX.
-- Build and preview the current branch locally with `scripts/build-site.sh --serve` (requires Docker; add `--with-spec` to also build the PDF/DOCX downloads) and open <http://localhost:8080>.
-
-Each version of the specification is a `v*` branch: released versions (e.g. `v1.3.0`) and the version in development (e.g. `v1.3.1-dev`). Each branch's `docs/mzidentml/antora.yml` sets its version, and no two branches may declare the same one. On a push to any `v*` branch, the `Spec Build Workflow` builds the site from all `v*` branches, each with its own PDF/DOCX, and deploys it to GitHub Pages. See `antora-playbook.yml`, `scripts/prepare-versions.sh` and `.github/workflows/`.
-
-To release version X.Y.Z, publish a GitHub release with the tag `X.Y.Z` (no leading `v`, so tags never share a name with the `v*` branches) on the commit to release, usually the tip of `vX.Y.Z-dev`. The `Spec Doc Release Workflow` validates the examples, creates the branch `vX.Y.Z` (version `X.Y.Z`, no prerelease), replaces `vX.Y.Z-dev` with `vX.Y.(Z+1)-dev` (same history, next version) and redeploys the site.
-
-
