@@ -10,11 +10,11 @@ nav:
 asciidoc:
   attributes:
     # Base names of the specification PDF/DOCX attachments (modules/ROOT/attachments/),
-    # built by build-docs.sh from the .adoc of the same name. They are not committed:
-    # CI (prepare-versions.sh) and ./build-site.sh (when missing) build them.
+    # built by scripts/build-spec-docs.sh from the .adoc of the same name. They are not committed:
+    # CI (scripts/prepare-versions.sh) and scripts/build-site.sh (when missing) build them.
     # Linked as xref:ROOT:attachment${spec-basename}.pdf[].
     spec-basename: mzidentml
     xl-basename: crosslinking_ext
-    # Replaced with this branch's last commit by prepare-versions.sh in CI.
+    # Replaced with this branch's last commit by scripts/prepare-versions.sh in CI.
     commit-hash: 'local'
     build-date: 'local build'

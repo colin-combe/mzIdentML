@@ -7,7 +7,4 @@ extension are now in
 their figures in
 [`docs/mzidentml/modules/developers/images/img/`](../../../docs/mzidentml/modules/developers/images/img/).
 The documentation site and the PDF/DOCX downloads are both built from there;
-see `build-spec-docs.sh` in the repository root.
-
-This folder keeps the frozen copies of released text that `gen-docs.sh` compares
-the current sources against, and the reports it generates.
+see `scripts/build-spec-docs.sh`.

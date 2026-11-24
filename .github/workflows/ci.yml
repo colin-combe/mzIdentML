@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -61,7 +61,7 @@ jobs:
         run: docker pull asciidoctor/docker-asciidoctor:1
 
       - name: Build each version's specification PDF/DOCX
-        run: ./prepare-versions.sh
+        run: scripts/prepare-versions.sh
         shell: bash
 
       - name: Set up Node.js

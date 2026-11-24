@@ -5,7 +5,7 @@
 # command line jar of the latest mzidentml-validator release from
 # https://github.com/HUPO-PSI/mzidentml-validator (downloaded once and cached).
 #
-# Usage: ./validate.sh [options] [path ...]
+# Usage: scripts/validate.sh [options] [path ...]
 #
 #   path            file or directory to validate; defaults to ./examples
 #   --report-only   report semantic messages without failing the run (they fail it by default)
@@ -30,7 +30,8 @@ set -uo pipefail
 # Always work relative to the repository root, whatever the caller's cwd is, but keep the
 # caller's cwd so that a path given on the command line can be resolved against it too.
 ORIG_PWD="$PWD"
-cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+SELF="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+cd "$(dirname "${SELF}")/.." || exit 1
 
 V_DIR="./examples"
 SCHEMA_DIR="./schema"
@@ -61,7 +62,7 @@ VALIDATOR_CACHE="${MZID_VALIDATOR_CACHE:-./.cache/mzidentml-validator}"
 SEMANTIC_VERSIONS=" 1.1.0 1.1.1 1.2.0 1.3.0 "
 
 usage() {
-  sed -n '3,26p' "${BASH_SOURCE[0]}" | sed 's/^#\{1,2\} \{0,1\}//'
+  sed -n '3,26p' "${SELF}" | sed 's/^#\{1,2\} \{0,1\}//'
 }
 
 # Prefix each line of stdin so error output stays inside the "#" banner style.

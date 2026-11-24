@@ -27,7 +27,7 @@ endif::[]
 :build-date: UNDEFINED
 // Everything between the "body" tag markers below is included in the Antora page
 // (docs/mzidentml/modules/developers/pages/*.adoc); the lines above are used only
-// when this file is built as a standalone document (PDF/DOCX, see build-spec-docs.sh).
+// when this file is built as a standalone document (PDF/DOCX, see scripts/build-spec-docs.sh).
 // tag::body[]
 :document-version: version 1.3.0 final, June 2024
 

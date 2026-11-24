@@ -19,11 +19,13 @@ sources in the https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository].
   under `docs/mzidentml/modules/developers/partials/`. Edit them in place: this site
   includes the part of each between `tag::body[]` and `end::body[]`, and the
   downloadable PDF/DOCX are built from the whole document.
-* Preview your changes locally with `./build-site.sh --serve` and open
+* Preview your changes locally with `scripts/build-site.sh --serve` and open
   http://localhost:8080.
 
-Every page has an *Edit this page* link (top of the page) that points at the
-corresponding source file on GitHub.
+Every page of the version in development has an *Edit this page* link (top of
+the page) that points at the corresponding source file on GitHub. Released
+versions are fixed, so their pages have no such link: propose changes against
+the version in development.
 
 == Proposing Format Changes
 

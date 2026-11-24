@@ -1,4 +1,5 @@
-{{#if (and page.editUrl (or env.FORCE_SHOW_EDIT_PAGE_LINK (not page.origin.private)))}}
+{{!-- Released versions (no prerelease in antora.yml) are fixed: no link to edit them on GitHub. --}}
+{{#if (and page.editUrl page.componentVersion.prerelease (or env.FORCE_SHOW_EDIT_PAGE_LINK (not page.origin.private)))}}
     <li class="adt-breadcrumb-edit" role="presentation">
       <a class="adt-edit-inline-link" href="{{page.editUrl}}" title="Edit this page" aria-label="Edit this page">
         <img class="adt-vcs-icon-img adt-edit-vcs-img" src="{{{uiRootPath}}}/img/vcs/github.svg" width="16" height="16" alt="" />

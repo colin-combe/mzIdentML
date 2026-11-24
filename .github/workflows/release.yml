@@ -10,7 +10,7 @@ name: Spec Doc Release Workflow
 #      vX.Y.Z and vX.Y.Z-dev would otherwise declare version X.Y.Z, which
 #      Antora rejects;
 #   4. rebuilds and deploys the site through ci.yml (all v* branches, each
-#      with its own PDF/DOCX, built by prepare-versions.sh; nothing is committed).
+#      with its own PDF/DOCX, built by scripts/prepare-versions.sh; nothing is committed).
 #
 # Releases with any other tag (e.g. the validator's mzIdentMLValidator_GUI_*)
 # are ignored.
@@ -68,7 +68,7 @@ jobs:
 
     steps:
       - name: Checkout repository (full history)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 

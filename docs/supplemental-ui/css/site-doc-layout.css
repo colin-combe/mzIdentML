@@ -817,7 +817,7 @@ nav.nav-menu.adt-nav-tree-only {
   text-decoration: underline;
 }
 
-/* Dark nav link color (site-extra.css is overwritten by sync-antora-dark-theme.cjs) */
+/* Dark nav link color */
 html.dark-theme .nav .adt-nav-component-title,
 html.dark-theme .nav .adt-nav-component-title a {
   color: #d7d8da;

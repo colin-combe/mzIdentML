@@ -6,10 +6,10 @@
 # see antora-playbook.yml and prepare-versions.sh.)
 #
 # Usage:
-#   ./build-site.sh          # build only
-#   ./build-site.sh --serve  # build and start a local HTTP server for preview
-#   ./build-site.sh --clean  # remove node_modules before building (force reinstall)
-#   ./build-site.sh --with-spec  # rebuild the spec PDF/DOCX even if present
+#   scripts/build-site.sh          # build only
+#   scripts/build-site.sh --serve  # build and start a local HTTP server for preview
+#   scripts/build-site.sh --clean  # remove node_modules before building (force reinstall)
+#   scripts/build-site.sh --with-spec  # rebuild the spec PDF/DOCX even if present
 #
 # The spec PDF/DOCX (Antora attachments, i.e. the per-version downloads) are
 # built automatically when missing; --with-spec forces a rebuild after the spec
@@ -17,20 +17,22 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OUTPUT_DIR="${SCRIPT_DIR}/build/site"
-ANTORA_IMAGE="antora/antora:3.1.14"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+OUTPUT_DIR="${ROOT}/build/site"
+# Node.js image used to install and run Antora from package-lock.json, so the
+# preview uses the same Antora and extension versions as CI (npm ci on Node LTS).
+NODE_IMAGE="node:lts-alpine"
 SERVE=false
 WITH_SPEC=false
 SPEC_NAMES=(mzidentml crosslinking_ext)
-ATTACHMENTS_DIR="${SCRIPT_DIR}/docs/mzidentml/modules/ROOT/attachments"
+ATTACHMENTS_DIR="${ROOT}/docs/mzidentml/modules/ROOT/attachments"
 CLEANUP=()
 trap 'rm -rf ${CLEANUP[@]+"${CLEANUP[@]}"}' EXIT
 
 for arg in "$@"; do
   case "$arg" in
     --serve) SERVE=true ;;
-    --clean) rm -rf "${SCRIPT_DIR}/node_modules" ;;
+    --clean) rm -rf "${ROOT}/node_modules" ;;
     --with-spec) WITH_SPEC=true ;;
     --help|-h)
       echo "Usage: $0 [--serve] [--clean] [--with-spec]"
@@ -49,19 +51,21 @@ if ! command -v docker &>/dev/null; then
   exit 1
 fi
 
-# Install Antora + extensions via npm inside the Antora Docker image.
-# The antora/antora image ships with Node.js and npm; we override the entrypoint
-# to run npm so both steps use the same Node version.
-if [ ! -d "${SCRIPT_DIR}/node_modules" ]; then
-  echo "==> Installing Antora dependencies (first run)..."
+# Run a command in the Node.js image, in this checkout (mounted at /antora).
+node_run() {
   docker run --rm \
     -u "$(id -u):$(id -g)" \
-    -v "${SCRIPT_DIR}:/antora" \
+    -e HOME=/tmp \
+    -v "${ROOT}:/antora" \
     -w /antora \
-    --entrypoint npm \
-    "${ANTORA_IMAGE}" \
-    install --cache /antora/.npm-cache
-  echo "    Done. Commit package-lock.json to enable reproducible builds (npm ci)."
+    "${NODE_IMAGE}" \
+    "$@"
+}
+
+# Install Antora + extensions exactly as locked in package-lock.json.
+if [ ! -d "${ROOT}/node_modules" ]; then
+  echo "==> Installing Antora dependencies (first run)..."
+  node_run npm ci --cache /antora/.npm-cache
 else
   echo "==> node_modules present, skipping npm install (use --clean to force reinstall)."
 fi
@@ -79,25 +83,21 @@ fi
 
 if [ "${WITH_SPEC}" = true ]; then
   echo "==> Building specification PDF/DOCX..."
-  "${SCRIPT_DIR}/build-spec-docs.sh" -o "${ATTACHMENTS_DIR}" \
-    -c "$(git -C "${SCRIPT_DIR}" rev-parse --short HEAD 2>/dev/null || echo local)" \
+  "${ROOT}/scripts/build-spec-docs.sh" -o "${ATTACHMENTS_DIR}" \
+    -c "$(git -C "${ROOT}" rev-parse --short HEAD 2>/dev/null || echo local)" \
     -d "$(date -u +'%Y-%m-%d %H:%M:%S UTC')" "${SPEC_NAMES[@]}"
   echo "    Copied PDF/DOCX to ${ATTACHMENTS_DIR}"
 fi
 
 # Same playbook, but reading only the current branch (HEAD) from this checkout. It sits next to
 # antora-playbook.yml because Antora resolves the playbook's paths relative to it.
-PREVIEW_PLAYBOOK="${SCRIPT_DIR}/.antora-preview-playbook.yml"
+PREVIEW_PLAYBOOK="${ROOT}/.antora-preview-playbook.yml"
 CLEANUP+=("${PREVIEW_PLAYBOOK}")
 sed -e "s/^\( *branches:\).*/\1 HEAD/" -e "s/^\( *worktrees:\).*/\1 ./" \
-  "${SCRIPT_DIR}/antora-playbook.yml" > "${PREVIEW_PLAYBOOK}"
+  "${ROOT}/antora-playbook.yml" > "${PREVIEW_PLAYBOOK}"
 
 echo "==> Building Antora site..."
-docker run --rm \
-  -u "$(id -u):$(id -g)" \
-  -v "${SCRIPT_DIR}:/antora" \
-  -w /antora \
-  "${ANTORA_IMAGE}" \
+node_run node node_modules/@antora/cli/bin/antora \
   --cache-dir /antora/.cache/antora \
   --clean \
   "$(basename "${PREVIEW_PLAYBOOK}")"
@@ -113,6 +113,6 @@ if [ "${SERVE}" = true ]; then
 else
   echo ""
   echo "To preview the site, run one of:"
-  echo "  ./build-site.sh --serve"
+  echo "  scripts/build-site.sh --serve"
   echo "  python3 -m http.server 8080 --directory '${OUTPUT_DIR}'"
 fi

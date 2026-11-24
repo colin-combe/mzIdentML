@@ -9,7 +9,7 @@ on:
     paths:
       - 'examples/**'
       - 'schema/**'
-      - 'validate.sh'
+      - 'scripts/validate.sh'
       - '.github/workflows/validate.yml'
   pull_request:
     branches:
@@ -17,17 +17,13 @@ on:
     paths:
       - 'examples/**'
       - 'schema/**'
-      - 'validate.sh'
+      - 'scripts/validate.sh'
       - '.github/workflows/validate.yml'
   workflow_dispatch:
   workflow_call:
 jobs:
   validate-examples:
-    runs-on: '${{ matrix.os }}'
-    strategy:
-      matrix:
-        os:
-          - ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - name: Install xmllint
@@ -40,7 +36,7 @@ jobs:
       - name: Validate Examples
         # Strict by default: schema errors, semantic messages, or not being able to run the
         # semantic validator at all make this step fail.
-        run: ./validate.sh
+        run: scripts/validate.sh
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

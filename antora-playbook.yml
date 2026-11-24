@@ -14,10 +14,10 @@ content:
       # Every version is a v* branch: released versions (e.g. v1.3.0) and the
       # version in development (e.g. v1.3.1-dev). Each branch's antora.yml sets
       # its version, so no two v* branches may declare the same one.
-      # (./build-site.sh previews the current branch only; see that script.)
+      # (scripts/build-site.sh previews the current branch only; see that script.)
       branches: ['v*']
       # Read each branch from its git worktree when it has one (the main checkout
-      # or a linked worktree), including untracked files. CI (prepare-versions.sh)
+      # or a linked worktree), including untracked files. CI (scripts/prepare-versions.sh)
       # gives every v* branch a worktree holding its freshly built PDF/DOCX.
       worktrees: true
       start_path: docs/mzidentml

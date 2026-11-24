@@ -12,13 +12,13 @@
 #      pages and the PDF/DOCX of each version name the commit they come from.
 #
 # Used by CI. It edits antora.yml in each worktree, so run it locally only in a
-# throwaway clone; for a local preview use ./build-site.sh instead.
+# throwaway clone; for a local preview use scripts/build-site.sh instead.
 #
-# Usage: ./prepare-versions.sh
+# Usage: scripts/prepare-versions.sh
 
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${ROOT}"
 
 CURRENT="$(git rev-parse --abbrev-ref HEAD)"
@@ -53,7 +53,7 @@ for branch in "${BRANCHES[@]}"; do
     fi
     names+=("${name}")
   done
-  "${wt}/build-spec-docs.sh" -o "${attachments}" -c "${sha}" -d "${date}" "${names[@]}"
+  "${wt}/scripts/build-spec-docs.sh" -o "${attachments}" -c "${sha}" -d "${date}" "${names[@]}"
 
   sed -i -E \
     -e "s|^( *commit-hash:).*|\1 '${sha}'|" \
