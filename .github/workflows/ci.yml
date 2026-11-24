@@ -8,8 +8,10 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, synchronize, reopened, closed]
   workflow_call:
+
+permissions:
+  contents: read
 
 env:
   DOC_IN: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc"
@@ -58,9 +60,8 @@ jobs:
 
   # ---------------------------------------------------------------------------
   # Build the standalone specification documents (PDF/HTML/DOCX/XML) with
-  # asciidoctor + pandoc, exactly as before. These are the downloadable release
-  # artifacts, and they are overlaid onto the published Antora site so that the
-  # existing hupo-psi.github.io/mzIdentML/*.pdf download links keep working.
+  # asciidoctor + pandoc. The PDF/DOCX become Antora attachments (per-version
+  # downloads, see build-docs below).
   # ---------------------------------------------------------------------------
   build-spec:
     runs-on: ubuntu-24.04
@@ -116,15 +117,14 @@ jobs:
           retention-days: 90
 
   # ---------------------------------------------------------------------------
-  # Build the Antora documentation site and overlay the standalone documents +
-  # generated schema HTML at the site root.
+  # Build the Antora documentation site.
   # ---------------------------------------------------------------------------
   build-docs:
     name: Build Antora documentation
     needs: build-spec
-    # Skip in workflow_call context — release.yml has its own publish-site job.
-    # Also skip when a PR is closed without merging (no deployment value).
-    if: github.event_name != 'workflow_call' && !(github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false)
+    # Only for pushes and PRs. When called from release.yml, github.event_name is
+    # the caller's event ('release'), and release.yml has its own publish-site job.
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
 
     steps:
@@ -163,6 +163,21 @@ jobs:
           ./gen-docs.sh --crosslinking
         shell: bash
 
+      # The spec PDF/DOCX from build-spec become Antora attachments of the ROOT
+      # module (xref:ROOT:attachment$...). Antora reads the checked-out worktree,
+      # so these untracked files are included for the current branch; the vX.Y
+      # release branches carry their own committed copies.
+      - name: Download specification documents
+        uses: actions/download-artifact@v4
+        with:
+          name: specification-documents
+          path: spec-artifact
+
+      - name: Add specification PDF/DOCX as Antora attachments
+        run: |
+          mkdir -p docs/mzidentml/modules/ROOT/attachments
+          cp -v spec-artifact/*.pdf spec-artifact/*.docx docs/mzidentml/modules/ROOT/attachments/
+
       - name: Build Antora site
         env:
           ANTORA_EDIT_BRANCH: main
@@ -171,20 +186,8 @@ jobs:
             --attribute "commit-hash=${{ github.sha }}" \
             --attribute "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
-      - name: Download standalone specification documents
-        uses: actions/download-artifact@v4
-        with:
-          name: specification-documents
-          path: spec-release
-
-      - name: Overlay standalone documents at site root
-        run: |
-          # Downloadable documents referenced from README.md and the site's
-          # spec/crosslinking pages (mzidentml.{html,pdf,docx,xml}, etc).
-          cp -v spec-release/mzidentml.* spec-release/crosslinking_ext.* build/site/
-
       - name: Upload GitHub Pages artifact
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/site/
@@ -192,8 +195,13 @@ jobs:
   deploy-docs:
     name: Deploy documentation to GitHub Pages
     needs: build-docs
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    # A merged PR also triggers a push to main, so deploying on push covers it.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
+    # Shared with release.yml's publish-site so Pages deployments never overlap.
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write

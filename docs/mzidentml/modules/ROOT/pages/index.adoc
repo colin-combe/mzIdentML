@@ -47,7 +47,7 @@ https://www.ebi.ac.uk/pride/markdownpage/submitdatapage[PRIDE].
 |xref:validation:index.adoc[Validate a File]
 |xref:developers:examples.adoc[Example Files]
 |xref:about:cite.adoc[How to Cite]
-|
+|Specification as xref:ROOT:attachment${spec-basename}.pdf[PDF] / xref:ROOT:attachment${spec-basename}.docx[DOCX]
 |===
 
 == Cite

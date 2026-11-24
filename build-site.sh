@@ -5,6 +5,8 @@
 #   ./build-site.sh          # build only
 #   ./build-site.sh --serve  # build and start a local HTTP server for preview
 #   ./build-site.sh --clean  # remove node_modules before building (force reinstall)
+#   ./build-site.sh --with-spec  # also build the spec PDF/DOCX and publish them
+#                                # as Antora attachments (per-version downloads)
 
 set -euo pipefail
 
@@ -12,16 +14,22 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OUTPUT_DIR="${SCRIPT_DIR}/build/site"
 ANTORA_IMAGE="antora/antora:3.1.14"
 SERVE=false
-CLEAN=false
+WITH_SPEC=false
+SPEC_SRC_DIR="${SCRIPT_DIR}/specification_document/specdoc1_3/asciidoc"
+SPEC_FILES=(mzidentml.adoc crosslinking_ext.adoc)
+ATTACHMENTS_DIR="${SCRIPT_DIR}/docs/mzidentml/modules/ROOT/attachments"
+ANTORA_ARGS=()
 
 for arg in "$@"; do
   case "$arg" in
     --serve) SERVE=true ;;
-    --clean) CLEAN=false && rm -rf "${SCRIPT_DIR}/node_modules" ;;
+    --clean) rm -rf "${SCRIPT_DIR}/node_modules" ;;
+    --with-spec) WITH_SPEC=true ;;
     --help|-h)
-      echo "Usage: $0 [--serve] [--clean]"
-      echo "  --serve  Start a local HTTP server after building (requires Python 3)"
-      echo "  --clean  Remove node_modules and reinstall before building"
+      echo "Usage: $0 [--serve] [--clean] [--with-spec]"
+      echo "  --serve      Start a local HTTP server after building (requires Python 3)"
+      echo "  --clean      Remove node_modules and reinstall before building"
+      echo "  --with-spec  Build the specification PDF/DOCX and add them as site downloads"
       exit 0
       ;;
   esac
@@ -50,6 +58,36 @@ else
   echo "==> node_modules present, skipping npm install (use --clean to force reinstall)."
 fi
 
+if [ "${WITH_SPEC}" = true ]; then
+  echo "==> Building specification PDF/DOCX..."
+  SPEC_TMP="$(mktemp -d)"
+  trap 'rm -rf "${SPEC_TMP}"' EXIT
+  # Build from a copy so build-docs.sh's output/ folder stays out of the repo.
+  mkdir -p "${SPEC_TMP}/src"
+  cp -R "${SPEC_SRC_DIR}/." "${SPEC_TMP}/src/"
+  rm -rf "${SPEC_TMP}/src/output"
+  mkdir -p "${ATTACHMENTS_DIR}"
+  for f in "${SPEC_FILES[@]}"; do
+    "${SCRIPT_DIR}/build-docs.sh" -i "${SPEC_TMP}/src" -o "${SPEC_TMP}/src/output" \
+      -c "$(git -C "${SCRIPT_DIR}" rev-parse --short HEAD 2>/dev/null || echo local)" \
+      -d "$(date -u +'%Y-%m-%d %H:%M:%S UTC')" -f "${f}" -r
+    cp "${SPEC_TMP}/src/output/${f%.adoc}".{pdf,docx} "${ATTACHMENTS_DIR}/"
+  done
+  echo "    Copied PDF/DOCX to ${ATTACHMENTS_DIR}"
+else
+  for f in "${SPEC_FILES[@]}"; do
+    if [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.pdf" ] || [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.docx" ]; then
+      # The playbook fails the build on error-level messages, and a missing
+      # attachment is one, so relax that for this local preview only.
+      echo "==> NOTE: spec PDF/DOCX not found in ${ATTACHMENTS_DIR};"
+      echo "    download links will be broken and Antora errors will not fail this build."
+      echo "    Use --with-spec to build them."
+      ANTORA_ARGS=(--log-failure-level=fatal)
+      break
+    fi
+  done
+fi
+
 ANTORA_EDIT_BRANCH="${ANTORA_EDIT_BRANCH:-$(git -C "${SCRIPT_DIR}" rev-parse --abbrev-ref HEAD 2>/dev/null || echo HEAD)}"
 
 echo "==> Building Antora site..."
@@ -60,6 +98,7 @@ docker run --rm \
   -e ANTORA_EDIT_BRANCH \
   "${ANTORA_IMAGE}" \
   --cache-dir /antora/.cache/antora \
+  ${ANTORA_ARGS[@]+"${ANTORA_ARGS[@]}"} \
   antora-playbook.yml
 
 echo ""

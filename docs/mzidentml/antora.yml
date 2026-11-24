@@ -8,3 +8,10 @@ nav:
   - modules/developers/nav.adoc
   - modules/validation/nav.adoc
   - modules/about/nav.adoc
+asciidoc:
+  attributes:
+    # Base names of the specification PDF/DOCX attachments (modules/ROOT/attachments/),
+    # built by build-docs.sh. CI copies them in for the branch being built; release
+    # branches (vX.Y) carry committed copies. Linked as xref:ROOT:attachment${spec-basename}.pdf[].
+    spec-basename: mzidentml
+    xl-basename: crosslinking_ext
