@@ -15,7 +15,7 @@ content:
       # 'v*' automatically includes all release documentation branches (v1.3, v1.4, …)
       # created by the release workflow.  If no v* branches exist yet the glob is
       # silently ignored by Antora, so this is safe before the first release.
-      branches: [HEAD, 'v*']
+      branches: ['v*']
       # worktrees: . lets Antora read uncommitted changes during local preview.
       # In CI the working tree matches HEAD, so this is harmless there too.
       worktrees: .
