@@ -22,8 +22,7 @@ OUTPUT_DIR="${SCRIPT_DIR}/build/site"
 ANTORA_IMAGE="antora/antora:3.1.14"
 SERVE=false
 WITH_SPEC=false
-SPEC_SRC_DIR="${SCRIPT_DIR}/specification_document/specdoc1_3/asciidoc"
-SPEC_FILES=(mzidentml.adoc crosslinking_ext.adoc)
+SPEC_NAMES=(mzidentml crosslinking_ext)
 ATTACHMENTS_DIR="${SCRIPT_DIR}/docs/mzidentml/modules/ROOT/attachments"
 CLEANUP=()
 trap 'rm -rf ${CLEANUP[@]+"${CLEANUP[@]}"}' EXIT
@@ -69,8 +68,8 @@ fi
 
 # Build the spec PDF/DOCX when any is missing, so the download links resolve.
 if [ "${WITH_SPEC}" = false ]; then
-  for f in "${SPEC_FILES[@]}"; do
-    if [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.pdf" ] || [ ! -f "${ATTACHMENTS_DIR}/${f%.adoc}.docx" ]; then
+  for f in "${SPEC_NAMES[@]}"; do
+    if [ ! -f "${ATTACHMENTS_DIR}/${f}.pdf" ] || [ ! -f "${ATTACHMENTS_DIR}/${f}.docx" ]; then
       echo "==> Spec PDF/DOCX not found in ${ATTACHMENTS_DIR}; building them."
       WITH_SPEC=true
       break
@@ -80,19 +79,9 @@ fi
 
 if [ "${WITH_SPEC}" = true ]; then
   echo "==> Building specification PDF/DOCX..."
-  SPEC_TMP="$(mktemp -d)"
-  CLEANUP+=("${SPEC_TMP}")
-  # Build from a copy so build-docs.sh's output/ folder stays out of the repo.
-  mkdir -p "${SPEC_TMP}/src"
-  cp -R "${SPEC_SRC_DIR}/." "${SPEC_TMP}/src/"
-  rm -rf "${SPEC_TMP}/src/output"
-  mkdir -p "${ATTACHMENTS_DIR}"
-  for f in "${SPEC_FILES[@]}"; do
-    "${SCRIPT_DIR}/build-docs.sh" -i "${SPEC_TMP}/src" -o "${SPEC_TMP}/src/output" \
-      -c "$(git -C "${SCRIPT_DIR}" rev-parse --short HEAD 2>/dev/null || echo local)" \
-      -d "$(date -u +'%Y-%m-%d %H:%M:%S UTC')" -f "${f}" -r
-    cp "${SPEC_TMP}/src/output/${f%.adoc}".{pdf,docx} "${ATTACHMENTS_DIR}/"
-  done
+  "${SCRIPT_DIR}/build-spec-docs.sh" -o "${ATTACHMENTS_DIR}" \
+    -c "$(git -C "${SCRIPT_DIR}" rev-parse --short HEAD 2>/dev/null || echo local)" \
+    -d "$(date -u +'%Y-%m-%d %H:%M:%S UTC')" "${SPEC_NAMES[@]}"
   echo "    Copied PDF/DOCX to ${ATTACHMENTS_DIR}"
 fi
 

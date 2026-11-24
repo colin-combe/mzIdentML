@@ -7,4 +7,4 @@ the same AsciiDoc source as the downloadable
 xref:ROOT:attachment${spec-basename}.pdf[PDF] and
 xref:ROOT:attachment${spec-basename}.docx[DOCX] documents for this version.
 
-include::partial$mzidentml.adoc[]
+include::partial$mzidentml.adoc[tag=body]

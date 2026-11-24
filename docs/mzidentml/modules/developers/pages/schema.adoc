@@ -19,11 +19,10 @@ specification.
 [NOTE]
 ====
 That section is maintained as AsciiDoc at
-`specification_document/specdoc1_3/asciidoc/model-in-xml-schema.adoc`. Its element
+`docs/mzidentml/modules/developers/partials/model-in-xml-schema.adoc`. Its element
 definitions originate from the `xsd:documentation` annotations in
 `schema/mzIdentML1.3.0.xsd`, but no tool in this repository regenerates it — when the
-schema changes, the AsciiDoc must be updated by hand. `./gen-docs.sh` only copies the
-file into the Antora partials directory.
+schema changes, the AsciiDoc must be updated by hand.
 ====
 
 == Controlled Vocabularies

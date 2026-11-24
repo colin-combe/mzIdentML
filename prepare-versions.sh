@@ -5,8 +5,9 @@
 # For each local v* branch this:
 #   1. uses the current checkout if it is that branch, otherwise adds a linked
 #      worktree for it under build/worktrees/<branch>;
-#   2. builds that branch's specification PDF/DOCX with its own build-docs.sh
-#      and puts them in its Antora attachments folder (they are never committed);
+#   2. builds that branch's specification PDF/DOCX with its own
+#      build-spec-docs.sh and puts them in its Antora attachments folder (they
+#      are never committed);
 #   3. writes the branch's last commit hash and date into its antora.yml, so the
 #      pages and the PDF/DOCX of each version name the commit they come from.
 #
@@ -36,26 +37,23 @@ for branch in "${BRANCHES[@]}"; do
     [ -d "${wt}" ] || git worktree add --quiet "${wt}" "${branch}"
   fi
 
-  sha="$(git rev-parse --short "${branch}")"
-  date="$(TZ=UTC git log -1 --format=%cd --date=format-local:'%Y-%m-%d %H:%M:%S UTC' "${branch}")"
+  # Full ref, in case a tag has the same name as the branch.
+  sha="$(git rev-parse --short "refs/heads/${branch}")"
+  date="$(TZ=UTC git log -1 --format=%cd --date=format-local:'%Y-%m-%d %H:%M:%S UTC' "refs/heads/${branch}")"
   component="${wt}/docs/mzidentml"
   attachments="${component}/modules/ROOT/attachments"
   mkdir -p "${attachments}"
 
-  # Build from a copy so build-docs.sh's output/ folder stays out of the worktree.
-  src="$(mktemp -d)"
-  cp -R "${wt}/specification_document/specdoc1_3/asciidoc/." "${src}/"
-  rm -rf "${src}/output"
+  names=()
   for key in spec-basename xl-basename; do
     name="$(sed -n "s/^ *${key}: *//p" "${component}/antora.yml")"
     if [ -z "${name}" ]; then
       echo "ERROR: ${key} is not set in ${component}/antora.yml" >&2
       exit 1
     fi
-    "${wt}/build-docs.sh" -i "${src}" -o "${src}/output" -c "${sha}" -d "${date}" -f "${name}.adoc" -r
-    cp -v "${src}/output/${name}".{pdf,docx} "${attachments}/"
+    names+=("${name}")
   done
-  rm -rf "${src}"
+  "${wt}/build-spec-docs.sh" -o "${attachments}" -c "${sha}" -d "${date}" "${names[@]}"
 
   sed -i -E \
     -e "s|^( *commit-hash:).*|\1 '${sha}'|" \

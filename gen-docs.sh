@@ -1,41 +1,29 @@
 #!/bin/bash
-# Regenerate AsciiDoc documentation partials for the Antora documentation site.
+# Generate the "changes" documents, which compare the released specification
+# (frozen baseline copies under specification_document/specdoc1_3/asciidoc/)
+# with the current sources, and the Antora partials that include them.
 #
-# The specification is authored as standalone AsciiDoc documents under
-# specification_document/specdoc1_3/asciidoc/ (which are also built to
-# HTML/PDF/DOCX by build-docs.sh for release artifacts).  This script strips
-# the standalone document headers so the bodies can be pulled into Antora pages
-# via include::partial$...[] directives.
-#
-# Run this script whenever:
-#   - specification_document/specdoc1_3/asciidoc/mzidentml.adoc changes
-#   - specification_document/specdoc1_3/asciidoc/model-in-xml-schema.adoc changes
-#   - specification_document/specdoc1_3/asciidoc/crosslinking_ext.adoc changes
-#
-# It also generates the "changes" documents that compare the released 1.3.0
-# specification against the current (1.3.x) source -- see the --changes flag.
+# The specification sources themselves are the Antora partials under
+# docs/mzidentml/modules/developers/partials/ (mzidentml.adoc,
+# model-in-xml-schema.adoc, crosslinking_ext.adoc). They are edited in place:
+# nothing needs regenerating after editing them.
 #
 # Usage:
-#   ./gen-docs.sh              # regenerate spec + crosslinking + changes
-#   ./gen-docs.sh --spec       # regenerate the main specification partial only
-#   ./gen-docs.sh --crosslinking   # regenerate the crosslinking extension partial only
-#   ./gen-docs.sh --changes    # regenerate the 1.3.0 -> 1.3.x changes documents only
+#   ./gen-docs.sh          # regenerate the 1.3.0 -> 1.3.x changes documents
 #   ./gen-docs.sh --help
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Frozen baselines and the full changes reports live here.
 ADOC_SRC="${SCRIPT_DIR}/specification_document/specdoc1_3/asciidoc"
 PARTIALS_DIR="${SCRIPT_DIR}/docs/mzidentml/modules/developers/partials"
 
-SPEC_SRC="${ADOC_SRC}/mzidentml.adoc"
-SPEC_PARTIAL="${PARTIALS_DIR}/mzidentml.adoc"
-MODEL_SRC="${ADOC_SRC}/model-in-xml-schema.adoc"
-MODEL_PARTIAL="${PARTIALS_DIR}/model-in-xml-schema.adoc"
-
-XL_SRC="${ADOC_SRC}/crosslinking_ext.adoc"
-XL_PARTIAL="${PARTIALS_DIR}/crosslinking_ext.adoc"
+# Current specification sources (edited in place, see above).
+SPEC_SRC="${PARTIALS_DIR}/mzidentml.adoc"
+MODEL_SRC="${PARTIALS_DIR}/model-in-xml-schema.adoc"
+XL_SRC="${PARTIALS_DIR}/crosslinking_ext.adoc"
 
 # --- Changes documents --------------------------------------------------------
 # Frozen copies of the released text act as the comparison baseline.  Refresh
@@ -79,30 +67,16 @@ XL_CHANGES_NEW="${XL_SRC}"
 XL_CHANGES_OUT="${ADOC_SRC}/crosslinking_ext_1_0_0_to_1_0_x_changes.adoc"
 XL_CHANGES_PARTIAL="${PARTIALS_DIR}/crosslinking_ext_1_0_0_to_1_0_x_changes.adoc"
 
-DO_SPEC=true
-DO_XL=true
-DO_CHANGES=true
-
 for arg in "$@"; do
   case "$arg" in
-    --spec)         DO_SPEC=true;  DO_XL=false; DO_CHANGES=false ;;
-    --crosslinking) DO_SPEC=false; DO_XL=true;  DO_CHANGES=false ;;
-    --changes)      DO_SPEC=false; DO_XL=false; DO_CHANGES=true  ;;
+    --changes) ;;  # accepted for compatibility: changes are all this script does
     --help|-h)
-      echo "Usage: $0 [--spec] [--crosslinking] [--changes]"
+      echo "Usage: $0"
       echo ""
-      echo "Regenerates AsciiDoc partials consumed by the Antora documentation site."
-      echo "Run from the repository root after editing the specification documents."
-      echo ""
-      echo "Options:"
-      echo "  --spec          Regenerate only the main specification partial"
-      echo "  --crosslinking  Regenerate only the crosslinking extension partial"
-      echo "  --changes       Regenerate only the ${CHANGES_OLD_LABEL} -> ${CHANGES_NEW_LABEL} changes documents"
+      echo "Regenerates the ${CHANGES_OLD_LABEL} -> ${CHANGES_NEW_LABEL} changes documents and their Antora partials."
+      echo "The specification sources in ${PARTIALS_DIR} are edited in place and need no regeneration."
       echo ""
       echo "Output files:"
-      echo "  ${SPEC_PARTIAL}"
-      echo "  ${MODEL_PARTIAL}"
-      echo "  ${XL_PARTIAL}"
       echo "  ${SPEC_CHANGES_OUT}"
       echo "  ${SPEC_CHANGES_PARTIAL}"
       echo "  ${CHANGES_OUT}"
@@ -125,8 +99,7 @@ CHANGED=()
 
 # Banner written at the top of every generated partial, naming the file it was
 # generated from, so nobody edits the partial by hand (a later run would
-# silently overwrite the edit).  CI fails if the committed partials differ from
-# a fresh run of this script.
+# silently overwrite the edit).
 generated_header() {
   local src="${1#"${SCRIPT_DIR}"/}"
   printf '%s\n' \
@@ -136,53 +109,10 @@ generated_header() {
     ''
 }
 
-# Strip the AsciiDoc document header (= title, :attribute: lines, ifdef blocks,
-# etc.) so the file is safe for Antora include:: directives.  The document body
-# starts at the [preface] block (either the block-style [preface] attribute or
-# the [[preface]] anchor, whichever appears first).  The header's
-# :document-version: entry is kept, so the site shows the same version as the
-# standalone PDF/DOCX built from the same source.
-strip_header() {
-  {
-    generated_header "$1"
-    grep -m1 '^:document-version:' "$1" && echo
-    awk '/^\[preface\]/{f=1} /^\[\[preface\]\]/{f=1} f{print}' "$1"
-  } > "$2"
-}
-
-# --- Main specification partial ----------------------------------------------
-if [ "${DO_SPEC}" = true ]; then
-  echo "==> Generating main specification partial..."
-  echo "    Input:  ${SPEC_SRC}"
-  echo "    Output: ${SPEC_PARTIAL}"
-  strip_header "${SPEC_SRC}" "${SPEC_PARTIAL}"
-
-  # mzidentml.adoc does include::model-in-xml-schema.adoc[].  Co-locate that file
-  # (already headless: starts with "== Model in XML Schema") next to the spec
-  # partial so Antora resolves the relative include within the partials family.
-  echo "    Copying model-in-xml-schema.adoc (with generated header) alongside the partial..."
-  { generated_header "${MODEL_SRC}"; cat "${MODEL_SRC}"; } > "${MODEL_PARTIAL}"
-
-  echo "    Done."
-  CHANGED+=("${SPEC_PARTIAL}" "${MODEL_PARTIAL}")
-fi
-
-# --- Crosslinking extension partial ------------------------------------------
-if [ "${DO_XL}" = true ]; then
-  echo "==> Generating crosslinking extension partial..."
-  echo "    Input:  ${XL_SRC}"
-  echo "    Output: ${XL_PARTIAL}"
-  strip_header "${XL_SRC}" "${XL_PARTIAL}"
-
-  echo "    Done."
-  CHANGED+=("${XL_PARTIAL}")
-fi
-
 # --- Changes documents --------------------------------------------------------
 # Strip a standalone document header (the '= Title' line and any ':attribute:'
-# lines) so the report can be pulled in with include::partial$...[].  Unlike
-# strip_header() above this keeps the introduction and legend, which sit between
-# the header and the first '==' section.
+# lines) so the report can be pulled in with include::partial$...[].  The
+# introduction and legend, between the header and the first '==' section, are kept.
 strip_doc_header() {
   {
     generated_header "$1"
@@ -226,7 +156,7 @@ run_comparison() {
   CHANGED+=("${out}" "${partial}")
 }
 
-if [ "${DO_CHANGES}" = true ]; then
+{
   if ! command -v python3 &>/dev/null; then
     echo "ERROR: python3 is required but not found on PATH." >&2
     exit 1
@@ -256,11 +186,11 @@ if [ "${DO_CHANGES}" = true ]; then
   run_comparison "crosslinking changes document" section \
     "${XL_CHANGES_OLD}" "${XL_CHANGES_NEW}" "${XL_CHANGES_OUT}" "${XL_CHANGES_PARTIAL}" \
     "${XL_CHANGES_OLD_LABEL}" "${XL_CHANGES_NEW_LABEL}" "Crosslinking extension"
-fi
+}
 
 echo ""
 echo "==> Complete. Stage and commit the updated files:"
 for f in "${CHANGED[@]}"; do
   echo "    git add ${f}"
 done
-echo "    git commit -m 'docs: regenerate Antora partials'"
+echo "    git commit -m 'docs: regenerate changes documents'"

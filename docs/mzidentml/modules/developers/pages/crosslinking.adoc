@@ -8,4 +8,4 @@ It is also available as downloadable
 xref:ROOT:attachment${xl-basename}.pdf[PDF] and
 xref:ROOT:attachment${xl-basename}.docx[DOCX] documents.
 
-include::partial$crosslinking_ext.adoc[]
+include::partial$crosslinking_ext.adoc[tag=body]

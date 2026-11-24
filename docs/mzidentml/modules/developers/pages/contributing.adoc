@@ -15,9 +15,10 @@ This documentation site is built with https://antora.org[Antora] from AsciiDoc
 sources in the https://github.com/HUPO-PSI/mzIdentML[mzIdentML repository].
 
 * Narrative pages live under `docs/mzidentml/modules/<module>/pages/`.
-* The specification and crosslinking extension are authored as standalone AsciiDoc
-  documents under `specification_document/specdoc1_3/asciidoc/`. After editing them,
-  run `./gen-docs.sh` to regenerate the Antora partials that this site includes.
+* The specification and crosslinking extension are standalone AsciiDoc documents
+  under `docs/mzidentml/modules/developers/partials/`. Edit them in place: this site
+  includes the part of each between `tag::body[]` and `end::body[]`, and the
+  downloadable PDF/DOCX are built from the whole document.
 * Preview your changes locally with `./build-site.sh --serve` and open
   http://localhost:8080.
 

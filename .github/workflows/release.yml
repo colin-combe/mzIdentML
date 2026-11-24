@@ -1,178 +1,141 @@
 name: Spec Doc Release Workflow
+# Publishing a GitHub release whose tag is a plain version X.Y.Z (e.g. 1.3.1, no
+# leading 'v', so tags never share a name with the v* documentation branches):
+#
+#   1. validates the examples;
+#   2. creates the documentation branch vX.Y.Z from the tagged commit, with
+#      version 'X.Y.Z' and no prerelease in docs/mzidentml/antora.yml;
+#   3. replaces the development branch vX.Y.Z-dev, if there is one, with
+#      vX.Y.(Z+1)-dev: same history, version bumped, prerelease -dev. Both
+#      vX.Y.Z and vX.Y.Z-dev would otherwise declare version X.Y.Z, which
+#      Antora rejects;
+#   4. rebuilds and deploys the site through ci.yml (all v* branches, each
+#      with its own PDF/DOCX, built by prepare-versions.sh; nothing is committed).
+#
+# Releases with any other tag (e.g. the validator's mzIdentMLValidator_GUI_*)
+# are ignored.
+#
+# Branch pushes are atomic: either all of step 2 and 3 happens or none.
+#
+# Required settings:
+#   - Settings → Pages: source "GitHub Actions".
+#   - Settings → Environments → github-pages: deployment branches and tags must
+#     allow the v* branches and the X.Y.Z release tags.
+#   - Branch protection, if any, must let GitHub Actions create v* branches and
+#     delete v*-dev branches.
 on:
   release:
-    types: [created]
+    types: [published]
 
-# Required permissions:
-#   contents:write – push the documentation version branch (v{MAJOR}.{MINOR})
-#   pages:write    – deploy to GitHub Pages (scoped to the publish-site job)
-#   id-token:write – OIDC token for the Pages deployment
-#
-# NOTE: The GitHub Pages source must be set to "GitHub Actions" (Settings → Pages)
-# for the Antora site to be published.
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  # Local references run the reusable workflows from the released commit,
-  # not from whatever is on main at release time.
-  build-spec-workflow:
-    uses: ./.github/workflows/ci.yml
-    # ci.yml's deploy-docs job (skipped for releases) declares pages/id-token
-    # permissions; a called workflow may not request more than the caller grants.
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+  check-tag:
+    name: Check release tag
+    runs-on: ubuntu-24.04
+    outputs:
+      is_spec: ${{ steps.check.outputs.is_spec }}
+    steps:
+      - name: Is the tag a specification version (X.Y.Z)?
+        id: check
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if [[ "${TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "is_spec=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "is_spec=false" >> "${GITHUB_OUTPUT}"
+            echo "::notice::Tag '${TAG}' is not X.Y.Z, so no documentation version is released."
+          fi
 
+  # Local references run the reusable workflows from the released commit.
   test-examples-workflow:
+    needs: check-tag
+    if: needs.check-tag.outputs.is_spec == 'true'
     uses: ./.github/workflows/validate.yml
     permissions:
       contents: read
 
-  create-doc-branch:
-    name: Create documentation version branch
-    # Do not publish documentation for a release whose spec build or example
-    # validation failed.
-    needs: [build-spec-workflow, test-examples-workflow]
+  create-doc-branches:
+    name: Create documentation version branches
+    # Do not publish documentation for a release whose examples fail validation.
+    needs: [check-tag, test-examples-workflow]
+    if: needs.check-tag.outputs.is_spec == 'true'
     runs-on: ubuntu-24.04
-    outputs:
-      doc_branch: ${{ steps.branch.outputs.doc_branch }}
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository (full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Use a PAT or the default GITHUB_TOKEN with contents:write
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Derive documentation branch name
-        id: branch
-        run: |
-          # github.ref_name is the tag name, e.g. "v2.1.0"
-          TAG="${{ github.ref_name }}"
-          # Strip leading 'v' and the patch segment → "2.1"
-          MAJOR_MINOR="$(echo "${TAG#v}" | cut -d. -f1,2)"
-          DOC_BRANCH="v${MAJOR_MINOR}"
-          echo "doc_branch=${DOC_BRANCH}" >> "${GITHUB_OUTPUT}"
-          echo "Creating documentation branch: ${DOC_BRANCH} from tag ${TAG}"
-
-      - name: Download specification documents
-        uses: actions/download-artifact@v4
-        with:
-          name: specification-documents
-          path: spec-artifact
-
-      - name: Create and push documentation version branch
+      - name: Create vX.Y.Z and replace vX.Y.Z-dev with vX.Y.(Z+1)-dev
         env:
-          DOC_BRANCH: ${{ steps.branch.outputs.doc_branch }}
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ github.event.release.tag_name }}
         run: |
+          set -euo pipefail
+          ANTORA=docs/mzidentml/antora.yml
+          IFS=. read -r MAJOR MINOR PATCH <<< "${VERSION}"
+          NEXT="${MAJOR}.${MINOR}.$((PATCH + 1))"
+          REL="v${VERSION}"
+          DEV="v${VERSION}-dev"
+          NEXT_DEV="v${NEXT}-dev"
+
+          remote_has() { git ls-remote --exit-code --heads origin "refs/heads/$1" > /dev/null; }
+
+          if remote_has "${REL}"; then
+            echo "::error::Branch ${REL} already exists; ${VERSION} has already been released."
+            exit 1
+          fi
+
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
 
-          # Create the branch from the tagged commit (already checked out)
-          git checkout -b "${DOC_BRANCH}"
+          # Set the component version in antora.yml: <version> [<prerelease>].
+          set_version() {
+            sed -i -E "s/^version:.*/version: '$1'/" "${ANTORA}"
+            sed -i '/^prerelease:/d' "${ANTORA}"
+            if [ -n "${2:-}" ]; then
+              sed -i "/^version:/a prerelease: $2" "${ANTORA}"
+            fi
+            git add "${ANTORA}"
+          }
 
-          # Remove the prerelease marker so Antora treats this branch as the
-          # stable published version (e.g. "1.3" instead of "1.3-dev").
-          sed -i '/^prerelease:/d' docs/mzidentml/antora.yml
+          # The released version: the tagged commit, as a stable version.
+          git switch --quiet -c "${REL}" "${GITHUB_SHA}"
+          set_version "${VERSION}"
+          # Nothing to commit if the tagged commit already declares this version.
+          git diff --cached --quiet || git commit -m "release: ${VERSION}"
+          PUSH=("refs/heads/${REL}:refs/heads/${REL}")
 
-          # Pin this version's specification PDF/DOCX into the branch so the
-          # downloads of released versions stay fixed. They are git-ignored on
-          # development branches, hence --force.
-          mkdir -p docs/mzidentml/modules/ROOT/attachments
-          cp -v spec-artifact/*.pdf spec-artifact/*.docx docs/mzidentml/modules/ROOT/attachments/
+          # The development version: vX.Y.Z-dev continues as vX.Y.(Z+1)-dev,
+          # keeping any commits made after the tag.
+          if remote_has "${DEV}"; then
+            if remote_has "${NEXT_DEV}"; then
+              echo "::error::Both ${DEV} and ${NEXT_DEV} exist. Merge or delete one of them, then re-run this workflow."
+              exit 1
+            fi
+            git switch --quiet -c "${NEXT_DEV}" "origin/${DEV}"
+            set_version "${NEXT}" "-dev"
+            git commit -m "Start ${NEXT} development (continues ${DEV})"
+            PUSH+=("refs/heads/${NEXT_DEV}:refs/heads/${NEXT_DEV}" ":refs/heads/${DEV}")
+          else
+            echo "::notice::No ${DEV} branch, so no development branch is replaced."
+          fi
 
-          git add docs/mzidentml/antora.yml
-          git add --force docs/mzidentml/modules/ROOT/attachments/*.pdf docs/mzidentml/modules/ROOT/attachments/*.docx
-          git commit -m "release: mark ${TAG} as stable Antora documentation version"
+          git push --atomic origin "${PUSH[@]}"
+          echo "Pushed: ${PUSH[*]}"
 
-          git push origin "${DOC_BRANCH}"
-          echo "Pushed documentation branch: ${DOC_BRANCH}"
-
+  # The pushes above were made with GITHUB_TOKEN, which does not trigger ci.yml's
+  # push event, so call it directly. Its checkout fetches the new branches.
   publish-site:
-    name: Build and publish Antora site
-    needs: [build-spec-workflow, create-doc-branch]
-    runs-on: ubuntu-24.04
-    # Shared with ci.yml's deploy-docs so Pages deployments never overlap.
-    concurrency:
-      group: github-pages
-      cancel-in-progress: false
+    needs: create-doc-branches
+    uses: ./.github/workflows/ci.yml
+    # A called workflow may not request more than the caller grants.
     permissions:
+      contents: read
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-
-    steps:
-      - name: Checkout repository (full history)
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Fetch all remote branches (including the new doc branch)
-        run: git fetch --all
-
-      - name: Check out doc branch locally so Antora can resolve it
-        env:
-          DOC_BRANCH: ${{ needs.create-doc-branch.outputs.doc_branch }}
-        run: |
-          # Make the remote branch available as a local branch so Antora's
-          # "url: ." source can see it via the 'v*' glob in antora-playbook.yml.
-          git checkout -b "${DOC_BRANCH}" "origin/${DOC_BRANCH}"
-          # Return to the release commit (HEAD) for the build
-          git checkout -
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: npm
-
-      - name: Install Antora and extensions
-        run: npm ci
-
-      - name: Regenerate documentation partials
-        # See the equivalent step in ci.yml: 'worktrees: .' means the current
-        # branch is read from the working tree, so this keeps the published
-        # site in step with the specification sources.
-        # The --changes documents are skipped until the frozen 1.3.0 / 1.0.0
-        # baseline files are committed; then go back to a plain ./gen-docs.sh.
-        run: |
-          ./gen-docs.sh --spec
-          ./gen-docs.sh --crosslinking
-        shell: bash
-
-      # Attachments for the checked-out worktree (HEAD); the vX.Y branches
-      # carry their own committed copies.
-      - name: Download specification documents
-        uses: actions/download-artifact@v4
-        with:
-          name: specification-documents
-          path: spec-artifact
-
-      - name: Add specification PDF/DOCX as Antora attachments
-        run: |
-          mkdir -p docs/mzidentml/modules/ROOT/attachments
-          cp -v spec-artifact/*.pdf spec-artifact/*.docx docs/mzidentml/modules/ROOT/attachments/
-
-      - name: Build Antora site
-        env:
-          ANTORA_EDIT_BRANCH: main
-        run: |
-          npx antora antora-playbook.yml \
-            --attribute "commit-hash=${{ github.sha }}" \
-            --attribute "build-date=${{ github.event.release.created_at }}" \
-            --attribute "document-version=${{ github.ref_name }}"
-
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build/site/
-
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4

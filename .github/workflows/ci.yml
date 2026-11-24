@@ -5,6 +5,8 @@ name: Spec Build Workflow
 #
 # A push to any v* branch rebuilds and redeploys the whole site. A pull request
 # into a v* branch builds the site with the PR's changes in place of that branch.
+# release.yml calls this workflow (workflow_call) after creating a release's
+# branches: pushes made with GITHUB_TOKEN do not trigger the push event.
 on:
   push:
     branches:
@@ -13,54 +15,17 @@ on:
     branches:
       - 'v*'
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
 
 jobs:
   # ---------------------------------------------------------------------------
-  # Fail if the committed Antora partials differ from what gen-docs.sh produces
-  # from the specification sources, i.e. a partial was edited by hand or a
-  # source was edited without regenerating.  The partials must be committed
-  # because Antora reads them from each v* branch, where gen-docs.sh never runs.
-  #
-  # Only --spec and --crosslinking are checked for now: the --changes documents
-  # need frozen 1.3.0 / 1.0.0 baseline files that are not in the repo yet.  Once
-  # they are, replace the two runs below with a plain ./gen-docs.sh.
-  # ---------------------------------------------------------------------------
-  check-partials:
-    name: Check generated partials are up to date
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Regenerate partials
-        run: |
-          ./gen-docs.sh --spec
-          ./gen-docs.sh --crosslinking
-        shell: bash
-
-      - name: Compare with committed partials
-        run: |
-          partials=docs/mzidentml/modules/developers/partials
-          if [ -n "$(git status --porcelain -- "$partials")" ]; then
-            echo "::error::Generated partials are out of date with the specification sources."
-            echo "Edit the sources under specification_document/specdoc1_3/asciidoc/, run ./gen-docs.sh and commit the result."
-            git status --short -- "$partials"
-            git diff -- "$partials"
-            exit 1
-          fi
-          echo "Partials are up to date."
-        shell: bash
-
-  # ---------------------------------------------------------------------------
   # Build the specification PDF/DOCX of every v* branch and the Antora site.
   # ---------------------------------------------------------------------------
   build-site:
     name: Build documentation site
-    needs: check-partials
     runs-on: ubuntu-24.04
 
     steps:
@@ -120,9 +85,11 @@ jobs:
     name: Deploy documentation to GitHub Pages
     needs: build-site
     # A merged PR also triggers a push to its v* branch, so deploying on push
-    # covers it. The github-pages environment must allow deployments from v*
-    # branches (Settings → Environments → github-pages → Deployment branches).
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    # covers it. When release.yml calls this workflow the event is 'release'.
+    # The github-pages environment must allow deployments from v* branches and
+    # release tags (Settings → Environments → github-pages → Deployment branches
+    # and tags).
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'release'
     runs-on: ubuntu-24.04
     concurrency:
       group: github-pages
