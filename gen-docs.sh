@@ -139,10 +139,13 @@ generated_header() {
 # Strip the AsciiDoc document header (= title, :attribute: lines, ifdef blocks,
 # etc.) so the file is safe for Antora include:: directives.  The document body
 # starts at the [preface] block (either the block-style [preface] attribute or
-# the [[preface]] anchor, whichever appears first).
+# the [[preface]] anchor, whichever appears first).  The header's
+# :document-version: entry is kept, so the site shows the same version as the
+# standalone PDF/DOCX built from the same source.
 strip_header() {
   {
     generated_header "$1"
+    grep -m1 '^:document-version:' "$1" && echo
     awk '/^\[preface\]/{f=1} /^\[\[preface\]\]/{f=1} f{print}' "$1"
   } > "$2"
 }

@@ -11,14 +11,15 @@ site:
 content:
   sources:
     - url: .
-      # HEAD picks up the current branch (e.g. main / antora during local dev).
-      # 'v*' automatically includes all release documentation branches (v1.3, v1.4, …)
-      # created by the release workflow.  If no v* branches exist yet the glob is
-      # silently ignored by Antora, so this is safe before the first release.
+      # Every version is a v* branch: released versions (e.g. v1.3.0) and the
+      # version in development (e.g. v1.3.1-dev). Each branch's antora.yml sets
+      # its version, so no two v* branches may declare the same one.
+      # (./build-site.sh previews the current branch only; see that script.)
       branches: ['v*']
-      # worktrees: . lets Antora read uncommitted changes during local preview.
-      # In CI the working tree matches HEAD, so this is harmless there too.
-      worktrees: .
+      # Read each branch from its git worktree when it has one (the main checkout
+      # or a linked worktree), including untracked files. CI (prepare-versions.sh)
+      # gives every v* branch a worktree holding its freshly built PDF/DOCX.
+      worktrees: true
       start_path: docs/mzidentml
       edit_url: 'https://github.com/HUPO-PSI/mzIdentML/edit/{refname}/{path}'
 
@@ -28,20 +29,14 @@ ui:
     snapshot: true
   supplemental_files: ./docs/supplemental-ui
 
-asciidoc:
-  attributes:
-    commit-hash: 'see git log'
-    build-date: 'see CI build'
-    document-version: '1.3.0'
-
 antora:
   extensions:
     - require: '@antora/lunr-extension'
       index_latest_only: true
 
 # Fail the build on error-level messages rather than publishing a broken page.
-# Without this a missing include (e.g. an absent partial on a v* release branch)
-# is only logged, and the affected page is published empty with a green build.
+# Without this a missing include or download (e.g. an absent partial or PDF on a
+# v* branch) is only logged, and the page is published broken with a green build.
 runtime:
   log:
     failure_level: error

@@ -78,8 +78,8 @@ The documentation site is built with [Antora](https://antora.org) from AsciiDoc 
 
 - Narrative pages live under `docs/mzidentml/modules/<module>/pages/`.
 - The specification and crosslinking extension are authored as standalone AsciiDoc documents under `specification_document/specdoc1_3/asciidoc/` (also built to HTML/PDF/DOCX by `build-docs.sh`). After editing them, run `./gen-docs.sh` to regenerate the Antora partials that the site includes.
-- Build and preview the site locally with `./build-site.sh --serve` (requires Docker) and open <http://localhost:8080>.
+- Build and preview the current branch locally with `./build-site.sh --serve` (requires Docker; add `--with-spec` to also build the PDF/DOCX downloads) and open <http://localhost:8080>.
 
-On push to `master` (and on merged pull requests), the `Spec Build Workflow` builds the site and deploys it to GitHub Pages. Tagged releases additionally create a versioned `v{MAJOR}.{MINOR}` documentation branch. See `antora-playbook.yml` and `.github/workflows/`.
+Each version of the specification is a `v*` branch: released versions (e.g. `v1.3.0`) and the version in development (e.g. `v1.3.1-dev`). Each branch's `docs/mzidentml/antora.yml` sets its version, and no two branches may declare the same one. On a push to any `v*` branch, the `Spec Build Workflow` builds the site from all `v*` branches, each with its own PDF/DOCX, and deploys it to GitHub Pages. See `antora-playbook.yml`, `prepare-versions.sh` and `.github/workflows/`.
 
 

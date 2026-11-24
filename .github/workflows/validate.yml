@@ -1,11 +1,11 @@
 name: Example File Validation Workflow
 # Validates every example file against its XML schema and - with the latest release of
 # https://github.com/HUPO-PSI/mzidentml-validator - semantically. Any failure fails the run.
-# Triggers on direct pushes to master or PRs that touch the examples or what checks them.
+# Triggers on pushes to v* branches or PRs into them that touch the examples or what checks them.
 on:
   push:
     branches:
-      - master
+      - 'v*'
     paths:
       - 'examples/**'
       - 'schema/**'
@@ -13,7 +13,7 @@ on:
       - '.github/workflows/validate.yml'
   pull_request:
     branches:
-      - master
+      - 'v*'
     paths:
       - 'examples/**'
       - 'schema/**'

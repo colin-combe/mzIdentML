@@ -1,5 +1,5 @@
 name: mzidentml
-version: '1.3'
+version: '1.3.1'
 prerelease: -dev
 title: mzIdentML
 nav:
@@ -11,7 +11,11 @@ nav:
 asciidoc:
   attributes:
     # Base names of the specification PDF/DOCX attachments (modules/ROOT/attachments/),
-    # built by build-docs.sh. CI copies them in for the branch being built; release
-    # branches (vX.Y) carry committed copies. Linked as xref:ROOT:attachment${spec-basename}.pdf[].
+    # built by build-docs.sh from the .adoc of the same name. They are not committed:
+    # CI (prepare-versions.sh) and ./build-site.sh --with-spec build them.
+    # Linked as xref:ROOT:attachment${spec-basename}.pdf[].
     spec-basename: mzidentml
     xl-basename: crosslinking_ext
+    # Replaced with this branch's last commit by prepare-versions.sh in CI.
+    commit-hash: 'local'
+    build-date: 'local build'

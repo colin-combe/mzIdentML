@@ -1,6 +1,10 @@
 #!/bin/bash
 # Build and optionally preview the mzIdentML Antora documentation site using Docker.
 #
+# The preview shows the current branch only, whatever its name, including
+# uncommitted changes. (The published site is built by CI from every v* branch;
+# see antora-playbook.yml and prepare-versions.sh.)
+#
 # Usage:
 #   ./build-site.sh          # build only
 #   ./build-site.sh --serve  # build and start a local HTTP server for preview
@@ -18,6 +22,8 @@ WITH_SPEC=false
 SPEC_SRC_DIR="${SCRIPT_DIR}/specification_document/specdoc1_3/asciidoc"
 SPEC_FILES=(mzidentml.adoc crosslinking_ext.adoc)
 ATTACHMENTS_DIR="${SCRIPT_DIR}/docs/mzidentml/modules/ROOT/attachments"
+CLEANUP=()
+trap 'rm -rf ${CLEANUP[@]+"${CLEANUP[@]}"}' EXIT
 ANTORA_ARGS=()
 
 for arg in "$@"; do
@@ -61,7 +67,7 @@ fi
 if [ "${WITH_SPEC}" = true ]; then
   echo "==> Building specification PDF/DOCX..."
   SPEC_TMP="$(mktemp -d)"
-  trap 'rm -rf "${SPEC_TMP}"' EXIT
+  CLEANUP+=("${SPEC_TMP}")
   # Build from a copy so build-docs.sh's output/ folder stays out of the repo.
   mkdir -p "${SPEC_TMP}/src"
   cp -R "${SPEC_SRC_DIR}/." "${SPEC_TMP}/src/"
@@ -88,18 +94,23 @@ else
   done
 fi
 
-ANTORA_EDIT_BRANCH="${ANTORA_EDIT_BRANCH:-$(git -C "${SCRIPT_DIR}" rev-parse --abbrev-ref HEAD 2>/dev/null || echo HEAD)}"
+# Same playbook, but reading only the current branch (HEAD) from this checkout. It sits next to
+# antora-playbook.yml because Antora resolves the playbook's paths relative to it.
+PREVIEW_PLAYBOOK="${SCRIPT_DIR}/.antora-preview-playbook.yml"
+CLEANUP+=("${PREVIEW_PLAYBOOK}")
+sed -e "s/^\( *branches:\).*/\1 HEAD/" -e "s/^\( *worktrees:\).*/\1 ./" \
+  "${SCRIPT_DIR}/antora-playbook.yml" > "${PREVIEW_PLAYBOOK}"
 
 echo "==> Building Antora site..."
 docker run --rm \
   -u "$(id -u):$(id -g)" \
   -v "${SCRIPT_DIR}:/antora" \
   -w /antora \
-  -e ANTORA_EDIT_BRANCH \
   "${ANTORA_IMAGE}" \
   --cache-dir /antora/.cache/antora \
+  --clean \
   ${ANTORA_ARGS[@]+"${ANTORA_ARGS[@]}"} \
-  antora-playbook.yml
+  "$(basename "${PREVIEW_PLAYBOOK}")"
 
 echo ""
 echo "==> Site built at: ${OUTPUT_DIR}"

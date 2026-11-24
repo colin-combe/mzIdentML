@@ -1,31 +1,28 @@
 name: Spec Build Workflow
-# Builds the standalone specification documents (PDF/HTML/DOCX) and the
-# Antora documentation site, then publishes the site to GitHub Pages.
+# Builds the Antora documentation site from every v* branch (released versions,
+# e.g. v1.3.0, and the version in development, e.g. v1.3.1-dev), each with its
+# own specification PDF/DOCX, then publishes it to GitHub Pages.
+#
+# A push to any v* branch rebuilds and redeploys the whole site. A pull request
+# into a v* branch builds the site with the PR's changes in place of that branch.
 on:
   push:
     branches:
-      - main
+      - 'v*'
   pull_request:
     branches:
-      - main
-  workflow_call:
+      - 'v*'
+  workflow_dispatch:
 
 permissions:
   contents: read
-
-env:
-  DOC_IN: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc"
-  DOC_OUT: "${{ github.workspace }}/specification_document/specdoc1_3/asciidoc/output"
-  DOC_FILE: 'mzidentml.adoc'
-  RELEASE_DIR: '1_3-mzidentml-release'
 
 jobs:
   # ---------------------------------------------------------------------------
   # Fail if the committed Antora partials differ from what gen-docs.sh produces
   # from the specification sources, i.e. a partial was edited by hand or a
   # source was edited without regenerating.  The partials must be committed
-  # because Antora reads the v* release branches straight from git, where
-  # gen-docs.sh never runs.
+  # because Antora reads them from each v* branch, where gen-docs.sh never runs.
   #
   # Only --spec and --crosslinking are checked for now: the --changes documents
   # need frozen 1.3.0 / 1.0.0 baseline files that are not in the repo yet.  Once
@@ -59,72 +56,11 @@ jobs:
         shell: bash
 
   # ---------------------------------------------------------------------------
-  # Build the standalone specification documents (PDF/HTML/DOCX/XML) with
-  # asciidoctor + pandoc. The PDF/DOCX become Antora attachments (per-version
-  # downloads, see build-docs below).
+  # Build the specification PDF/DOCX of every v* branch and the Antora site.
   # ---------------------------------------------------------------------------
-  build-spec:
-    runs-on: ubuntu-24.04
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Set build timestamp
-        run: echo "BUILD_DATE=$(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_ENV
-      
-      - name: Install dependencies
-        # librsvg2-bin provides rsvg-convert, which pandoc shells out to when
-        # rasterising SVG figures for DOCX output.  Without it the SVG is
-        # embedded with no PNG fallback and renders blank outside recent Word.
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y pandoc librsvg2-bin
-      
-      - name: Pull Asciidoctor Docker image
-        run: docker pull asciidoctor/docker-asciidoctor:1
-      
-      - name: Build specification documents
-        run: |
-          ./build-docs.sh \
-            -i "$DOC_IN" \
-            -o "$DOC_OUT" \
-            -c "$GITHUB_SHA" \
-            -d "$BUILD_DATE" \
-            -f "$DOC_FILE" \
-            -r
-        shell: bash
-
-      - name: Build crosslinking extension doc
-        run: ./build-docs.sh -i "$DOC_IN" -o "$DOC_OUT" -c "$GITHUB_SHA" -d "$BUILD_DATE" -f "crosslinking_ext.adoc" -r
-        shell: bash
-
-      - name: Prepare output directory
-        run: |
-          mkdir -p output/$RELEASE_DIR/img
-          cp -v -R $DOC_OUT/* output/$RELEASE_DIR/
-          cp -v -R $DOC_OUT/img/* output/$RELEASE_DIR/img/
-          cp -v -R docs/* output/
-      
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: specification-documents
-          path: |
-            output/${{ env.RELEASE_DIR }}/*.pdf
-            output/${{ env.RELEASE_DIR }}/*.html
-            output/${{ env.RELEASE_DIR }}/*.docx
-          retention-days: 90
-
-  # ---------------------------------------------------------------------------
-  # Build the Antora documentation site.
-  # ---------------------------------------------------------------------------
-  build-docs:
-    name: Build Antora documentation
-    needs: build-spec
-    # Only for pushes and PRs. When called from release.yml, github.event_name is
-    # the caller's event ('release'), and release.yml has its own publish-site job.
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
+  build-site:
+    name: Build documentation site
+    needs: check-partials
     runs-on: ubuntu-24.04
 
     steps:
@@ -133,14 +69,35 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch all remote branches
-        run: git fetch --all
-
-      - name: Create local tracking branches for existing release versions
+      - name: Create local branches for all v* branches
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
-          for branch in $(git branch -r | grep 'origin/v' | sed 's|.*origin/||'); do
+          # A pull request is checked out as a detached merge commit. Name it
+          # after the branch it targets, so the site shows the PR's changes as
+          # that version (Antora reads the current branch from the worktree).
+          if [ -n "$BASE_REF" ]; then
+            git checkout -B "$BASE_REF"
+          fi
+          for branch in $(git branch -r --list 'origin/v*' --format='%(refname:lstrip=3)'); do
             git branch "$branch" "origin/$branch" 2>/dev/null || true
           done
+          git branch --list 'v*'
+
+      - name: Install dependencies
+        # librsvg2-bin provides rsvg-convert, which pandoc shells out to when
+        # rasterising SVG figures for DOCX output.  Without it the SVG is
+        # embedded with no PNG fallback and renders blank outside recent Word.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc librsvg2-bin
+
+      - name: Pull Asciidoctor Docker image
+        run: docker pull asciidoctor/docker-asciidoctor:1
+
+      - name: Build each version's specification PDF/DOCX
+        run: ./prepare-versions.sh
+        shell: bash
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -151,54 +108,22 @@ jobs:
       - name: Install Antora and extensions
         run: npm ci
 
-      - name: Regenerate documentation partials
-        # antora-playbook.yml sets 'worktrees: .', so the current branch is read
-        # from the working tree.  Regenerating here means the published site
-        # always matches the specification sources, even if the committed
-        # partials or changes documents were not refreshed before commit.
-        # The --changes documents are skipped until the frozen 1.3.0 / 1.0.0
-        # baseline files are committed; then go back to a plain ./gen-docs.sh.
-        run: |
-          ./gen-docs.sh --spec
-          ./gen-docs.sh --crosslinking
-        shell: bash
-
-      # The spec PDF/DOCX from build-spec become Antora attachments of the ROOT
-      # module (xref:ROOT:attachment$...). Antora reads the checked-out worktree,
-      # so these untracked files are included for the current branch; the vX.Y
-      # release branches carry their own committed copies.
-      - name: Download specification documents
-        uses: actions/download-artifact@v4
-        with:
-          name: specification-documents
-          path: spec-artifact
-
-      - name: Add specification PDF/DOCX as Antora attachments
-        run: |
-          mkdir -p docs/mzidentml/modules/ROOT/attachments
-          cp -v spec-artifact/*.pdf spec-artifact/*.docx docs/mzidentml/modules/ROOT/attachments/
-
       - name: Build Antora site
-        env:
-          ANTORA_EDIT_BRANCH: main
-        run: |
-          npx antora antora-playbook.yml \
-            --attribute "commit-hash=${{ github.sha }}" \
-            --attribute "build-date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+        run: npx antora antora-playbook.yml
 
       - name: Upload GitHub Pages artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/site/
 
-  deploy-docs:
+  deploy-site:
     name: Deploy documentation to GitHub Pages
-    needs: build-docs
-    # A merged PR also triggers a push to main, so deploying on push covers it.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build-site
+    # A merged PR also triggers a push to its v* branch, so deploying on push
+    # covers it. The github-pages environment must allow deployments from v*
+    # branches (Settings → Environments → github-pages → Deployment branches).
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
-    # Shared with release.yml's publish-site so Pages deployments never overlap.
     concurrency:
       group: github-pages
       cancel-in-progress: false
